@@ -1,0 +1,2 @@
+# Adding files and directories that will not be committed to Github
+node_modules
