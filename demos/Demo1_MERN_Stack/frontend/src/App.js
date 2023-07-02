@@ -3,11 +3,11 @@ import './App.css';
 import axios from 'axios';
 
 const App = () => {
-  // Hooks are key to React, here the useState hook. "use" is the prefix used to defined ready-made and custom hooks
+  // Hooks are key to React. Here is the useState hook. "use" is the prefix used to define ready-made hooks & custom hooks
   const [postData, updatePostData] = useState(null);
 
   // Another hook, a useEffect, which runs as soon as the component mounts on the DOM
-  // No dependencies in the second argument, an array in a useEffect(function, array), means function runs only once
+  // No dependencies in the second argument, an array in the useEffect(function, array), means function runs only once
   useEffect(() => {
 
     let options = {
@@ -33,7 +33,7 @@ const App = () => {
     return <div>Loading...</div>
   }
   else {
-    // On success, render the content of the component and information from the PostData state variable
+    // On data fetch request success, render the content of the component and information from the PostData state variable
     return (
       <div className="App">
         <h1>Here is Fetched Post Data!</h1>

@@ -5,7 +5,7 @@ const postRoute = require("./Routes/PostRoute");
 const app = express(); // Spin up the server..
 
 app.use(cors()); // Enable CROSS-ORIGIN RESOURCE SHARING
-app.use("/", postRoute);
+app.use("/", postRoute); // Add routes to server
 
 
 // Listen on PORT 5000
