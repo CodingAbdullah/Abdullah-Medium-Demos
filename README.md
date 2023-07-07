@@ -16,11 +16,19 @@ Below is a table highlighting the code repository and their respective Medium ar
         </th>
     </tr>
     <tr>
-    <td>
-        <code>/demos/Demo1_MERN_Stack</code>
-    </td>
-    <td>
-    <a href="https://medium.com/@abdullah_95/an-introduction-to-the-mern-stack-75b03649687e">An Introduction to the MERN Stack</a>
-    </td>
+        <td>
+            <code>/demos/Demo1_MERN_Stack</code>
+        </td>
+        <td>
+            <a href="https://medium.com/@abdullah_95/an-introduction-to-the-mern-stack-75b03649687e">An Introduction to the MERN Stack</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo2_React_Redux</code>
+        </td>
+        <td>
+            <p>Link to be determined</p>
+        </td>
     </tr>
 </table>
