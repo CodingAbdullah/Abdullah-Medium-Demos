@@ -2,12 +2,12 @@ import './App.css';
 import ContentPage from '../ContentPage/ContentPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
+import LogoutPage from '../LogoutPage/LogoutPage';
 import Navbar from '../Navbar/Navbar';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import { Routes, BrowserRouter as Router, Route } from 'react-router-dom';
 import store from '../../redux/store/store';
 import { Provider } from 'react-redux';
-import LogoutPage from '../LogoutPage/LogoutPage';
 
 const App = () => {
   // Wrapping global redux store using a Provider
