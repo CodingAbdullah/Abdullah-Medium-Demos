@@ -14,12 +14,10 @@ const LoginPage = () => {
 
     const error = useSelector(state => state.auth.isError);
     const loading = useSelector(state => state.auth.isLoading);
-    const success =  useSelector(state => state.auth.isSuccess);
     const user = useSelector(state => state.auth.user);
-    const token = useSelector(state => state.auth.token);
 
     useEffect(() => {
-        if (user && token) {
+        if (user) {
             navigate("/");
         }
     }, []);
@@ -34,7 +32,7 @@ const LoginPage = () => {
             if (error){
                 updateAlert(true);
             }
-            else if (success && user && token) {
+            else if (user) {
                 navigate("/");
             }
         }
@@ -43,8 +41,11 @@ const LoginPage = () => {
         }
     }
 
-    if (loading) {
+    if (loading){
         return <div>Loading...</div>
+    }
+    else if (user){
+        navigate("/");
     }
     else {
         return (

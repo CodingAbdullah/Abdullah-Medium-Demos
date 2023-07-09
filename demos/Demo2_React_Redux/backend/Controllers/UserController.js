@@ -6,8 +6,8 @@ const User = require("../Models/User");
 exports.loginUser = (req, res) => {
     const { email, password } = JSON.parse(req.body.body);
 
-    User.find({ email }, ( err, result ) => {
-        if (err) {
+    User.find({ email }, ( error, result ) => {
+        if (error) {
             res.status(400).json({
                 message: "Cannot query database"
             });
@@ -23,13 +23,13 @@ exports.loginUser = (req, res) => {
             let lastName = result[0].lastName;
 
             let hashedPassword = result[0].password; // Check hashed password
-            bcrypt.compare(password, hashedPassword, (err, result) => {
+            bcrypt.compare(password, hashedPassword, ( err, password ) => {
                 if (err) {
                     res.status(400).json({
                         message: "Could not verify password " + err
                     });
                 }
-                else if (result){
+                else if (password){
                     // Verify and sign JWT token and pass it to client server
                     let token = JWT.sign({ email }, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
                     res.status(200).json({
@@ -48,10 +48,5 @@ exports.loginUser = (req, res) => {
                 }
             });
         }
-    })
-    .catch(err => {
-        res.status(400).json({
-            message: "Could not find user " + err
-        });
     });
 }

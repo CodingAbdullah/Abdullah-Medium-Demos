@@ -5,9 +5,6 @@ const login = async (user) => {
     let options = {
         method: "POST",
         body: JSON.stringify({ email: user.email, password: user.password }),
-        headers : {
-            'content-type' : 'application/json'
-        }
     };
 
     const response = await axios.post("http://localhost:5000/login", options); // Make async-await call to backend

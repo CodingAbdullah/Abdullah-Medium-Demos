@@ -6,13 +6,12 @@ import { logout } from '../../redux/reducers/authReducer';
 const LogoutPage = () => {
     // Check the global state, check to see if User exists
     const user = useSelector(state => state.auth.user);
-    const token = useSelector(state => state.auth.token);
     const navigate = useNavigate("/");
     const dispatch = useDispatch();
 
     // Check to see if the user is actually logged in
     useEffect(() => {
-        if (!user || !token){
+        if (!user){
             navigate("/");
         }
         else {
@@ -20,14 +19,14 @@ const LogoutPage = () => {
         }
     }, []);
 
-    if ( user && token ){
+    if ( user ){
         return <div>Loading...</div>
     }
     else {
         return (
             <div className="logout-page">
                 <h1>You have been logged off!</h1>
-                <button className="btn btn-primary">Go Home</button>
+                <button style={{ marginTop: '2rem' }} className="btn btn-primary" onClick = {() => navigate("/")}>Go Home</button>
             </div>
         )
     }
