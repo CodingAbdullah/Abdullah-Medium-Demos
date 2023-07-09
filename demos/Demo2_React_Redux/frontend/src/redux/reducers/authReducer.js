@@ -4,7 +4,7 @@ import authService from "../service/authService";
 let user = localStorage.getItem('user'); // Data-persistence on page refresh
 
 // Create Thunk Functions to deal with HTTP calls and storage management
-const login = createAsyncThunk('auth/login', 
+export const login = createAsyncThunk('auth/login', 
     async(user, thunkAPI) => {
         try {
             return await authService.login(user);
@@ -15,7 +15,7 @@ const login = createAsyncThunk('auth/login',
     }
 );
 
-const logout = createAsyncThunk('auth/logout', 
+export const logout = createAsyncThunk('auth/logout', 
     async(_, thunkAPI) => {
         try {
             return await authService.logout();

@@ -18,6 +18,10 @@ exports.loginUser = (req, res) => {
             });
         }
         else {
+            // Grab other attributes of the user
+            let firstName = result[0].firstName;
+            let lastName = result[0].lastName;
+
             let hashedPassword = result[0].password; // Check hashed password
             bcrypt.compare(password, hashedPassword, (err, result) => {
                 if (err) {
@@ -29,8 +33,12 @@ exports.loginUser = (req, res) => {
                     // Verify and sign JWT token and pass it to client server
                     let token = JWT.sign({ email }, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
                     res.status(200).json({
-                        message: "Email and Password is valid",
-                        token
+                        token,
+                        user: {
+                            firstName,
+                            lastName,
+                            email
+                        }
                     });
                 }
                 else {

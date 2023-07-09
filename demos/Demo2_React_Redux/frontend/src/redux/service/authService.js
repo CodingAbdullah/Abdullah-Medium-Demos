@@ -4,7 +4,7 @@ const login = async (user) => {
     // Make a call to the backend to verify, user and if so, issue a JWT Token 
     let options = {
         method: "POST",
-        body: JSON.stringify({ user }),
+        body: JSON.stringify({ email: user.email, password: user.password }),
         headers : {
             'content-type' : 'application/json'
         }
@@ -13,7 +13,7 @@ const login = async (user) => {
     const response = await axios.post("http://localhost:5000/login", options); // Make async-await call to backend
 
     if (response.status === 200){
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Set local storage to user information
+        localStorage.setItem("user", JSON.stringify(response.data)); // Set local storage to user information
     }
 
     return response.data;

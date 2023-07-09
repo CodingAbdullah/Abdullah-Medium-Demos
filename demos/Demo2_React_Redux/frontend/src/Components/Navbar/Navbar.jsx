@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
-    const userLoggedIn = useSelector(state => state.auth.LoggedIn); // Conditionally render Navbar on redux global state
+    const user = useSelector(state => state.auth.user); // Conditionally render Navbar on redux global state
+    const token = useSelector(state => state.auth.token);
 
     // Styles for Navbar
     const styles = {
@@ -26,7 +27,7 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 {
-                    !userLoggedIn ?
+                    !user && !token ?
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav">
                                 <li className="nav-item">

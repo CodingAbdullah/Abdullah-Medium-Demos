@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import { useNavigate } from "react-router";
+import { useSelector } from 'react-redux';
 
 const WelcomePage = () => {
     const navigate = useNavigate();
+    const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
+
+    useEffect(() => {
+        if (!user || !token){
+            navigate("/");
+        }
+    }, []);
 
     return (
         <div className="welcome-page">
