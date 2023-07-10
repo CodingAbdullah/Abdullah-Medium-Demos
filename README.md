@@ -28,7 +28,7 @@ Below is a table highlighting the code repository and their respective Medium ar
             <code>/demos/Demo2_React_Redux</code>
         </td>
         <td>
-            <p>Link to be determined</p>
+            <a href="https://medium.com/@abdullah_95/react-state-management-and-a-deep-dive-into-redux-e5601fc82bc4">React State Management and a DEEP Dive into Redux</a>
         </td>
     </tr>
 </table>

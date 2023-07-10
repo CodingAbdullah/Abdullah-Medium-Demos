@@ -1,2 +1,5 @@
 # Files that cannot be committed to Github
 node_modules
+
+# Environment variables file
+.env
