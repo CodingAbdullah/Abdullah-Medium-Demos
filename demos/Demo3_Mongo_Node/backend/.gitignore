@@ -1,0 +1,5 @@
+# Node Modules will not be committed to Git
+node_modules
+
+# .ENV file to kept locally
+.env
