@@ -51,7 +51,7 @@ const UpdateUserPage = () => {
                 </div>
                 <div class="mb-3">
                     <label className="form-label"><b>Password</b></label>
-                    <input onChange={ e => updatePassword(e.target.value) } type="text" className="form-control" />
+                    <input onChange={ e => updatePassword(e.target.value) } type="password" className="form-control" />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

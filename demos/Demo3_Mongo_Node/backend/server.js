@@ -15,4 +15,6 @@ app.listen(process.env.PORT, () => {
 mongoose.connect(URL).then(() => console.log("Connected to MongoDB")).catch(err => console.log(err));
 
 app.use(cors()); // Enable CROSS ORIGIN RESOURCE SHARING
+app.use(express.json({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use("/", UserRoute);

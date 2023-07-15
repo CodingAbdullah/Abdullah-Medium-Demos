@@ -22,12 +22,17 @@ exports.createUser = (req, res) => {
                     let newUser = new User({ firstName, lastName, email, password: hashedPassword, 
                         numberOfPicturesCurrentlyStored: 0, totalStoredPictures: 0 });
 
+                    // Save new User document to MongoDB
                     newUser.save()
                     .then(() => {
-                        console.log("User successfully added to database")
+                        res.status(200).json({
+                            message: "Successfully added User"
+                        });
                     })
                     .catch(err => {
-                        console.log("User could not be saved to database " + err);
+                        res.status(400).json({
+                            message: "User could not be created " + err
+                        });
                     });
                 }
             });
@@ -102,7 +107,7 @@ exports.updateUser = (req, res) => {
 }
 
 exports.deleteUser = (req, res) => {
-    const { ID } =  JSON.parse(req.body.body);
+    const { ID } = JSON.parse(req.body.body);
 
     // Deleting a User based on unique MongoDB Object ID
     User.deleteOne({ _id: ID }, ( err, result ) => {

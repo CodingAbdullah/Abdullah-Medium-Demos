@@ -24,6 +24,9 @@ const Alert = (props) => {
         case "success-update-user":
             message="Successfully updated User!";
             break;      
+        case "success-read-user":
+            message = "Successfully fetched User data!"
+            break;
         case "warning-read-user":
             message = "Cannot find/read User data! Please try again!"
             break;
@@ -33,7 +36,7 @@ const Alert = (props) => {
     }
 
     return (
-        <div className={`alert alert-${alertType}`} role="alert">
+        <div style={{ marginLeft:'auto', marginTop: '1rem', marginRight: 'auto', width: '50%' }} className={`alert alert-${alertType}`} role="alert">
             { message }
         </div>
     )

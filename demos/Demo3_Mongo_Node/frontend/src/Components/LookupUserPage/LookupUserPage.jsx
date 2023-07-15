@@ -22,11 +22,12 @@ const LookupUserPage = () => {
         // Fetching User data based on ID
         axios.post('http://localhost:5000/read-user', options)
         .then((response) => {
-            updateAlert("");
+            updateAlert("success-read-user");
             updateUserData(response.data.user);
         })
         .catch(() => {
             updateAlert("warning-read-user");
+            updateUserData(null);
         });
     }
 
@@ -45,7 +46,11 @@ const LookupUserPage = () => {
             {
                 userData === null ? null : 
                     <>
-                        
+                        <h2 style={{ marginTop: '2rem' }}>User Data</h2>
+                        <h4>First Name: <b>{ userData.firstName }</b></h4>
+                        <h4>Last Name: <b>{ userData.lastName }</b></h4>
+                        <h4>Email : <b>{ userData.email }</b></h4>
+
                     </>
             }
         </div>
