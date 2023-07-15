@@ -6,17 +6,26 @@ const Alert = (props) => {
     let alertType = type.split("-")[0]; // Get the first part of the alert type for colouring
 
     switch ( type ) {
-        case "danger-create-user":
+        case "success-create-user":
+            message = "Successfully created User!"
+            break;
+        case "warning-create-user":
             message = "Cannot create User! Please try again!";
             break;
         case "warning-delete-user":
-            message = "Cannot delete user! Please try again!";
+            message = "Cannot delete User! Please try again!";
+            break;        
+        case "success-delete-user":
+            message = "Successfully deleted User!";
             break;
         case "warning-update-user":
-            message="Cannot update user! Please try again!";
-            break;
+            message="Cannot update User! Please try again!";
+            break;         
+        case "success-update-user":
+            message="Successfully updated User!";
+            break;      
         case "warning-read-user":
-            message = "Cannot find/read user data! Please try again!"
+            message = "Cannot find/read User data! Please try again!"
             break;
         default:
             message = "Oops! Looks like something went wrong :("
