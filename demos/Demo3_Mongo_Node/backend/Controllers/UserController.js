@@ -19,30 +19,21 @@ exports.createUser = (req, res) => {
                     });
                 }
                 else {
-                    User.insertMany({ firstName, lastName, email, password: hashedPassword, 
-                        numberOfPicturesCurrentlyStored: 0, totalStoredPictures : 0 }, ( err, result ) => {
-                            if (err){
-                                res.status(400).json({
-                                    message: "Cannot insert document " + err
-                                });
-                            }
-                            else if (result){
-                                res.status(201).json({
-                                    message: "User successfully created"
-                                });
-                            }
-                            else {
-                                res.status(400).json({
-                                    message: "Cannot create User"
-                                });
-                            }
+                    let newUser = new User({ firstName, lastName, email, password: hashedPassword, 
+                        numberOfPicturesCurrentlyStored: 0, totalStoredPictures: 0 });
+
+                    newUser.save()
+                    .then(() => {
+                        console.log("User successfully added to database")
+                    })
+                    .catch(err => {
+                        console.log("User could not be saved to database " + err);
                     });
                 }
             });
         }
     });
 }
-
 
 exports.readUser = (req, res) => {
     const { ID } =  JSON.parse(req.body.body);
