@@ -5,8 +5,8 @@ import axios from 'axios';
 const CreateUserPage = () => {
     const [firstName, updateFirstName] = useState("");
     const [lastName, updateLastName] = useState("");
-    const [age, updateAge] = useState(0);
     const [email, updateEmail] = useState("");
+    const [password, updatePassword] = useState("");
 
     const formHandler = e => {
         e.preventDefault();
@@ -28,14 +28,14 @@ const CreateUserPage = () => {
                     <label className="form-label"><b>Last Name</b></label>
                     <input onChange={ e => updateLastName(e.target.value) } type="text" className="form-control" required />
                 </div>
-                <div class="mb-3">
-                    <label className="form-label"><b>Age</b></label>
-                    <input onChange={ e => updateAge(e.target.value) } type="number" className="form-control" required />
-                </div>
                 <div className="mb-3">
                     <label className="form-label"><b>Email address</b></label>
                     <input onChange={ e => updateEmail(e.target.value) } type="email" class="form-control" required />
                     <div className="form-text" style={{ color: 'black' }}><i>We'll never share your email with anyone else.</i></div>
+                </div>
+                <div class="mb-3">
+                    <label className="form-label"><b>Password</b></label>
+                    <input onChange={ e => updatePassword(e.target.value) } type="text" className="form-control" />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

@@ -10,12 +10,20 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    age: {
+    email : {
+        type: String,
+        required: true
+    },
+    password : {
+        type: String,
+        required: true
+    },
+    numberOfPicturesCurrentlyStored : {
         type: Number,
         required: true
     },
-    email : {
-        type: String,
+    totalStoredPictures : {
+        type: Number,
         required: true
     }
 }, 
