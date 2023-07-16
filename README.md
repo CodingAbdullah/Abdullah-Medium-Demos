@@ -36,7 +36,7 @@ Below is a table highlighting the code repository and their respective Medium ar
             <code>/demos/Demo3_Mongo_Node</code>
         </td>
         <td>
-            Link to Medium Article to be posted later
+            <a href="https://medium.com/@abdullah_95/mongodb-node-js-javascript-for-the-back-end-ac73dcf9d34">MongoDB + Node.js: JavaScript for the Back-end</a>
         </td>
     </tr>
 </table>
