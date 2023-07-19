@@ -23,18 +23,35 @@ const CreatePostPage = () => {
             updateAlert('warning-invalid-post');
         }
         else {
-            // Code will go here..
+            // Options for request
+            let options = {
+                method: 'POST',
+                body: JSON.stringify({ post }),
+                headers : {
+                    'content-type': 'application/json',
+                    'Authorization' : 'Bearer ' + tokenValue
+                }
+            }
+
+            // Request to create post
+            axios.post("http://localhost:5000/create-post", options)
+            .then(() => {
+                updateAlert('success-valid-post');
+            })
+            .catch(() => {
+                updateAlert('warning-invalid-post');
+            });
         }
     }
 
     return (
         <div className="create-post-page">
-            <h1>Create Post</h1>
+            <h1><b>Create Post</b></h1>
             <p><i>Fill in the details of your post</i></p>
             { alert ? <Alert type={ alert } /> : null }
             <form onSubmit={ formHandler }>
                 <div className="form-floating">
-                    <textarea onChange={ e => updatePost(e.target.value) }className="form-control" placeholder="Leave a post here"></textarea>
+                    <textarea onChange={ e => updatePost(e.target.value) } className="form-control" placeholder="Leave a post here"></textarea>
                     <label>Post</label>
                 </div>
                 <button type="submit" className='btn btn-success'>Submit Post</button>

@@ -9,6 +9,7 @@ const RegisterPage = () => {
     const [password, updatePassword] = useState("");
     const [firstName, updateFirstName] = useState("");
     const [lastName, updateLastName] = useState("");
+    const [alert, updateAlert] = useState("");
     const tokenValue = useSelector(state => state.auth.token);
     const navigate = useNavigate();
     
@@ -22,7 +23,23 @@ const RegisterPage = () => {
     const formHandler = e => {
         e.preventDefault();
 
-        // Code will go here
+        // Setting options for registering a User
+        let options = {
+            method: 'POST',
+            body: JSON.stringify({ email, password, firstName, lastName }),
+            headers : {
+                'content-type': 'application/json'
+            }
+        }
+
+        // Making a backend call for registering a User
+        axios.post("http://localhost:5000/register-user", options)
+        .then(() => {
+            updateAlert('success-invalid-register');
+        })
+        .catch(() => {
+            updateAlert('warning-valid-register');
+        });
     }
 
     // Bootstrap form into a React component
@@ -30,22 +47,23 @@ const RegisterPage = () => {
         <div className='register-page'>
             <h1><b>Register User</b></h1>
             <p><i>Enter in registration details</i></p>
+            { alert ? <Alert type={ alert } /> : null }
             <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} onSubmit={ formHandler }>
                 <div className="mb-3">
                     <label className="form-label">First Name</label>
-                    <input type="text" className="form-control" required />
+                    <input type="text" onChange={ e => updateFirstName(e.target.value) }className="form-control" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Last Name</label>
-                    <input type="text" className="form-control" required />
+                    <input type="text" onChange={ e => updateLastName(e.target.value) }className="form-control" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Email address</label>
-                    <input type="email" className="form-control" aria-describedby="emailHelp" required />
+                    <input type="email" onChange={ e => updateEmail(e.target.value) }className="form-control" aria-describedby="emailHelp" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" className="form-control" required />
+                    <input type="password" onChange={ e => updatePassword(e.target.value) } className="form-control" required />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
