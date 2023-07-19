@@ -1,0 +1,46 @@
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import Alert from '../Alert/Alert';
+import axios from 'axios';
+
+const CreatePostPage = () => {  
+    const [alert, updateAlert] = useState("");
+    const [post, updatePost] = useState("");
+    const tokenValue = useSelector(state => state.auth.token);
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (!tokenValue) {
+            navigate("/"); // User not logged in? Redirect to home page
+        }
+    }, []);
+
+    const formHandler = e => {
+        e.preventDefault();
+
+        if (post === ''){
+            updateAlert('warning-invalid-post');
+        }
+        else {
+            // Code will go here..
+        }
+    }
+
+    return (
+        <div className="create-post-page">
+            <h1>Create Post</h1>
+            <p><i>Fill in the details of your post</i></p>
+            { alert ? <Alert type={ alert } /> : null }
+            <form onSubmit={ formHandler }>
+                <div className="form-floating">
+                    <textarea onChange={ e => updatePost(e.target.value) }className="form-control" placeholder="Leave a post here"></textarea>
+                    <label>Post</label>
+                </div>
+                <button type="submit" className='btn btn-success'>Submit Post</button>
+            </form>
+        </div>
+    )
+}
+
+export default CreatePostPage;

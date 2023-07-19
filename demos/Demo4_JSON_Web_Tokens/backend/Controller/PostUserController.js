@@ -7,7 +7,7 @@ exports.createUser = (req, res) => {
     const { email, firstName, lastName, password } = JSON.parse(req.body.body);
 
     // First check database to see if a user exists, before registering one
-    PostUser.findOne({ email }, (err, result) => {
+    PostUser.find({ email }, (err, result) => {
         if (err) {
             res.status(400).json({
                 message: "Cannot query User Collection. " + err
