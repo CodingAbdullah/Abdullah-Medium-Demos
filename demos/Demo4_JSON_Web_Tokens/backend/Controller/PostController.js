@@ -1,5 +1,6 @@
 const UUID = require("uuid"); // Package for generating random IDs
 const Post = require("../Model/Post");
+const PostUser = require("../Model/PostUser");
 
 exports.createPost = (req, res) => {
     const { user, post } = JSON.parse(req.body.body);
@@ -10,8 +11,27 @@ exports.createPost = (req, res) => {
     // Save newly made post to database
     newPost.save()
     .then(() => {
-        res.status(201).json({
-            message: "Post was successfully created and saved"
+        // Now updating the User's number of posts attribute in the Post Users collection
+        PostUser.findOne({ email : user }, (err, postUser) => {
+            if (err){
+                res.status(400).json({
+                    message: "Cannot query Post User Collection " + err
+                });
+            }
+            else if (postUser){
+                PostUser.updateOne({ email: user }, { $set : { numberOfPosts : postUser.numberOfPosts + 1 }}, (err, result) => {
+                    if (err) {
+                        res.status(400).json({
+                            message: "Cannot update User post count"
+                        });
+                    }
+                    else {
+                        res.status(201).json({
+                            message: "Post was successfully created and saved and post count updated"
+                        });
+                    }
+                });
+            }
         });
     })
     .catch(err => {

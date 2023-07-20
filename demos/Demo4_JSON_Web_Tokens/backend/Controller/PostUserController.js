@@ -87,8 +87,9 @@ exports.loginUser = (req, res) => {
                         });
                     }
                     else if (decoded) {
+
                         // Sign a JWT token and pass the email as the payload, valid for one hour only
-                        let token = JWT.sign(result[0].email, process.env.TOKEN_SECRET, { expiresIn: 60 * 60  });
+                        let token = JWT.sign({ email: result[0].email }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 });
                        
                         // Pass token to User
                         res.status(200).json({

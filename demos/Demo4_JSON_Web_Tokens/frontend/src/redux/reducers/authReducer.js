@@ -7,8 +7,7 @@ let token = localStorage.getItem('token'); // Retrieve token from localStorage, 
 export const login = createAsyncThunk('auth/login', 
     async (payload, thunkAPI) => {
         try {
-            const response = await authService.login(payload);
-            return response.data;
+            return await authService.login(payload);
         }
         catch (err) {
             return thunkAPI.rejectWithValue(err);
@@ -20,8 +19,7 @@ export const login = createAsyncThunk('auth/login',
 export const logout = createAsyncThunk('auth/logout', 
     async (_, thunkAPI) => {
         try {
-            const response = await authService.logout();
-            return response.data;
+            return await authService.logout();
         }
         catch (err) {
             return thunkAPI.rejectWithValue(err);
@@ -56,19 +54,19 @@ const authSlice = createSlice({
             state.isLoading = true;
             state.isSuccess = false;
         })
-        .addCase(login.success, (state, action) => {
+        .addCase(login.fulfilled, (state, action) => {
             state.error = null;
             state.token = action.payload.token;
             state.isLoading = false;
             state.isSuccess = true;
         })
-        .addCase(login.error, (state, action) => {
+        .addCase(login.rejected, (state, action) => {
             state.error = action.error;
             state.token = null;
             state.isSuccess = false;
             state.isLoading = false;
         })
-        .addCase(logout.success, (state) => {
+        .addCase(logout.fulfilled, (state) => {
             state.error = null;
             state.token = null;
             state.isLoading = false;

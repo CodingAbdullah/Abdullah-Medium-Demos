@@ -46,15 +46,14 @@ const CreatePostPage = () => {
 
     return (
         <div className="create-post-page">
-            <h1><b>Create Post</b></h1>
-            <p><i>Fill in the details of your post</i></p>
+            <h1 style={{ marginTop: '1rem' }}><b>Create Post</b></h1>
+            <p><i>Fill in the details of a post of yours below: </i></p>
             { alert ? <Alert type={ alert } /> : null }
             <form onSubmit={ formHandler }>
                 <div className="form-floating">
-                    <textarea onChange={ e => updatePost(e.target.value) } className="form-control" placeholder="Leave a post here"></textarea>
-                    <label>Post</label>
+                    <textarea style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} onChange={ e => updatePost(e.target.value) } className="form-control" placeholder="Leave a post here" />
                 </div>
-                <button type="submit" className='btn btn-success'>Submit Post</button>
+                <button style={{ marginTop: '1rem' }} disabled={ alert === 'success-valid-post' ? true : false } type="submit" className='btn btn-success'>Submit Post</button>
             </form>
         </div>
     )

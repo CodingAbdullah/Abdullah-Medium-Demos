@@ -18,7 +18,16 @@ const ViewPostsPage = () => {
         }
         else {
             // Fetching posts...
-            axios.get("http://localhost:5000/lookup-post")
+            let options = {
+                method: 'POST',
+                body: JSON.stringify({}),
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': 'Bearer ' + tokenValue
+                }
+            }
+
+            axios.post("http://localhost:5000/lookup-post", options)
             .then(response => {
                 // Updating post data, making sure prevState represents all those parts of the object that remain unchanged
                 updatePostData((prevState) => {
@@ -37,10 +46,10 @@ const ViewPostsPage = () => {
     // Wrap table into a React component and map records to rows inside of it
     return (
         <div className='view-posts-page'>
-            <h1><b>Your Post Data</b></h1>
-            <p><i>Here are your list of posts: </i></p>
+            <h1 style={{ marginTop: '1rem' }}><b>Your Post Data</b></h1>
+            <p><i>Here is table of all your posts below: </i></p>
             { alert ? <Alert type={ alert } /> : null }
-            <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} className="table table-hover">
+            <table style={{ marginTop: '1rem', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} className="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Post ID</th>
@@ -50,15 +59,17 @@ const ViewPostsPage = () => {
                 </thead>
                 <tbody>
                     {
-                        postData.information.map(record => {
-                            return (
-                                <tr>
-                                    <td>{ record.postID }</td>
-                                    <td>{ record.createdAt.split("T")[0] + " - " + record.createdAt.split("T")[1].split(".")[0] }</td>
-                                    <td>{ record.post }</td>
-                                </tr>
-                            )
-                        })
+                        postData.information !== null ? 
+                            postData.information.map(record => {
+                                return (
+                                    <tr>
+                                        <td>{ record.postID }</td>
+                                        <td>{ record.createdAt.split("T")[0] + " - " + record.createdAt.split("T")[1].split(".")[0] }</td>
+                                        <td>{ record.post }</td>
+                                    </tr>
+                                )
+                            })
+                        :   null
                     }
                 </tbody>
             </table>

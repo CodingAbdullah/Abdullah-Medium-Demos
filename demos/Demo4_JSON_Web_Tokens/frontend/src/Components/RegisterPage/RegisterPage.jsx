@@ -33,20 +33,20 @@ const RegisterPage = () => {
         }
 
         // Making a backend call for registering a User
-        axios.post("http://localhost:5000/register-user", options)
+        axios.post("http://localhost:5000/create-user", options)
         .then(() => {
-            updateAlert('success-invalid-register');
+            updateAlert('success-valid-register');
         })
         .catch(() => {
-            updateAlert('warning-valid-register');
+            updateAlert('warning-invalid-register');
         });
     }
 
     // Bootstrap form into a React component
     return (
         <div className='register-page'>
-            <h1><b>Register User</b></h1>
-            <p><i>Enter in registration details</i></p>
+            <h1 style={{ marginTop: '1rem' }}><b>Register User</b></h1>
+            <p style={{ marginBottom: '1rem' }}><i>Enter in registration details below:</i></p>
             { alert ? <Alert type={ alert } /> : null }
             <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} onSubmit={ formHandler }>
                 <div className="mb-3">
@@ -65,7 +65,7 @@ const RegisterPage = () => {
                     <label className="form-label">Password</label>
                     <input type="password" onChange={ e => updatePassword(e.target.value) } className="form-control" required />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" disabled={ alert === 'success-valid-register' ? true : false } className="btn btn-primary">Submit</button>
             </form>
         </div>
     )

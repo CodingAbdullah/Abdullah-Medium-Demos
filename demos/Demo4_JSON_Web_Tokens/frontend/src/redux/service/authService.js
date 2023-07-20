@@ -1,18 +1,26 @@
 import axios from 'axios';
 
 const login = async (user) => {
+    const { email, password } = user;
+
     try {
         // Make call to the backend using the credentials passed in from client side
         let options = {
             method: 'POST',
-            body: JSON.stringify({ user }),
+            body: JSON.stringify({ email, password }),
             headers : {
                 'content-type' : 'application/json'
             }
         }
 
         // Return promise-based call made to backend server containing User data
-        return await axios.post("http://localhost:5000/login-user", options);
+        const response = await axios.post("http://localhost:5000/login-user", options);
+
+        if (response.status === 200){
+            localStorage.setItem("token", JSON.stringify(response.data.token)); // Set local storage to user information
+        }
+    
+        return response.data;
     }
     catch (err) {
         return err;
@@ -20,7 +28,7 @@ const login = async (user) => {
 }
 
 const logout = async () => {
-    return localStorage.clear(); // Clear entire localStorage of any items
+    localStorage.clear(); // Clear entire localStorage of any items
 }
 
 const authService = {

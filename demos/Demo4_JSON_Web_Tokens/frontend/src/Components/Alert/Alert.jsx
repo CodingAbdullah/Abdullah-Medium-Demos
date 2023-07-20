@@ -33,10 +33,10 @@ const Alert = (props) => {
             break;
     }
 
-    let alertType = type.substring("-")[0]; // Fetch the first argument for the alertType
+    let alertType = type.split("-")[0]; // Fetch the first argument for the alertType
 
     return (
-        <div className={`alert alert-${alertType}`} role="alert">
+        <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} className={`alert alert-${alertType}`} role="alert">
             { message }
         </div>  
     )

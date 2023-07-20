@@ -10,19 +10,19 @@ const LogoutPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (tokenValue) {
-            dispatch(logout());        
+        if (!tokenValue) {
+            navigate("/");
         }
         else {
             // User already logged out, navigate to home screen
-            navigate("/");
+            dispatch(logout());        
         }
     }, []);
 
     return (
         <div className="logout-page">
-            <h1>User successfully logged out!</h1>
-            <button className="btn btn-success" onClick={ () => navigate("/") }>Back to Home</button>
+            <h1 style={{ marginTop: '1rem' }}><b>User successfully logged out!</b></h1>
+            <button style={{ marginTop: '1rem' }} className="btn btn-success" onClick={ () => navigate("/") }>Back to Home</button>
         </div>
     )
 }

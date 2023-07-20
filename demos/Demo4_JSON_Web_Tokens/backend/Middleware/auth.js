@@ -1,5 +1,5 @@
 require("dotenv").config({ path: '../.env' });
-const JWT = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 // Next parameter is optional. We use it distinctively, to pass data from one piece of middleware to another
 exports.auth = (req, res, next) => {
@@ -18,7 +18,7 @@ exports.auth = (req, res, next) => {
         });
     }
     else {
-        JWT.verify(token, process.env.TOKEN_SECRET, (err, result) => {
+        jwt.verify(token.substring(1, token.length - 1), process.env.TOKEN_SECRET, (err, result) => {
             if (err){
                 res.status(400).json({
                     message: "Cannot verify JWT token. " + err
@@ -28,7 +28,7 @@ exports.auth = (req, res, next) => {
                 // If only the token exists AND is verified, move to the next piece of middleware with req object
                 // JWT decoded, add User email to req object and pass it on to the next function
                 let newReqBody = JSON.parse(req.body.body);
-                newReqBody.user = result;
+                newReqBody.user = result.email;
                 req.body.body = JSON.stringify(newReqBody);
                 next();
             }
