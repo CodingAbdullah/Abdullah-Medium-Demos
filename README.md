@@ -41,7 +41,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo4_JSON_Web_Tokens</code>
+            <code>/demos/Demo4_JSON_Express_Middleware</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/jwt-authentication-protected-routes-and-express-middleware-6df9d6921b8e">JWT Authentication, Protected Routes, and Express Middleware</a>
