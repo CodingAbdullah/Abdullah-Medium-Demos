@@ -47,4 +47,12 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/jwt-authentication-protected-routes-and-express-middleware-6df9d6921b8e">JWT Authentication, Protected Routes, and Express Middleware</a>
         </td>
     </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo5_Nodemailer</code>
+        </td>
+        <td>
+            Link to Medium article to be posted when completed
+        </td>
+    </tr>
 </table>
