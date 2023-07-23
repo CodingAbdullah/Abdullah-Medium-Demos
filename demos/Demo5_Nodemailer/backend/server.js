@@ -3,6 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const PostUserRoute = require("./Route/PostUserRoute");
 const PostRoute = require("./Route/PostRoute");
+const EmailTokenRoute = require('./Route/EmailTokenRoute');
 const mongoose = require("mongoose");
 
 const URL = "mongodb+srv://owner:" + process.env.DB_PASSWORD + "@ai-user-database.zjlsn9q.mongodb.net/?retryWrites=true&w=majority";
@@ -26,3 +27,4 @@ mongoose.connect(URL)
 app.use(cors());
 app.use("/", PostUserRoute);
 app.use("/", PostRoute);
+app.use("/", EmailTokenRoute);

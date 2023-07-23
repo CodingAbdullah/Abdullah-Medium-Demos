@@ -29,7 +29,7 @@ npx create-react-app .
 echo 'Successfully installed, installing dependencies...'
 
 # Install npm packages for frontend apps
-npm install axios react-router react-redux redux @reduxjs/toolkit react-router-dom validator
+npm install axios react-router react-router-dom react-redux redux @reduxjs/toolkit validator
 
 # Up one level on the directory tree
 cd ../ 
