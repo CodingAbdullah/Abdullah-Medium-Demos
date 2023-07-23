@@ -1,3 +1,3 @@
-# Environment variables and modules to be added here
+# Adding Node Modules and .env file from being commit
 .env
 node_modules
