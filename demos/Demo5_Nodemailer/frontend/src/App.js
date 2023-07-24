@@ -5,6 +5,7 @@ import CreatePostPage from './Components/CreatePostPage/CreatePostPage';
 import HomePage from './Components/HomePage/HomePage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import LogoutPage from './Components/LogoutPage/LogoutPage';
+import PasswordResetPage from './Components/PasswordResetPage/PasswordResetPage';
 import RegisterPage from './Components/RegisterPage/RegisterPage';
 import ViewPostsPage from './Components/ViewPostsPage/ViewPostsPage';
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/login-user" element={<LoginPage />}></Route>
           <Route exact path="/logout-user" element={<LogoutPage />}></Route>
           <Route exact path="/register-user" element={<RegisterPage />}></Route>
+          <Route exact path="/reset-password" element={<PasswordResetPage />}></Route>
           <Route exact path="/view-posts" element={<ViewPostsPage />}></Route>
         </Routes>
       </Router>

@@ -27,6 +27,18 @@ const Alert = (props) => {
             break;
         case "success-fetch-post":
             message = "User posts were fetched successfully!";
+            break;        
+        case "success-password-reset":
+            message = "Password successfully reset!";
+            break;        
+        case "warning-invalid-reset":
+            message = "Password could not be reset successfully!";
+            break;
+        case "warning-invalid-token":
+            message = "Email token could not be sent to this email";
+            break;
+        case "success-valid-token":
+            message = "Email token successfully sent!";
             break;
         default:
             message = "Oops! Something went wrong";

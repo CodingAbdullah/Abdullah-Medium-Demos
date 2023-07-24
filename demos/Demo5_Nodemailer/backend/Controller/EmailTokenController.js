@@ -60,20 +60,19 @@ exports.createEmailToken = (req, res) => {
                                             service: 'gmail',
                                             auth : {
                                                 user: process.env.EMAIL_ADDRESS,
-                                                pass: process.env.PASSWORD
+                                                pass: process.env.EMAIL_KEY
                                             }
                                         });
 
                                         // Provide the destination and set it as the user's email along with text containing ID
                                         newEmailToken.save()
-                                        .then(() => {                   
+                                        .then(() => {   
                                             let emailOptions = {
                                                 from: process.env.EMAIL_ADDRESS,
                                                 to: email,
                                                 subject: 'Verification ID for password reset',
-                                                text: `Here is the <b>Verification ID</b> needed to reset your password. 
-                                                    ID will expire in <b>5 minutes:</b> ${verification_ID}`
-                                              };
+                                                html: `Here is the <b>Verification ID</b> needed to reset your password.<br /> ID will expire in <b>5 minutes: <br /> ${verification_ID}</b>`
+                                            }
 
                                             // Send email containing details
                                             emailTransport.sendMail(emailOptions, (err, result) => {

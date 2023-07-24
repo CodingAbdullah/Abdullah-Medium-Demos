@@ -66,7 +66,8 @@ const LoginPage = () => {
                         <label className="form-label">Password</label>
                         <input type="password" onChange = { e => updatePassword(e.target.value) } className="form-control" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <a href="/reset-password">Reset Password</a><br />
+                    <button style={{ marginTop: '1rem' }} type="submit" className="btn btn-primary">Submit</button>
                 </form>             
             </div>
         )
