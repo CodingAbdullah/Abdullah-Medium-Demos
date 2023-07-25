@@ -52,7 +52,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo5_Nodemailer</code>
         </td>
         <td>
-            Link to Medium article to be posted when completed
+            <a href="https://medium.com/@abdullah_95/nodemailer-making-e-mails-easy-33b86b360fbd">Nodemailer: Making E-mails Easy</a>
         </td>
     </tr>
 </table>
