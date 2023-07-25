@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Alert from '../Alert/Alert';
 
@@ -10,7 +12,16 @@ const PasswordResetPage = () => {
     const [alert, updateAlert] = useState("");
     const [emailCheck, updateEmailCheck] = useState(false);
     const [passwordCheck, updatePasswordCheck] = useState(false);
+    const tokenValue = useSelector(state => state.auth.token);
+    const navigate = useNavigate();
     
+    // Check to see if the user is already logged in, redirect. User must not be logged in to password reset
+    useEffect(() => {
+        if (tokenValue){
+            navigate("/")
+        }
+    }, []);
+
     const tokenFormHandler = (e) => {
         e.preventDefault();
 
