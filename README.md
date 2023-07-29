@@ -57,7 +57,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo6</code>
+            <code>/demos/Demo6_Custom_Hooks</code>
         </td>
         <td>
             Link to Medium article to be posted when complete
