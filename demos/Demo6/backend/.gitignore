@@ -1,3 +1,0 @@
-# Adding Node modules folder as well as the .env file from being commit
-node_modules
-.env
