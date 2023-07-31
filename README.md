@@ -63,4 +63,12 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/incorporating-custom-hooks-in-react-71459d12d0b">Incorporating Custom Hooks in React</a>
         </td>
     </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo7</code>
+        </td>
+        <td>
+            Link to Medium article to be posted when complete
+        </td>
+    </tr>
 </table>
