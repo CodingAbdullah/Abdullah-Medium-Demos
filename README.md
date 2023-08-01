@@ -65,7 +65,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
         <tr>
         <td>
-            <code>/demos/Demo7</code>
+            <code>/demos/Demo7_ENV_Variables</code>
         </td>
         <td>
             Link to Medium article to be posted when complete
