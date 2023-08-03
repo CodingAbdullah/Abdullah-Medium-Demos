@@ -68,7 +68,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo7_ENV_Variables</code>
         </td>
         <td>
-            <a href="https://mediumcom@abdullah_95secure-web-development-using-the-dotenv-package-b1b990cbd757">
+            <a href="https://medium.com/@abdullah_95/secure-web-development-using-the-dotenv-package-b1b990cbd757">
             Secure Web Development using the Dotenv Package</a>
         </td>
     </tr>
