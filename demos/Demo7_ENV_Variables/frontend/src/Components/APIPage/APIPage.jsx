@@ -22,13 +22,21 @@ const APIPage = () => {
     // Return the data conditionally, using a ternary operator for simplicity
     return (
         <div className="api-page">
-            <h1 style={{ marginTop: "2rem" }}>Listening to PORT { process.env.REACT_APP_PORT }</h1>
+            <h1 style={{ marginTop: "2rem" }}>
+                Listening to PORT { process.env.REACT_APP_PORT }
+            </h1>
             {
                 data && !err ?
                     <>
-                        <h3 style={{ marginTop: '2rem' }}>Token Name: { data.tokenName }</h3>
-                        <h3>USD Price: { Number(data.usdPrice).toPrecision(4) }</h3>
-                        <h3>Token Address: { data.tokenAddress }</h3>
+                        <h3 style={{ marginTop: '2rem' }}>
+                            Token Name: { data.tokenName }
+                        </h3>
+                        <h3>
+                            USD Price: { Number(data.usdPrice).toPrecision(4) }
+                        </h3>
+                        <h3>
+                            Token Address: { data.tokenAddress }
+                        </h3>
                     </>
                 : null
             }

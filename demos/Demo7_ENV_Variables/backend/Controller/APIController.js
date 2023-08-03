@@ -14,6 +14,7 @@ exports.getData = (req, res) => {
         }
     }
     
+    // Make request to fetch data using API key
     axios.get('https://deep-index.moralis.io/api/v2/erc20'+
     '/0x8355dbe8b0e275abad27eb843f3eaf3fc855e525/price', options)
     .then(response => {
