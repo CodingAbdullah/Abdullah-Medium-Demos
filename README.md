@@ -63,13 +63,21 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/incorporating-custom-hooks-in-react-71459d12d0b">Incorporating Custom Hooks in React</a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo7_ENV_Variables</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/secure-web-development-using-the-dotenv-package-b1b990cbd757">
             Secure Web Development using the Dotenv Package</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo8_Server_Side_Rendering</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
         </td>
     </tr>
 </table>
