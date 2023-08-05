@@ -1,0 +1,27 @@
+<%- include("../partials/head.ejs"); -%>
+<%- include("navbar.ejs"); -%>
+
+<% if (isError) { %>
+        <h1>Error! No data could be displayed at this time :/</h1>
+<% } else { %>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Symbol</th>
+        </tr>
+        <% let modifiedCoinData = []; %>
+        <% for (var i = 0 ; i < 20; i++){ %>
+            <% modifiedCoinData.push(coinData[i]); %>
+        <% } %>
+        <% for (var j = 0; j < modifiedCoinData.length; j++){ %>
+        <tr>
+            <td><%= modifiedCoinData[j].name %></td>
+            <td><%= modifiedCoinData[j].id %></td>
+            <td><%= modifiedCoinData[j].symbol %></td>
+        </tr>
+        <% } %>
+    </table>
+<% } %>
+
+<%- include("../partials/footer.ejs", { year: year }); -%>
