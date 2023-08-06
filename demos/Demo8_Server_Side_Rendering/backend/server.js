@@ -15,8 +15,13 @@ app.set('view engine', 'ejs');
 // Setting location to folder containing files
 app.use(express.static(__dirname + 'public'));
 
-// Home EJS Page
+// EJS Title
 app.get("/", (req, res) => {
+    res.render('ejsTitle', { year: new Date().getFullYear() });
+});
+
+// Home Page
+app.get("/information", (req, res) => {
     res.render('home', { year : new Date().getFullYear() });
 });
 

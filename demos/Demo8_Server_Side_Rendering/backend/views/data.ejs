@@ -2,7 +2,7 @@
 <%- include("navbar.ejs"); -%>
 
 <% if (isError) { %>
-        <h1>Error! No data could be displayed at this time :/</h1>
+    <h1>Error! No data could be displayed at this time :/</h1>
 <% } else { %>
     <table>
         <tr>
@@ -25,3 +25,6 @@
 <% } %>
 
 <%- include("../partials/footer.ejs", { year: year }); -%>
+
+</body>
+</html>
