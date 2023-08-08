@@ -77,7 +77,8 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo8_Server_Side_Rendering</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/server-side-rendering-ssr-one-server-for-all-the-heavy-lifting-efcd48b47c59">
+            Server-Side Rendering (SSR): One Server for all the Heavy Lifting</a>
         </td>
     </tr>
 </table>
