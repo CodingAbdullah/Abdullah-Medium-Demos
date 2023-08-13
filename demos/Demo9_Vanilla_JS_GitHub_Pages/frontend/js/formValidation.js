@@ -14,6 +14,9 @@ const formValidation = () => {
         else if (inputValue.match(emailRegex) && !passwordValue.length > 5) {
             alert("Invalid password!");
         }
+        else if (!inputValue.match(emailRegex) && passwordValue.length > 5) {
+            alert("Invalid email!");
+        }
         else if (inputValue.match(emailRegex) && passwordValue.length > 5) {
             alert("Email and password are both valid!!");
         }
