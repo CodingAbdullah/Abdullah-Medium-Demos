@@ -81,4 +81,12 @@ Below is a table highlighting the current demos completed along with their code 
             Server-Side Rendering (SSR): One Server for all the Heavy Lifting</a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo9_Vanilla_JS_GitHub_Pages</code>
+        </td>
+        <td>
+            Link to be added later
+        </td>
+    </tr>
 </table>
