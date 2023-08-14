@@ -86,7 +86,8 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo9_Vanilla_JS_GitHub_Pages</code>
         </td>
         <td>
-            Link to be added later
+            <a href="https://medium.com/@abdullah_95/vanilla-js-github-pages-for-easy-deployment-cd3027f5f7dc">
+            Vanilla JS & GitHub Pages for Easy Deployment</a>
         </td>
     </tr>
 </table>
