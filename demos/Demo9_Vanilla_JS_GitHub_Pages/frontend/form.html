@@ -9,7 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <script src="/js/formValidation.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,10 +37,9 @@
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input id='passwordValue' type="password" class="form-control" placeholder="Password" required />
+          <input id='passwordValue' type="password" class="form-control" minlength="5" placeholder="Password" required />
         </div>
-        <button onclick="formValidation();" style="margin-top: 3px;" id='formButton' type="submit" class="btn btn-primary">Submit</button>
+        <button onclick="formValidation()" style="margin-top: 3px;" id='formButton' type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <script src="./js/formValidation.js"></script>
 </body>
 </html>
