@@ -7,7 +7,10 @@ const formValidation = () => {
     let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     // Add an Event Listener to Button 
-    document.getElementById('formButton').addEventListener('click', () => {
+    document.getElementById('formButton').addEventListener('click', (event) => {
+        // Prevent screen refresh
+        event.preventDefault();
+
         if (!inputValue.match(emailRegex) && !passwordValue.length > 5) {
             alert("Invalid email and password!");
         }
