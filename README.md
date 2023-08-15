@@ -17,7 +17,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo1_MERN_Stack</code>
+            <code>/demos/Demo01_MERN_Stack</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/an-introduction-to-the-mern-stack-75b03649687e">An Introduction to the MERN Stack</a>
@@ -25,7 +25,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo2_React_Redux</code>
+            <code>/demos/Demo02_React_Redux</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/react-state-management-and-a-deep-dive-into-redux-e5601fc82bc4">React State Management and a DEEP Dive into Redux</a>
@@ -33,7 +33,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo3_Mongo_Node</code>
+            <code>/demos/Demo03_Mongo_Node</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/mongodb-node-js-javascript-for-the-back-end-ac73dcf9d34">MongoDB + Node.js: JavaScript for the Back-end</a>
@@ -41,7 +41,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo4_JSON_Express_Middleware</code>
+            <code>/demos/Demo04_JSON_Express_Middleware</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/jwt-authentication-protected-routes-and-express-middleware-6df9d6921b8e">JWT Authentication, Protected Routes, and Express Middleware</a>
@@ -49,7 +49,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo5_Nodemailer</code>
+            <code>/demos/Demo05_Nodemailer</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/nodemailer-making-e-mails-easy-33b86b360fbd">Nodemailer: Making E-mails Easy</a>
@@ -57,7 +57,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo6_Custom_Hooks</code>
+            <code>/demos/Demo06_Custom_Hooks</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/incorporating-custom-hooks-in-react-71459d12d0b">Incorporating Custom Hooks in React</a>
@@ -65,7 +65,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo7_ENV_Variables</code>
+            <code>/demos/Demo07_ENV_Variables</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/secure-web-development-using-the-dotenv-package-b1b990cbd757">
@@ -74,7 +74,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo8_Server_Side_Rendering</code>
+            <code>/demos/Demo08_Server_Side_Rendering</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/server-side-rendering-ssr-one-server-for-all-the-heavy-lifting-efcd48b47c59">
@@ -83,11 +83,19 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo9_Vanilla_JS_GitHub_Pages</code>
+            <code>/demos/Demo09_Vanilla_JS_GitHub_Pages</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/vanilla-js-github-pages-for-easy-deployment-cd3027f5f7dc">
             Vanilla JS & GitHub Pages for Easy Deployment</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo10_React_JS_GitHub_Pages</code>
+        </td>
+        <td>
+            Medium Article Link to be posted later when complete
         </td>
     </tr>
 </table>
