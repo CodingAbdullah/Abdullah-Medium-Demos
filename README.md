@@ -95,7 +95,8 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo10_React_JS_GitHub_Pages</code>
         </td>
         <td>
-            Medium Article Link to be posted later when complete
+            <a href="https://medium.com/@abdullah_95/react-hash-router-for-easy-github-pages-deployment-c8a35ed5b5c9">
+            React & Hash Router for Easy GitHub Pages Deployment</a>
         </td>
     </tr>
 </table>
