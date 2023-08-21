@@ -10,14 +10,17 @@ http.createServer((req, res) => {
     // Req object determines type of request and endpoint
     // Unlike Express, all routing is handled inside the main server
 
+    res.setHeader('Access-Control-Allow-Headers', req.headers.origin); // Enabling CORS
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
     if (req.method === 'POST') {
         if (req.url === '/one-post') {
             
             // Make request to fetch post data
             axios.post("https://jsonplaceholder.typicode.com/posts/1/comments", { method: 'POST' })
             .then(response => {
-                let data = new Date().toISOString() + ' - ' + 'STATUS CODE: 200. ' 
-                           + 'METHOD: POST. ' + 'REQUEST TYPE: ONE POST. ';
+                let data = new Date().toISOString().split(".")[0] + ' - ' + 'STATUS CODE: 200. ' 
+                           + 'METHOD: POST. REQUEST TYPE: ONE POST. \r\n';
 
                 try { 
                     // Log successful API call
@@ -43,8 +46,8 @@ http.createServer((req, res) => {
             // Make request to fetch post data
             axios.post("https://jsonplaceholder.typicode.com/posts", { method: 'POST' })
             .then(response => {
-                let data = new Date().toISOString() + ' - ' + 'STATUS CODE: 200. ' 
-                           + 'METHOD: POST. ' + 'REQUEST TYPE: MULTIPLE POSTS. ';
+                let data = new Date().toISOString().split(".")[0] + ' - ' + 'STATUS CODE: 200. ' 
+                           + 'METHOD: POST. REQUEST TYPE: MULTIPLE POSTS. \r\n';
 
                 try { 
                     // Log successful API call
@@ -79,8 +82,8 @@ http.createServer((req, res) => {
             axios.get('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?'
                     + 'vs_currency=usd&days=1&interval=daily')
             .then(response => {
-                let data = new Date().toISOString() + ' - ' + 'STATUS CODE: 200. ' + 
-                           + 'METHOD: POST. ' + 'REQUEST TYPE: BITCOIN DATA. ';
+                let data = new Date().toISOString().split(".")[0] + ' - ' + 'STATUS CODE: 200. ' + 
+                           + 'METHOD: GET. ' + 'REQUEST TYPE: BITCOIN DATA. \r\n';
 
                 try {
                     // Log successful API call
@@ -115,8 +118,8 @@ http.createServer((req, res) => {
                 axios.get('https://api.coingecko.com/api/v3/coins/ethereum/market_chart?'
                         + 'vs_currency=usd&days=1&interval=daily')
                 .then(ethResponse => {
-                    let data = new Date().toISOString() + ' - ' + 'STATUS CODE: 200. ' + 
-                               + 'METHOD: POST. ' + 'REQUEST TYPE: MULTI-COIN DATA. ';
+                    let data = new Date().toISOString().split(".")[0] + ' - ' + 'STATUS CODE: 200. ' + 
+                               + 'METHOD: GET. ' + 'REQUEST TYPE: MULTI-COIN DATA. \r\n';
                 
                     try {
                         // Log successful API call
