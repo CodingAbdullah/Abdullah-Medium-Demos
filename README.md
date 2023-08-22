@@ -104,7 +104,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo11_Expressless_Node</code>
         </td>
         <td>
-            Link to Medium article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/expressless-backend-development-node-js-for-all-the-heavy-lifting-3543d113fee3">Expressless Backend Development: Node.js for all the Heavy Lifting
         </td>
     </tr>
 </table>
