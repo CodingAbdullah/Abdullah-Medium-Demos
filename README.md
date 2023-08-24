@@ -109,7 +109,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo12_</code>
+            <code>/demos/Demo12_Node_Package_Manager</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
