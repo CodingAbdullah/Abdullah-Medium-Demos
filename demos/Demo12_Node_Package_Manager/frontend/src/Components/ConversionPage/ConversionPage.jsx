@@ -1,10 +1,13 @@
 import { useState, useRef } from 'react';
 import ConversionSelector from '../ConversionSelector/ConversionSelector';
 import axios from 'axios';
+import Alert from '../Alert/Alert';
 
 // Setting up conversion options
 const ConversionPage = () => {
     const [conversionSelection, updateConversionSelection] = useState("dec-bin");
+    const [conversionValue, updateConversionValue] = useState(null);
+
     const decimalValue = useRef();
     const binaryValue = useRef();
     const hexaDecimalValue = useRef();
@@ -14,20 +17,97 @@ const ConversionPage = () => {
         updateConversionSelection(e.target.value);
     }
 
+    const conversionFormHandler = (e) => {
+        e.preventDefault(); // Prevent page refreshing
+
+        // Setting options for request
+        let options = {
+            method: 'POST',
+            body: conversionSelection.split("-")[0] === 'dec' ? JSON.stringify({ dec: decimalValue }) :
+                ( conversionSelection.split("-")[0] === 'bin' ? JSON.stringify({ bin: binaryValue }) :
+                JSON.stringify({ hex: hexaDecimalValue }) ),
+            headers : {
+                'content-type' : 'application/json'
+            }
+        }
+
+        // Make request to specific URL based on conversion selection
+        if (conversionSelection === 'dec-bin') {
+            axios.post("http://localhost:5000/dec-bin-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+        else if (conversionSelection === 'dec-hex') {
+            axios.post("http://localhost:5000/dec-hex-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+        else if (conversionSelection === 'bin-dec') {
+            axios.post("http://localhost:5000/bin-dec-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+        else if (conversionSelection === 'bin-hex') {
+            axios.post("http://localhost:5000/bin-hex-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+        else if (conversionSelection === 'hex-bin') {
+            axios.post("http://localhost:5000/hex-bin-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+        else if (conversionSelection === 'hex-dec') {
+            axios.post("http://localhost:5000/hex-dec-conversion", options)
+            .then(response => {
+                updateConversionValue(response.data.value);
+            })
+            .catch(() => {
+                updateConversionValue("ERR");
+            });
+        }
+    }
+
     // Conditionally render the form based on selection 
     if (conversionSelection === 'dec-bin') {
         return (
             <div className='decimal-binary-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Decimal Value</label>
                         <input ref={ decimalValue } type="number" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Binary Value</label>
-                        <input disabled type="number" className="form-control" />
+                        <input disabled type="number" 
+                            value={ conversionValue === 'ERR' ? "" : conversionValue } 
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -38,15 +118,21 @@ const ConversionPage = () => {
         return (
             <div className='decimal-hexadecimal-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Decimal Value</label>
                         <input ref={ decimalValue } type="number" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Hexadecimal Value</label>
-                        <input disabled type="text" className="form-control" />
+                        <input disabled type="text" 
+                            value={ conversionValue === 'ERR' ? "" : conversionValue } 
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -57,15 +143,21 @@ const ConversionPage = () => {
         return (
             <div className='binary-decimal-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Binary Value</label>
                         <input ref={ binaryValue } type="number" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Decimal Value</label>
-                        <input disabled type="number" className="form-control" />
+                        <input disabled type="number" 
+                            value={ conversionValue === 'ERR' ? "" : conversionValue } 
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -76,15 +168,21 @@ const ConversionPage = () => {
         return (
             <div className='decimal-binary-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Binary Value</label>
                         <input ref={ binaryValue } type="number" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Hexadecimal Value</label>
-                        <input disabled type="text" className="form-control" />
+                        <input disabled type="text"
+                            value={ conversionValue === 'ERR' ? "" : conversionValue }
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -95,15 +193,21 @@ const ConversionPage = () => {
         return (
             <div className='decimal-binary-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Hexadecimal Value</label>
                         <input ref={ hexaDecimalValue } type="text" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Binary Value</label>
-                        <input disabled type="number" className="form-control" />
+                        <input disabled type="number" 
+                            value={ conversionValue === 'ERR' ? "" : conversionValue }
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
@@ -114,15 +218,21 @@ const ConversionPage = () => {
         return (
             <div className='decimal-binary-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
+                { conversionValue === 'ERR' ? <Alert type="ERR" /> : 
+                    ( conversionValue !== null ? <Alert /> : null )
+                }
                 <ConversionSelector conversionSelector={ conversionSelector } />
-                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                    onSubmit={ conversionFormHandler }>
                     <div className="mb-3">
                         <label className="form-label">Hexadecimal Value</label>
                         <input ref={ hexaDecimalValue } type="text" className="form-control" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Decimal Value</label>
-                        <input disabled type="number" className="form-control" />
+                        <input disabled type="number" 
+                            value={ conversionValue === 'ERR' ? "" : conversionValue } 
+                            className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
