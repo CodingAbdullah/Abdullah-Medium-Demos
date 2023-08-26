@@ -23,9 +23,9 @@ const ConversionPage = () => {
         // Setting options for request
         let options = {
             method: 'POST',
-            body: conversionSelection.split("-")[0] === 'dec' ? JSON.stringify({ dec: decimalValue }) :
-                ( conversionSelection.split("-")[0] === 'bin' ? JSON.stringify({ bin: binaryValue }) :
-                JSON.stringify({ hex: hexaDecimalValue }) ),
+            body: conversionSelection.split("-")[0] === 'dec' ? JSON.stringify({ dec: decimalValue.current.value }) :
+                ( conversionSelection.split("-")[0] === 'bin' ? JSON.stringify({ bin: binaryValue.current.value }) :
+                JSON.stringify({ hex: hexaDecimalValue.current.value }) ),
             headers : {
                 'content-type' : 'application/json'
             }
