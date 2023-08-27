@@ -116,7 +116,7 @@ const ConversionPage = () => {
             <div className='decimal-binary-form'>
                 <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>Number Converter Form</h1>
                 { isError ? <Alert type="ERR" /> : 
-                    ( conversionValue !== "" ? <Alert /> : null )
+                    ( isSuccess ? <Alert /> : null )
                 }
                 <ConversionSelector conversionSelector={ conversionSelector } />
                 <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
