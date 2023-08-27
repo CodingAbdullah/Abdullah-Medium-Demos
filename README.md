@@ -115,4 +115,44 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/exploring-the-node-package-manager-npm-7a87749ce6bf">Exploring the Node Package Manager (NPM)</a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo13_Bootstrap_React</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo14_Typescript_React</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo15_Typescript_Node</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo16_Gatsby_React_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo17_Heroku_React_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
 </table>
