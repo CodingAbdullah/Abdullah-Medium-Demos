@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const conversionController = require("../Controller/conversionController.js");
+const conversionController = require("../Controller/conversionController");
 
 // Adding routes for front-end communication
 router.post("/dec-bin-conversion", conversionController.decToBinConversion);

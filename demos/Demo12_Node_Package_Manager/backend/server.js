@@ -1,6 +1,6 @@
 const express = require("express");
-const cors = require("express");
-const conversionRoute = require("../backend/Routes/conversionRoute.js");
+const cors = require("cors");
+const conversionRoute = require("./Routes/conversionRoute");
 const app = express();
 
 app.listen(5000, () => {
