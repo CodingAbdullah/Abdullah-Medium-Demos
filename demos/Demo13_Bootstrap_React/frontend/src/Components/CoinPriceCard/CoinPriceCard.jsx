@@ -9,13 +9,20 @@ const CoinPriceCard = (props) => {
             <div className="card" style={{ width: "18rem" }}>
                 <div className="card-body">
                     <Badge type="warning" message={ coinType } />
-                    <p className="card-text">Price: { coinData[Object.keys(coinData)[0]].usd }</p>
-                    <p className="card-text">24 Hr Price % Change: 
+                    <hr />
+                    <p className="card-text">Price: 
+                        <b>
+                            { "$" + coinData[Object.keys(coinData)[0]].usd + " USD" }
+                        </b>
+                    </p>
+                    <p className="card-text">24 Hr Price % Change:
                     { 
                         coinData[Object.keys(coinData)[0]].usd_24h_change > 0 ?
-                            <Badge type="success" message={ "+" + coinData[Object.keys(coinData)[0]].usd_24h_change + "%" } />
+                            <Badge type="success" 
+                                message={"+" + coinData[Object.keys(coinData)[0]].usd_24h_change.toPrecision(4) + "%" } />
                             :
-                            <Badge type="danger" message={ coinData[Object.keys(coinData)[0]].usd_24h_change + "%" } />
+                            <Badge type="danger" 
+                                message={ coinData[Object.keys(coinData)[0]].usd_24h_change.toPrecision(4) + "%" } />
                     } 
                     </p>
                 </div>
