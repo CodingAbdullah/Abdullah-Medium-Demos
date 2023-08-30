@@ -120,7 +120,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo13_Bootstrap_React</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/integrating-bootstrap-with-react-for-faster-development-a48dbd3b44df">Integrating Bootstrap with React for Faster Development</a>
         </td>
     </tr>
         <tr>
