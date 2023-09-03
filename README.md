@@ -128,7 +128,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo14_Typescript_React</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/enforcing-type-safety-in-react-js-using-typescript-8dfe9b03b5e5">Enforcing Type Safety in React.js using TypeScript</a>
         </td>
     </tr>
     <tr>
