@@ -45,7 +45,9 @@ const PricePage: FC = () => {
     // Display content of form and coin data, if applicable
     return (
         <div className="price-page">
-            <h1 style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>Prices Page</h1>
+            <h1  style={{ marginTop: '1rem', marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+                Prices Page
+            </h1>
             <p style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
                 <i>Select crypto price data to be displayed</i>
             </p>
@@ -56,6 +58,7 @@ const PricePage: FC = () => {
                     <option value="ethereum">Ethereum</option>
                     <option value="solana">Solana</option>
                 </select>
+                <br />
                 <button style={{ marginTop: '1rem' }} 
                     className="btn btn-success" type="submit">Request Information
                 </button>
@@ -65,8 +68,9 @@ const PricePage: FC = () => {
                     ? null 
                     :
                         <>
-                            <h3>Coin Information</h3>
-                            <div className="container">
+                            <h3 style={{ marginTop: '1rem' }}>Coin Information</h3>
+                            <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+                                className="container">
                                 <div className="row">
                                     <div className="col">
                                         <CoinPriceCard 

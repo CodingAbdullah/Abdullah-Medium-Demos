@@ -19,7 +19,7 @@ const CoinPriceCard = (props: { cardData: { coinType: String, coinData: any }}) 
                     { 
                         coinData[Object.keys(coinData)[0]].usd_24h_change > 0 ?
                             <Badge data={{ 
-                                type: 'warning', 
+                                type: 'success', 
                                 data: "+" + coinData[Object.keys(coinData)[0]].usd_24h_change.toPrecision(4) + "%" }}
                             /> 
                             :

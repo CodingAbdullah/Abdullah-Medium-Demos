@@ -4,7 +4,8 @@ import { FC } from 'react';
 const Alert: FC = () => {
 
     return (
-        <div className="alert alert-success" role="alert">
+        <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
+             className="alert alert-success" role="alert">
             Successful Data Fetch!   
         </div>
     )
