@@ -123,7 +123,7 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/integrating-bootstrap-with-react-for-faster-development-a48dbd3b44df">Integrating Bootstrap with React for Faster Development</a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo14_Typescript_React</code>
         </td>
