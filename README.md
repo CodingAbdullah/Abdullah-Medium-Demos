@@ -136,7 +136,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo15_Typescript_Node</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/enforcing-type-safety-for-the-back-end-using-typescript-and-node-js-c0f66d4fa5ea">Enforcing Type Safety for the Back-end using TypeScript and Node.js</a>
         </td>
     </tr>
     <tr>
