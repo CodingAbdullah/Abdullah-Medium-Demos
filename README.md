@@ -141,7 +141,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo16_Gatsby_React_Deployment</code>
+            <code>/demos/Demo16_Mongoless_MERN</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo17_Node_API_Testing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -149,7 +157,23 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo17_Heroku_React_Deployment</code>
+            <code>/demos/Demo18_Gatsby_React_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo19_Heroku_React_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo20_Beyond_MERN</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
