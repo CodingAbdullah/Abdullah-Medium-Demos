@@ -125,13 +125,13 @@ exports.updateUser = (req, res) => {
     if (firstName !== '') {
         updateUserObject.firstName = firstName;
     }
-    else if (lastName !== '') {
+    if (lastName !== '') {
         updateUserObject.lastName = lastName;
     }
-    else if (password !== '') {
+    if (password !== '') {
         updateUserObject.password = password;
     }
-    else if (gender !== '') {
+    if (gender !== '') {
         updateUserObject.gender = gender;
     }
 
