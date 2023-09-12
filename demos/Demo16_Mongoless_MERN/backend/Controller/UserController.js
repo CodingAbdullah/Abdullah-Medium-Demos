@@ -99,7 +99,7 @@ exports.readUser = (req, res) => {
         User.findAll()
         .then(result => {
             res.status(200).json({
-                data: JSON.stringify(result)
+                userData: JSON.stringify(result)
             });
         })
         .catch(err => {
