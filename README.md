@@ -136,7 +136,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo15_Typescript_Node</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95/enforcing-type-safety-for-the-back-end-using-typescript-and-node-js-c0f66d4fa5ea">Enforcing Type Safety for the Back-end using TypeScript and Node.js</a>
+            <a href="https://medium.com/@abdullah_95/enforcing-type-safety-for-the-back-end-using-typescript-and-node-js-c0f66d4fa5ea">Enforcing Type Safety for the Back-end using TypeScript and Node.js</a>
         </td>
     </tr>
     <tr>
@@ -144,7 +144,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo16_Mongoless_MERN</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/mongoless-mern-development-incorporating-sql-using-aws-rds-and-sequelize-7557727b1297">Mongoless MERN Development: Incorporating SQL using AWS RDS and Sequelize</a>
         </td>
     </tr>
         <tr>
