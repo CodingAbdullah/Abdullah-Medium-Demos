@@ -147,9 +147,9 @@ Below is a table highlighting the current demos completed along with their code 
             <a href="https://medium.com/@abdullah_95/mongoless-mern-development-incorporating-sql-using-aws-rds-and-sequelize-7557727b1297">Mongoless MERN Development: Incorporating SQL using AWS RDS and Sequelize</a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
-            <code>/demos/Demo17_Node_API_Testing</code>
+            <code>/demos/Demo17_Postman_API_Testing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
