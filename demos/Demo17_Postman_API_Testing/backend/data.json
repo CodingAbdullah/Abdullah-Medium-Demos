@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "userId": 1,
+            "title": "Teacher"
+        },
+        {
+            "userId": 2,
+            "title": "Newbie"
+        },
+        {
+            "userId": 3,
+            "title": "Developer"
+        }
+    ]
+}
