@@ -90,22 +90,20 @@ exports.updatePartiallyData = (req, res) => {
         if (err){
             res.status(400).json({
                 message: "Could not read file"
-            })
+            });
         }
         else {
             // Extract the array storing file data
             let parsedFileData = JSON.parse(fileData).data;
-
-            // Filter request dataset based on matching IDs
-            for (var i = 0; i < parsedFileData.length; i++) {
-                data = data.filter(x => x.userId === parsedFileData[i].userId);
-            }
-
+            
             // For each entry to be update, update their title
             for (var j = 0; j < parsedFileData.length; j++) {
                 for (var k = 0; k < data.length; k++) {
                     if (data[k].userId === parsedFileData[j].userId){
                         parsedFileData[j].title = data[k].title;
+                    }
+                    else {
+                        continue;
                     }
                 }
             }
@@ -145,15 +143,10 @@ exports.deleteData = (req, res) => {
                 let parsedFileData = JSON.parse(fileData).data;
 
                 // Filter request dataset based on IDs that exist
-                for (var i = 0; i < parsedFileData.length; i++) {
-                    data = data.filter(x => x.userId === parsedFileData[i].userId);
+                for (var i = 0; i < data.length; i++) {
+                    parsedFileData = parsedFileData.filter(x => x.userId !== data[i].userId);
                 }
-
-                // Delete those entries based on matching IDs
-                for (var j = 0; j < data.length; j++) {
-                    parsedFileData = parsedFileData.filter(x => x.userId !== data[j].userId);
-                }
-
+                
                 // If length of data object is empty, remove all entries
                 fs.writeFile(filePath.dataFilePath, JSON.stringify({ data: parsedFileData }), err => {
                     if (err) {
