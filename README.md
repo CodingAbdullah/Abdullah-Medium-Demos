@@ -152,7 +152,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo17_Postman_API_Testing</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/api-testing-with-postman-and-node-js-6d2a66aa1dd6">API Testing with Postman and Node.js</a>
         </td>
     </tr>
     <tr>

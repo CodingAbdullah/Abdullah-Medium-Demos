@@ -95,7 +95,7 @@ exports.updatePartiallyData = (req, res) => {
         else {
             // Extract the array storing file data
             let parsedFileData = JSON.parse(fileData).data;
-            
+
             // For each entry to be update, update their title
             for (var j = 0; j < parsedFileData.length; j++) {
                 for (var k = 0; k < data.length; k++) {
@@ -147,7 +147,7 @@ exports.deleteData = (req, res) => {
                     parsedFileData = parsedFileData.filter(x => x.userId !== data[i].userId);
                 }
                 
-                // If length of data object is empty, remove all entries
+                // Update data file to consist of entries not requested to be deleted
                 fs.writeFile(filePath.dataFilePath, JSON.stringify({ data: parsedFileData }), err => {
                     if (err) {
                         res.status(400).json({
