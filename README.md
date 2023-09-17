@@ -167,7 +167,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo20_Heroku_React_Deployment</code>
+            <code>/demos/Demo20_Gatsby_React_Deployment</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
