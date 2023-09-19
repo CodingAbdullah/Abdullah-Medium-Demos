@@ -157,12 +157,18 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo18_AWS_DynamoDB_MongoDB_Node</code>
+            <code>/demos/Demo18_AWS_DocDB_MongoDB_Node</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
         </td>
     </tr>
     <tr>
         <td>
             <code>/demos/Demo19_AWS_Amplify_React</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
         </td>
     </tr>
     <tr>
