@@ -160,7 +160,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo18_AWS_Amplify_React</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/front-end-deployment-using-react-js-made-easy-with-aws-amplify-10ee91ef032a">Front-end Deployment using React.js Made Easy with AWS Amplify</a>
         </td>
     </tr>
     <tr>
