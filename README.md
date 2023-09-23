@@ -165,7 +165,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo19_AWS_DocDB_MongoDB_Node</code>
+            <code>/demos/Demo19_AWS_S3_React</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo20_Gatsby_React_Development</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -173,7 +181,16 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo20_Gatsby_React_Deployment</code>
+            <code>/demos/Demo21_React_App_Deployment_Options</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td>
+            <code>/demos/Demo22_AWS_IAM_Identity_Access_Management</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -181,7 +198,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo21_Heroku_React_Deployment</code>
+            <code>/demos/Demo23_AWS_DocDB_MongoDB_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -189,7 +206,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo22_Beyond_MERN</code>
+            <code>/demos/Demo24_AWS_DynamoDB_MongoDB_Node</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo25_Beyond_MERN</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
