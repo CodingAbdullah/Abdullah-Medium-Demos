@@ -168,7 +168,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo19_AWS_S3_React</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/aws-s3-for-object-storage-and-static-website-hosting-604ccc70e8e8">AWS S3 for Object Storage and Static Website Hosting</a>
         </td>
     </tr>
         <tr>
