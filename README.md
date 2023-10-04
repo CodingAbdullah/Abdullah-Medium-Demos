@@ -184,7 +184,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo21_React_App_Deployment_Options</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-web-application-deployment-options-b5f385ebc3e8">Exploring Web Application Deployment Options</a>
         </td>
     </tr>
     <tr>
