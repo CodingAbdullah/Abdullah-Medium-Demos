@@ -176,7 +176,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo20_React_State_Management_Options</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95/api-data-caching-query-optimization-and-an-in-depth-look-at-react-state-management-methods-f476cbe0bc2f>API Data Caching, Query Optimization and an In-Depth Look at React State Management Methods</a>        
+            <a href="https://medium.com/@abdullah_95/api-data-caching-query-optimization-and-an-in-depth-look-at-react-state-management-methods-f476cbe0bc2f">API Data Caching, Query Optimization and an In-Depth Look at React State Management Methods</a>        
         </td>
     </tr>
     <tr>
