@@ -189,15 +189,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo22_AWS_IAM_JS_SDK</code>
+            <code>/demos/Demo22_Beyond_MERN</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/going-beyond-the-mern-stack-for-web-development-9b0d135de788">Going Beyond the MERN Stack for Web Development</a>        
         </td>
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo23_AWS_DocDB_MongoDB_Node</code>
+            <code>/demos/Demo23_AWS_IAM_JS_SDK</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -213,7 +213,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo25_Beyond_MERN</code>
+            <code>/demos/Demo25_AWS_DynamoDB_MongoDB_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
