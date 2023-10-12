@@ -1,0 +1,2 @@
+# No need to copy over the node_modules directory, this is for build optimization
+node_modules
