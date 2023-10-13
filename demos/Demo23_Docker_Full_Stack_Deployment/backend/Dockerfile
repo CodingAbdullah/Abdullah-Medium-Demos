@@ -1,8 +1,8 @@
-FROM node:latest
+FROM node:16
 
 WORKDIR /app
 
-COPY . /app/
+COPY . .
 
 RUN npm install
 
