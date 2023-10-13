@@ -4,7 +4,7 @@ const FetchJSONApiRoute = require("./Route/FetchJSONApiRoute");
 
 const app = express();
 
-app.listen(5000, () => console.log("Listening to PORT 5000"));
+app.listen(80, () => console.log("Listening to PORT 80"));
 
 app.use(cors());
 app.use("/", FetchJSONApiRoute);
