@@ -200,7 +200,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo23_Docker_Full_Stack_Deployment</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/docker-for-containerizing-and-deploying-mern-applications-1738868c9f48">Docker for Containerizing and Deploying MERN Applications</a>        
         </td>
     </tr>
     <tr>
