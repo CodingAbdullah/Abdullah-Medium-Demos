@@ -1,2 +1,5 @@
 # Adding node_modules directory
 node_modules
+
+# Adding .env file for safety
+.env
