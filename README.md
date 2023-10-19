@@ -205,15 +205,16 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo24_Terraform_AWS</code>
+            <code>/demos/Demo24_AWS_IAM_JS_SDK</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/aws-iam-and-the-aws-sdk-for-programmatic-access-and-cloud-development-5ec5b024c6d5
+">AWS IAM and the AWS SDK for Programmatic Access and Cloud Development</a>        
         </td>
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo25_AWS_IAM_JS_SDK</code>
+            <code>/demos/Demo25_AWS_DynamoDB_MongoDB_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -229,7 +230,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo27_AWS_DynamoDB_MongoDB_Node</code>
+            <code>/demos/Demo_Terraform_AWS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
