@@ -13,17 +13,17 @@ const UploadPicturePage = () => {
         // Make request to upload picture to S3 bucket, set alert based on response status
         axios.get('http://localhost:5000/upload-photo')
         .then(() => {
-            updateUploadState('upload-success');
+            updateUploadState('success-upload');
         })
         .catch(() => {
-            updateUploadState('upload-danger');
+            updateUploadState('danger-upload');
         });
     }
 
     // Render component
     return (
         <div className='upload-picture-page'>
-            { uploadState === '' ? null : ( uploadState === 'success-upload' ? <Alert type='success-upload' /> : <Alert type='danger-upload' /> ) }
+            { uploadState === '' ? null : <Alert type={ uploadState } /> }
             <h1 style={{ marginTop: '2rem' }}>Upload Picture!</h1>
             <form onSubmit={ uploadPhotoHandler }>
                 <button style={{ marginTop: '1rem' }} type="submit" className='btn btn-success'>Click to Upload Photo</button>

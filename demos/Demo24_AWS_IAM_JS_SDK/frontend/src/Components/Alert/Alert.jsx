@@ -22,7 +22,8 @@ const Alert = (props) => {
 
     // Wrapping Bootstrap Alert using custom component
     return (
-        <div style={{ marginTop: '2rem' }} className={`alert alert-${type}`} role="alert">
+        <div style={{ marginTop: '2rem', width: '50%', marginLeft: 'auto', marginRight: 'auto' }} 
+             className={ `alert alert-${type.split("-")[0]}` } role="alert">
             { message }
         </div>
     )
