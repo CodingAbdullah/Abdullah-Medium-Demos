@@ -1,13 +1,13 @@
 require("dotenv").config({ path: '.env' });
 const AWS = require('aws-sdk');
 
+// Setting up configuration for the AWS service to be used
 let configuration = {
-    accessKeyId: process.env.AWS_DOCDB_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_DOCDB_SECRET_KEY
-    // Add region for AWS DocDB later
+    accessKeyId: process.env.AWS_DOCDB_ACCESS_ID,
+    secretAccessKey: process.env.AWS_DOCDB_SECRET_KEY,
+    region: process.env.AWS_REGION
 }
 
-let documentDB = 
-module.exports = new ({ configuration }); // Establish connection to AWS DocDB and export DocumentDB object
-
-
+// Passing in configuration options to AWS DocumentDB, establishing connection and exporting database object
+let docDB = new AWS.DocDB(configuration); 
+module.exports = docDB;
