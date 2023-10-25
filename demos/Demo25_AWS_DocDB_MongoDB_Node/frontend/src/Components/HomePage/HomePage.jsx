@@ -1,10 +1,8 @@
 
 const HomePage = () => {
-    // Code to be added later..
-
     return (
         <div className='home-page'>
-
+            <h1 style={{ marginTop: '1rem' }}>Welcome to the AWS DocDB React-Node Demo!</h1>
         </div>
     )
 }
