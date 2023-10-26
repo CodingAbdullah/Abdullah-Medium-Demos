@@ -1,3 +1,6 @@
-# Adding node_modules directory and .env file here
+# Adding node_modules directory and .env file
 node_modules
 .env
+
+# Adding the .pem certificate file as well, required for remotely connecting to the EC2 instance
+testserver.pem
