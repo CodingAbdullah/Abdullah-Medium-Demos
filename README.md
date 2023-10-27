@@ -214,10 +214,10 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo25_AWS_DocDB_MongoDB_Node</code>
+            <code>/demos/Demo25_AWS_EC2_DocDB_Nginx_Node</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/aws-documentdb-ec2-nginx-and-node-js-for-cloud-development-4e4cf151ea60">AWS DocumentDB, EC2, Nginx, and Node.js for Cloud Development</a>        
         </td>
     </tr>
     <tr>
