@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import HomePage from './Components/HomePage/HomePage';
 import InsertUserPage from './Components/InsertUserPage/InsertUserPage';
@@ -16,7 +16,7 @@ const App = () => {
     <div className="App">
       <Navbar />
       <QueryClientProvider client={ queryClient }>
-        <Router>
+        <HashRouter>
           <Routes>
             <Route exact path="/" element={<HomePage />}></Route>
             <Route exact path='/insert-user' element={<InsertUserPage />}></Route>
@@ -24,7 +24,7 @@ const App = () => {
             <Route exact path="/read-user" element={<ReadUserPage />}></Route>
             <Route exact path="/update-user" element={<UpdateUserPage />}></Route>
           </Routes>
-        </Router>
+        </HashRouter>
       </QueryClientProvider>
     </div>
   );
