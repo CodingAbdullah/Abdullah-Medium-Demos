@@ -12,7 +12,7 @@ const DeleteUserPage = () => {
         
         // Set options to request deletion of User
         let options = {
-            method: 'POST',
+            method: 'delete',
             body: JSON.stringify({ userID: userId.current.value }),
             headers: {
                 'content-type' : 'application/json'
@@ -20,7 +20,7 @@ const DeleteUserPage = () => {
         };
 
         // Make request
-        axios.post('http://localhost:5000/delete-user', options)
+        axios.delete('http://localhost:5000/delete-user', options)
         .then(() => {
             updateAlert('success-deleteUser'); // Set Alert if User is deleted
         })

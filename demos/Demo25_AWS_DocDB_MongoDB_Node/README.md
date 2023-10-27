@@ -6,7 +6,7 @@
 - We can use <b>AWS EC2</b> which is basically a virtual web server in the cloud which allows us to configure and run both the front-end and back-end applications simultaneously
 - <b>AWS EC2</b> will be connected to the <b>same VPC</b> as the DocumentDB cluster which will enable communication
 - We will not run this web application locally, it is of no use. In order to understand how to work with DocumentDB, we will need to configure the development environment within an EC2 instance and work from there
-- <b>You will need to edit the front-end axios URLs used to make requests to the back-end server hosted on the EC2 instance. The format is http://<Public__Address\>:<Port\>/\<endpoint\></b>
+- <b>You will need to edit the front-end axios URLs used to make requests to the back-end server hosted on the EC2 instance. The format is http://<Public_Address_EC2_Instance\>:<Port\>/\<endpoint\></b>
 
 
 ## Brief Overview of Configuration
