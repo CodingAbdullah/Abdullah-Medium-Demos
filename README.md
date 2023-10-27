@@ -214,7 +214,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo25_AWS_DynamoDB_MongoDB_Node</code>
+            <code>/demos/Demo25_AWS_DocDB_MongoDB_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete

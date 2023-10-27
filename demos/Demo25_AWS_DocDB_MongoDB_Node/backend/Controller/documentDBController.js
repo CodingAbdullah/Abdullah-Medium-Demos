@@ -155,6 +155,28 @@ exports.updateUser = (req, res) => {
                         }
                     });
                 }
+                else {
+                    // Set values to what was provided
+                    // No need for salting and hashing passwords as password to update was not provided
+                    // Pass object in userData object as is for update
+                    User.updateOne({ email }, { $set : userData }, (err, data) => {
+                        if (err) {
+                            res.status(400).json({
+                                message: "Could not update User credentials"
+                            });
+                        }
+                        else if (data){
+                            res.status(200).json({
+                                message: "User successfully updated"
+                            });
+                        }
+                        else {
+                            res.status(400).json({
+                                message: "User could not be updated"
+                            });
+                        }
+                    });
+                }
             }
             else {
                 // User does not exist, return error response
