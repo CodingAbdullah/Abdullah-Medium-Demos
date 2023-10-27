@@ -189,9 +189,9 @@ exports.updateUser = (req, res) => {
 }
 
 exports.deleteUser = (req, res) => {
-    const { userID } = JSON.parse(req.body.body); 
+   const { userID } = req.body;
 
-    // Check to see if User exists
+   // Check to see if User exists
     User.find({ _id: userID }, (err, data) => {
         if (err) {
             res.status(401).json({

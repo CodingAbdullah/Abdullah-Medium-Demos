@@ -10,17 +10,8 @@ const DeleteUserPage = () => {
     const formHandler = (e) => {
         e.preventDefault();
         
-        // Set options to request deletion of User
-        let options = {
-            method: 'delete',
-            body: JSON.stringify({ userID: userId.current.value }),
-            headers: {
-                'content-type' : 'application/json'
-            }
-        };
-
-        // Make request
-        axios.delete('http://localhost:5000/delete-user', options)
+        // Make request, set special data object for request
+        axios.delete('http://localhost:5000/delete-user', { data: { userID: userId.current?.value }})
         .then(() => {
             updateAlert('success-deleteUser'); // Set Alert if User is deleted
         })

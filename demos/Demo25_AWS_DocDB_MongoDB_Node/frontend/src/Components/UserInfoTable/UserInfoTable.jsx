@@ -25,8 +25,8 @@ const UserInfoTable = (props) => {
                                     <th scope="row">{ user.firstName }</th>
                                     <th scope="row">{ user.lastName }</th>
                                     <th scope="row">{ user.email }</th>
-                                    <th scope="row">{ user.createdAt }</th>
-                                    <th scope="row">{ user.updatedAt }</th>
+                                    <th scope="row">{ user.createdAt.split("T")[0] + '-' + user.createdAt.split("T")[1].split("Z")[0] }</th>
+                                    <th scope="row">{ user.updatedAt.split("T")[0] + '-' + user.updatedAt.split("T")[1].split("Z")[0] }</th>
 
                                 </tr>
                             )
