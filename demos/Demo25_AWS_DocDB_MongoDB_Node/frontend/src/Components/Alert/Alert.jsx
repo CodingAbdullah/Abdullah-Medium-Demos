@@ -32,7 +32,7 @@ const Alert = (props) => {
 
     // Wrapping Bootstrap Alert component into a custom component
     return (
-        <div style={{ marginTop: '2rem' }} className={`alert alert-${ type.split("-")[0] }`} role="alert">
+        <div style={{ marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} className={`alert alert-${ type.split("-")[0] }`} role="alert">
             { message }
         </div>
     )
