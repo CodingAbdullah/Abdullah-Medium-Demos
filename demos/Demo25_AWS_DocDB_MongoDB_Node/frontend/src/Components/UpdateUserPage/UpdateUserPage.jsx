@@ -40,11 +40,11 @@ const UpdateUserPage = () => {
             <form style={{ marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} onSubmit={ formHandler }>
                 <div className="form-group">
                     <label>First Name</label>
-                    <input type="text" onChange={ e => updateFirstName(e.target.value) } className="form-control" placeholder="First Name" required />
+                    <input type="text" onChange={ e => updateFirstName(e.target.value) } className="form-control" placeholder="First Name" />
                 </div>
                 <div className="form-group">
                     <label>Last Name</label>
-                    <input type="text" onChange={ e => updateLastName(e.target.value) } className="form-control" placeholder="Last Name" required />
+                    <input type="text" onChange={ e => updateLastName(e.target.value) } className="form-control" placeholder="Last Name" />
                 </div>
                 <div className="form-group">
                     <label>Email address</label>
@@ -52,7 +52,7 @@ const UpdateUserPage = () => {
                 </div>
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" onChange={ e => updatePassword(e.target.value) } className="form-control" placeholder="Password" required />
+                    <input type="password" onChange={ e => updatePassword(e.target.value) } className="form-control" placeholder="Password" />
                 </div>
                 <button style={{ marginTop: '1rem' }} type="submit" className="btn btn-success">Submit</button>
             </form>
