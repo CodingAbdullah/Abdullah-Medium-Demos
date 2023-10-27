@@ -21,12 +21,12 @@ const UserInfoTable = (props) => {
                         users.map(user => {
                             return (
                                 <tr>
-                                    <th scope="row">{ user.ID }</th>
+                                    <th scope="row">{ user.id }</th>
                                     <th scope="row">{ user.firstName }</th>
                                     <th scope="row">{ user.lastName }</th>
-                                    <th scope="row">{ user.emailAddress }</th>
-                                    <th scope="row">{ user.dateCreated }</th>
-                                    <th scope="row">{ user.dateModified }</th>
+                                    <th scope="row">{ user.email }</th>
+                                    <th scope="row">{ user.createdAt }</th>
+                                    <th scope="row">{ user.updatedAt }</th>
 
                                 </tr>
                             )

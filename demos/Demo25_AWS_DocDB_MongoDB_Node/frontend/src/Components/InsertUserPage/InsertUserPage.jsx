@@ -20,7 +20,7 @@ const InsertUserPage = () => {
             body: JSON.stringify({ 
                     firstName: firstName.current?.value, 
                     lastName: lastName.current?.value,
-                    emailAddress: emailAddress.current?.value,
+                    email: emailAddress.current?.value,
                     password: password.current?.value 
                 }),
             headers: {
