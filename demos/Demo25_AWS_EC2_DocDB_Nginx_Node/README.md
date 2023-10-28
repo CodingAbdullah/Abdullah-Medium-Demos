@@ -23,4 +23,4 @@
 - <img src="architecture_diagram.png" width="550" height="500" />
 
 ## Medium Article as a Complete Guide
-- You can refer to the following <a href=""><b>article for further clarity</b></a>
+- You can refer to the following <a href="https://medium.com/stackademic/aws-documentdb-ec2-nginx-and-node-js-for-cloud-development-4e4cf151ea60"><b>article for further clarity</b></a>
