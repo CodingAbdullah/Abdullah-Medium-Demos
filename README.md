@@ -236,9 +236,25 @@ Below is a table highlighting the current demos completed along with their code 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo28_AWS_Elastic_Bean_Stalk</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo29_AWS_Core_Concepts_Development</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo30_AWS_Cloud_Networking_Deployment</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
