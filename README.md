@@ -222,7 +222,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo26_AWS_DynamoDB_MongoDB_Node</code>
+            <code>/demos/Demo26_AWS_DynamoDB_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -231,6 +231,14 @@ Below is a table highlighting the current demos completed along with their code 
      <tr>
         <td>
             <code>/demos/Demo27_AWS_Route_53_Domain_Providers</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo28_AWS_Elastic_Bean_Stalk</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
