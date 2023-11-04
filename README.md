@@ -260,12 +260,4 @@ Below is a table highlighting the current demos completed along with their code 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
-    <tr>
-        <td>
-            <code>/demos/Demo_Terraform_AWS</code>
-        </td>
-        <td>
-            Link to Medium Article to be posted when complete
-        </td>
-    </tr>
 </table>
