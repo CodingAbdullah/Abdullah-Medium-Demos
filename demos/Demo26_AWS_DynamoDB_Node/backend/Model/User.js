@@ -3,14 +3,10 @@
 const UserTable = {
     TableName: 'User',
     KeySchema: [
-        { AttributeName: 'id', KeyType: 'S' }
+        { AttributeName: 'emailAddress', KeyType: 'HASH' }
     ],
     AttributeDefinitions: [
-        { AttributeName: 'id', AttributeType: 'S' },
-        { AttributeName: 'firstName', AttributeType: 'S' },
-        { AttributeName: 'lastName', AttributeType: 'S' }, 
-        { AttributeName: 'email', AttributeType: 'S' }, 
-        { AttributeName: 'password', AttributeType: 'S' }, 
+        { AttributeName: 'emailAddress', AttributeType: 'S' },
     ],
     ProvisionedThroughput: {
       ReadCapacityUnits: 5,

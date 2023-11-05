@@ -1,4 +1,4 @@
-require("dotenv").config({ path: '.env' });
+require("dotenv").config({ path: '../.env' });
 const User = require("../Model/User");
 const AWS = require('aws-sdk');
 
@@ -13,4 +13,4 @@ let configuration = {
 const dynamoDBInstance = new AWS.DynamoDB(configuration);
 
 // Create table using User model and insert into DynamoDB, export instance
-module.exports = dynamoDBInstance.createTable(User);
+module.exports = dynamoDBInstance;
