@@ -21,7 +21,7 @@ const ReadUserPage = () => {
             <div className='read-user-page'>
                 <h1>Current Users</h1>
                 <p><i>Following is a table showcasing current registered Users: </i></p>
-                <UserInfoTable users={ userDataQuery.data?.users } />
+                <UserInfoTable users={ userDataQuery.data.users } />
             </div>
         )
     }

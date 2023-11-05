@@ -7,7 +7,6 @@ const UserInfoTable = (props) => {
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">User ID</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email Address</th>
@@ -19,14 +18,15 @@ const UserInfoTable = (props) => {
                     {
                         // Dynamically render data into the table
                         users.map(user => {
+                            const { firstName, lastName, emailAddress, dateCreated, dateUpdated } = user;
+                            
                             return (
                                 <tr>
-                                    <th scope="row">{ user.id }</th>
-                                    <th scope="row">{ user.firstName }</th>
-                                    <th scope="row">{ user.lastName }</th>
-                                    <th scope="row">{ user.email }</th>
-                                    <th scope="row">{ user.createdAt.split("T")[0] + '-' + user.createdAt.split("T")[1].split("Z")[0] }</th>
-                                    <th scope="row">{ user.updatedAt.split("T")[0] + '-' + user.updatedAt.split("T")[1].split("Z")[0] }</th>
+                                    <th scope="row">{ firstName.S }</th>
+                                    <th scope="row">{ lastName.S }</th>
+                                    <th scope="row">{ emailAddress.S }</th>
+                                    <th scope="row">{ dateCreated?.S.split("T")[0] + ' - ' + dateCreated?.S.split("T")[1].split("Z")[0].split(".")[0] }</th>
+                                    <th scope="row">{ dateUpdated?.S.split("T")[0] + ' - ' + dateUpdated?.S.split("T")[1].split("Z")[0].split(".")[0] }</th>
 
                                 </tr>
                             )

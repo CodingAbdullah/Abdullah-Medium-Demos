@@ -238,7 +238,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo28_AWS_Core_Concepts_Development</code>
+            <code>/demos/Demo28_AWS_SDK_Migration</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -246,7 +246,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo29_AWS_Elastic_Bean_Stalk</code>
+            <code>/demos/Demo29_AWS_Core_Concepts_Development</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -254,7 +254,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo30_AWS_Cloud_Networking_Deployment</code>
+            <code>/demos/Demo30_AWS_Elastic_Bean_Stalk</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo31_AWS_Cloud_Networking_Deployment</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
