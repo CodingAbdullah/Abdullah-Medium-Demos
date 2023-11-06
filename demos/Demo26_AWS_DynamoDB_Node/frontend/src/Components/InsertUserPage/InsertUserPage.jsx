@@ -61,7 +61,7 @@ const InsertUserPage = () => {
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" ref={ password } className="form-control" placeholder="Password" required />
                 </div>
-                <button style={{ marginTop: '1rem' }} type="submit" className="btn btn-success">Submit</button>
+                <button style={{ marginTop: '1rem' }} disabled={ setAlert !== '' ? true : false } type="submit" className="btn btn-success">Submit</button>
             </form>
         </div>
     )

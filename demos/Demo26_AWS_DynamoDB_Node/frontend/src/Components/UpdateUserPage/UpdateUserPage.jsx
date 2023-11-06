@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Alert from '../Alert/Alert';
 
@@ -54,7 +54,7 @@ const UpdateUserPage = () => {
                     <label>Password</label>
                     <input type="password" onChange={ e => updatePassword(e.target.value) } className="form-control" placeholder="Password" />
                 </div>
-                <button style={{ marginTop: '1rem' }} type="submit" className="btn btn-success">Submit</button>
+                <button style={{ marginTop: '1rem' }} disabled={ setAlert !== '' ? true : false } type="submit" className="btn btn-success">Submit</button>
             </form>
         </div>
     )

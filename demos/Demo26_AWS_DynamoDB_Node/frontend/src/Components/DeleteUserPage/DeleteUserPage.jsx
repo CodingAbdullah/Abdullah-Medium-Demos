@@ -37,7 +37,7 @@ const DeleteUserPage = () => {
             <p><i>Enter in User ID to delete a requested User</i></p>
             <form style={{ marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} onSubmit={ formHandler }>
                 <input type="email" ref={ userEmail } className="form-control" aria-describedby="emailHelp" placeholder="User ID" required />
-                <button style={{ marginTop: '1rem' }} type='submit' className='btn btn-danger'>Delete User</button>
+                <button style={{ marginTop: '1rem' }} type='submit' disabled={ setAlert !== '' ? true : false } className='btn btn-danger'>Delete User</button>
             </form>
         </div>
     )
