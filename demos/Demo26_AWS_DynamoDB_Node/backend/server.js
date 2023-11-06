@@ -1,7 +1,7 @@
 require("dotenv").config({ path: '.env' });
 const express = require("express");
 const cors = require('cors');
-const dynamoDBRoute = require("./Route/dynamoDBRoute");
+const CRUDRoute = require("./Route/CRUDRoute");
 
 // Spin up Node Server
 const app = express();
@@ -14,4 +14,4 @@ app.listen(process.env.PORT, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use("/", dynamoDBRoute);
+app.use("/", CRUDRoute);

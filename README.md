@@ -225,10 +225,10 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo26_AWS_DynamoDB_Node</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/aws-dynamodb-aws-sdk-and-node-js-for-back-end-development-2a523c296eda">AWS DynamoDB, AWS SDK, and Node.js for Back-end Development</a>        
         </td>
     </tr>
-     <tr>
+    <tr>
         <td>
             <code>/demos/Demo27_AWS_Route_53_Domain_Providers</code>
         </td>
