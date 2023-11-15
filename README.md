@@ -233,7 +233,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo27_AWS_Route_53_Domain_Providers</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-dns-using-aws-amplify-with-aws-route-53-and-namecheap-8f73e151664c">Exploring DNS using AWS Amplify, AWS Route 53, and Namecheap</a>        
         </td>
     </tr>
     <tr>
