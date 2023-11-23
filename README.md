@@ -241,7 +241,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo28_AWS_SDK_Migration</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/migrating-an-existing-codebase-using-aws-sdk-v2-to-v3-63f915a48aa1">Migrating an Existing Codebase using AWS SDK V2 to V3</a>
         </td>
     </tr>
     <tr>
