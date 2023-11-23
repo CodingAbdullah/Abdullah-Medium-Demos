@@ -249,7 +249,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo29_AWS_Core_Concepts_Development</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95the-core-concepts-and-principles-of-cloud-computing-85f8b63bc3d3">The Core Concepts and Principles of Cloud Computing</a>
+            <a href="https://medium.com/@abdullah_95/the-core-concepts-and-principles-of-cloud-computing-85f8b63bc3d3">The Core Concepts and Principles of Cloud Computing</a>
         </td>
     </tr>
     <tr>

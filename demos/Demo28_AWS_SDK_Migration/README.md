@@ -9,4 +9,4 @@
 - Additional features available with AWS SDK (v3)
 
 ## Medium Article as a Complete Guide
-- Link to article to be posted when complete
+- Article is now complete and published, it can be found <a href="https://medium.com/@abdullah_95/migrating-an-existing-codebase-using-aws-sdk-v2-to-v3-63f915a48aa1">here.</a>
