@@ -257,7 +257,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo30_LocalStack_Cloud_Development</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-local-cloud-development-with-localstack-77b6ea3e594f">Exploring Local Cloud Development using LocalStack</a>
         </td>
     </tr>
     <tr>
