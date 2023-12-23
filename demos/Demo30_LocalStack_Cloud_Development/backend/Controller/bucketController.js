@@ -1,6 +1,7 @@
 const { S3Client, DeleteObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const picturePath = require("../util/picturePath");
 const uuid = require("uuid");
+const fs = require("fs");
 
 // Since we are working with the LocalStack test environment, we will not need credentials
 // We can make use of test credentials
@@ -17,22 +18,35 @@ const s3 = new S3Client({
     credentials: {
       accessKeyId: 'test',
       secretAccessKey: 'test',
-    },
+    }
 });
 
 // Using the send() command, pass in information to upload object using the PutObjectCommand
 exports.uploadObject = (req, res) => {
     // Generating a unique key for file uploading along with bucket name and body
-    s3.send(new PutObjectCommand({ 
+    fs.readFileSync(picturePath, (err, fileData) => { 
+        if (err) {
+            res.status(400).json({
+                message: "Could not read file data"
+            });
+        }
+        else {
+            s3.send(new PutObjectCommand({ 
                 Key: String(new uuid.v4()).split("-")[0], 
                 Bucket: "test", 
-                Body: picturePath 
-    }))
-    .then(() =>
-        console.log("Object successfully uploaded to test bucket!")
-    )
-    .catch(err => {
-        console.log("Object could not be uploaded to test bucket. " + err);
+                Body: fileData
+            }))
+            .then(() => {
+                res.status(200).json({
+                    message: "Object successfully uploaded to test bucket!"
+                });
+            })
+            .catch(err => {
+                res.status(400).json({
+                    message: "Object could not be uploaded to test bucket. " + err
+                });
+            });
+        }
     });
 }
 
@@ -44,9 +58,13 @@ exports.deleteObject = (req, res) => {
         Bucket: 'test'
     }))
     .then(() => 
-        console.log("Object successfully deleted from test bucket!")
+        res.status(200).json({
+            message: "Object successfully deleted from test bucket!"
+        })
     )
     .catch(err => {
-        console.log("Object could not be deleted from test bucket. " + err);
+        res.status(400).json({
+            message: "Object could not be deleted from test bucket. " + err
+        });
     });
 }
