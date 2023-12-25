@@ -1,0 +1,5 @@
+# Adding node_modules directory along with .env file from being committed
+# Also adding the Sequelize config directory from being commit as it contains AWS RDS credentials
+node_modules
+.env
+config
