@@ -1,37 +1,51 @@
-// Navbar component
+// Navbar with conditional rendering
 const Navbar = () => {
-
-    // Wrapping Bootstrap Navbar into custom component
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a style={{ fontWeight:'bold', color: 'white' }} className="navbar-brand" href="/">React-Node Sequelize Demo</a>
+                <a className="navbar-brand" href="#/"><b>AWS/React Deployed Pages</b></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-                        aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a style={{ color: 'white' }} className="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a style={{ color: 'white' }} className="nav-link" href="/create-user">Create User</a>
-                        </li>
-                        <li className="nav-item">
-                            <a style={{ color: 'white' }} className="nav-link" href="/update-user">Update User</a>
-                        </li>
-                        <li className="nav-item">
-                            <a style={{ color: 'white' }} className="nav-link" href="/read-user">Read User</a>
-                        </li>
-                        <li className="nav-item">
-                            <a style={{ color: 'white' }} className="nav-link" href="/delete-user">Delete User</a>
-                        </li>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {
+                            window.location.pathname === '/' ?
+                                <>
+                                    <li className="nav-item">
+                                        <a className="nav-link active" aria-current="page" href="/"><b>Home</b></a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/login">Login</a>
+                                    </li>
+                                </>
+                            :
+                            (
+                                window.location.pathname === '/login' ? 
+                                    <>
+                                        <li className="nav-item">
+                                            <a className="nav-link" aria-current="page" href="/">Home</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link active" href="/login"><b>Login</b></a>
+                                        </li>
+                                    </>
+                                :
+                                    <>
+                                        <li className="nav-item">
+                                            <a className="nav-link" aria-current="page" href="/">Home</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/login">Login</a>
+                                        </li>
+                                    </>
+                            )
+                        }
                     </ul>
                 </div>
             </div>
-        </nav>
+      </nav>
     )
 }
 

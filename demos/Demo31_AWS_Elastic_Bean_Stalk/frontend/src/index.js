@@ -2,12 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Navbar from './Components/Navbar/Navbar';
+import LoginFormPage from './Components/LoginFormPage/LoginFormPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import Page404 from './Components/Page404/Page404';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Navbar />
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<App />}></Route>
+        <Route exact path="/login" element={<LoginFormPage />}></Route>
+        <Route exact path="*" element={<Page404 />}></Route>
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
