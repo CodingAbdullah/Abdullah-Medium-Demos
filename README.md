@@ -265,7 +265,7 @@ Below is a table highlighting the current demos completed along with their code 
             <code>/demos/Demo31_AWS_Elastic_Bean_Stalk</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/rapid-front-end-deployment-with-aws-elastic-beanstalk-0f62664ae3d7">Rapid Front-end Deployment with AWS Elastic Beanstalk</a>
         </td>
     </tr>
     <tr>
