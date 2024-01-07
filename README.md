@@ -276,7 +276,7 @@ Below is a table highlighting the current demos completed along with their code 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo33_AWS_Load_Balancing</code>
         </td>
@@ -300,9 +300,9 @@ Below is a table highlighting the current demos completed along with their code 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
-            <code>/demos/Demo36</code>
+            <code>/demos/Demo36_AWS_CloudFront_Hosting</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -310,14 +310,15 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo37</code>
+            <code>/demos/Demo37_AWS_ACM_KMS_Encryption</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
         </td>
-    </tr>    <tr>
+    </tr>    
+    <tr>
         <td>
-            <code>/demos/Demo38</code>
+            <code>/demos/Demo38_AWS_SQS_SNS_SES_Messaging</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -325,7 +326,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo39</code>
+            <code>/demos/Demo39_AWS_CloudTrail_CloudWatch_Monitoring</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -333,7 +334,87 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo40</code>
+            <code>/demos/Demo40_AWS_Lambda_Serverless</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo41_AWS_Lambda_API_Gateway_Development</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo42_AWS_SAM_Serverless_Application_Model</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>    
+    <tr>
+        <td>
+            <code>/demos/Demo43_AWS_AppSync_Step_Functions</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo44_AWS_CodePipeline_CI_CD</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo45_AWS_Additional_Services</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo46_AWS_CloudFormation_IaC</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo47_AWS_CloudFormation_CodePipeline_DEMO</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo48_AWS_CloudFormation_Terraform</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo49_Terraform_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo50_AWS_Final_Deployment_Demo</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
