@@ -286,7 +286,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo34</code>
+            <code>/demos/Demo34_AWS_EC2_In_Detail </code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -294,7 +294,7 @@ Below is a table highlighting the current demos completed along with their code 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo35</code>
+            <code>/demos/Demo35_AWS_ECS_Docker_Containers</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
