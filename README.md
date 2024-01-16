@@ -1,11 +1,15 @@
 # Abdullah-Medium-Demos
 A repository containing code for demos published to Medium. This page will update as more demos in the future are prepared and a Medium article is made public.
 
-Below is a table highlighting the current demos completed along with their code repository and Medium article.
-
+<b> There are two separate tables below:
+1. Links to code demo Medium articles. 
+2. Links to miscellaneous articles (coding, blockchain/web3, etc.)
+ 
 <br />
 
-## Demo Information
+Table highlighting the current demos completed along with their code repository and Medium article.
+
+## Code Demo Medium Article Information
 <table>
     <tr>
         <th>
@@ -419,5 +423,21 @@ Below is a table highlighting the current demos completed along with their code 
         <td>
             Link to Medium Article to be posted when complete
         </td>
+    </tr>
+</table>
+
+<br />
+
+Table highlighting miscellanous published Medium articles
+
+## Miscellaneous Medium Article Information
+<table>
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Medium Article Link
+        </th>
     </tr>
 </table>
