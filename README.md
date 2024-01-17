@@ -277,7 +277,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo32_AWS_Cloud_Networking</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95/deep-dive-into-aws-vpc-and-its-network-and-security-components-7954e7fdef28">Deep Dive into AWS and its Network and Security Components</a>
+            <a href="https://medium.com/@abdullah_95/deep-dive-into-aws-vpc-and-its-network-and-security-components-7954e7fdef28">Deep Dive into AWS VPC and its Network and Security Components</a>
         </td>
     </tr>
     <tr>
