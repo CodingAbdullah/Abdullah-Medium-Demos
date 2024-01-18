@@ -282,7 +282,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo33_AWS_Load_Balancing</code>
+            <code>/demos/Demo34_AWS_EC2_In_Detail </code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -290,7 +290,23 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo34_AWS_EC2_In_Detail </code>
+            <code>/demos/Demo33_AWS_EC2_Single_Tier_Architecture</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo33_AWS_EC2_Two_Tier_Architecture</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo33_AWS_Load_Balancing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
