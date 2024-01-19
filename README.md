@@ -450,10 +450,18 @@ Table highlighting Medium articles published based on miscellaneous topics
 <table>
     <tr>
         <th>
-            Description
-        </th>
-        <th>
             Medium Article Link
         </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <a href=https://medium.com/@abdullah_95/bitcoin-halving-and-expectations-for-2024-and-beyond-e0f08d3706e2">Bitcoin Halving and Expectations for 2024 and Beyond</a>
+        </td>
+        <td>
+            Covering 2024 BTC halving, ETFs, BRC20, Ordinals, and Inscriptions
+        </td>
     </tr>
 </table>
