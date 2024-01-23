@@ -474,7 +474,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo57_AWS_CloudFormation_CodePipeline_DEMO</code>
+            <code>/demos/Demo57_AWS_Cloud9_IDE</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -482,7 +482,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo58_AWS_CloudFormation_Terraform</code>
+            <code>/demos/Demo58_AWS_CloudFormation_CodePipeline_DEMO</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -490,7 +490,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo59_Terraform_Deployment</code>
+            <code>/demos/Demo59_AWS_CloudFormation_Terraform</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -498,7 +498,15 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo60_AWS_Final_Deployment_Demo</code>
+            <code>/demos/Demo60_Terraform_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo61_AWS_Final_Deployment_Demo</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
