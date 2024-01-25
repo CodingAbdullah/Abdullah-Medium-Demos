@@ -285,7 +285,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo33_AWS_EC2_In_Detail </code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/your-complete-guide-to-aws-elastic-compute-cloud-ec2-833f30ffc0f9">Your Complete Guide to AWS Elastic Compute Cloud (EC2)</a>        
         </td>
     </tr>
     <tr>
