@@ -282,7 +282,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo33_AWS_EC2_In_Detail </code>
+            <code>/demos/Demo33_AWS_EC2_In_Detail</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/your-complete-guide-to-aws-elastic-compute-cloud-ec2-833f30ffc0f9">Your Complete Guide to AWS Elastic Compute Cloud (EC2)</a>        
@@ -458,7 +458,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo55_AWS_Additional_Services</code>
+            <code>/demos/Demo55_SDLC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -466,7 +466,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo56_AWS_CloudFormation_IaC</code>
+            <code>/demos/Demo56_Vulnerability_Check_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -474,7 +474,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo57_AWS_Cloud9_IDE</code>
+            <code>/demos/Demo57_AWS_Cost_Control</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -482,7 +482,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo58_AWS_CloudFormation_CodePipeline_DEMO</code>
+            <code>/demos/Demo58_AWS_Additional_Services</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -490,7 +490,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo59_AWS_CloudFormation_Terraform</code>
+            <code>/demos/Demo59_AWS_CloudFormation_IaC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -498,7 +498,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo60_Terraform_Deployment</code>
+            <code>/demos/Demo60_AWS_Cloud9_IDE</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -506,7 +506,31 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo61_AWS_Final_Deployment_Demo</code>
+            <code>/demos/Demo61_AWS_CloudFormation_CodePipeline_DEMO</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo62_AWS_CloudFormation_Terraform</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo63_Terraform_Deployment</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo64_AWS_Final_Deployment_Demo</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
