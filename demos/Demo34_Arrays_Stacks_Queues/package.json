@@ -1,0 +1,22 @@
+{
+  "name": "demo34_arrays_stacks_queues",
+  "version": "1.0.0",
+  "description": "Small demo on primary data structures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingAbdullah/Abdullah-Medium-Demos.git"
+  },
+  "author": "Abdullah Muhammad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodingAbdullah/Abdullah-Medium-Demos/issues"
+  },
+  "homepage": "https://github.com/CodingAbdullah/Abdullah-Medium-Demos#readme",
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
+}
