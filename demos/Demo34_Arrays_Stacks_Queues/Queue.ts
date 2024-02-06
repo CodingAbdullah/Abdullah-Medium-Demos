@@ -1,6 +1,6 @@
 // FIFO implementation of a Queue
-class Queue {
-    orderArray: number[];
+export default class Queue<T> {
+    orderArray: T[];
 
     // Initialize to empty array
     constructor(){
@@ -8,13 +8,13 @@ class Queue {
     }
 
     // Push value to end of array
-    enqueue(data: number): void {
+    enqueue(data: T): void {
         this.orderArray.push(data);
     }
 
     // Remove the first element and return the value
-    dequeue(): number {
-        let value = this.orderArray.splice(0, 1)[0] || -1;
+    dequeue(): T {
+        let value = this.orderArray.splice(0, 1)[0];
         return value;
     }
 

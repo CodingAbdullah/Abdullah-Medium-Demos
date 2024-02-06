@@ -1,6 +1,6 @@
 // LIFO implementation of a Stack
-class Stack {
-    orderArray: number[];
+export default class Stack<T> {
+    orderArray: T[];
 
     // Initializing an empty array to work with
     constructor(){
@@ -8,13 +8,13 @@ class Stack {
     }
 
     // Push numbers to the end of the array
-    push(data: number): void {
+    push(data: T): void {
         this.orderArray.push(data);
     }
 
     // Return the latest value to be inserted into array
-    pop(): number {
-        let value = this.orderArray.pop() || -1;
+    pop(): T {
+        let value = this.orderArray.pop()!;
         return value;
     }
 
