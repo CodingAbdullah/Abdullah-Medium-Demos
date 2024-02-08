@@ -1,20 +1,20 @@
 // Least Recently Used Cache (LRU)
 // Most recent items are added to the back
 // Least Recently Used items fall to the front
-class LRU<T> {
-    orderArray: string[];
-    capacity: number;
-    keyMap = new Map<any, any>();
+export default class LRU {
+    private orderArray: any[];
+    private capacity: number;
+    private keyMap = new Map();
     
     // Initialize members and set capacity, must be at least 1
-    constructor(c: number){
+    constructor(c: number) {
         this.capacity = c <= 0 ? 1 : c;
         this.orderArray = [];
     }
 
     // Check to see if LRU Cache contains key
     // Check if key is defined, but is expired (key value set to undefined)
-    has(key: string): boolean {
+    has(key: any): boolean {
         if (this.keyMap.has(key) && (this.keyMap.get(key) === undefined)) {
             return false;
         }
@@ -27,10 +27,10 @@ class LRU<T> {
     }
 
     // Insert key and its value based on LRU Cache memory
-    set(key: string, value: number): void {
+    set(key: any, value: any): void {
         // Check if LRU Cache is at capacity
         if ((this.orderArray.length === this.capacity) && (!this.keyMap.has(key))){
-            // Perform eviction only if unique keys to be added
+            // Perform eviction only if unique key is to be added
             // Delete key from map
             let evictedValue = this.orderArray[0];
             this.keyMap.delete(evictedValue);
@@ -49,7 +49,7 @@ class LRU<T> {
             this.orderArray.push(key);
             this.keyMap.set(key, value);
         }
-        else if ((this.orderArray.length === this.capacity) && (this.keyMap.has(key))){
+        else if ((this.orderArray.length === this.capacity) && (this.keyMap.has(key))) {
             let filteredArray = this.orderArray.filter(existingKey => existingKey !== key);
             this.orderArray = filteredArray;
 
@@ -84,7 +84,7 @@ class LRU<T> {
 
     // Retrieve key based on LRU Cache memory
     // Move key to the front of the Cache
-    get(key: string) : number {
+    get(key: any) : any {
         if (this.keyMap.has(key)){
             let filteredArray = this.orderArray.filter(existingKey => existingKey !== key);
             this.orderArray = filteredArray;
@@ -98,7 +98,7 @@ class LRU<T> {
     }
 
     // Delete key from LRU Cache, but return its value
-    delete(key: string): number {
+    delete(key: any): any {
         if (this.keyMap.has(key)){
             let filteredArray = this.orderArray.filter(existingKey => existingKey !== key);
             this.orderArray = filteredArray;
@@ -118,8 +118,13 @@ class LRU<T> {
             consoleString += ' ' + this.orderArray[i] + " => " + this.keyMap.get(this.orderArray[i]) + ', ';
         }
         consoleString = consoleString.substring(0, consoleString.length - 2); 
-        consoleString += ' ]';
+        consoleString += ' ] ';
         console.log(consoleString);
+    }
+
+    // Return the LRU cache
+    getLRUCache(): any {
+        return this.orderArray;
     }
 }
 
