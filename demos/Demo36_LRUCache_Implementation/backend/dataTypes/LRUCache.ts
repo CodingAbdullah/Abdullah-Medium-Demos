@@ -124,7 +124,7 @@ export default class LRU {
     }
 
     // Return the LRU cache
-    getLRUCache(): any {
+    getLRUCache(): Array<any> {
         return this.orderArray;
     }
 }
