@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import { router as deleteRouter } from './Route/deleteRoute';
-import { router as insertRouter } from './Route/insertRoute';
-import { router as viewRouter } from './Route/viewRoute';
-import { router as updateRouter } from './Route/updateRoute';
+import { router as deleteRouter } from './Route/deleteTaskRoute';
+import { router as insertRouter } from './Route/insertTaskRoute';
+import { router as getRouter } from './Route/getTasksRoute';
+import { router as viewRouter } from './Route/viewTasksRoute';
+import { router as updateRouter } from './Route/updateTaskRoute';
 
 // Spinning up Node server
 const app = express();
@@ -22,3 +23,4 @@ app.use("/", deleteRouter);
 app.use("/", insertRouter);
 app.use("/", updateRouter);
 app.use("/", viewRouter);
+app.use("/", getRouter);

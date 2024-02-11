@@ -1,5 +1,5 @@
 import * as express from 'express';
-import insertTask from '../Controller/InsertController';
+import insertTask from '../Controller/InsertTaskController';
 
 // Setting up router
 export const router = express.Router();

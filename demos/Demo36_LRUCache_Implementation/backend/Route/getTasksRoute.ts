@@ -1,7 +1,7 @@
 import * as express from 'express';
-import deleteTask from '../Controller/DeleteController';
+import getTasks from '../Controller/GetTaskController';
 
 // Setting up router
 export const router = express.Router();
-router.post('/delete-task', deleteTask);
+router.post('/delete-task', getTasks);
 
