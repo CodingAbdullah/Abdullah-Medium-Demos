@@ -127,4 +127,9 @@ export default class LRU {
     getLRUCache(): Array<any> {
         return this.orderArray;
     }
+
+    // Return the Key Map
+    getLRUCacheKeyMap(): Map<any, any> {
+        return this.keyMap;
+    }
 }
