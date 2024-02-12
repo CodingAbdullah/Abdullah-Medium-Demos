@@ -15,7 +15,7 @@ export default async function updateTask(req: Request, res: Response){
         // Update key with new description
         // Finally, write the LRU Cache back to database
         LRUCache.set(updateData.id, updateData.description);
-        await fileWriter(JSON.stringify({ LRU: LRUCache }));
+  //      await fileWriter(JSON.stringify({ LRU: LRUCache }));
     }
     catch (err) {
 

@@ -27,6 +27,10 @@ export default async function deleteTask(req: Request, res: Response){
         
         // Write modified LRU Cache back to database
         await fileWriter(fileObject);
+
+        res.status(200).json({
+            message: "Deletion successful"
+        });
     }
     catch (err) {
         res.status(400).json({
