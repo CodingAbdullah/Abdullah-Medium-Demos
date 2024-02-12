@@ -4,9 +4,10 @@ import axios from 'axios';
 import IDSelector from '../IDSelector/IDSelector';
 import IDType from '../../dataTypes/IDDataType';
 
-// Delete tasks
-const DeleteTaskPage: FC = () => {
-    const [deleteID, updateDeleteID] = useState('');
+// Update Tasks
+const UpdateTaskPage: FC = () => {
+    const [updateID, updateUpdateID] = useState('');
+    const [description, updateDescription] = useState('');
     const [ids, updateIds] = useState<IDType>({ information: null });
     const [alert, updateAlert] = useState('');
     const [err, updateErr] = useState(false);
@@ -20,7 +21,7 @@ const DeleteTaskPage: FC = () => {
                 // Set value to first one
                 // Updating IDs
                 if (response.data.LRUData.length > 0) {
-                    updateDeleteID(response.data.LRUData[0]);
+                    updateUpdateID(response.data.LRUData[0]);
                     updateIds(prevState => {
                         return {
                             ...prevState,
@@ -46,8 +47,8 @@ const DeleteTaskPage: FC = () => {
     }, []);
 
     // Handle state whenever an ID is selected
-    const deleteIDHandler: ChangeEventHandler<HTMLSelectElement> = (event) => {
-          updateDeleteID(event.target.value);
+    const updateIDHandler: ChangeEventHandler<HTMLSelectElement> = (event) => {
+          updateUpdateID(event.target.value);
     }
 
     // Form handling the delete task action
@@ -57,14 +58,14 @@ const DeleteTaskPage: FC = () => {
         // Set options for back-end call
         let options = {
             method: 'POST',
-            body: JSON.stringify({ deleteData: deleteID }),
+            body: JSON.stringify({ updateID, description }),
             headers : {
                 'content-type': 'application/json'
             }
         }
 
         // Make back-end request to delete ID
-        axios.post('http://localhost:5000/delete-task', options)
+        axios.post('http://localhost:5000/update-task', options)
         .then(() => {
             updateAlert('success');
         })
@@ -87,14 +88,16 @@ const DeleteTaskPage: FC = () => {
         else {
             return (
                 <div className='delete-task-page'>
-                    <h1>Delete Task</h1>
+                    <h1>Update Task</h1>
                     <p><i>Feel free to select any tasks to delete</i></p>
                     { alert === '' ? null : <Alert type={ alert } /> }
                     <form style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }} 
                         onSubmit={ formHandler } className='insert-task-form'>
                         <div className="mb-3">
-                            <label className="form-label">Task Description</label>
-                            <IDSelector ids={ ids.information } idSelector={ deleteIDHandler } />
+                            <label className="form-label">Task</label>
+                            <IDSelector ids={ ids.information } idSelector={ updateIDHandler } />
+                            <br />
+                            <input className="form-control" type="text" placeholder="Description" onChange={ e => updateDescription(e.target.value) } />
                         </div>
                         <br />
                         <button type="submit" className='btn btn-success'>Submit</button>
@@ -105,4 +108,4 @@ const DeleteTaskPage: FC = () => {
     }
 }
 
-export default DeleteTaskPage;
+export default UpdateTaskPage;

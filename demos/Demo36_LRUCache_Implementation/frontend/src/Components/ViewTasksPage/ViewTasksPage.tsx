@@ -1,9 +1,11 @@
 import { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { viewTasks } from '../../utilFunctions/viewTasks';
-import TaskType from '../../dataTypes/taskDataType';
+import TaskType from '../../dataTypes/TaskDataType';
 
 // View Tasks page
+// React Query for efficient task fetching
+// Mapping each task into the table
 const ViewTasksPage: FC = () => {
 
     const viewTaskQuery = useQuery({
