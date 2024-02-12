@@ -2,7 +2,7 @@ import { ChangeEventHandler, FC, FormEvent, useEffect, useState } from 'react';
 import Alert from '../Alert/Alert';
 import axios from 'axios';
 import IDSelector from '../IDSelector/IDSelector';
-import IDType from '../../dataTypes/idDataType';
+import IDType from '../../dataTypes/IDDataType';
 
 // Insert tasks
 const DeleteTaskPage: FC = () => {
