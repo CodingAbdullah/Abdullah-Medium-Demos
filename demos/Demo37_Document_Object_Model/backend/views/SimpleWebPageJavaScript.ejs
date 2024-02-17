@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>This is simple a test page</h1>
+        <p>This is the second sentence to be read on this page</p>
+        <form>
+            <p>Please fill out the details of this form below:</p>
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="First Name" />
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Last Name" />
+            <label>Email Address</label>
+            <input type="email" name="email_address" placeholder="Email Address" />
+            <button type="submit">Submit Form</button>
+        </form>
+        <script>
+            // We know there will always be one tag
+            let buttonElement = document.getElementsByTagName('button')[0];
+            
+            // Adding a click listener to button and passing anonymous function
+            buttonElement.addEventListener("click", () => {
+                alert("Submit button was clicked!");
+            });
+        </script>
+    </body>
+</html>
