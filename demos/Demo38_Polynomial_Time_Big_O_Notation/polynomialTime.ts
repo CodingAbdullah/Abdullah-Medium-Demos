@@ -1,6 +1,6 @@
 // Constant, Linear, Linearithmic, Logarithmic, Quadratic
 
-// Constant
+// Constant - O(1)
 // Single statements without any loops are constant time
 let n: number = 0;
 let numbers: Array<number[]> = [];
@@ -44,3 +44,39 @@ for (let i = 0; i < numbers.length; i++) {
 
     console.log("Quadratic Time Result ----- " + i + ": " + numbers[i]);
 }
+
+// ------------------------------- //
+
+// Linearithmic Time - O(n log n)
+
+// ------------------------------- //
+
+// Logarithmic Time - O(log n)
+// Binary Search Algorithm
+
+let search = [];
+for (let i = 1; i <= 100; i++){
+    search.push(i);
+}
+
+// The Binary Search implementation using an ordered array
+function binarySearch(orderArray: number[], value: number) {
+    let searchIndex = Math.floor(orderArray.length/2);
+
+    while(orderArray[searchIndex] !== value) {
+        if (orderArray[searchIndex] > value){
+            orderArray.splice(searchIndex, orderArray.length);
+        }
+        else if (orderArray[searchIndex] < value) {
+            orderArray.splice(0, searchIndex);
+        }
+        searchIndex = Math.floor(orderArray.length/2);
+    }
+
+    return searchIndex;
+}
+
+console.log(binarySearch(search, 6));
+
+
+// ------------------------------- //
