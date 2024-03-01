@@ -59,7 +59,7 @@ for (let i = 1; i <= 100; i++){
     search.push(i);
 }
 
-// The Binary Search implementation using an ordered array
+// Binary Search implementation using an ordered array
 function binarySearch(orderArray: number[], value: number) {
     let searchIndex = Math.floor(orderArray.length/2);
 
@@ -77,6 +77,5 @@ function binarySearch(orderArray: number[], value: number) {
 }
 
 console.log(binarySearch(search, 6));
-
 
 // ------------------------------- //
