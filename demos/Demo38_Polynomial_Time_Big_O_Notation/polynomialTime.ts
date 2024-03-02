@@ -1,4 +1,4 @@
-// Constant, Linear, Linearithmic, Logarithmic, Quadratic
+// Constant, Linear, Logarithmic, Quadratic
 
 // Constant - O(1)
 // Single statements without any loops are constant time
@@ -44,10 +44,6 @@ for (let i = 0; i < numbers.length; i++) {
 
     console.log("Quadratic Time Result ----- " + i + ": " + numbers[i]);
 }
-
-// ------------------------------- //
-
-// Linearithmic Time - O(n log n)
 
 // ------------------------------- //
 
