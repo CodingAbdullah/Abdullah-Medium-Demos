@@ -325,7 +325,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo38_Polynomial_Time_Big_O_Notation</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/stackademic/algorithms-and-the-big-o-notation-8962ab1e35e8">Algorithms and the Big-O Notation</a>
         </td>
     </tr>
     <tr>
