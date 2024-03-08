@@ -1,5 +1,5 @@
 # Abdullah-Medium-Demos
-A repository containing code for demos published to Medium. This page will update as more demos in the future are prepared and a Medium article is made public.
+A repository containing code for demos published to Medium. This page will update as more demos are complete and a Medium article is published.
 
 <b> There are two separate tables below:
 1. Links to code demo Medium articles. 
