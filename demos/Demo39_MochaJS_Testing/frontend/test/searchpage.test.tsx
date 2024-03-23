@@ -29,9 +29,7 @@ describe('Testing the Search Page Component', () => {
   it('Check to see if the input is displayed correctly in the Search Page', () => {
 
     const searchPageComponent = shallow(<SearchPage />); // Creates an object which represents the entire React component
-    const searchPageInputElement = searchPageComponent.find('i').text();
-
-    expect(searchPageInputElement).to.equal("Testing application search functionality"); // Use assertion to ensure to pass or fail the test
+    expect(searchPageComponent.find('input')).to.have.lengthOf(1); // Use assertion to ensure that exactly one input element exists
   });
 
   // Test case for testing the Search Page button element
