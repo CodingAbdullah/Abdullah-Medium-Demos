@@ -13,9 +13,6 @@ const Navbar: FC = () => {
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
-                            </li>
-                            <li className="nav-item">
                                 <a className="nav-link" href="/test-page">Test Page</a>
                             </li>
                         </ul>

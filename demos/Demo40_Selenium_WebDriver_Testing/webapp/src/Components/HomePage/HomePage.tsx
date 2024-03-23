@@ -4,7 +4,7 @@ const HomePage: FC = () => {
     return (
         <div className='home-page'>
             <h1>Welcome to the Mocha.js Test Application</h1>
-            <p><i>Store up to 5 tasks to complete!</i></p>
+            <p><i>Testing React applications using Mocha.js</i></p>
         </div>
     )
 }
