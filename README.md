@@ -333,7 +333,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo39_MochaJS_Testing</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/grab-a-cup-of-mocha-js-to-go-with-your-react-js-application-5cea627a4bbc">Grab a Cup of Mocha.js to go with your React.js Application</a>
         </td>
     </tr>
     <tr>
