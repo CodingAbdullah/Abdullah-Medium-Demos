@@ -6,7 +6,7 @@ const Navbar: FC = () => {
         <div className='navbar'>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/">Mocha.js/React Demo</a>
+                    <a className="navbar-brand" href="/">Selenium Web Driver/React Demo</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
