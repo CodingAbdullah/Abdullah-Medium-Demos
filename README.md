@@ -341,7 +341,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo40_Selenium_WebDriver_Testing</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/complete-guide-to-automated-testing-using-selenium-webdriver-1b47f99119cd">Complete Guide to Automated Testing using Selenium WebDriver</a>
         </td>
     </tr>
     <tr>
