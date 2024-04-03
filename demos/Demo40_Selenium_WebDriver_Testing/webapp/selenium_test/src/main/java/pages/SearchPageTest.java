@@ -36,7 +36,7 @@ public class SearchPageTest {
 		// If so, proceed to select the Search anchor element
 		// Find the second link in the Navbar and click to navigate to the Search page
 		if (isValidAnchorElementSize(anchorElementsList)) {
-			anchorElementsList.get(2).click();
+			anchorElementsList.get(1).click();
 			System.out.println("Test 2: " + isValidSearchPageURL(driver.getCurrentUrl()));
 			
 			// Proceed to the next test
