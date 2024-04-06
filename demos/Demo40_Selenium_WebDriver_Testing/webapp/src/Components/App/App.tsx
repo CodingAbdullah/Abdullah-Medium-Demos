@@ -14,7 +14,6 @@ const App = () => {
           <Route path="/search" element={<SearchPage />}></Route>
         </Routes>
       </Router>
-     
     </div>
   );
 }
