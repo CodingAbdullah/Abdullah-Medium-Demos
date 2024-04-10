@@ -1,4 +1,4 @@
-package pages;
+package pagefactorypages;
 
 public class PageFactoryRunner {
 
