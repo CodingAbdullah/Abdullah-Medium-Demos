@@ -1,5 +1,37 @@
 package pagefactorypages;
 
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 public class Navbar {
-	// Page Factory elements go here
+    private WebDriver driver;
+    
+    // Constructor to initialize Web Driver and the Page Web Elements
+    public Navbar(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    // Find Page elements using the @FindBy annotation
+    @FindBy(tagName = "a")
+    private List<WebElement> anchorTagList;
+
+    // Retrieve Heading Anchor text
+    public String getNavbarHeadingAnchorText() {
+        return anchorTagList.get(0).getText();
+    }
+    
+    // Retrieve Search Anchor text
+    public String getNavbarSearchAnchorText() {
+        return anchorTagList.get(1).getText();
+    }
+    
+    // Retrieve length of Navbar Anchor Text
+    public int getNavbarAnchorTextListLength() {
+    	return anchorTagList.size();
+    }
 }

@@ -1,10 +1,8 @@
-package pagefactorypages;
+package pagefactorytest;
 
-public class PageFactoryRunner {
-
+public class SearchPageTest {
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 	}
-
 }
