@@ -17,20 +17,45 @@ public class SearchPage {
     }
     
     // Find elements using the @FindBy annotation
-    @FindBy(tagName = "a")
+    @FindBy(tagName="a")
     private List<WebElement> anchorList;
 
-    @FindBy(tagName = "h3")
+    @FindBy(tagName="h3")
     private WebElement searchPageHeadingText;
 
-    @FindBy(tagName = "i")
+    @FindBy(tagName="i")
     private WebElement searchPageParagraphText;
     
-    @FindBy(tagName = "input")
+    @FindBy(tagName="input")
     private List<WebElement> searchPageFormInputList;
     
-    @FindBy(tagName = "button")
+    @FindBy(tagName="button")
     private WebElement searchPageFormButton;
+    
+    // Retrieve Anchor texts
+    public List<WebElement> getAnchorTextList(){
+    	return this.anchorList;
+    }
+    
+    // Select the Home Anchor text
+    public void selectHomeAnchorText() {
+    	this.anchorList.get(0).click();
+    }
+    
+    // Select the Search Anchor text
+    public void selectSearchAnchorText() {
+    	this.anchorList.get(1).click();
+    }
+    
+    // Return Anchor List length
+    public int getAnchorTextLength() {
+    	return this.anchorList.size();
+    }
+    
+    // Retrieve Page URL
+    public String getPageURL() {
+    	return this.driver.getCurrentUrl();
+    }  
     
     // Retrieve Search Page Form Input list
     public int getSearchPageFormInputListLength() {
@@ -52,23 +77,23 @@ public class SearchPage {
     	return this.searchPageFormButton.getText();
     }
     
-    // Select the Search Page Button
+    // Select the Search Page button
     public void clickFormButton() {
     	this.searchPageFormButton.click();
     }
     
-    // Enter Values into Form Input
+    // Enter Values into Form input
     public void setFormInput(String input) {
     	this.searchPageFormInputList.get(0).sendKeys(input);
-    }
-    
-    // Return Anchor List length
-    public int getAnchorTextLength() {
-    	return this.anchorList.size();
     }
     
     // Return Web Driver instance for testing
     public WebDriver getWebDriver() {
     	return this.driver;
+    }
+    
+    // Close Web Driver
+    public void closeDriver() {
+    	this.driver.close();
     }
 }

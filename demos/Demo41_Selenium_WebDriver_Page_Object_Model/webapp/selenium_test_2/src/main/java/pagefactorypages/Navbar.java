@@ -17,7 +17,7 @@ public class Navbar {
     }
 
     // Find Page elements using the @FindBy annotation
-    @FindBy(tagName = "a")
+    @FindBy(tagName="a")
     private List<WebElement> anchorTagList;
 
     // Retrieve Heading Anchor text
@@ -33,5 +33,10 @@ public class Navbar {
     // Retrieve length of Navbar Anchor Text
     public int getNavbarAnchorTextListLength() {
     	return anchorTagList.size();
+    }
+    
+    // Close Web Driver
+    public void closeDriver() {
+    	this.driver.close();
     }
 }

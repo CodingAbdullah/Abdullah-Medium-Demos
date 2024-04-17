@@ -18,7 +18,7 @@ public class HomePage {
     @FindBy(tagName="h1")
     private WebElement headingText;
 
-    @FindBy(tagName = "i")
+    @FindBy(tagName="i")
     private WebElement paragraphText;
 
     // Retrieve Heading text
@@ -29,5 +29,10 @@ public class HomePage {
     // Retrieve Paragraph Text
     public String getParagraphText() {
     	return paragraphText.getText();
+    }
+    
+    // Close Web Driver
+    public void closeDriver() {
+    	this.driver.close();
     }
 }
