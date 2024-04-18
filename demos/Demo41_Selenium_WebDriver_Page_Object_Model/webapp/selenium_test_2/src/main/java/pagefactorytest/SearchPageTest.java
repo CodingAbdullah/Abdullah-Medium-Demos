@@ -70,26 +70,26 @@ public class SearchPageTest {
 							// Close the Alert and proceed to close the web driver
 							if (alert.getText().equals("This is a test sentence!")) {
 								alert.dismiss();
-								driver.quit();
+								searchPage.closeDriver();
 							}
 							else {
-								driver.quit();
+								searchPage.closeDriver();
 							}
 						}
 						else {
-							driver.quit();
+							searchPage.closeDriver();
 						}
 					}
 					else {
-						driver.quit();
+						searchPage.closeDriver();
 					}
 				}
 				else {
-					driver.quit();
+					searchPage.closeDriver();
 				}
 			}
 			else {
-				driver.quit();
+				searchPage.closeDriver();
 			}
 		}
 		
