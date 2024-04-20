@@ -648,4 +648,20 @@ Table highlighting Medium articles published based on miscellaneous topics
             Covering 2024 BTC halving, ETFs, BRC20, Ordinals, and Inscriptions
         </td>
     </tr>
+    <tr>
+        <td>
+            The State of NFTs: The Post-Bubble Outlook
+        </td>
+        <td>
+            Covering the state of NFTs, their future outlook, use cases, and more
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Having fun in the Solana
+        </td>
+        <td>
+            Covering the state of NFTs, their future outlook, use cases, and more
+        </td>
+    </tr>
 </table>
