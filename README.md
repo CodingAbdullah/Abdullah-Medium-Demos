@@ -349,7 +349,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo41_Selenium_WebDriver_Page_Object_Model</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/the-page-object-model-and-the-pagefactory-class-in-selenium-webdriver-2755de6b8b8f">The Page Object Model and the PageFactory Class in Selenium WebDriver</a>
         </td>
     </tr>
     <tr>
@@ -658,10 +658,10 @@ Table highlighting Medium articles published based on miscellaneous topics
     </tr>
     <tr>
         <td>
-            Having fun in the Solana
+            Having Fun in the Solana
         </td>
         <td>
-            Covering the state of NFTs, their future outlook, use cases, and more
+            Post-FTX outlook, Memecoin Mania, NFTs, Ethereum vs. Solana, and more
         </td>
     </tr>
 </table>
