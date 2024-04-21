@@ -25,8 +25,8 @@ public class HomePageTest {
 		HomePage homePage = new HomePage(driver);
 		
 		// Test Home Page features using Selenium locators
-		System.out.println("Test 1: " + homePage.getHeadingText().equals("Selenium WebDriver Testing Application")); 
-		System.out.println("Test 2: " + homePage.getParagraphText().equals("Testing React applications using Selenium WebDriver"));
+		System.out.println("Test 1: " + homePage.getHeadingText().equals("Selenium WebDriver POM and Page Factory")); 
+		System.out.println("Test 2: " + homePage.getParagraphText().equals("Utilizing the POM and Page Factory using Selenium WebDriver"));
 	
 		// Once testing is complete, close the web driver session
 		homePage.closeDriver();

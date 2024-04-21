@@ -26,7 +26,7 @@ public class NavbarTest {
 		
 		// Test Home Page features using Selenium locators
 		System.out.println("Test 1: " + (navbar.getNavbarAnchorTextListLength() == 2));
-		System.out.println("Test 2: " + (navbar.getNavbarHeadingAnchorText().equals("Selenium WebDriver Testing")));
+		System.out.println("Test 2: " + (navbar.getNavbarHeadingAnchorText().equals("POM and the Page Factory")));
 		System.out.println("Test 3: " + (navbar.getNavbarSearchAnchorText().equals("Search")));
 	
 		// Once testing is complete, close the web driver session
