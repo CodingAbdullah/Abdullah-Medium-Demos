@@ -31,6 +31,11 @@ public class HomePage {
     	return paragraphText.getText();
     }
     
+    // Retrieve Web Driver
+    public WebDriver getWebDriver() {
+    	return this.driver;
+    }
+    
     // Close Web Driver
     public void closeDriver() {
     	this.driver.close();

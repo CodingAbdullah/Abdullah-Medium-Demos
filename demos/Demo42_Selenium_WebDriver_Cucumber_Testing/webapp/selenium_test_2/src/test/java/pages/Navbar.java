@@ -20,6 +20,16 @@ public class Navbar {
     @FindBy(tagName="a")
     private List<WebElement> anchorTagList;
 
+    // Select the Navbar Heading Anchor text
+    public void selectNavbarHeadingAnchorText() {
+    	anchorTagList.get(0).click();
+    }
+    
+    // Select the Navbar Search Anchor text
+    public void selectNavbarSearchAnchorText() {
+    	anchorTagList.get(1).click();
+    }
+    
     // Retrieve Heading Anchor text
     public String getNavbarHeadingAnchorText() {
         return anchorTagList.get(0).getText();
@@ -38,5 +48,10 @@ public class Navbar {
     // Close Web Driver
     public void closeDriver() {
     	this.driver.close();
+    }
+    
+    // Return Web Driver
+    public WebDriver getWebDriver() {
+    	return this.driver;
     }
 }
