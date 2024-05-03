@@ -664,4 +664,12 @@ Table highlighting Medium articles published based on miscellaneous topics
             Post-FTX outlook, Memecoin Mania, NFTs, Ethereum vs. Solana, and more
         </td>
     </tr>
+    <tr>
+        <td>
+            Layer Two's/Three's Omnichains, and more
+        </td>
+        <td>
+            Exploring different sidechains and layering
+        </td>
+    </tr>
 </table>
