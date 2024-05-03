@@ -666,10 +666,10 @@ Table highlighting Medium articles published based on miscellaneous topics
     </tr>
     <tr>
         <td>
-            Layer Two's/Three's Omnichains, and more
+            Layer Two's/Three's, Omnichains, and Sidechains
         </td>
         <td>
-            Exploring different sidechains and layering
+            Exploring Different Sidechains/Omnichains, Gas Fees, Layering, and much more
         </td>
     </tr>
 </table>
