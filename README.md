@@ -672,4 +672,12 @@ Table highlighting Medium articles published based on miscellaneous topics
             Exploring Different Sidechains/Omnichains, Gas Fees, Layering, and much more
         </td>
     </tr>
+    <tr>
+        <td>
+            P2E, DeFi, and RWA
+        </td>
+        <td>
+            Exploring P2E, DeFi, RWAs, and other use cases for blockchain and crypto
+        </td>
+    </tr>
 </table>
