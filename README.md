@@ -357,7 +357,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo42_Selenium_WebDriver_Cucumber_Testing</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/implementing-bdd-using-the-cucumber-framework-and-selenium-webdriver-cd26e0b7583f">Implementing BDD using the Cucumber Framework and Selenium WebDriver</a>
         </td>
     </tr>
     <tr>
