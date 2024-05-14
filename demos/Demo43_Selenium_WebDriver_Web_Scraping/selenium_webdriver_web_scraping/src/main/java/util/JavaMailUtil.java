@@ -13,6 +13,8 @@ import jakarta.mail.internet.MimeMessage;
 
 public class JavaMailUtil {
 	
+	// Verify the credentials of the email and use SMTP to send it
+	// Set the properties to TTLS, authentication to true and GMail configurations
 	public static void sendEmail(String msg, String emailAddress, String password) throws MessagingException {
 		Properties properties = new Properties();
 		
@@ -29,12 +31,13 @@ public class JavaMailUtil {
 			}
 		});
 		
-		Message message = prepareMessage(session, emailAddress, password, msg); // Specify the item bought and the price
+		Message message = prepareMessage(session, emailAddress, password, msg); // Specify all the information required for messaging
 		
 		Transport.send(message);
 		System.out.println("Message sent successfully");
 	}
 
+	// Prepare the actual email message prior to sending
 	public static Message prepareMessage(Session session, String emailAddress, String password, String msg) {
 		try {
 			
