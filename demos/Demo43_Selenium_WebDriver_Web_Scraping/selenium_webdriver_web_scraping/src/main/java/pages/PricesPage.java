@@ -25,13 +25,13 @@ public class PricesPage {
 	}
 			
 	// Retrieving the prices of the three coins from the CoinGecko cryptocurrency price page
-	@FindBy(xpath="")
+	@FindBy(xpath="//table[1]/tbody[1]/tr[1]/td[5]/span[1]")
 	private WebElement bitcoinPriceWebElement;
 
-	@FindBy(xpath="")
+	@FindBy(xpath="//table[1]/tbody[1]/tr[2]/td[5]/span[1]")
 	private WebElement ethereumPriceWebElement;
 		
-	@FindBy(xpath="")
+	@FindBy(xpath="//table[1]/tbody[1]/tr[5]/td[5]/span[1]")
 	private WebElement solanaPriceWebElement;
 	
 	// Helper methods for sending back web driver and cryptocurrency prices	
@@ -53,10 +53,10 @@ public class PricesPage {
 	
 	public void findCoinPrices() throws MessagingException {
 		String msg = "Cryptocurrency Prices: \n";
-		msg += "Bitcoin: $" + getBitcoinPrice() + "\n";
-		msg += "Ethereum: $" + getEthereumPrice() + "\n";
-		msg += "Solana: $" + getSolanaPrice() + "\n";
-		
+		msg += "Bitcoin: " + getBitcoinPrice() + "\n";
+		msg += "Ethereum: " + getEthereumPrice() + "\n";
+		msg += "Solana: " + getSolanaPrice() + "\n";
+
 		// Once all the data formatting is complete, pass in the msg for the email along with email and password
 		JavaMailUtil.sendEmail(msg, email, password);
 	}		

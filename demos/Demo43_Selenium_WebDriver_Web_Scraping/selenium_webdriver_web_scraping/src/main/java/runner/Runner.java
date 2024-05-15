@@ -1,5 +1,6 @@
 package runner;
 
+import java.net.URL;
 import java.time.Duration;
 import java.util.Scanner;
 
@@ -22,7 +23,13 @@ public class Runner {
 			System.out.println("Please enter the password: ");
 			String password = scanner.nextLine();
 			
-			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+	        // Get the URL of the chromedriver.exe file
+	        URL chromedriverUrl = Runner.class.getResource("chromedriver.exe");
+	        
+	        // Obtain dynamically, the absolute path location of the chrome driver
+	        String chromedriverPath = chromedriverUrl.getPath();
+			
+			System.setProperty("webdriver.chrome.driver", chromedriverPath);
 			WebDriver driver = new ChromeDriver();
 			
 			driver.manage().window().maximize();
