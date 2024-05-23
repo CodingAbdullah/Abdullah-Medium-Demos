@@ -349,7 +349,8 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo41_Selenium_WebDriver_Page_Object_Model</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95/the-page-object-model-and-the-pagefactory-class-in-selenium-webdriver-2755de6b8b8f">The Page Object Model and the PageFactory Class in Selenium WebDriver</a>
+            <a href="https://medium.com/@abdullah_95/the-page-object-model-and-the-pagefactory-class-in-selenium-webdriver-2755de6b8b8f">The Page Object Model and the PageFactory Class in Selenium WebDriver
+            </a>
         </td>
     </tr>
     <tr>
@@ -357,7 +358,8 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo42_Selenium_WebDriver_Cucumber_Testing</code>
         </td>
         <td>
-            <a href="https://medium.com/@abdullah_95/implementing-bdd-using-the-cucumber-framework-and-selenium-webdriver-cd26e0b7583f">Implementing BDD using the Cucumber Framework and Selenium WebDriver</a>
+            <a href="https://medium.com/@abdullah_95/implementing-bdd-using-the-cucumber-framework-and-selenium-webdriver-cd26e0b7583f">Implementing BDD using the Cucumber Framework and Selenium WebDriver
+            </a>
         </td>
     </tr>
     <tr>
