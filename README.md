@@ -375,7 +375,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo44_OpenAI_API_Development</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-use-cases-for-working-with-openai-apis-d3587ee72876">Exploring Use Cases for Working with OpenAI APIs</a>
         </td>
     </tr>
     <tr>
