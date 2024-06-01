@@ -383,7 +383,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo45_Util_API_Development</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-common-apis-for-software-development-d7d9d1f5478a">Exploring Common APIs for Software Development</a>
         </td>
     </tr>
     <tr>
