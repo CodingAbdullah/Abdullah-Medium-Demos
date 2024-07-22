@@ -1,5 +1,6 @@
 const fs = require("fs");
 const uuid = require("uuid");
+const databasePath = require("../util/dbPath").dbPath;
 
 // Inserting Post data using database file
 exports.InsertPost = async (req, res) => {
@@ -12,11 +13,11 @@ exports.InsertPost = async (req, res) => {
     // Parse and append Post ID with Post data
     // Write back to database file
     try {
-        let dbData = JSON.parse(fs.readFileSync("../db.json", "utf-8"));
+        let dbData = JSON.parse(fs.readFileSync(databasePath, "utf-8"));
         dbData[postID] = post;
 
         // Write back data to file
-        fs.writeFileSync("../db.json", JSON.stringify(dbData, null, 2));
+        fs.writeFileSync(databasePath, JSON.stringify(dbData, null, 2));
 
         res.status(200).json({
             message: "Post added successfully"

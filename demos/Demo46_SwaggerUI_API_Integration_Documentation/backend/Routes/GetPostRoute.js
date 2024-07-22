@@ -3,6 +3,6 @@ const router = express.Router();
 const GetPostController = require('../Controller/GetPostController');
 
 // Setting fetch post data route
-router.get('/getPost', GetPostController.GetPost);
+router.get('/get-post-data', GetPostController.GetPost);
 
 module.exports = router;

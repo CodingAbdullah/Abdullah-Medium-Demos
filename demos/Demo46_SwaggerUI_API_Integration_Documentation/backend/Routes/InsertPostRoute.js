@@ -3,6 +3,6 @@ const router = express.Router();
 const InsertPostController = require('../Controller/InsertPostController');
 
 // Setting insert post route
-router.post('/insertPost', InsertPostController.InsertPost);
+router.post('/insert-post-data', InsertPostController.InsertPost);
 
 module.exports = router;
