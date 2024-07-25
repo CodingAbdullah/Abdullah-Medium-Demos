@@ -391,7 +391,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo46_SwaggerUI_API_Integration_Documentation</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/utilizing-swaggerui-for-effective-api-documentation-47eb0ac3ef38">Utilizing SwaggerUI for Effective API Documentation</a>
         </td>
     </tr>
     <tr>
