@@ -1,0 +1,91 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/insertanemail.com/PostsAPI/1.0.0
+info:
+  description: Posts API
+  version: "1.0.0"
+  title: Posts API
+  contact:
+    email: insertanemail@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: posts
+    description: Posts and the different request types
+paths:
+  /get-post-data:
+    get:
+      summary: Retrieve all posts
+      operationId: fetchPosts
+      description: Retrieve all posts in the database
+      responses:
+        '200':
+          description: posts retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Posts'
+        '400':
+          description: could not retrieve posts
+  /insert-post-data:
+    post:
+      summary: Inserts a new post
+      operationId: addPost
+      description: Adds a post to the database
+      responses:
+        '200':
+          description: post created
+        '400':
+          description: post could not be created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Posts'
+        description: Post to add
+  /update-post-data:
+    put:
+      summary: Updates an existing post
+      operationId: updatePost
+      description: Updates an existing post in the database
+      responses:
+        '200':
+          description: post updated
+        '400':
+          description: post could not be updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Posts'
+        description: Post to update
+  /delete-post-data:
+    delete:
+      summary: Deletes an existing post
+      operationId: deletePost
+      description: Deletes an existing post in the database
+      responses:
+        '200':
+          description: post deleted
+        '400':
+          description: post could not be deleted
+components:
+  schemas:
+    Posts:
+      type: object
+      required:
+        - id
+        - post
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        post:
+          type: string
+          example: Widget Adapter
