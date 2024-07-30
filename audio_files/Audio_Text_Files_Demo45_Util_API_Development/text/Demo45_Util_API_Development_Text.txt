@@ -1,0 +1,54 @@
+Exploring Common APIs for Software Development Abdullah Muhammad · Follow Published in Stackademic · 4 min read · Jun 1, 2024 -- This article assumes the reader is familiar with fundamentals related to web development and APIs.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the past, we looked at testing APIs using tools such as Postman and explored OpenAI APIs for development.
+ Today, we will be exploring some key APIs that can be useful to you in software development.
+ Experienced developers will likely know most of the APIs we will discuss, but if you are a newbie, this article will be beneficial to you.
+ For every application out there today, there exists an API.
+ Take a look at social media apps.
+ There is an API for every app out there such as Twitter (I know it is X, but I call it Twitter), Facebook, and Instagram.
+ Wait, how are these useful?
+ Suppose you are creating an application that displays profile data related to your Twitter account.
+ One way to access data related to your posts, replies, engagements, follows, and other activity is through the use of the Twitter API.
+ It can be useful to track those numbers to ensure your account is always growing!
+ In the next section, we will walkthrough some common APIs that you can use.
+ Common APIs You Should Know About The following sections detail APIs you should be familiar with.
+ We will start by exploring cloud and move on from there.
+ Cloud If you are competent with cloud technologies such as Azure and AWS, you should know that every interaction with a service is done through the use of an API.
+ Sure, you might be using the CLI, cloud console, or SDK, but in the end, behind-the-scenes, an API call is made to the specific service and the appropriate action takes place.
+ The following is a list of links to the Azure and AWS APIs: AWS API Azure API Feel free to explore these links, but always remember that when we make use of cloud services (via CLI, SDK or console), we are implicitly interacting with an API to complete requests.
+ Social Media As covered earlier, social media apps all have their own set of APIs.
+ We looked at Twitter and how one can use their API to create a dashboard to display personal statistics.
+ The following is a list of links to social media APIs: Twitter API Instagram API Facebook API YouTube API Google API That last one, Google, is quite big.
+ Not only in terms of search engine ability, but also in the variety of services they offer (maps, analytics, etc.
+).
+ The following list includes the different, publicly available Google APIs: Google Analytics API Google Maps API Google Translate API Got an app that uses maps?
+ Google has an API for that.
+ Got an app that translates from one language to another?
+ Google has an API for that.
+ Google makes your life easy!
+ Weather For beginners, often times you are tasked with creating a live weather app as part of your learning journey.
+ Many sources of data exist as it relates to weather so I have listed three common APIs you can use to build that awesome weather app: AccuWeather API OpenWeather API Weatherbit API If you want to know (without looking out your window) if it is sunny or raining cats and dogs, you can use a ready-made weather API to figure that out!
+ Cryptocurrency If you have dabbled in the cryptocurrency space, you might be familiar with developer tools that are readily available to you.
+ Here too, you will find useful APIs that you can use for free.
+ Whether you are searching up token prices, market data, or wallet activity, there is an API you can use to gather that data: Alchemy API CoinGecko API Moralis API In fact, I used all three APIs above to build out this awesome lightweight version of Etherscan.
+ Feel free to check it out!
+ Dummy APIs Lastly, you might be wondering what are dummy APIs.
+ As the name implies, it is an API used for testing purposes only.
+ Suppose you want to test request-responses, you can use a dummy API to ensure communication is not an issue.
+ Dummy APIs can also be used to test front-end applications to see if the components render correctly and they display mock data after a successful API call.
+ The following is a list of common dummy APIs you can use to test your applications: Dummy JSON API JSON Placeholder API Mocky API Need to test your application using mock data?
+ Dummy APIs will allow you to do just that!
+ Conclusion We covered common APIs that every developer should be familiar with.
+ You just never know when you might need to use them.
+ Of course, there are a lot more APIs out there than what we discussed, but this article details how you can seamlessly use any of these APIs to build awesome applications.
+ APIs make life easy as a developer.
+ We explored APIs related to the cloud, social media, weather, cryptocurrency, and how one can use dummy APIs to test their applications.
+ Links to APIs in the aforementioned sections can be found in the relevant sections of this article.
+ I hope you found this article informative and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
