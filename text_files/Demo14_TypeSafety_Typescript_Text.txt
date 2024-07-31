@@ -1,0 +1,134 @@
+Enforcing Type Safety in React.
+js using TypeScript Abdullah Muhammad · Follow Published in Stackademic · 8 min read · Sep 3, 2023 This article assumes the reader is familiar JavaScript, TypeScript, and React.
+js using JavaScript implementation.
+ Introduction So far, we have developed web applications using JavaScript only.
+ Whether it was delving into a library such as React or plain, vanilla JavaScript as is, we have not incorporated any other language to help with development.
+ Today, we will focus on a superset language to JavaScript called Typescript and see how this language builds on what already exists in JavaScript.
+ This will not be an intro to TypeScript session, there are plenty out there already.
+ Instead, we will dive deep into using TypeScript with the React.
+js library.
+ What is TypeScript and why use it?
+ TypeScript as the name implies, mainly focuses on enforcing static typing and offers an object-oriented method to development.
+ It was created and is maintained by Microsoft.
+ Unlike JavaScript, where variables can be dynamically typed, TypeScript will enforce static typing and infer types where one is not explicitly declared.
+ It will throw errors if type mismatches are found.
+ TypeScript also enforces compile-time checking as opposed to run-time checking alerting developers of any issues.
+ It is better to use TypeScript for web development as code can be debugged more easily and makes the codebase much more manageable.
+ You are not left to your own devices trying to piece together what dynamic variables represent in your code.
+ An added bonus to working with TypeScript is the ability to apply object-oriented concepts to web development.
+ Features such as classes exist in JavaScript but they are written in syntactical sugar form to represent something else.
+ Other features such as interfaces and enums do not exist.
+ You get all that and more with TypeScript.
+ If you have development experience with object-oriented languages, TypeScript will be very easy to pick up.
+ Remember in the end though, TypeScript is a superset language to JavaScript so it builds on whatever already exists in the JavaScript world.
+ If you know JavaScript, you already know most of TypeScript.
+ TypeScript Transpiler Key feature to note about TypeScript is that it cannot be run in the web browser.
+ It must be compiled into JavaScript first before running in the browser.
+ The TypeScript Transpiler does just that.
+ It converts the given TypeScript code into equivalent JavaScript code and passes that into the browser.
+ You do not have to do anything but it is an important piece of knowledge to keep in mind.
+ We will cover more features related to TypeScript as we dive into the code overview and demo.
+ Code Overview Alright!
+ So with that out of the way, it is time to dive in!
+ You can follow along by cloning this repository: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos The directory of concern is: Demo14_Typescript_React.
+ We are going to be working with the same web application we built last time only to re-implement the whole thing using TypeScript.
+ To initialize a working environment using TypeScript with React.
+js, you can simply run the following in the command line: npx create-react-app .
+ --template typescript This will initialize the Node environment in the current working directory, set up the React development environment using TypeScript, and lastly, install the necessary NPM packages to run React.
+js including the TypeScript NPM package.
+ As discussed in the NPM demo, you should see the package.
+json file and the node_modules directory.
+ You should also notice a new file called tsconfig.
+json in the same location.
+ This file relates to the configuration of TypeScript within the project.
+ The TypeScript Configuration File The tsconfig.
+json file is often located in the root directory of the project.
+ The transpiler will search for this file and use it to process how to compile TypeScript code.
+ It contains data in JSON format detailing various different things: Options for Transpiling: Different options for deciding how TypeScript should transpile your code.
+ Include & Exclude Files: What files to include and exclude during the compile phase.
+ Output Destination for Transpiled Code: You can specify where the compiled JavaScript files should be placed.
+ Module Resolution: You can configure how to manage modules.
+ Libraries: Allow developers to choose libraries such as ES5, ES6, and so on.
+ And a whole lot more.
+ Here is the tsconfig.
+json file for this project: I did not add any custom options to this file as this is sufficient enough for the demo.
+ But we can modify this file according to what we like.
+ TypeScript File Extensions, .
+ts/.
+tsx When working with files containing types or types with JSX, we use the .
+ts and .
+tsx extensions.
+ This allows us to incorporate all of the features TypeScript has to offer including syntax checks and type safety.
+ The web application we worked with in the last demo, customized Bootstrap components.
+ In this demo, we will add types to restrict the use of dynamic variables.
+ One component where types can be added is the custom Badge component /frontend/src/Components/Badge/Badge.
+tsx: Notice how the object props is given a clear definition as to what it will represent.
+ We are enforcing type safety here as there is a restriction as to what can be passed into the data attribute of the props object.
+ Sometimes a variable, function, or object should be allowed to take in more than one type and we can do this by using the union, | operator.
+ In the props definition, we are using this operator to specify which custom types (covering this momentarily) are allowed.
+ After that, we conditionally check to see which type was passed in order to dynamically access the appropriate object keys for information and rendering.
+ Built-in, Special, and Custom Types In TypeScript, there exist built-in primitive types some of which you might already know such as: number, boolean, and string.
+ There are also special types such as any which is the equivalent to accepting any data type.
+ This should be used sparingly and in cases where it is vague to know what values are acceptable.
+ Remember, we are using TypeScript to enforce type safety and defining variables, functions, and objects using any is essentially JavaScript.
+ We can define custom types using interfaces.
+ In the Badge component defined above, I make use of two custom types: BadgeCoinType — /frontend/src/types/BadgeCoinType.
+ts BadgeDataType — /frontend/src/types/BadgeDataType.
+ts Here are the interfaces: Rather than using objects, creating custom types in your code will remove vagueness and provide clarity as to what is acceptable.
+ It also makes the codebase more compact and TypeScript will be able to infer the different keys for a given type.
+ In the Badge component, we are able differentiate the two interfaces by their message and data attributes.
+ Since we know there are only two types acceptable, we successfully determine what type was passed.
+ Another component, where we can incorporate types is the CoinPriceCard component /frontend/src/Components/CoinPriceCard/CoinPriceCard.
+tsx: Like the Badge component, we are providing props a custom definition and defining the acceptable types for the cardData object.
+ As you can see, we are making use of a primitive type (String) as well as a special type (any).
+ Notice that we have to provide the exact definition of the type of data acceptable as a property to the Badge component.
+ We know there are only two types acceptable, so the object passed in must match either one of those custom defined types.
+ The rest is pretty much the same as before.
+ Finally, the main page where all the great things happen can also contain various different types.
+ I am talking about the PricePage component /frontend/src/Components/PricePage/PricePage.
+tsx: Mostly the same as before, except for the different type definitions which we will go over in detail.
+ Starting at the top, we can define the custom React component with a type for itself known as, FC or functional component.
+ TypeScript can infer types even if one is not defined explicitly.
+ Had we not written this bit, it would have known that this is a functional component.
+ Unlike JavaScript, where we define hooks with no types, we can define hooks with types in Typescript using the <> brackets.
+ We can include custom types as well such as the BTCInformationType (we will go over it momentarily).
+ For function definitions, we can define the type each parameter as well as the return type of a function.
+ In the formHandler function, we know we are going to be handling a form event such as submit.
+ TypeScript includes a built-in type for handling these known as FormEvent.
+ This allows us to successfully prevent page refreshes on each submit request.
+ Here is the custom type mentioned earlier containing Bitcoin API information /frontend/src/types/BTCInformationType.
+ts: Notice how we are mapping this custom type to the body of the successful API response object.
+ This allows us to effectively access all the required data more easily and makes the codebase more compact.
+ TypeScript will be able to map the custom type definition to the API response appropriately.
+ And finally, the CoinPriceCard components contain the coinData attribute with the object definition matching what was deemed acceptable within the CoinPriceCard component.
+ That is all for the code overview!
+ Feel free to explore more of the repository if you like but these three components are the only ones incorporating types.
+ Demo Time!
+ Alright, now it is time for the demo!
+ As mentioned earlier, we are working with the same crypto price tracker application we built last time except this implementation uses TypeScript.
+ There is no back-end as we are making API requests on the client-side.
+ We can do this as these APIs are open and require no authorization.
+ We will use the default port 3000.
+ Assuming you have cloned the repository from above, running npm start with /Demo14_TypeScript_React/frontend as the present working directory, you should see the following: Navigating to the coin prices option and selecting the Ethereum option, you should see the following: Nothing changes right?
+ It is all the same as before.
+ Whatever is displayed on screens can be the same except their implementations can be entirely different.
+ If you move on and select the Solana option, you should see the following: That is pretty much it for the demo.
+ We verified everything works the same as before using TypeScript.
+ Conclusion We did a deep dive into using TypeScript with React.
+js.
+ We touched base on some of the core concepts related to TypeScript and saw that the application did not waver from its intended operation.
+ We explored type safety, type inference, built-in/special/custom types, the tsconfig.
+json file, file extensions, interfaces for defining types, and so much more.
+ There is a lot more you can do with TypeScript.
+ Links to the GitHub repository and the official TypeScript site are below: Abdullah-Medium-Demos/demos/Demo14_Typescript_React/frontend at main ·… A repository containing code for demos published in Medium … github.
+com JavaScript With Syntax For Types.
+ TypeScript extends JavaScript by adding types to the language.
+ TypeScript speeds up your development experience by… www.
+typescriptlang.
+org I hope you enjoyed this tutorial and as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

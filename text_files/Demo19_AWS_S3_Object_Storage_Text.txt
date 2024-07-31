@@ -1,0 +1,144 @@
+AWS S3 for Object Storage and Static Website Hosting Abdullah Muhammad · Follow Published in Stackademic · 11 min read · Sep 24, 2023 -- Basic understanding of JavaScript, React.
+js, and AWS is sufficient for working with this tutorial.
+ The tutorial works with a website developed and deployed using GitHub Pages from a previous demo.
+ Link to the tutorial where the site was built is here.
+ You do not need to know GitHub Pages for this tutorial.
+ Introduction In the last tutorial, we looked at using AWS for hosting a static website.
+ In particular, focusing on AWS Amplify for deploying a static website.
+ We saw how we could integrate GitHub and allow for continuous deployment by monitoring code commits on select branches.
+ Today, we will focus on using another service AWS has to offer for hosting.
+ Simple Secure Storage or S3 for short, is an object storage service that allows for the hosting of static websites.
+ AWS S3 Bucket Simple Secure Storage (S3) was one of the very first services AWS launched back in 2006.
+ Compute, Networking, and Storage are the three main services cloud providers offer.
+ Not to be confused with databases, storage services like S3 can be thought of as a bucket containing random items.
+ S3 buckets are flat.
+ There is no hierarchy, tree or subdirectory structure that defines a bucket.
+ It is literally a collection of items.
+ These items can be considered objects representing different things such as files.
+ The bucket itself can be publicly accessible to all or privately accessible through the use of permissions and/or credentials.
+ Individual items themselves can be granted permissions of their own through the use of ACLs (Access Control Lists).
+ Publicly visible objects can be accessed via the internet.
+ Lifecycle and object replication across different regions also exist as options for more efficient, resilient, and robust storage.
+ We will look at all these rich features in more detail in future tutorials but for today, we will be focusing on object storage and using a S3 bucket for website hosting.
+ Consider this a tutorial on AWS S3 fundamentals and building on what we already learned from the last tutorial related to website hosting.
+ Object Accessibility As mentioned earlier, objects uploaded to a S3 bucket with public visibility and accessibility can be viewed via the internet using unique urls.
+ There are three types of permissions which can be granted: GET, PUT, and DELETE.
+ Since we have looked at request types in the past, these should be self-explanatory.
+ We can assign these permissions using what we call policies which are a set of rules that define the type of actions and non-actions allowed.
+ We can allow one, two, three or any combination of these permissions.
+ There are more options available, but when it comes to objects, these are the three.
+ We can also enable CORS with certain headers and we will look at setting both policies and CORS in the AWS S3 walkthrough.
+ We have not covered AWS IAM (Identity Access Management) but we will look at it in a future tutorial.
+ AWS IAM enables you to assign permissions to individual users or a group of users to perform certain actions on certain services like S3.
+ This can come handy if you are programmatically trying to access services and perform actions.
+ Not to go off on a tangent, back to object accessibility.
+ Assuming you have a public bucket with object(s) that are publicly visible, the following diagram illustrates what you can do: When fetching publicly accessible objects on the web, the URL format is as follows: https://<bucket-name>.
+s3.
+<region-name>.
+amazonaws.
+com/<object-name> The bucket-name is the name assigned to the bucket during creation, region-name is the name of the region where the bucket resides (also assigned during creation), and the object-name is the name of the object assigned during the uploading process.
+ In order to identify objects within a bucket, they are assigned a key name.
+ This is unique and no two objects in a bucket can have a duplicate key value.
+ When it comes to viewing a website hosted using S3, the following diagram illustrates that: http://<bucket-name>.
+s3-website.
+<region-name>.
+amazonaws.
+com/ The bucket-name and region-name are the same as before.
+ The only difference is by default, no SSL certification is provided so we have an http handle instead of https.
+ Instead of s3, s3-website is used to define the website URL.
+ One might wonder when we would use a S3 bucket for website deployment.
+ An example could be when you are designing and developing a personal website.
+ You could simply store media files, PDFs, and just about any other file in a publicly visible bucket and access them by providing links in these formats.
+ Objects could include things like your resume PDF, media files which contain personal photos, and so on.
+ The sky is the limit when it comes to S3 and object storage.
+ Just like AWS Amplify, we could incorporate a custom domain through AWS Route 53 or a third-party domain provider should we feel that we could do better than simply using an assigned URL.
+ We will now dive deeper into using AWS S3 for website hosting.
+ AWS S3 for Website Hosting S3 supports single page applications that contain single pages.
+ Server-side rendering is not supported by S3 and SSL certificates are not granted either.
+ For that, AWS Amplify is obviously the better option.
+ In fact, for hosting, Amplify is the better option.
+ You get the ability to host both static and dynamic content as well as continuous deployment based on code commits.
+ If you make any changes to code in your website and you are using S3 for hosting, you will need to upload the latest objects (files) yourself.
+ All this does not mean that S3 should not be used for hosting.
+ Rather, it is simply an add-on feature in addition to the many other rich storage features it offers.
+ We have been working with React.
+js for front-end, client-side code.
+ All we have to do is upload the optimized production build files as objects inside an S3 bucket, enable hosting, configure options, navigate the bucket to the appropriate main file (index.
+html), and we are all set!
+ AWS S3 Setup Walkthrough This tutorial assumes the reader is familiar with the basics of AWS such as the console and billing dashboard.
+ We will not walkthrough setting up an AWS account, it is assumed the reader already has one.
+ You can follow along by cloning the following repository: Abdullah-Medium-Demos/demos/Demo19_AWS_S3_React/frontend at main ·… A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo19_AWS_S3_React/frontend… github.
+com This is the same website built in the React + GitHub Pages tutorial.
+ The difference is there is only one page to work with (login).
+ Single Page Applications built with React.
+js can only contain a single page for proper S3 hosting.
+ It is a limitation as to how one can use S3 for hosting, but such is the case.
+ React-Router is not supported.
+ Nonetheless, we proceed with the AWS S3 setup!
+ Navigate to the AWS console and search for “AWS S3”.
+ This is what the AWS S3 dashboard looks like: For privacy reasons, I have inked out the names of the buckets under my account.
+ Select Create bucket to proceed: Here, assign a custom name for your bucket.
+ Bucket names must be unique within the global namespace and select a region for deployment.
+ You can leave the default ownership option as is.
+ Scrolling further, you can grant this bucket public access: This will allow users to view objects within the bucket as discussed earlier.
+ You can leave the Versioning, Tags, and Encryption options as is: You can leave the advanced settings as is as well and select the Create bucket option to launch your very own storage!
+ Upon successful creation, you should see your newly created storage on the AWS S3 dashboard.
+ If you select it, you should see something like this: Since no objects have been uploaded to the bucket, it is empty for now but there are other options which you can view such as properties, permissions, metrics, and so on.
+ AWS S3 Bucket Policies and Permissions If you select the Permissions section of the S3 bucket, you should see the different options for configuring access and actions.
+ The bucket should have public access enabled (as set before) and a section where you can set a Bucket policy: A Bucket policy is simply a JSON file which defines a set of actions which can be allowed or disallowed on a particular bucket.
+ You do not need to remember each and every bit as you can see to the top right, AWS offers a policy generator feature which allows you to select the policy type (in this case, bucket), service, action(s) to allow/deny, and will automatically generate a JSON file reflecting those things.
+ In this case, we can simply assign a Bucket policy, with the GetObject option enabled for the bucket where we will host a website.
+ If you plan on using your bucket to store and delete objects, you will need to enable the PutObject and DeleteObject options as well.
+ Scrolling further, we can leave the object ownership and ACLs (Access Control List) as is and focus on CORS.
+ Like the Bucket policy, CORS policy is also a JSON file that defines accessibility in terms of communication.
+ We can define where and what type of communication can take place: Since we are primarily using the bucket to fetch objects, or in this case, a website, we can enable the GET method and allow calls from anywhere with allotted headers.
+ With that done, we have successfully configured the S3 bucket.
+ Now it is time to focus on hosting!
+ AWS S3 Bucket Properties Selecting the Properties section of the S3 bucket, all we need to do now is modify the website hosting feature.
+ Scrolling all the way to the bottom, you should find this: Selecting the Edit option will open the following panel: You should enable hosting and set the type to a static website.
+ For the index document, you can set it to index.
+html and this will serve as the entry point to the web application.
+ Selecting Save changes should present you with the following: We have not populated the S3 bucket with objects so selecting the link will be pointless, there is nothing there.
+ After enabling hosting, we can proceed to add in the production-ready files of the React.
+js application for visibility.
+ Production-Ready React.
+js Application for Hosting To build out the production-ready React.
+js application, we need to simply run npm run build and a build directory will be created containing the production optimized files.
+ All we would need to do after that is upload all the contents of this directory to the S3 bucket and we are all set.
+ Assuming you have cloned the repository above, in /Demo19_AWS_S3_React/frontend, run npm install to install the necessary modules and after that, run npm run build.
+ If done correctly, you should see something like this: Ignoring the messages (if you have any), you should notice a build directory located inside the frontend directory.
+ Now back to AWS, navigate to the Objects section of your S3 bucket, proceed to upload all the files and folders of the build directory to the bucket.
+ AWS S3 Object Upload Here is what uploading objects to AWS S3 looks like: Remember, all files and folders of the build directory must be uploaded in order to host successfully.
+ We will leave the other upload options as default but will briefly touch on each.
+ The first one is destination: While it is good practice to enable Versioning, Encryption, and Object Locking (prevent accidental deletes), we will bypass these for this tutorial.
+ Scrolling further, we find the Storage class section: There are eight different storage classes offered by S3.
+ You can see their names and scenarios where it would be best to use each of these.
+ For now, we will stick to the default Standard option.
+ We now proceed to the Server-side encryption, Checksums, and Tags sections: For now, we will not use Server-side encryption, assign Tags, or add any Checksums.
+ It would be good practice to enable encryption if you are uploading objects containing sensitive information.
+ We can also choose to add any Metadata if we like.
+ But again, for this tutorial, we will bypass this and proceed to select Upload: If everything uploads successfully, we will be notified with a green alert and the website will now be fully up and running!
+ Demo!
+ Navigating to the website link under the Properties section of the S3 bucket, you should see something like this: The URL format matches the format discussed earlier and there is one page to this website, nothing else.
+ Since this is a front-end website with no back-end, we can test the login functionality by entering in fake credentials like we have in the past: The login form works as intended and this concludes the very brief demo!
+ Conclusion All in all, we looked at Simple Secure Storage (S3) in great detail.
+ It is a fundamental service AWS has to offer and we looked at how we could upload objects and host a website.
+ Although it comes with limitations, S3 can be used to host single page sites such as landing pages but the beauty lies in the many different storage options it has to offer.
+ We looked at URLs and touched on the fact that we could use AWS Route 53 to assign a custom domain in place of the AWS generated one.
+ We went into detail on object uploading/accessibility, bucket properties, static hosting, policies, permissions, storage classes, and additional features such as object lifecycle, encryption, versioning, and so on.
+ Hosting a single page application built with React.
+js is easy.
+ We saw that we only need to upload the production optimized files for the purposes of hosting with S3.
+ Linked below are the GitHub repository and S3 hosted website URL: Abdullah-Medium-Demos/demos/Demo19_AWS_S3_React/frontend at main ·… A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo19_AWS_S3_React/frontend… github.
+com AWS & React Website Web site created using create-react-app mediumdemobucket2.
+s3-website.
+us-east-2.
+amazonaws.
+com I hope you enjoyed this tutorial and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

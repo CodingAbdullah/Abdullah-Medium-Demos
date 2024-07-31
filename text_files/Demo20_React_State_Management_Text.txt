@@ -1,0 +1,89 @@
+API Data Caching, Query Optimization, and an In-Depth Look at React State Management Methods Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Sep 30, 2023 -- Working knowledge of JavaScript, React.
+js, and Redux/Redux Toolkit is sufficient for this tutorial.
+ If you need a refresher on Redux or anything related to using React with Redux, you can refer to this tutorial before proceeding with this one!
+ Introduction When working with React.
+js, we often create state (component-level and global) and need to figure out ways of working with it.
+ Thankfully, there are several options out there, but it can be confusing to know which option(s) work best for a given scenario.
+ In the past, we looked at the Redux/Redux Toolkit for state management (we will briefly touch on it again), but today, we will focus on other strategies such as React hooks, the React Query library, and local storage which can be used to optimize state management.
+ This tutorial will not be the typical code overview and demo setup used in the past, but more-so, a walkthrough of the different ways one can use the libraries and tools we will be covering.
+ I will be using snippets of code from a cryptocurrency project I launched and to which I continue to add features to.
+ Data Persistence and Redux/Redux Toolkit Refresher Redux is an ancillary library which works nicely in tandem with React.
+js.
+ Global state management becomes easier and there are three main components in Redux we looked at: Store — Global object combining different pieces of state Reducers — Pure functions which change state Actions — Functions that can be dispatched to request state changes When working with Redux Toolkit, we found that we could incorporate all three of these things into a function known as createSlice().
+ As the name implies, this function can be used to create and manage pieces of state within the global store.
+ All your actions, initial state, reducers, and thunk functions can be managed with this single function.
+ You can configure the store and wrap your application to access the store using the <Provider> tag and configureStore() function.
+ We can also persist data using local storage provided that we do not store any sensitive information which can be retrieved from the web browser.
+ The following gist illustrates this perfectly: The react-redux package also offers hooks for working with global state such as useDispatch() and useSelector().
+ These can be used by all components in your web application to view and update state stored in the global store.
+ As we saw in the React-Redux tutorial, working with Redux for the first time can be complicated and wrapping your head around it can be difficult.
+ You might also feel like this is a lot of work to do for such a simple task.
+ You do not need to use Redux.
+ In most cases, with the alternatives we will be looking at, you will not need to.
+ React Context API The React Context API is a great alternative to Redux in that it offers similar functionality.
+ Redux takes a centralized approach to state management using a global store.
+ The Context API allows for state management on a component level basis.
+ Unlike Redux, where everything is managed and accessed in a centralized way, the Context API follows a parent-child(ren) relationship.
+ In the past, we have looked at passing down state from component to component with the help of props.
+ The Context API does the same thing (passing down state) but it allows for state to be broadcast across components making it readily available for use instead of relying on props to relay information.
+ This is done through the use of a context provider which wraps the components which will use this state.
+ We can create this provider using the createContext() function from the React library and wrapping the components using a <Context.
+Provider> tag using the same name used to create the context.
+ An attribute named value is assigned to this tag which holds the state to be broadcast.
+ We can then access this state anywhere in the child components with the use of the useContext() hook.
+ Remember, we are not creating any state with the createContext() function, but rather a provider which will encapsulate where this state can be viewed and accessed.
+ You can have as many providers as you like but React will look for the closest one up the DOM tree to find which one is relevant for that particular child component.
+ This can be a welcoming alternative to Redux should you feel it is not necessary.
+ Just know that for large, complex applications, it would probably be better to stick with Redux.
+ However, for small applications, Context API works best.
+ It would be pointless to do an extensive example here as the official React documentation provides a great explanation of how one can work with the Context API.
+ useReducer() Hook Aside from working with useState() for state management, React allows you to work with complex state and manage it using a hook known as useReducer().
+ As the name implies, this hook uses the Redux store/reducer/action setup and allows for complex state management at a component level.
+ There can be instances where in certain components, you are using quite a bit of useState() hooks to manage state.
+ You can combine all these in a single state store so to speak and define actions and reducers which will manage those pieces of state.
+ The following is the classic counter example which is used to explain Redux, but with the useReducer() hook instead: useReducer() takes in a reducer as the first argument which will be used to change state based on action calls and the second argument is the state store.
+ We can make use of the dispatch() function which fires the different actions to update state and we can access state using state.
+ Both of these are given to us by useReducer().
+ It is like mini-Redux, all-in-one action!
+ React Query React Query (now officially known as TanStack Query) is a great ancillary library to use when working with client-side requests.
+ What is great about this library is that it offers data caching and optimization out-of-the-box which greatly reduces your codebase and offers performance incentives.
+ Like Redux and the Context API, you will need to wrap your application with the <QueryClientProvider> and provide a client using queryClient().
+ This will enable you to use TanStack Query and its rich features anywhere in your application.
+ There are two important hooks you need to know when working with TanStack Query: useQuery() — Enables efficient data fetching useMutation() — Enables efficient data changing When working with APIs/Data fetching, we are either fetching data to display (GET) or running requests to change it (POST, PUT, DELETE) somewhere in some way.
+ Managing state is called into question because there is a delay when data is fetched and loaded.
+ One must account for this and conditionally render data to take care of this scenario.
+ useQuery() Hook By incorporating the useQuery() hook, we get boolean properties such as isLoading, isError, and isSuccess to easily determine what stage of the data fetching process the application is in.
+ We can use these properties to determine what needs to be rendered at any given time.
+ The useQuery() hook takes in a queryKey parameter as well as a queryFn parameter which takes in a function that handles the data fetching process.
+ The queryKey takes in an array which uniquely describes a particular query.
+ You can pass in state to this array to describe different kinds of queries keys at certain points in time and useQuery() will go ahead and re-fetch data for that particular key.
+ This query is then cached by TanStack and will re-run again on certain conditions (such as stale time, data/window changes, and so on) all provided out-of-the-box.
+ This leads to efficient development because redundant calls are removed and your application stays up to date with the latest data.
+ Here is an example of working with the useQuery() hook: As you can see, we are using useQuery() to fetch and store Ethereum price + gas data.
+ We are using one key in each of the two cases (an array containing a lone string) and using the built-in properties provided by useQuery() to render data.
+ Below is the function that fetches data for one of them: Notice how we are taking into account, success and error conditions.
+ It is these that are evaluated by the useQuery() hook and allows us to work with the isSuccess, isError, and isLoading properties to load data.
+ We do not need to do anything else, TanStack query will take of the rest.
+ Pretty neat eh?
+!
+ There is a lot more you can do with useQuery(), but this is the gist of it.
+ useMutation() Hook The useMutation() hook is very similar to the useQuery() hook as it offers similar properties to determine if a request to data change is pending, successful or failed.
+ We can pass in a mutationKey parameter to uniquely identify a particular query and a mutationFn as well which handles the actual request to change data.
+ There are other functions which we can pass in such as onSuccess, onError, and retry to determine what to do when certain scenarios arise.
+ Here is the official documentation which dives deeper into using the useMutation() hook for working with data changes but this was the gist of it.
+ Conclusion All in all, we covered at great length, the many different ways one can go about state management with React.
+js.
+ We explored alternatives to using the Redux/Redux Toolkit and found that it is not always necessary to use it for state management.
+ We looked at various React hooks for working with state, the React Context API, and did a deep dive into query optimization and data caching using the Tanstack Query library.
+ Remember, there is no right or wrong answer.
+ There are plenty of options out there that assist with state management.
+ You can use one or a combination of these tools for development.
+ Linked below are the React Query, Redux/Redux Toolkit, and React libraries.
+ TanStack Query Redux/Redux Toolkit React I hope you enjoyed this tutorial on React State Management and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

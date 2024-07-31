@@ -1,0 +1,70 @@
+React & Hash Router for Easy GitHub Pages Deployment Abdullah Muhammad · Follow Published in Stackademic · 5 min read · Aug 18, 2023 -- This article assumes the reader is familiar with React, React Router, and GitHub Pages.
+ This article builds on previous knowledge related to GitHub Pages.
+ If you are unfamiliar with GitHub Pages, please refer to this article.
+ Introduction In this tutorial, we will be covering how we can incorporate React and a special React Router type to construct a front-end website with complete hosting using GitHub Pages.
+ We will not spend much time dwelling on GitHub Pages as it was covered in the article posted above.
+ React and GitHub Pages When working with GitHub Pages for React deployment, we need to make use of this npm package.
+ This package contains commands that allow for the building and hosting of React applications using GitHub Pages.
+ We still incorporate the github.
+io domain by default.
+ If you want to add a custom domain of your choice, you can buy one through a third-party domain provider.
+ When we run commands to deploy the React application, a gh-pages branch is automatically created inside the GitHub repository which contains all the necessary code for the build process.
+ Locally, a build folder is also created containing this code.
+ We then proceed to use the gh-pages branch to deploy and host the website.
+ Hash Router Recall when working with React applications, we create Single Page Applications (SPAs).
+ We incorporate React Router to enable client-side routing which allows us to dictate what components to render on the screen.
+ Remember though, we are STILL working with a single page and so when we host a site using a service like GitHub Pages, we run into an issue.
+ When we request the server to access a particular route, it only knows the / route.
+ The latest version of React Router is not supported by GitHub Pages.
+ If we are hosting a React application with a single page, all good.
+ But if we are hosting a site with multiple routes, using the BrowserRouter as is will not work.
+ Any other route will throw the GitHub Pages 404 error.
+ This issue is covered in detail here.
+ Luckily, there exists a “hacky” workaround.
+ We can make use of the Hash Router which is a special type of React Router enabling the use of hashes in URLs for route interpretation.
+ It works well with servers that cannot interpret multiple routes and tries to render whatever comes after the hash # .
+ We will see the Hash Router in action when we cover the demo.
+ For more information on Hash Router, refer to the official docs.
+ Code Overview You can follow along by cloning the following repository: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com The directory of concern is: Demo10_React_JS_GitHub_Pages.
+ When we worked with React Router in the past, we simply wrapped the components using the <BrowserRouter> component.
+ We simply replace <BrowserRouter> with <HashRouter> and add a couple things to the deployment to complete hosting.
+ Here is the main /src/index.
+js: When working with anchors, links, and buttons inside React components, we can simply incorporate the hash # in front of the desired route.
+ Here is an example inside the Navbar component /src/Components/Navbar/Navbar.
+jsx: Before deployment, we need to add a couple of things to the package.
+json file: Scripts for deploying code via the gh-pages branch homepage attribute from which the server will point to: As you can see, once the website is successfully hosted, it will point to: https://codingabdullah.
+github.
+io/Medium-Demo-React-Gh-Pages/ We also added two attributes to the scripts object: predeploy deploy In the console, we can run these commands to process the build folder for deployment.
+ You can choose to run npm run predeploy first but then you will need to run npm run deploy.
+ You can also run npm run deploy right away as that will complete the entire process in one step (building and deploying).
+ Once npm run deploy has ran, a new branch will appear in your repository named gh-pages.
+ This is the branch that will be used to host the website.
+ That is all for the code overview!
+ Demo Time!
+ The web application in this demo is a rather simple one.
+ It has two routes: Home Login As this is a front-end application, there is no server-side validation.
+ For testing purposes, we simply process the login data and display it to the user using an alert.
+ For demo purposes, you can clone this repository: https://github.
+com/CodingAbdullah/Medium-Demo-React-Gh-Pages If you want to re-run through the entire process, you can simply run npm run deploy in your console.
+ If done correctly, you should see the following: Once the deployment is complete, the gh-pages branch should automatically be present in your repository just like it is in mine: I already have the site deployed here: https://codingabdullah.
+github.
+io/Medium-Demo-React-Gh-Pages/ So you should see the following: Notice how the URL is pointing to the value of the homepage attribute inside the package.
+json file.
+ If you select login, you should see a hashed URL: Everything after the hash is interpreted.
+ So whatever component was supposed to render on the /login route is what is displayed to the screen.
+ Once the details of the form are filled out, we simply display an alert to the user containing the data.
+ That is all for the demo!
+ Conclusion Deploying front-end sites to GitHub Pages is fairly easy but there are some nuances which need to be cleared up when working with React.
+ As discussed earlier, React Router as a whole is not supported by GitHub Pages so we made use of the special Hash Router to help us out.
+ Link to the code repository, demo repository, and deployed site are below: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com GitHub - CodingAbdullah/Medium-Demo-React-Gh-Pages: Repository containing code for website… Repository containing code for website deployment using React and GitHub Pages - GitHub … github.
+com React App Web site created using create-react-app codingabdullah.
+github.
+io I hope you found this tutorial helpful and look forward to more down the road.
+ As always, until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

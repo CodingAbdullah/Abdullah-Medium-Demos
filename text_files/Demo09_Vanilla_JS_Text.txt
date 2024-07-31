@@ -1,0 +1,96 @@
+Vanilla JS & GitHub Pages for Easy Deployment Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Aug 14, 2023 -- This article assumes the reader is familiar with basic Web Development and how GitHub works.
+ Introduction Oftentimes, newbies in web development will jump to the newest tech on the market and forcibly try to learn the material on the fly.
+ This is especially true of JavaScript.
+ In the very first demo, I touched on the JavaScript ecosystem and how it is an ever-evolving system with new frameworks coming out every day.
+ Very few of these frameworks actually make it.
+ The ones that do, leave their mark.
+ But that is besides the point.
+ You see, it is a moot point to jump from framework-to-framework without learning the basics.
+ JavaScript is at the heart of it all, so it is crucial to understand JavaScript and how it works before diving into any of the great frameworks out there.
+ You do not need a framework to develop a good looking site.
+ The idea of working with one is to expedite the development process.
+ Today, we will be focusing on just that.
+ Basic “Vanilla” JavaScript as it is called and nothing else.
+ We will develop a static website without a back-end and host it using a free feature provided by GitHub called GitHub Pages.
+ This tutorial is ideal for someone new who is looking for a quick shortcut to get the ball rolling.
+ GitHub Pages What is GitHub Pages?
+ It is provided by GitHub free of cost and allows users to host a website using any repository of their choosing provided they meet conditions required for correct hosting.
+ This includes things such as files with correct names, location of files in proper order, and so on.
+ When we covered template engines, we looked at static and dynamic web pages.
+ When working with GitHub Pages, though the service is free, there are limitations.
+ For instance, you cannot host a full-stack website because the back-end will need to be stationed somewhere and GitHub does not have a cloud service.
+ Now you could get creative with this.
+ For instance, host the front-end website on GitHub Pages and host the back-end server on some cloud platform such as AWS or Azure.
+ From there, you can setup communication between your front-end hosted site to that back-end server.
+ We will not do that here (may in a future demo) but will focus on using GitHub Pages to host a simple website using static content.
+ In fact, that is what is recommended when using GitHub Pages.
+ It works great for lightweight duty such as hosting static content.
+ Websites that incorporate GitHub Pages for deployment have a custom domain that follows this pattern: https://<user-id>.
+github.
+io/<repo-name> You can purchase a custom domain known as a CNAME through a third-party domain service such as GoDaddy to make your URL more pretty.
+ For more information on GitHub Pages, refer to the official documentation here.
+ Vanilla JS and DOM (Document Object Model) When working with plain JavaScript, you will often use the global Document Object to access HTML elements and enable actions.
+ This includes things such as event handling.
+ An example can be when a user enters form data and clicks a button to process that data.
+ We can code a function to handle that click event and process the form data.
+ You can think of DOM representing a page in a hierarchy of objects.
+ We will not go into extensive detail on this but here is a diagram from Wikipedia perfectly encapsulating what I mean: When working with HTML files the root tag is <html> followed by the <head> and then <body> tags.
+ We can assign IDs to certain tags within the HTML document and then access them using the Document object in order to perform the necessary actions.
+ Code Overview You can follow along by cloning the following repository: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com The directory of concern is: Demo09_Vanilla_JS_GitHub_Pages.
+ If cloned correctly, you should see the following: When working with GitHub Pages, there must be a file designated as index.
+html .
+ This is considered to be the home page on the default / route.
+ From there, you can have different HTML pages to be viewed on different routes.
+ For this project, there are only two routes.
+ The home page called index.
+html and a login page called form.
+html.
+ Here is the home page: At the very bottom of the index.
+html, we have a script tag which enables us to write JavaScript within the HTML file.
+ We make use of the Document object and select the element by their ID.
+ After that, we add an event listener to handle click events.
+ We add code to ensure that each time the button is clicked, an alert is displayed.
+ This is an example of an inline script implementation.
+ Here is the login page (form.
+html) handling form validation using an imported function: As you can see at the very bottom of this file, we are making a reference to the function handling the form validation.
+ Here is the function handling that form validation under /js/formValidation.
+js: As you can see, we are making use of the Document object once again to fetch data related to the email and password input fields.
+ We run checks to validate the email entered using a Regular expression (Regex) and validate the password by simply checking its length.
+ We add an event listener to the submit button and throw an alert each time the form is submitted after running the checks specified earlier.
+ That is all!
+ To highlight, we also have a separate folder dedicated to CSS and styles for each of these pages so feel free to check those out.
+ Demo Time!
+ For this demo, head over to the following repository: Abdullah-Medium-Demos/demos/Demo09_Vanilla_JS_GitHub_Pages/frontend at main ·… A repository containing code for demos published in Medium … github.
+com The branch of concern is Demo09_Vanilla_JS_GitHub_Pages.
+ I created a separate repository altogether for this demo as GitHub Pages requires a branch from which to deploy and host the code.
+ Here are the steps to enable GitHub Pages on any repository: Go to the Settings section of any repository of concern On the left panel, select Pages for options Under Build and deployment, select which branch to deploy and host For this demo, I created a branch from main and added the same code used in the code overview to this branch (Demo9_Vanilla_JS_GitHub_Pages).
+ Here are the screens illustrating how to enable hosting using GitHub Pages: Note that your code needs to conform to the format requested such as the presence of an index.
+html file and so on.
+ For more information on GitHub Pages, view the official documentation here.
+ As mentioned earlier, deployed sites have the following format: https://<user-id>.
+github.
+io/<repo-name> Deployed sites are publicly accessible to all and so the deployed site for this demo is located here: https://codingabdullah.
+github.
+io/Medium-Demo-Gh-Pages/ Vanilla JS Github Pages Demo Edit description codingabdullah.
+github.
+io Here is what the screen should look like when the button on the home page is pressed: If you navigate to the form section of the web application and fill out details to test the application you should get the following alerts: And another alert if you enter an invalid password: That is all!
+ Bear in mind, we are only testing this application using client-side validation.
+ There is no back-end to this web application so we are not checking to see if these email IDs and passwords exist.
+ That was not the purpose of this tutorial anyways.
+ The purpose of this tutorial was to show how you can quickly code, deploy, and host a website using minimal overhead.
+ Conclusion All in all, this tutorial showed how easy it was to build a basic static website and get free hosting using GitHub Pages.
+ You learned quite a bit about basic JavaScript and the Document Object Model.
+ We touched on steps to enable hosting as well as domain names.
+ If you do not like the messy github.
+io domain GitHub provides you, you can opt for a custom domain by purchasing one.
+ As always, link to the GitHub repository is here: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com As well as the link to the GitHub Pages repository here: GitHub - CodingAbdullah/Medium-Demo-Gh-Pages at Demo9_Vanilla_JS_GitHub_Pages Repository for demos that require the use of GitHub Pages - GitHub - CodingAbdullah/Medium-Demo-Gh-Pages at… github.
+com Link to the site here.
+ Hopefully, you found this tutorial helpful and look forward to more in the future.
+ Until next time, this is Abdullah signing off!
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

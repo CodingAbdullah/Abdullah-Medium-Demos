@@ -1,0 +1,171 @@
+Mongoless MERN Development: Incorporating SQL using AWS RDS and Sequelize Abdullah Muhammad · Follow Published in Stackademic · 13 min read · Sep 12, 2023 -- This article assumes the reader is familiar with AWS, the MERN stack, and working with relational databases using SQL.
+ Introduction In most of the tutorials we have covered so far, we have used the MERN (Mongo, Express, React, and Node) stack for web development.
+ Sometimes working with all four of these technologies or a combination of these four in unison.
+ We touched on the fact that JavaScript is the only language required to work with any of these including databases and saw how we can enhance the development experience using the superset language, TypeScript.
+ We learned that we can incorporate JSON as a method of data storage in non-relational databases such as MongoDB.
+ But what if someone is not familiar with non-relational databases or simply wants to work with relational databases, is it possible?
+ Indeed it is.
+ Today we will be focusing on utilizing the sequelize package to integrate a relational database in place of MongoDB and work with SQL.
+ What is Sequelize?
+ sequelize is a package that allows developers to work with relational databases.
+ sequelize can work with several variations of SQL such as PostgreSQL, MariaDB, MySQL, SQLite, OracleSQL, Microsoft SQL server and so much more.
+ You can think of these as dialects to the SQL language and although many variations exist, I would say they differ from each other at most by 5%.
+ What is unique about sequelize is that it is an ORM (object-relational mapping) for these variations of SQL.
+ Wait, what is an ORM?
+ Object-relational mapping or ORM for short is a technique where data in a database can be converted into object representation.
+ This allows developers to work with this data programmatically using their desired language.
+ We will not cover SQL in this tutorial, it is assumed the reader is familiar with it.
+ However, we will dive deep into using sequelize to perform the basic CRUD (create, read, update, and delete) operations on a relational database linked to a web application.
+ CRUD: Create, Read, Update, Delete When we looked at using MongoDB with Node.
+js, we covered CRUD in detail using a non-relational database.
+ Same rules apply here and we will look at these again in this tutorial.
+ You can consider CRUD to be the most basic operations you can perform with databases.
+ Create enables the creation data to be inserted into a database.
+ This can be done one by one or in bulk.
+ Read allows for the extraction and representation of data and there are numerous ways one can go about querying data.
+ If you are a SQL junkie, you should be familiar with SELECT, WHERE, GROUP BY, HAVING, ORDER BY, sub queries, case statements, joins, and so much more.
+ Update enables the ability to update stored data.
+ Multiple records of data can be updated using a filter or they can be updated one by one.
+ Finally, Delete enables the ability to delete records.
+ This can be done one by one or in bulk using a specified criteria.
+ AWS RDS: Relational Database Cloud Service When working with MongoDB, we made use of a multi-cloud service known as MongoDB Atlas to help setup the database service remotely.
+ We can make use of AWS and use the RDS (Relational Database Service) to setup a relational database in the cloud.
+ We are going to walkthrough setting up AWS RDS and the configuration required to establish communication.
+ We are NOT going to walkthrough setting up an AWS account and anything else related to account configuration.
+ We could in theory, install a variation of SQL locally such as MySQL or PostgreSQL and use that but we will focus on utilizing the power of the cloud.
+ This article assumes the reader is familiar with AWS.
+ For more information related to AWS and setting up an account, here is the official documentation.
+ Project Setup You can follow along by cloning the following repository: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos The directory of concern is Demo16_Mongoless_MERN.
+ Though the code portion is complete, we will be walking through the project setup as if we are doing this from scratch.
+ When working with Sequelize, we will need a trio of packages from NPM to kickstart development.
+ These are: sequelize — Allowing developers to work with a promise-based Node.
+js ORM tool.
+ We discussed what ORM was earlier in this article.
+ sequelize-cli — Enabling developers to work with Sequelize through the command line.
+ mysql2 — Enabling developers to write queries and work with data within a MySQL database.
+ For this tutorial, we will be working with the MySQL database.
+ Initialize the Sequelize Environment Once all these installations are complete, we need to initialize the Sequelize environment in the working project.
+ Since we are going to be working with Sequelize in the back-end, we will need to initialize the environment there.
+ In /backend, run the following: npx sequelize-cli init.
+ This will initialize the Sequelize environment and create the following directories: config — Contains a file called config.
+json which contains credentials to establish connections to a database.
+ We can set credentials for databases in different environments such as dev, prod, test, and so on.
+ Note: This directory was not committed to GitHub (check .
+gitignore) as it contains sensitive information.
+ We will circle back on this later.
+ migrations — Keep track of changes to your database in a JavaScript file.
+ models — Keep track of every table created inside your database in separate JavaScript files.
+ seeders —Enabling developers to import test data stored in separate files.
+ Now that we have walked through the initialization process, it is time to setup the actual database!
+ Setting up an AWS RDS Instance Login and navigate to your AWS console.
+ From there, search for AWS RDS and you should find a service which allows for the creation of a cloud-based relational database service.
+ Now, I already have an AWS RDS instance created but the following screens will detail step-by-step how to setup an AWS RDS instance yourself: After providing the username, scroll down and provide the password and confirm password values.
+ Note: Record these values someplace safe as these will be required later.
+ You can leave the instance configuration and storage sections as they are.
+ For connectivity, select Do not connect to an EC2 compute resource and leave the default settings as they are.
+ For public access, select Yes.
+ Depending on whether you already have a network security group setup, you can either select that or choose default.
+ Remember, you MUST allow all inbound traffic to the database: For database authentication, enable password authentication only.
+ We could use AWS IAM as well but we will not cover that service here: Finally, for additional configuration, you MUST provide an initial database name to your instance otherwise AWS RDS will not create the database.
+ Record this value someplace safe as you will need it later: You can add in log features if you like, but the following should suffice: And that is all!
+ You can calculate your monthly costs of using an instance and after that, simply select Create database to kickstart your very own cloud database!
+ You will need to remember four things: username, password, RDS endpoint, and database name.
+ The RDS endpoint can be found by selecting the newly created instance on the RDS dashboard and looking for the endpoint section.
+ The username, password, and database name are the values you provided when creating the instance.
+ Setting up Database Configuration with .
+env Now back to the project.
+ Remember, we are working with credentials and so we will need to utilize the dotenv package to safely store these values.
+ Since the .
+env file was not committed to GitHub, you will need to create your own for this project.
+ In a .
+env file of your own, in /backend, you can add the four values mentioned above.
+ You could use something like this: Config.
+json File We noted the config.
+json file earlier (in /backend/config) when initializing the Sequelize environment.
+ You will also need to store these values there.
+ Now, we will only be working with one environment (development) for this tutorial and the name can be anything, it does not matter.
+ The host is simply the AWS RDS endpoint and the database is the name of the database given initially when setting up the instance.
+ Remember to ensure the dialect is mysql.
+ That is all from a configuration standpoint!
+ We are set to use Sequelize in the back-end environment and the newly created AWS RDS instance.
+ Database Models and Migration We can use the sequelize-cli package to create models locally to represent database tables and have them migrated to the database.
+ All this can be done from the command-line.
+ The web application we are going to look at will allow users to implement basic CRUD operations using a basic user model.
+ A user will consist of the following attributes: firstName, lastName, email, password, and gender.
+ We can create this basic model using sequelize-cli and entering in the following details: npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string,password:string,gender:string.
+ If ran correctly, you should see something like this in your command line: The requested model was constructed successfully and information related to it is stored in the models and migrations directories in separate JavaScript files.
+ We can now migrate this to the database using sequelize-cli and entering the following: npx sequelize-cli db:migrate The user model and its attributes are represented as a table inside the AWS RDS database we created earlier.
+ The config.
+json was key in figuring out what and where to migrate this data.
+ With all this out of the way, we can finally dive into the codebase!
+ Code Overview We are mainly going to focus on the back-end and really only one particular file, the UserController.
+js file.
+ The server.
+js file, Router directory, and the front-end codebase are very similar to many of the tutorials covered in the past.
+ Feel free to re-visit those if you like but the main file we are going to focus on is the UserController.
+js file (/backend/Controller/UserController.
+js).
+ It is here where all the heavy lifting takes place.
+ We have four routes with each dealing with one of the four CRUD operations.
+ This file contains all four functions for dealing with each of these: You can see we are utilizing the sequelize package to programmatically establish a database connection as well as set up the user model representing the User table we are going to work with.
+ We pass in the same four credentials as before into the Sequelize object and ensure the dialect is mysql.
+ The define() function allows for the creation of the user model which maps to the user table which was created earlier in AWS RDS.
+ This model can be used to manipulate the data stored inside the table.
+ The built-in DataTypes provided by sequelize allows for easy assignment as each of the attributes can be assigned the STRING value.
+ We will now focus on each of the four functions.
+ Create User Function Prior to processing any client requests, we can simply use the sequelize object created earlier to authenticate and proceed with the request.
+ We do that using the authenticate() function which is promise-based.
+ We can also sync data using the sync() function and that too, is also promise-based.
+ Using the user model created earlier, we use the built-in findOne() function to search if the user exists.
+ If so, we return a message.
+ Otherwise, we proceed to create the user using the create() function and pass in an object containing the attribute values.
+ We also follow best security practices by incorporating the bcryptjs package to salt and hash passwords before storing them.
+ Read User Function After authenticating, we use the findAll() function and simply fetch all users stored in the database and send this data back to the client.
+ Update User Function We create an empty object which will only add those attribute values which are requested to be changed.
+ We run a query to check if the user exists using the findOne() function.
+ If the user does not exist, we return a message.
+ Otherwise, we proceed to update the user attributes.
+ We also check to see if the client requested to update password.
+ If that is the case, we incorporate the bcryptjs package to salt and hash the updated password prior to storage.
+ Delete User Function This one is pretty self-explanatory.
+ After authenticating, we search the user table to check and see if the requested user to be deleted exists.
+ If not, we return a message.
+ Otherwise, we proceed to delete the requested user.
+ That is it for the code overview!
+ As mentioned earlier, there is much more code for this project but those parts have been covered extensively in the past.
+ Feel free to look at those but the main focus was the UserController.
+js file as it contains code for working with the sequelize package.
+ You can refer to the official Sequelize documentation for more details on built-in functions.
+ Demo Time!
+ Assuming you have cloned the repository linked in the project setup section, you can proceed by running npm install in each of the server folders (frontend and backend).
+ Ensure you have the .
+env file in the backend folder containing the four credentials needed to connect to AWS RDS.
+ The front-end server will run on port 3000 and the back-end server will run on port 5000.
+ On two separate terminal windows with /frontend as the working directory in one and /backend as the working directory in the other, running npm start in each should successfully launch the web application.
+ If done correctly, you should see the following: If you proceed to the Create User section and fill out the details, you should see something like this: If you navigate to the Read User section, you should see the following: If you proceed to the Update User section and fill out the details, you should see the following: If you proceed again to the Read User section, you should see the last name and time updated attributes changed: And finally, if you navigate to the Delete User section and fill out the required information, you should see the following: Taking a final look at the Read User page, you should be notified that no users exist in the database: On a side note, if you notice the terminal where the back-end server is running, you might see logs like this: The ?
+ in some of the SQL statements represent dynamic parameters.
+ These are essential as they allow for the substitution of values in queries that are being created and ran during run-time.
+ And that is all for the demo!
+ The application does check for different scenarios and will throw alerts accordingly.
+ We focused on the successful scenarios for this demo but feel free to play around with the application.
+ Conclusion Phew!
+ That was quite an extensive tutorial.
+ We focused a lot on the project setup, configuration, and looked at setting up and using AWS RDS as the cloud database service.
+ We worked with a web application that allowed users to implement the basic CRUD operations.
+ We also saw how utilizing the sequelize and sequelize-cli packages enabled faster development of models, migration, and database queries.
+ Many built-in functions are provided by sequelize and we looked at the common ones in detail.
+ Nonetheless, one might feel that using MongoDB is the better and more efficient way to go about development.
+ While that might be true, this method offers an alternative way to work with data using relational databases and SQL.
+ Linked below are the GitHub repository used for this tutorial and the official Sequelize docs: Abdullah-Medium-Demos/demos/Demo16_Mongoless_MERN at main · CodingAbdullah/Abdullah-Medium-Demos A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo16_Mongoless_MERN at main… github.
+com Getting Started | Sequelize In this tutorial you will learn to make a simple setup of Sequelize.
+ sequelize.
+org I hope you enjoyed this tutorial and look forward to more in the future.
+ And as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

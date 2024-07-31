@@ -1,0 +1,143 @@
+API Testing with Postman and Node.
+js Abdullah Muhammad · Follow Published in Stackademic · 11 min read · Sep 16, 2023 -- Basic understanding of JavaScript, Node.
+js, and APIs is sufficient for working with this tutorial.
+ Introduction Depending on the functionality of the web application, you may or may not need to incorporate external data into your application.
+ Whether it is from a database or through an API call, testing to see how your application works can be expansive.
+ First, you would have to design your application, build out that database or API, and finally test it through client-side after having built out that side of the application as well.
+ Thankfully, there are tools out there which make life easy when it comes to testing.
+ Instead of building out an entire front-end for testing, we can bypass all this using testing tools.
+ One of the most popular tools out there for API testing is Postman.
+ Today, we will dive deep into using this tool to test custom built APIs using Node.
+js without a front-end.
+ What is Postman?
+ Postman is an API platform which developers can use.
+ It is more than simply a testing tool although that is what it is mostly known for.
+ It allows for the collaboration, creation, and publication of APIs both public and private.
+ A central hub for thousands of APIs, integrated Git support, and so much more.
+ There are pricing models for different features Postman offers ranging from basic to enterprise.
+ For more details, you can visit the official site here.
+ We will focus on using the testing tool Postman has to offer.
+ Note: For the tutorial demo, you WILL need the Postman software installed locally.
+ Postman Testing Tool Interface Once installed and opened, you should see an interface that looks like this: On the left side, you have a history panel which details past API requests made at their particular dates.
+ At the top, you have the option to sign in to your Postman account as well as work under workspaces which you can create.
+ In the centre, is where most of the action takes place.
+ You have the ability to determine request type, request URL, and numerous other options such as headers, request body, authorization, parameters, and so much more.
+ At the bottom, lies the response panel where response data and errors will be visible along with any other notifications and response status codes.
+ Postman Interface Visual Descriptions The following screens are features of Postman highlighted in a red box with a short description: APIs and HTTP Requests/Responses in Detail API stands for Application Programming Interface.
+ It allows for the communication of applications between computers offering information.
+ Often times, you can think of this interaction as the client-server communication which we have looked at many times before.
+ HTTP Request Types There are different HTTP request types and they follow the CRUD pattern we looked at in databases: GET — Request type for fetching of data (Read) POST — Request type for inserting data but it could be anything (Create) PUT — Request type for updating the whole set (Update) PATCH — Request type for updating part of data (Update) DELETE — Request type for the deletion of data (Delete) GET and POST tend to be the most commonly used request types you will encounter but it is important to note and remember the lesser common ones.
+ HTTP Request URL Parameters You can also have dynamic values passed into certain URLs known as parameters.
+ These can be informative for helping the server further understand how to process a given request.
+ An example can be the following: GET https://www.
+example.
+com/api/{id} Here, only a GET request is acceptable and the {id} portion of the URL is a parameter accepting dynamic values.
+ This means that anything can be passed in as a value and it will be interpreted as the id.
+ HTTP Request Body Data Types When working with requests types such as PUT, PATCH, and POST you might be wondering what options you have for sending data.
+ The most common format used for data interchange is JSON but you can use HTML, XML, and Plain Text.
+ HTTP Request Headers Headers in requests add context to the request and help the server figure out how to best process it.
+ Common ones you might be familiar with are content-type, connection, host, user-agent, and accept.
+ For content-type, formats such as application/json, text/plain, text/html, multipart/form-data are applicable and commonly used.
+ We can also have authorization headers passed into a request.
+ HTTP Request Authorization Headers When trying to access resources that require authorization, you will need to pass in sensitive data to validate the request.
+ Different types of Authorization include: API keys Jsonwebtoken Certificates Basic Auth Bearer Tokens OAuth And so much more… You can use Authorization as the header and pass in any of the following above or use a custom defined name such as X-API-KEY.
+ Nonetheless, you have a host of options for working with authorization.
+ When we worked with JWTs and Protected Routes, we used an Authorization header to pass in a JWT token and have it processed in a middleware function before proceeding to the actual request.
+ HTTP Response Status Codes When sending requests, you would like some feedback to tell you about the status of your request.
+ HTTP response codes do just that and these are categorized in one of the following five groups: Informational Responses (100–199) — HTTP request is processed but the user is notified of certain details pertaining to their request as a response.
+ Successful Responses (200–299)— HTTP request was successful.
+ Some codes you might be familiar with are 200 OK and 201 Created.
+ Redirection Responses (300–399) — HTTP request is handled but it is either redirected to another URI or a new URL is given as a response.
+ Client Error Responses (400–499) — HTTP request was not successful and the client (user) is at fault.
+ Some codes you might be familiar with are 400 Bad Request, 401 UnAuthorized, 403 Forbidden, and of course 404 Not Found.
+ Server Error Responses (500–599) — HTTP request was not successful and it is the server at fault.
+ The user requests are correct but the server has an issue handling it.
+ Some codes you might be familiar with are 500 Internal Server Error and 502 Bad Gateway.
+ We will use status codes in server responses to client requests.
+ For more details on HTTP status codes, you can refer to the official docs here.
+ Code Overview You can follow along by cloning the following repository: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com The directory of concern is Demo17_Postman_API_Testing.
+ Since we are working with Postman for API testing, there is no front-end to this application.
+ We have built a back-end server using Node.
+js and Express allowing one request for each of the five different request types (GET, POST, PUT, PATCH, and DELETE).
+ There is no database either but we have cleverly used a JSON file to act as a mock database containing user related data.
+ So in essence, we will be testing CRUD operations against this file by sending requests via Postman to the back-end server.
+ There are certain rules that must be followed when trying to test each of these five endpoints.
+ They are outlined in the README.
+md file /backend/README.
+md.
+ You can think of this as API documentation.
+ The following screen detail those rules: Here is the routes file containing one route for each of the five different requests outlined in the README.
+md file above /backend/Route/APIRoute.
+js: The following is the mock database containing data to start with /backend/data.
+json: When reading or writing data to this file, we will need the exact path to this file.
+ Stored in the path.
+js file, is a constant containing this value using the Node.
+js built-in path module /backend/path.
+js: And finally, where most of the heavy lifting is done, the controller file containing five functions for handling each of the five different request types /backend/Controller/APIController.
+js: We will briefly touch on these five functions: GET fetchData() — Enables client to fetch all user related data currently stored in the data.
+json file.
+ POST insertData() — Enables client to pass request body containing user information to insert into the data.
+json file.
+ We use the built-in function filter() and pass in a predicate function to prevent duplicates from being stored.
+ PUT updateWholeData() — Enables client to pass request body containing user information to update the entire data.
+json file.
+ PATCH updatePartiallyData() — Enables client to pass request body containing user information to update some user information.
+ DELETE deleteData() — Enables client to pass request body containing information on users to delete and if an empty array is passed, the entire dataset is deleted.
+ We use the built-in function filter() and pass in a predicate function to remove requested users.
+ To expedite development, we made use of the readFile() and writeFile() functions from the built-in Node.
+js fs module to help with the reading and writing of the data.
+json file.
+ The built-in JSON functions stringify() and parse() also came handy as we were dealing with strings and data manipulation.
+ Demo Time!
+ Now that we have completed the code overview, it is time for the demo!
+ Assuming you have cloned the repository linked above and installed Postman locally on your machine, there are two steps you will need to complete before proceeding.
+ Navigate to /Demo17_Postman_API_Testing/backend as your current working directory and run npm install to install all the required packages necessary for this project.
+ With /Demo17_Postman_API_Testing/backend as the current working directory, run node server to kickstart the Node server.
+ It should be running on port 5000.
+ You should be notified that you are Listening to PORT 5000 on the console and if so, you are good to go.
+ We can begin to test the first method GET /fetch-data using Postman.
+ Following the rules outlined in the README.
+md file, you should have sent a request like this and received the following response: From this call, we can see a status code of 200 OK and a response containing the same data currently stored in the data.
+json file.
+ Now let us test the POST /insert-data method using Postman.
+ Use the following data locally and you should be notified of a successful request: Purposefully, the request data contains two duplicate user ids (1, 2 already exist inside data.
+json) and one new user id.
+ However, as we will see by fetching data again, that only the new user id was inserted and the duplicates were not: Now let us test the PUT /update-whole-data method using Postman.
+ Use the following data locally and you should be notified of a successful request: This should have updated the entire dataset inside the data.
+json file and only these two entries should exist.
+ That is indeed the case if we fetch the data again: Now let us test the PATCH /update-partially-data method using Postman.
+ Use the following data locally and you should be notified of a successful request: Purposefully, the request data contains an entry that does not exist in the data.
+json file.
+ That entry being user id 6.
+ We will see that by fetching data again, that only the current existing user ids in the data.
+json file have their values updated: Now let us test the DELETE /delete-data method using Postman.
+ Use the following data locally and you should be notified of a successful request: The data.
+json file should only contain one user entry as user id 5 is now deleted.
+ If we fetch data again, that is indeed the case: And finally, now let us test the DELETE /delete-data method again but this time, pass in an empty array.
+ This should delete all entries inside the data.
+json file: If we fetch data again, we should receive an empty array from the data.
+json file: That is all for the demo!
+ We successfully tested each method using mock data and Postman and found out that they all work as intended.
+ If you want to test this application using data of your own, make sure to follow the rules outlined in the README.
+md file as noted earlier.
+ Conclusion That is it for this tutorial.
+ We did a deep dive into Postman and learned many of the key features their testing tool has to offer.
+ We saw how we could develop and test a back-end server without needing a client interface.
+ Dove deep into APIs and HTTP request types, response codes, request body data types, parameters, and most importantly authorization.
+ We also found a clever way to test without a database using a simple JSON file containing mock data.
+ We also looked at a README.
+md file which roughly illustrated how API documentation works in the real world.
+ Linked below are the GitHub repository and the official Postman site: Abdullah-Medium-Demos/demos/Demo17_Postman_API_Testing/backend at main ·… A repository containing code for demos published in Medium … github.
+com Postman API Platform | Sign Up for Free Postman is an API platform for building and using APIs.
+ Postman simplifies each step of the API lifecycle and… www.
+postman.
+com I hope you enjoyed this tutorial and look forward to more in the future.
+ And as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

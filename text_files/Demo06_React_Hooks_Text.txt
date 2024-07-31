@@ -1,0 +1,51 @@
+Incorporating Custom Hooks in React Abdullah Muhammad · Follow Published in Stackademic · 4 min read · Jul 29, 2023 -- This article assumes the reader is comfortable working with JavaScript and client-side libraries namely, React.
+ Introduction In the early days of React, there were two ways you could define your custom components: Classes Functions Similar to how classes are written in other programming languages, the former allowed you to inherit the React.
+Component class and build your “stateful” components out that way.
+ The latter would only deal with state that was passed down.
+ These components were known as “stateless” components.
+ There was also the concept of component lifecycles.
+ If you worked with React in the past, you might be familiar with special functions such as componentDidMount(), componentDidUpdate() and so on.
+ React has come a long way since then and introduced a concept known as hooks.
+ We do away with Class-based components and work strictly with Function-based components and instead, every component has the ability to have their own state.
+ We saw this in detail when we covered React-Redux.
+ Hooks are special functions denoted by the common, “use” prefix and functions such as useState() and useEffect() makes state management easy.
+ There were other built-in hooks we saw as well such as the useNavigate() hook from React-Router, and the useSelector(), useDispatch() hooks from React-Redux.
+ Custom Hooks Aside from built-in hooks, React allows you to create your own “custom” hooks to streamline the development process.
+ You can combine the power of built-in hooks to create your own and we will see this when going through the demo process.
+ Code Overview You can follow along by cloning the following repository: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos Our repository of concern is Demo06_Custom_Hooks.
+ As you can see, we are only working with client-side code and so there is no back-end for this demo.
+ We are working with two components only and we also have a separate folder where custom hooks reside.
+ For this demo, we will create one custom hook and that is called useFetch.
+ This custom hook will allow us to seamlessly make API calls, fetch data, and store the response inside a variable all at once.
+ Under /frontend/src/hooks: Notice how we are incorporating built-in hooks such as useState() to keep track of fetched data and useEffect() which is triggered as soon as this function is called.
+ Inside the useEffect(), we use the axios library to fetch data based on the URL being passed through as an argument to this custom hook.
+ Incorporating a custom hook such as this makes code more modular as many components inside a typical project make API calls.
+ Writing similar code over and over to highlight this process makes components bulky and is an inefficient way of development.
+ We can instead use this custom hook inside components where API calls are made and simply pass in the URL for a successful data fetch.
+ To see this in action, here is the main App.
+js file incorporating useFetch(): Notice how lean the component looks.
+ There is literally one line of code making use of the useFetch() hook and the entire process of data fetching and storing takes place inside of it.
+ Now contrast this with another component doing the same thing but without the useFetch() hook, /frontend/src/Components/APIPage.
+jsx: Lotsa work eh?
+ :) We literally have to incorporate most of the useFetch() code inside the component itself and since data fetching takes a bit of time, we need to conditionally render the component.
+ Both components do the same thing, except one way of doing it is far efficient over the other.
+ In development, it is not just about solving problems but also about how efficiently you can solve them.
+ Demo Time!
+ The demo will be short and sweet and we will verify that both components render the same information as seen in the code overview.
+ React works on the default Port 3000 and so we will work with that.
+ Upon launch, you should see the following: If you proceed to click the green button, you should see the same thing on the next page: And that is it!
+ This concludes the demo.
+ Conclusion You have seen in action how both approaches to development render the same results.
+ However, with the use of custom hooks, you saw how the process could be streamlined and how code could be more modularized.
+ Defining a custom hook for API calls is just one use case though.
+ There are countless examples where you can define custom hooks to do different things.
+ The general rule of thumb to follow is if your project consists of components doing similar things, you should focus on creating a custom hook and do away with the redundant code.
+ It saves time and makes the development process more efficient.
+ Link to the Github repo is below: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos And until next time, stay tuned!
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

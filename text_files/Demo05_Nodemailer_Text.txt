@@ -1,0 +1,87 @@
+Nodemailer: Making E-mails Easy Abdullah Muhammad · Follow Published in Stackademic · 9 min read · Jul 25, 2023 -- This article assumes the reader has knowledge of full stack development, hashing algorithms, best security practices, and is comfortable working with languages namely, JavaScript.
+ Introduction *Please be advised that this tutorial relies on material covered here: JWT Authentication & Express Middleware.
+ If you find anything related to JWTs or back-end development confusing, please refer to this before proceeding.
+* Last week, we went into detail on back-end authentication and learned about JWTs.
+ Today, we will incorporate JWTs in another common use case and those are password resets.
+ When building out a web application, it is almost certain that some sort of email communication is required.
+ Be it for account information, newsletters, orders, verification, and so on.
+ Your email address is crucial to many of the services you use online.
+ Thankfully, there is a module out there that covers exactly that and we will be working with it to successfully create and send emails programmatically!
+ This is our diagram for this week, building on the web application built last week: Nodemailer So what is Nodemailer?
+ It is a module for Node.
+js applications that makes creating and sending emails easy.
+ We are using Node.
+js for our back-end, so this is another piece of the puzzle that fits in seamlessly.
+ We could use Nodemailer for just about anything related to emails.
+ But today specifically, we will look at password resets.
+ Whenever a user requests to reset their password, they must provide their email address.
+ Often times, a token or link is sent to the email address with a specific expiry date and the user must verify themselves before resetting their old password.
+ That is what we will implement in the code overview and demo.
+ We will incorporate Nodemailer, JWTs, UUID, and Bcryptjs to successfully create, secure and send emails containing an ID which the users must use to verify themselves before proceeding to reset their password.
+ For simplicity, we will use Gmail for this demo.
+ Link to the Nodemailer module is here.
+ SMTP Like many other protocols (HTTP/S, SSH, FTP, etc.
+), SMTP stands for Simple Mail Transfer Protocol and is a layer 7 protocol lying in the Application layer of the OSI (Open Systems Interconnection) model.
+ To keep things simple, SMTP is a communication protocol for email transmission.
+ Servers and other transfer devices can use SMTP to send and receive emails.
+ Similarly, how other application layer protocols have designated ports such as port 80 for HTTP or port 443 for HTTPS, email clients use SMTP on ports 465 or 587 for sending and receiving emails to/from a mail server.
+ When we use Nodemailer, we will first need to create a transport authenticating ourselves to a particular service (Gmail) which will use SMTP as the transfer protocol.
+ Every mainstream email service on the web incorporates SMTP, it is a standard.
+ The Process The approach to resetting passwords is fairly straightforward: User must enter email of a registered account to request password reset If email is invalid, alert is thrown, else an email containing the verification ID is sent with an expiry time of 5 minutes User must login to their email account and copy paste the verification ID User must paste this ID and fill in the new and confirm password fields on the reset portal User is notified if the password is successfully reset or not That is all there is to it.
+ We will continue to work with the User Posts web application built in the last demo and add a model tracking the verification IDs to the MongoDB collection.
+ Code Overview Link to the Github repository for this tutorial is below and can be cloned locally.
+ Our repository of concern is Demo05_Nodemailer: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos Building on the existing codebase from last week, a new model is added to the back-end and that is called EmailToken.
+ This model consists of two fields: email and token.
+ It will be used to keep track of all the verification IDs sent via emails and ensure only one verification ID exists per user.
+ So if a user requests to reset password over and over, the old document stored in the collection is deleted and a new one is saved, ensuring there is only one valid token associated per user.
+ A new email is also sent containing the new verification ID.
+ There are two new routes associated with this model and those are: /create-email-token and /delete-email-token and a new controller called EmailTokenController handles both of these.
+ When the user requests to reset password, they request /create-email-token.
+ This route deals with verifying the email address, deleting any old EmailToken documents related to the email and creating a new one containing a new verification ID.
+ Once details are provided for the verification ID and new/confirm passwords, a /delete-email-token request is sent to verify if the correct ID was typed, update the PostUser collection with the new password, and delete the EmailToken document associated with email.
+ Here is the function that is mapped to the /create-email-token route: After verifying that the email exists, we proceed to do the following: UUID library is used to generate a random ID as the verification ID The verification ID is hashed using the Bcryptjs library Any previous EmailToken documents associated with user are deleted A new JWT is signed with an expiry of 5 minutes and the hashed ID as the payload The email and JWT are stored as a new document inside of the EmailToken collection Transport is created using a built-in function from the Nodemailer module and Gmail is set as the service Finally, an email is sent containing the original verification ID to the email requesting password reset using Nodemailer Wait, why are we using JWTs?
+ They make the reset process easy.
+ We want to set a time limit for how long the verification ID can be valid for.
+ By saving them as a payload inside of a JWT, we can know for sure that if the JWT expires, the ID will also be invalid.
+ JWTs can be decoded.
+ By ensuring the ID is hashed before storing it as a payload inside a JWT, we maintain its authenticity in case of a data breach.
+ So in essence, the EmailToken collection saves only one JWT containing a payload of the hashed version of the verification ID associated with an account?
+ Yes, that is all.
+ The EmailToken collection saves a JWT to its token attribute.
+ Just below all that code, you will find the function dealing with /delete-email-token: Once the user requests to reset after providing the verification ID and new password, this function completes the process as follows: Check the EmailToken collection for the particular email and extract the JWT token If JWT is not valid, the verification ID expired so respond with an error and delete the EmailToken document If JWT is valid, decode the payload and compare the submitted verification ID to the hashed ID stored inside JWT If comparison runs false, user entered an invalid ID and respond with an error If comparison runs true, hash the new submitted password and update the document inside PostUser collection associated with the email and delete the EmailToken document associated with the email as well And that is all!
+ We are leveraging the power of many different libraries all at once and have incorporated Nodemailer to help us along the way!
+ Front-end The only thing added to the existing codebase for the front-end is the Password Reset page: As you can see, the password reset has two forms: email token request and the actual password reset request.
+ The first form contains the email field and this must be submitted and verified before the second one is enabled to fill in the details for the ID and new/confirm passwords.
+ That is all!
+ Demo Time!
+ As always, we will be running two servers on two different ports for this demo.
+ Port 5000 is where the Node server will be running and as usual, Port 3000 is where the client side code will run.
+ We will be using MongoDB Atlas for our database.
+ Ensure to have your own separate .
+env file and provide details for the Node server port, database connection string and email address/email key for the Nodemailer transport setup.
+ Make sure to have a valid Gmail account and that account is setup to send emails using Nodemailer.
+ This is the account that will send verification IDs to registered users and is the account provided inside createTransport().
+ If you are not clear how to setup a Gmail account for Nodemailer, please refer to this document.
+ All good?
+ Upon launch, you should see this: Now, we proceed to register a user using their Gmail.
+ If done correctly, you should see something like this (I’ve highlighted out the address except for the domain for security): Now we try to reset the password!
+ Proceed to the Login page and select Reset Password and enter in the valid email address in the first form: If you entered the valid Gmail address of the registered account, the second form should become visible and an email containing a verification ID should be sent to the address.
+ If done correctly, the email looks something like this: Notice how the header, sender and email body are all the things set up using Nodemailer’s built-in sendEmail() function.
+ Now, I did not hide the verification ID because by the time you will be reading this, it will already be expired lol ;) Interestingly, check the EmailToken collection inside of MongoDB and you should see one token associated with this account: Interestingly, if you copy paste the token value to the official JWT site, you should see something like this: You should see the same verification ID stored inside the JWT as payload except that it is hashed.
+ Quick!
+ This token is only valid for 5 minutes so I will head over and fill out the second form using the verification ID and new password!
+ If you did yours correctly, you should see something like this: If you check the EmailToken collection it should be empty and if you view the user in the PostUser collection it should be updated: That is all!
+ The demo is complete!
+ Conclusion This tutorial went into detail how web applications could seamlessly send emails using the Nodemailer service.
+ Hopefully, you saw how easy it was to setup a transport, incorporate a service and provide details to the type of email you would like to send.
+ We also covered the OSI model, SMTP and understood that mainstream services such as Gmail use these protocols for safe and secure email transfers.
+ We also incorporated JWTs, Bcryptjs, UUIDs along with Nodemailer to successfully reset user passwords.
+ Of course, there is a lot more you could do with Nodemailer, this was just one example.
+ I will link the Github repository below: Abdullah-Medium-Demos/demos/Demo05_Nodemailer at main · CodingAbdullah/Abdullah-Medium-Demos A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo05_Nodemailer at main ·… github.
+com And until next time, stay tuned!
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

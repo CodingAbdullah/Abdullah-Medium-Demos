@@ -1,0 +1,96 @@
+Expressless Backend Development: Node.
+js for all the Heavy Lifting Abdullah Muhammad · Follow Published in Stackademic · 6 min read · Aug 21, 2023 -- This article assumes the reader is familiar with JavaScript, React.
+js, and concepts related to back-end development using Express.
+js.
+ Introduction In the very first article, when I covered the MERN stack, we noted that back-end development could be done using Node.
+js.
+ We saw that Express.
+js was a minified framework built on top of Node.
+js enabling faster back-end development.
+ We developed routes and APIs which allowed the front-end server to communicate with the back-end requesting all kinds of information.
+ We did not however, cover Node.
+js in detail.
+ There are several useful core modules built-in which we will cover today.
+ Core Modules When working with Node.
+js, we know we can download packages using the Node Package Manager (npm).
+ However, core modules are already downloaded when a Node environment is initiated using npm init.
+ You can think of these modules as providing basic utility when developing applications.
+ Some of the most common core modules are: http, fs, and path.
+ We are going to focus on these modules today.
+ The http module allows for the building of a back-end server using the createServer() function.
+ Since we are not using Express.
+js, we will need to define all the code needed for request handling inside this function itself.
+ We can filter request types and URLs using the built-in req object which contains all the information related to incoming requests.
+ We can also enable CORS using headers as needed.
+ When sending a response, we can define the content-type and use JSON.
+stringify() to seamlessly pass data back to the client server.
+ The fs module enables easy file handling.
+ Whether it is reading content, writing content, or appending content to a file, all can be done using this module.
+ For every successful API call made to the back-end server, we will incorporate the fs module to log data related to the API call.
+ We will store this data in a special file called API.
+log.
+ This file will reside in the same location as the server.
+js file.
+ The path module provides utility for working with file paths and directories.
+ This module comes handy if you are trying to figure out what the current working directory is or if you are trying to programmatically build a path to store a file and so on.
+ We will incorporate the path module to successfully store the API.
+log in its intended destination.
+ Code Overview You can follow along here by cloning the following repository: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos The directory of concern is: /demos/Demo11_Expressless_Node.
+ The application we are going to be looking at today will be a full-stack application using React for the front-end and Node in its entirety for the back-end.
+ The web application contains four different pages with each requesting API data to be rendered on screen.
+ Each page corresponds to a different request so there are four in total.
+ The four types of requests the back-end server will process are as follows: Type: POST URL: /one-post Type: POST URL: /posts Type: GET URL: /bitcoin-data Type: GET URL: /dual-coin-data The first two make use of the JSON placeholder API which we have looked at in the past.
+ Link to the API here.
+ The last two make use of the CoinGecko Cryptocurrency API which we have also seen previously.
+ Link to API here.
+ Here is the server.
+js file containing all the code necessary for the running and functioning of the node server /backend/server.
+js: Suffice to say, plain Node.
+js makes life hard.
+ Although, there is nothing wrong with working with a back-end fully comprised of Node.
+js, it makes things very cumbersome.
+ Simple tasks that normally take one-two lines of code extend to four-five.
+ The server itself is not connected to a database or incorporating any other type of utility.
+ If it did, you can bet this file grows even longer.
+ When we worked with Express.
+js, the server.
+js file was hardly 100 lines of code.
+ As noted previously, we make use of the req object to determine the type of request and URL the user is requesting data from.
+ We have included scenarios where we handle requests that do not match either criteria.
+ There is also code for appending API data to a file called API.
+log.
+ For data fetching, we are making use of the Axios library and sending this data back to the client after having it processed.
+ At the very end of this file, we instruct the server to listen on port 5000.
+ Here is the sample of the type of data that is stored in the API.
+log file /backend/API.
+log: We will not dive into front-end code as we have covered front-end development extensively in the past.
+ Feel free to look into it if you want to and if you are unfamiliar with it, check out this tutorial here.
+ The front-end will be necessary for the demo.
+ That is all for the code overview!
+ Demo Time!
+ Assuming you have cloned the repository above, you will need the node_modules directory in each server folder containing all the downloaded packages required to run each server correctly.
+ This can be done using npm install.
+ For the back-end, you will need to create the .
+env file stored in the root location of the server folder containing the PORT value.
+ This is the number the back-end server will listen from.
+ Once all this is complete, you are good to go.
+ For this demo, I have the front-end server listen on port 3000 and the back-end server listen on port 5000.
+ Upon launch, you should see the blank home page: If we can navigate to the One Post link in the navbar, you should see the following: Great!
+ If we move on to the next link, you should see the following: With this complete, if we move onto the Bitcoin data section, you should see the following: Note that price and market cap data fluctuate regularly, so the numbers will be different when you are viewing this.
+ All that matters is the format of the page and data.
+ And finally, for multiple coin related data, you should see the following: If you see this data on screen in this format, you have successfully completed this demo.
+ If you check the API.
+log file in the back-end server folder, you should see logs appended to this file containing data related to each of these four requests along with their respective timestamps.
+ Conclusion This concludes the tutorial on using Node.
+js in its entirety for back-end development.
+ We touched on core modules and saw how they immensely helped with back-end development.
+ We also noted that Express.
+js made back-end development much easier as it minified several of the key features required to run a node server.
+ Link to the GitHub repository is below: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com And until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

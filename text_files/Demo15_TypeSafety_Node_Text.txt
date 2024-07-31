@@ -1,0 +1,91 @@
+Enforcing Type Safety for the Back-end using TypeScript and Node.
+js Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Sep 7, 2023 -- This article assumes the reader is familiar with Node.
+js, TypeScript, and implementing a back-end using JavaScript.
+ Introduction In the last tutorial, we covered how we can incorporate TypeScript in React.
+js for efficient and error-free client-side development.
+ This week, we will see how we can incorporate TypeScript for the back-end of a web application.
+ The web application will be the same crypto price tracker application which we have built upon the last two tutorials (using TypeScript and Bootstrap).
+ However, we will turn this web application into a full stack one by incorporating a back-end for it.
+ We will create a Node server and have it make API requests on behalf of the front-end.
+ It is here where we will see TypeScript in action.
+ The front-end codebase for the site will remain the same but instead of requesting data by pointing to the API URLs itself, it will point to the back-end to request this information.
+ The Transition The following diagrams will make it easier to understand where the web application is at right now and where it will be by the end of this tutorial.
+ Here is the current state of things: We mentioned in the last tutorial why we could resort to making API calls in the front-end and that is because these APIs are open and require no authorization.
+ However, for the purposes of understanding TypeScript for back-end development, we could move this component to the back-end and so in the end, this is what the web application will look like: I covered an extensive full stack tutorial so if you find this confusing, you could go through that and this will become very easy to conceptualize.
+ If you are a full stack engineer, this will be a no-brainer.
+ Why do this extra work when we could just get by making API calls in the front-end?
+ For the purposes of this tutorial, I have taken the longer route.
+ But yes, these APIs are free, open, and require no authorization.
+ If this were a real project, we would do away with a back-end.
+ In the end though, we will have a full stack website incorporating TypeScript for both ends of the application and we will see that it does not take anything away from performance.
+ TypeScript for Node.
+js Incorporating TypeScript for the back-end will be very similar to when we used it for the front-end.
+ Remember, TypeScript is a superset language to JavaScript so the same rules apply.
+ When working with the MERN stack model, we are using JavaScript in all aspects of development.
+ This allows us to seamlessly integrate TypeScript for any end of development.
+ Some additional packages and configuration will be required for TypeScript back-end development.
+ But if you have been following along these tutorials, it will be very easy to pick up.
+ Code Overview You can follow along by cloning the following repository: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos The directory of concern is /demos/Demo15_Typescript_Node.
+ We will focus on the back-end as the front-end has not changed at all.
+ When working with Node.
+js, there are some essential modules we will need to install.
+ These include some of which we already have been using such as axios, cors, and express but also some of which relate to TypeScript.
+ The following are what we need: ts-node @types/cors @types/express typescript The ts-node module helps us run TypeScript files directly instead of having them transpiled to JavaScript before running in the Node environment.
+ The @types/cors and @types/express contain TypeScript definitions for the cors and express modules respectively.
+ For this demo, a minimal tsconfig.
+json file can be setup /backend/tsconfig.
+json: If we were to transpile TypeScript files, we would use the current location (rootDir) and place the compiled files in a new directory named dist.
+ All TypeScript files would be included and the node_modules directory would be excluded.
+ We will see that we can bypass all this using the ts-node module.
+ Here is the package.
+json file containing information related to dependencies /backend/package.
+json: You can see we have installed all the dependencies mentioned earlier and in the scripts section, we have added a new command to run the main server.
+ts file.
+ Running npm start in the command line (assuming /backend is the working directory) would be the equivalent to running ts-node server.
+ts.
+ Instead of transpiling the server.
+ts file to JavaScript, we can use the ts-node module and this enables us to directly run the TypeScript file.
+ Here is the main server.
+ts file /backend/server.
+ts: As seen in previous tutorials, not much changes here except for some additional TypeScript features.
+ We have the Node server setup using type safety by assigning it a type of Application.
+ To enable CORS, we need to decide which ports should be enabled for communication.
+ With the help of CorsOptions, we can pass in an array containing these ports.
+ We know the front-end server will run on port 3000 so we assign this as the only source of communication.
+ There are two main API calls we have made in this web application.
+ One for Bitcoin related data and the other for Alt-coin related data (Ethereum or Solana).
+ We have therefore, setup two routes one for handling each of these requests /backend/Route/dataFetchRoute.
+ts: Here again, pretty much the same as before.
+ The difference being we assign a Router type to the router handling the two requests.
+ And finally, here is the main controller file containing the two functions handling each of these requests (bitcoinDataFetch and altCoinDataFetch) /backend/Controller/dataFetchController.
+ts: Not much changes here either except we add type safety to the Request and Response objects.
+ It is here where we are running calls to fetch cryptocurrency data and sending it back to the client.
+ And that is all for the back-end code overview!
+ A quick note, the PricePage component (/frontend/src/Components/PricePage/PricePage.
+tsx) is now pointing to this server for requesting data instead of fetching data itself.
+ This was the change we discussed earlier when transitioning to a full stack application.
+ Feel free to go over it if you like but we will not focus on that.
+ Demo Time!
+ Assuming you have cloned the repository, you can run npm install in each of the server folders (backend and frontend).
+ The front-end server will run on port 3000 and the back-end server will run on port 5000.
+ Open two terminal windows with one /frontend as a working directory and the other /backend as a working directory.
+ Run npm start in each window.
+ Assuming you did everything correctly, you should see the following: Selecting the coin prices section and requesting Ethereum data, you should see the following: Sticking with the same page, selecting Solana should give you the following: Note that cryptocurrency prices fluctuate quite a bit so at the time you run this application, the data you see will be different.
+ And that basically concludes the demo!
+ We verified everything works the same as before except now we have incorporated a back-end to help fetch API data.
+ Conclusion We did a deep dive into using TypeScript with Node.
+js.
+ Building on what was covered in the last tutorial, we seamlessly integrated type safety into the Node Server, Route, and Controller.
+ We looked at key modules related to TypeScript/Node.
+js development such as typescript, @types/cors, @types/express, and the ts-node module which helped expedite the development process.
+ We noted that we can use the tsconfig.
+json file to transpile TypeScript files into JavaScript files but we can bypass this step using the ts-node module.
+ Link to the code repository is below: Abdullah-Medium-Demos/demos/Demo15_Typescript_Node at main · CodingAbdullah/Abdullah-Medium-Demos A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo15_Typescript_Node at main… github.
+com I hope you enjoyed this tutorial and look forward to more in the future.
+ And as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

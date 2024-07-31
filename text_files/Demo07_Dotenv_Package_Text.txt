@@ -1,0 +1,74 @@
+Secure Web Development using the Dotenv Package Abdullah Muhammad · Follow Published in Stackademic · 5 min read · Aug 3, 2023 -- This article assumes the reader is familiar with concepts related to Web Development, JavaScript, and basic security practices.
+ Introduction In previous articles, we briefly touched on environment variables and how they are an integral part of development.
+ These variables are often named to represent the “environment” they are being used in such as Development or Production.
+ Environment variables are used to store different kinds of information to be used inside a project.
+ Often times, they are used to store very sensitive information such as API keys, passwords, secrets, and so on.
+ When working with source code, it is vital to keep track of sensitive information, preventing it from falling into the wrong hands and also preventing any hardcoding of such data into a codebase.
+ We can incorporate the Dotenv library and integrate sensitive information seamlessly into any project.
+ What is Dotenv?
+ It is literally just that, .
+env!
+ A special file where we can store sensitive information such as keys and credentials to be used within a codebase.
+ A global object exists within Node.
+js and is called process.
+env which holds all the environment variables of the environment an application is running in.
+ It is important NOT to commit the .
+env file to any public repository as these secrets can be accessible to anyone.
+ You should instead use this file locally and have it added to a .
+gitignore file to prevent accidental commits.
+ The idea here is to inform developers that these values serve as a placeholder and so for the application to work locally, they will need to add their own credentials in a locally separate .
+env file.
+ Link to the Dotenv library is here.
+ Code Overview You can follow along here by cloning the following repository: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com The main directory of concern is: /demos/Demo07_ENV_Variables.
+ Similar to other demos, we are going to work with a full stack application but with a focus on Dotenv.
+ The web application is a simple one and it contains one front-end component and one back-end route.
+ The front-end component requests the back-end to fetch cryptocurrency data related to a specific ERC20 token using Moralis.
+ Link to the Moralis Docs is here.
+ The front-end component incorporates the Dotenv library by displaying the Port value stored in their .
+env file.
+ Meanwhile, the back-end makes use of the Dotenv library by incorporating the API-Key stored in their .
+env file to make a successful API call: When working with React and environment variables, it is a must to have the prefix, React_App_ in all variables.
+ It is part of the naming convention Dotenv library follows for front-end libraries/frameworks.
+ You must store the .
+env file in the root directory of your folder where the package.
+json file resides.
+ Important to note, using the browser (client-side) to make authenticated API calls is NOT advisable as API-keys can be visible to others.
+ Authenticated API calls should be reserved for the back-end and data should be sent to the front-end.
+ Here is the .
+env file for the front-end: Nothing more is needed here.
+ For the back-end, here is the lone controller handling the API request: At the very top, a reference is made to where the .
+env file resides and we then proceed to use process.
+env to add the values in.
+ The .
+env file resides in the root directory of the back-end folder as well: For security reasons, I have hidden the API key.
+ You will need to add your own API key through Moralis in order to make this application work locally.
+ You must have also noticed that no .
+env files exist within the Github repository and we discussed earlier why that is the case.
+ These files contain very sensitive information and so we do not commit these files.
+ If you notice the .
+gitignore files in each of the server folders, the .
+env file is listed there and that is to inform Git that these files can not be committed to the public repository.
+ Demo!
+ Now we are done with the code overview, it is time for a verryy quick demo!
+ Remember, you will need to create your own .
+env files with the keys defined above with values of your own (sign up with Moralis for the API key, add port values, and so on).
+ Due to size, the node_modules directories were not committed so you will need to run npm install in each of the server folders to download the necessary packages in order to run each server locally.
+ The back-end server should run on Port 5000 (provided you assign this as the port value in your .
+env file) and the front-end server should run by default on Port 3000.
+ If done correctly, you should see the following: That is all!
+ You can see the front-end component incorporating the Dotenv library by displaying the Port number stored within its .
+env file.
+ The back-end uses the .
+env file for the API key and makes a successful API call and sends the data back to the front-end.
+ The ERC20 token data is being displayed correctly with its name, current USD price, and smart contract address.
+ Conclusion We have, in previous demos, briefly looked at the Dotenv library.
+ However, it is important to fully understand the importance of it and how to best use it for development purposes.
+ Security is a very important part of software development and so therefore, one must know how to handle the many sensitive pieces of information needed to successfully run an application.
+ Link to the Github repository is below: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com And as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+

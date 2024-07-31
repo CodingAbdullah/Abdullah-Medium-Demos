@@ -1,0 +1,116 @@
+Integrating Bootstrap with React for Faster Development Abdullah Muhammad · Follow Published in Stackademic · 8 min read · Aug 30, 2023 This article assumes the reader is familiar with HTML, CSS, JavaScript, and the front-end library, React.
+js.
+ Introduction Throughout all of the demos we have covered so far, we have rarely discussed HTML and CSS.
+ HTML makes sense because that is the first and foremost language you need to learn when it comes to web development.
+ Without it, there is no point of discussion.
+ But what about styling?
+ Looking through each of the demo codebases, I have not written much CSS at all.
+ In fact, if you take away all of the in-line styles I have written, there is literally zero.
+ Yet, all you see are nicely styled components on screen with accurate colour schemes, fonts, and so on.
+ How is this possible?
+ Well, I have been using Bootstrap for styling and today we will be covering this beautiful front-end framework in detail.
+ An Out-of-the-Box Approach to CSS Styling Like many JavaScript frameworks, whose primary focus is to expedite the development process, styling frameworks exist which help speed up the look and feel aspect of a web application.
+ You still need to know CSS to some degree to understand what you are doing but a framework such as Bootstrap really speeds up the design process.
+ There is a lot to know when it comes to CSS styling such as the box model, flexbox, colouring, tagging, and overall styling.
+ A considerable amount of time can be spent on styling components alone.
+ Bootstrap offers a grid system, colours, components, and the ability to customize styles using Sass (we will not cover Sass in this demo).
+ We will at each of these features in detail during the code overview and demo sessions.
+ More information on what Bootstrap has to offer can be found here.
+ Bootstrap Installation There are two ways you can incorporate Bootstrap in a React project: NPM CDN — Content Delivery Network When we covered NPM in the last demo, we saw how we can integrate third-party packages into the codebase.
+ Bootstrap is no different and you can use NPM to install the package directly into your React project.
+ Another way you can integrate Bootstrap is using the Content Delivery Network or CDN for short.
+ Wait, what is a CDN?
+ CDN is a geographically distributed group of servers that work together to provide fast delivery of Internet content.
+ Rather than downloading Bootstrap into the project, we rely on the internet to access its features instead.
+ We will see in the code overview where we incorporate the CDN.
+ For more information on installation, you can view the official documentation here.
+ Code Overview You can follow along by cloning the following repository: GitHub - CodingAbdullah/Abdullah-Medium-Demos: A repository containing code for demos published in… A repository containing code for demos published in Medium - GitHub - CodingAbdullah/Abdullah-Medium-Demos: A… github.
+com The directory of concern is: Demo13_Bootstrap_React.
+ The web application fetches and displays cryptocurrency data related to Bitcoin and a choice between Ethereum or Solana.
+ Before we can dive into anything related to Bootstrap, we must allow the React project to access Bootstrap via CDN.
+ It is recommended to work with the latest version of the framework for ease of use.
+ We simply copy in the CDN links found here for CSS and JavaScript and add them to the index.
+html file of the React project.
+ We can view the index.
+html here /frontend/public/index.
+html: Note the <link> and <script> tags inside the HTML file.
+ This enables us to use the built-in Bootstrap CSS classes as well as their intended behaviour anywhere inside the project.
+ That is all!
+ Bootstrap Components As mentioned earlier, Bootstrap offers styled, out-of-the-box components ready for use.
+ We can use React components and wrap these Bootstrap components into a customized version of what we like.
+ There are a ton of components Bootstrap offers.
+ Some of what we will focus on today are the following: Navbar, Card, Button, Badge, Alert, Form, and Select.
+ Navbars are pretty straightforward.
+ They sit at the top of most web pages and provide useful links and information to users.
+ Here is the Bootstrap Navbar wrapped into a React component /frontend/src/Components/Navbar/Navbar.
+jsx: For simplicity, the React component itself is named Navbar and that is all there is to it.
+ Lots of built-in CSS classes are being utilized here.
+ I have only added a couple of in-line styles, that is all.
+ Documentation on Bootstrap navbars can view be found here.
+ Alerts are commonplace in a web application so it is no surprise that Bootstrap has their own Alert component.
+ Here is the Bootstrap Alert wrapped into a React component /frontend/src/Components/Alert/Alert.
+jsx: Again, utilizing the built-in Bootstrap CSS classes, we can effectively incorporate all the necessary styles for building an alert.
+ We simply add information and features to customize it.
+ Documentation related to Bootstrap alerts can be found here.
+ Badges are small, compact, and very useful components.
+ Bootstrap offers a Badge component of their own.
+ Here is the React component integrating the Badge component /frontend/src/Components/Badge/Badge.
+jsx: Note how we are using a template string to dynamically add in the CSS class of choice.
+ Rather than having to conditionally render each type, we can simply incorporate it by adding all the CSS classes via template string.
+ This is also a good place to touch on colouring.
+ Bootstrap has a set of colour themes that apply to all of their components.
+ These too, are built-in CSS classes which represent different types of colours.
+ Bootstrap Colour CSS Classes The following are the CSS classes pertaining to colours: primary — blue secondary — grey success — green danger — red warning — yellow info — sky blue light — white dark — black Wherever we have a Bootstrap component, we can simply follow the documentation and attach any of these CSS classes above for the requested colour.
+ The type property in the Badge component actually represents one of these colours.
+ So depending on which one was passed as a prop, that will be the colour of that particular Badge component.
+ Documentation on Bootstrap badges can be found here.
+ Alright, back to Bootstrap Components Cards are lightweight, informative components that can be sprinkled on a web page.
+ Here is the Bootstrap Card component wrapped into a React component /frontend/src/Components/CoinPriceCard/CoinPriceCard.
+jsx: We are making use of the custom Badge component inside the CoinPriceCard component.
+ We could have added the raw code needed to create a Badge component here but by creating a separation of concerns, we have made the codebase more modular and clean to read.
+ Note the prop type values being passed into the Badge components.
+ They are strings values representing the Bootstrap colour classes.
+ The art of customized Bootstrap React components, it does not get much better than that!
+ Documentation on Bootstrap cards can be found here.
+ And finally, here is the main component handling all the requesting and displaying of data.
+ It integrates the Bootstrap form, select, and button components /frontend/src/Components/PricePage/PricePage.
+jsx: We are conditionally rendering data upon form submission and utilizing the custom built CoinPriceCard component by passing in data via props.
+ The form, select, and button components are essentially the same but the only differentiating factor are the Bootstrap CSS classes used to build them.
+ We are also using the Alert component built earlier to notify the user of a successful data request.
+ Although, this is not a component, we are integrating a Bootstrap layout known as the Grid System to layout the CoinPriceCard components.
+ What is the Bootstrap Grid System?
+ Bootstrap Grid System It is a convenient way of laying out components.
+ You can have as many rows as you like, but the columns can be split into at most, 12 parts.
+ You can follow a uniform pattern such as 2x6, 3x4, 4x3, 12x1 or make certain columns wider than others.
+ A <div> container wraps the grid and within it are x number of <div> tags with each representing a row and within them are x number of <div> tags with each representing a column.
+ Bootstrap will automatically configure spacing by dividing the number of <div> tags within a row by 12.
+ Additional CSS classes can be added to the <div> tags to further customize spacing.
+ In the PricePage component, there are two CoinPriceCard components to be rendered and we are using a uniform 2x6 format to display them.
+ Documentation on the Bootstrap button, form, select components, and Grid System can be found by clicking the links below: Button Form Select Grid System That is all there is to the code overview!
+ Demo Time!
+ Alright, now it is time for the demo!
+ For this web application, there is no back-end.
+ We are making API requests to fetch data on the client-side and we can do that as these APIs are open and require no authorization.
+ We will use the default port 3000.
+ Assuming you have cloned the repository from above, running npm start with /Demo13_Bootstrap_React/frontend as the present working directory, you should see the following: Navigating to the coin prices option and selecting the Ethereum option, you should see the following: Notice the badge colour representing the 24 hour percentage change.
+ Recall that we dynamically rendered the colour class for the Badge component inside the CoinPriceCard component.
+ The colour should be of type danger if the value was negative and type success if the value was positive.
+ At the time of this writing, they are negative so you see red badges.
+ But maybe when you are running this application, you will see green badges or perhaps, a mix of the two.
+ Crypto prices fluctuate quite a bit :) If you move on and select the Solana option, you should see the following: That is pretty much it for the demo.
+ Note how clean and sleek the web application looks.
+ Colouring to the alert, badge, and button components are applied correctly.
+ The card components are organized neatly using a grid and render coin data as requested.
+ We pretty much did all of this using built-in Bootstrap features and nothing else.
+ Conclusion We covered Bootstrap quite extensively in this tutorial.
+ We made use of a handful of features, barely scratching the surface, and had a pretty neat site up and running.
+ Combining React with Bootstrap can really speed up the development process and should be the go-to option if you comfortable working with React.
+ Links to the GitHub repository and the official Bootstrap site are below: Abdullah-Medium-Demos/demos/Demo13_Bootstrap_React/frontend at main ·… A repository containing code for demos published in Medium … github.
+com Bootstrap Powerful, extensible, and feature-packed frontend toolkit.
+ Build and customize with Sass, utilize prebuilt grid system… getbootstrap.
+com I hope you enjoyed this tutorial and as always, until next time, this is Abdullah signing off.
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+
