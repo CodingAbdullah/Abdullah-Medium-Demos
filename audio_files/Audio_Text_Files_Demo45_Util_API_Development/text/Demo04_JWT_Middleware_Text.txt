@@ -1,0 +1,169 @@
+JWT Authentication, Protected Routes, and Express Middleware Abdullah Muhammad · Follow Published in Stackademic · 14 min read · Jul 22, 2023 -- This article assumes the reader has a good understanding of best security practices, MERN stack, Mongoose library, and global state container libraries such as Redux.
+ Introduction Often times in web applications, we would like to authenticate users that want to access a site and only allow those authenticated to perform certain actions.
+ We would like to restrict certain actions to be taken freely and enhance the security of the application.
+ In addition, we know that data protection is key so users should only be able to freely view and change data pertaining to them and only allow a select few to be able to view and change anything else (administrators, owners, etc.
+).
+ But how do we manage all of these things?
+ How do we keep track of who is logged in?
+ How do we make sure the user logged in is able to add, change, and view data related to them?
+ For security reasons, there should be a timer in place that logs off a user after a certain time and so how do we implement that?
+ When we covered React-Redux, we saw how global state could be used on the client side.
+ A common use case we looked at was authentication and saw how using the global authentication state allowed users to view select pages, perform actions, and so on.
+ Back-end Authentication This week, we will cover the back-end side of things and see how the server side processes: authentication, blocking certain requests using middleware, and go into detail what JWTs are and how they are integral to the entire authentication workflow.
+ Ultimately, it is the back-end that decides whether a user is authenticated.
+ Using the MERN stack model and building on the client-server architecture, we use the data the client provides in the back-end and check against a database to make sure the user is authenticated before proceeding any further.
+ Remember, authentication should always be done server side for security reasons as sensitive data can leak through a browser on the web.
+ This is in essence what we will cover: So what is a JWT?
+ Pronounced “jot”, it stands for JSON Web Token and it is an integral part of how authentication works.
+ In short, JWTs are essentially an open standard for creating data with a signature which has a payload stored as JSON.
+ The token signatures can be done with either a private secret or a public/private key.
+ In the demo, we will use a private secret to sign JWTs in the back-end and use the HS256 algorithm.
+ JWTs have three parts: header, payload, and signature.
+ In fact, we can see this nice visual on the official JWT site.
+ You can see the encoded part on the left.
+ This is the actual JWT which is basically a long string with a bunch of letters, numbers and symbols.
+ jwt.
+io also lets us know if the token is verified or not as any manipulation to the string will invalidate it.
+ We also see the three components we talked about to the right: header, payload, and signature.
+ The encoded part contains each of these three parts as the visual nicely details in colour-coded format.
+ So, now what?
+ What will a bunch of strings do for us?
+ As we saw briefly in the React-Redux demo, we signed and sent back to the client, a JWT token with user information as the payload upon a successful login request.
+ We then stored this token along with user information on the client side in the global Redux store.
+ JWTs can be thought of as ID cards.
+ They represent a particular individual codifying their most important information and can be verified to ensure they are valid.
+ The tokens can store information such as emails as payload.
+ We can then use this token to request the back-end server to let us perform certain actions that only logged in users can do.
+ The back-end will first verify the token (valid string, expiry, etc.
+), decode information of this token using the secret used to encode it, pass this decoded information to another function which ultimately processes the request and sends us back a response.
+ The request in question can be anything such as fetching user data, data to be inserted into a database, and so on.
+ But wait, this seems like a multi-step process.
+ How does the back-end server accomplish this?
+ Protected Routes and Express Middleware Up to now, we have covered Express routes that ensure a single function processes the request-response loop.
+ But we briefly touched in the first demo, how the request-response loop can contain several intermediary functions known as middleware which process the request before ultimately sending back a response.
+ That is exactly how we will solve the multi-step problem above.
+ We will have a middleware function that will process the request first by solving authentication before finally sending the request to the actual function that processes the request.
+ This is how we protect routes.
+ Protected routes are those routes that exist which can only be accessed when certain conditions are met.
+ If, for whatever reason, authentication fails when it is being processed in the middleware, we will immediately send back a response rejecting the request.
+ Recall that HTTP calls are stateless and once a response is sent back at any time in a request-response loop, no further action can be taken.
+ The request will never be able to reach the desired endpoint without first passing through authentication and that is how a route is protected.
+ All of this will make sense when we go through the project and demo :) Code Overview The project for this demo is a User Posts site.
+ A web application which allows users to register, login, create, and view posts which they can make.
+ Link to the repository is here and you can clone it locally: https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos The directory of concern is Demo04_JSON_Express_Middleware.
+ The project makes use of two Models: PostUser and Post.
+ The former tracks the users registered along with their credentials and the latter keeps track of posts made by users.
+ The back-end consists of some basic routes for register and login as well as protected routes for creating and viewing posts.
+ This makes sense because only logged in users can and should create/view their posts.
+ The following screens are the basic/protected routes + two models used for this project (/backend): If you have been following along the previous demos, this is self-explanatory.
+ Note in particular, the PostRoute.
+js file, which passes in an additional parameter containing what we have talked about, the authentication middleware.
+ Express routers can take in any number of these functions.
+ This also determines the order in which the request gets processed.
+ When the request is first made, it is passed to this auth middleware before being passed to the controller function using a special operator we will talk about momentarily.
+ Here is the auth middleware function below (/backend/Middleware/auth.
+js): Functions that deal with request and response have two arguments and we designate them as req and res for convenience.
+ However, you will notice a third one in the function above and that is next.
+ This is a function that must be called to pass control to the next middleware function in the request-response loop.
+ It is optional, not mandatory.
+ That is all, it is that simple.
+ So, when the authentication process passes, we call next() and this will pass the req object to one of the functions in the PostController file depending on which endpoint the client requested (/create-post or /view-post).
+ You can see we are verifying the JWT, decoding the payload and adding a piece of data to the req object which is then passed to the next function.
+ This is the email payload which was encoded when the JWT was signed the first time.
+ If all checks fail (token does not exist, token is expired/invalid, etc.
+), we send back a response and this concludes the request-response loop.
+ A npm package known as jsonwebtoken makes life easy dealing with JWTs as it contains ready-made functions such as verify and sign.
+ Link to the jsonwebtoken npm package here.
+ The register function should be easy to navigate through.
+ We will look at the two controller files but will focus on the login for PostUser Controller and create/view posts for Post Controller: (/backend/Controller) Pretty simple stuff here.
+ We traverse through the PostUser collection in MongoDB to find a user with the particular email.
+ If one exists, we proceed to check the password against the hashed password stored in the database using the bcryptjs library.
+ If the comparison is true, we proceed to sign a JWT using a special secret and email as payload.
+ We set an expiry of 1 hour before it comes invalid.
+ Anything else is essentially an error of some kind.
+ Here is the createPost() function inside the Post Controller file (/backend/Controller): This too, should be self-explanatory for the most part.
+ We are making use of another library here called UUID which stands for: Universally Unique Identifier.
+ In short, it allows you to create a random ID.
+ We generate one using version 4 and dedicate it as a Post ID for a new post a user makes.
+ Note also, we have access to the user (email) attribute in the req body and that is because it was set in the auth middleware before control was sent to this function.
+ You can be certain of this because control would only reach here if authentication succeeded and if it did succeed, the JWT payload would be decoded containing the email.
+ As we saw in the auth middleware, we attach that to the req object.
+ We proceed to fetch the current number of posts of the user and update their count after saving the new post into the Post collection.
+ Everything else results in an error.
+ Similar to createPost(), we have the viewPost() function which handles the other protected route: Again, very simple to understand.
+ We have access to the user (email) attribute as control here would only reach if auth middleware succeeded.
+ We find all the posts belonging to this particular user and send that back as a response.
+ Anything else is essentially an error.
+ Below is the server.
+js file containing all the code needed to activate routes, listen to PORT 5000, and connect to MongoDB (/backend/server.
+js): Phew!
+ That was a lot to cover.
+ But if you are familiar with the MERN stack or are already a back-end engineer, most of this should be self-explanatory.
+ Front-end Overview Not much needs to be covered on the front-end side of things.
+ We are using React with Redux for state management so there are some things we will go over.
+ If you completed the React-Redux demo or are already a React-Redux master, this should be easy.
+ Inside the Redux folder, we are making use of one reducer containing the following things (/frontend/src/redux/reducers/authReducer.
+js): As you can see, we have two thunk functions dealing with login and logout.
+ We are making a request to the back-end using these functions known as actions.
+ The following are the initial state and authSlice snippets which handle the auth global state.
+ This is where the JWT is stored and is accessible globally across the React application: The thunk functions resolve to either pending, fulfilled, and rejected.
+ The extraReducers() function handles the global state accordingly.
+ Some React components conditionally render elements based on login and logout.
+ For instance, the Navbar which uses the useSelector() hook to check and see if a user is logged in.
+ Other components such as the RegisterPage, CreatePostPage, ViewPostPage, LoginPage and LogoutPage will redirect users depending on whether they are logged in or logged out.
+ Here is the CreatePostPage (/frontend/Components/CreatePostPage): We check to see a JWT exists.
+ If it does not, we redirect the user to home.
+ If it does, we process the user request to creating a post by setting the header object and adding the Authorization attribute.
+ We give it a value of: Bearer <JWT>, that is all.
+ This is the attribute the auth middleware in the back-end will process to verify the token before proceeding any further.
+ Similarly, here is the ViewPostPage (/frontend/Components/ViewPostPage): Like CreatePostPage, we check to see if a JWT exists.
+ If so, we make a call to the back-end using the Authorization header to fetch posts.
+ If not, we redirect the user to home.
+ Here is the LoginPage (/frontend/Components/LoginPage): Again, like the other components, we first check to see if a user is already logged in.
+ If so, we redirect to home and if not, we allow the user to make a login request.
+ We dispatch the login() action (from the redux file above) and pass the email and password as an object.
+ If successful, we redirect to home and if not, we throw an alert notifying the user of an invalid login.
+ And finally, the LogoutPage (/frontend/Components/LogoutPage): Here, we redirect user if they are already logged out and if not, we dispatch the logout() action which should clear local storage and the Redux global store containing the JWT.
+ We will not touch on Register, Navbar, and Alert components as it should be self-explanatory working with React-Redux.
+ Demo Time!
+ For this demo, we will be using MongoDB Atlas.
+ You can sign up for a free cluster, I will be using my existing cluster.
+ You can clone the repository (link in the code overview section above) and install the necessary packages needed to run each of the servers.
+ Run npm install inside each server folder.
+ Also make sure to add your own .
+env file to the back-end containing credentials for the database connection, JWT secret, and Node server port number where the back-end server will be running.
+ We will be using the default Port 3000 to connect the front-end.
+ On different terminal windows, run the two different servers.
+ If done correctly, you should get the following: First, we will register a user to use the posts site.
+ Click register and fill out the details.
+ If done correctly, you should get something like this: And indeed, here is the user added to the PostUser collection: Now login using the new user.
+ Head over to the login page and fill out the details.
+ If done correctly, you should be redirected to home and the logout, create/view post navbar options should be enabled: The React application is using the global Redux store to ensure these options are available to us as the JWT issued by the back-end is stored there.
+ Interestingly, if you had opened this application in Chrome, you can do the following: More Tools > Developer Tools > Top right click the >> symbol > Application > Local Storage on the left > http://localhost:3000 If done correctly, you should see this: If we head over to jwt.
+io and copy paste this long string into the encoded section, we will find the following: The payload of the JWT has been decoded and contains the same email used to login.
+ It has other attributes as well such as time of expiry and so on.
+ This is JWT in action and this is how the client will access protected routes in the back-end.
+ In summary: The client will send a request with data along with this token under the Authorization header to the back-end where the auth middleware will verify, decode and extract the email payload.
+ This will be attached to the request body and control will be passed over to the controller functions that will know what to do with what account using this email attribute.
+ Now, we will create a new post using this newly created user.
+ If done correctly, you should see the following: If we head over to MongoDB, we should see the Post collection containing the following: Post collection has a new document inserted into it containing the new post.
+ If you check the logged in user inside your PostUser collection you should find this: The newly created user should have their numberOfPosts attribute updated and the updatedAt attribute should reflect the new timestamp.
+ Now it is time to view posts.
+ Head over to the View Posts section and you should see a table containing all the posts made by the user: That is all!
+ We proceed to logout and should see the local storage clear out and the default navbar options re-enabled: This concludes the demo!
+ Conclusion That was a lot to unpack!
+ Authentication is a very important part of building any web application and it is crucial to getting it right.
+ We saw in detail what JWTs are and how/where/when they can used.
+ We covered Express middleware and their role in protecting routes.
+ We built on top of what we already learned about the MERN stack, React-Redux, and MongoDB.
+ This really is quite extensive.
+ This web application has a basic setup and you can starting with implementing the remaining CRUD operations for the Post collection or maybe adding additional features to the site.
+ You can also try creating a new user altogether or maybe adding new posts to an existing one and dive deeper into functionality, really is up to you!
+ That is all, the link to the Github code is here: Abdullah-Medium-Demos/demos/Demo04_JSON_Express_Middleware at main ·… A repository containing code for demos published in Medium - Abdullah-Medium-Demos/demos/Demo04_JSON_Express_Middleware… github.
+com Looking forward to more tutorials in the future!
+ Thank you!
+ Thank you for reading until the end.
+ Please consider following the writer and this publication.
+ Visit Stackademic to find out more about how we are democratizing free programming education around the world.
+
