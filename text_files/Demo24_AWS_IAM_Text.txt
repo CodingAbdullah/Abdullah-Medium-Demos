@@ -1,0 +1,155 @@
+AWS IAM and the AWS SDK for Programmatic Access and Cloud Development Abdullah Muhammad · Follow Published in Stackademic · 14 min read · Oct 19, 2023 This article assumes the reader has basic understanding of AWS and has an account setup.
+ Programming experience in any language will compliment working with the AWS SDK.
+ **This tutorial builds on foundational knowledge of the AWS S3 service.
+ If you are not familiar with it or unsure how to set it up and use it, you should complete this tutorial before proceeding to this one.
+** Introduction We briefly touched on some AWS services such as using AWS Amplify for front-end deployment and using AWS S3 for object storage and static hosting.
+ In this and the next series of tutorials, we will be exploring AWS services in great detail and incorporate programming knowledge to develop awesome things.
+ Today, the main focus will be on two things: AWS IAM (Identity and Access Management) AWS SDK (Software Development Kit) These two services are important when using AWS for cloud development and it is crucial to understand what they are and how we can use them.
+ AWS IAM is a service that allows developers to manage users, permissions, policies, and roles.
+ It helps scope what users can do and provides the identity with an access key and secret key for CLI and programmatic access.
+ In this tutorial, we will create a new IAM user and assign it appropriate permissions which will enable it to programmatically add and remove objects to an AWS S3 bucket using the AWS SDK.
+ Here is the lay of the land so to speak: We will see how to do all this in detail and follow best security practices.
+ Moving along, the AWS SDK allows users to develop, interact, and deploy resources across AWS programmatically.
+ AWS SDK supports common languages for development such as Java, JavaScript/Node.
+js, .
+NET, PHP, and Python.
+ If you have been working with other frameworks aside from MERN, this can be very flexible for you.
+ You are free to choose and we will explore how to use the SDK in detail as well.
+ For each service within the AWS SDK, an initial configuration is required such as the access key, secret key, and region to specify who is going to work with the service (assuming the user has been granted the appropriate permissions to do so) and where do they want them to be working with it.
+ AWS IAM (Identity and Access Management) AWS IAM is a key cog of AWS cloud infrastructure.
+ It is important to understand what it is, why we use it, and how to use it.
+ In AWS, there are two types of users: Root User — Usually, the user account with which you sign up IAM User — User that is assigned to your account (working under your account) that has designated permissions to complete assigned work Root users can do anything and control everything within an account.
+ It is important to only allow yourself or people you trust access to this account.
+ For people working within your account, it is best security practice for them to work as an IAM user instead.
+ “So where does AWS IAM come into play?
+” AWS IAM is a crucial service for managing identities, assigning permissions, policies, and roles.
+ We will cover all this in the subsequent paragraphs.
+ Creating an AWS IAM User Assuming you have an AWS account and are familiar with the management console, you can navigate to AWS IAM like this: Selecting the first service (IAM), you should see a dashboard containing information related to the users, user groups, roles, policies, etc.
+ In my case, I already have three users in place.
+ We will now walkthrough creating a new IAM user.
+ Select Users > Create user: On the create user panel assign a name for your managed identity: Proceed Next.
+ You should see three options for assigning permissions to the identity: User groups allow developers to create groups and assigned policies to them.
+ After that, users can be added to these groups and they will automatically inherit the permissions added to the group.
+ This is a good security practice as users requiring common permissions can be grouped together and it is time saving as you will not have to assign individual permissions to each user.
+ “Wait, what are permissions?
+” Permissions are rules that define what a user can or cannot do.
+ Policies combine permissions and these can be assigned to a user specifying what they can and cannot do.
+ AWS follows the least privilege access principle which is an important security principle.
+ Least privilege access is a principle that states that users should granted sufficient permissions to complete a required task and nothing more than that.
+ This is to ensure the safety and security of the overall infrastructure of your organization and ensure that information related to the organization is not being exposed or tampered in any way.
+ If you have a team of junior developers, they should be assigned permissions that scope to their needs and nothing more.
+ It prevents accidental mishaps and ensures safety of critical information.
+ So in short, the following diagram illustrates a permission and policy: Creating and Assigning a Custom AWS IAM Policy As a second option, we can copy over existing permissions being used and add them from an existing user and as a third option, we can attach a new policy to the user by using an existing, pre-defined one by AWS or by creating a custom policy.
+ We will create and attach a custom policy.
+ To proceed, select Attach policies directly.
+ Note that multiple policies can be attached to a user.
+ If you have clashes when combining policies, for instance, one policy allows a certain action through a permission and another denies that action through a permission, deny overrides allow.
+ Since we will be working with an S3 bucket, we will go ahead and create a custom policy and select permissions to add related to the AWS S3 service.
+ After that, we will attach that policy to the IAM user.
+ Select Create policy: A new window will open with the following options.
+ Add AWS S3 as the service we will be working with: Remember, a policy is a collection of permissions and a permission defines what action is to be allowed/denied.
+ We can select which actions (permissions to allow) by selecting the boxes.
+ In this case, since we will be working with only adding and removing objects, we can simply check Write and check the DeleteObject and PutObject options.
+ Under the resources section, for the ARNs, check All and that will basically complete the policy definition section.
+ Proceed Next.
+ As the final step, assign a name to the policy and a description.
+ Once that is complete, select Create policy: You will be redirected to the policies dashboard and if you search the name of your newly created policy, you should see this: You will also notice that it is not AWS managed (not built-in), but rather Customer managed.
+ There are AWS managed policies that will allow these set of permissions, but for a walkthrough, we created a custom one.
+ We have also followed least privilege access as the user will only need to access the AWS S3 bucket to add and remove objects.
+ We now need to attach this newly created custom policy to the IAM user.
+ Attaching an IAM Policy to IAM User Navigate back to the window where you were creating the IAM user and refresh the screen.
+ You will need to re-enter the name of the IAM user you were creating and select Next.
+ After that, search and select the newly created policy and attach it: Proceed Next.
+ Review and create the new user: If done correctly, you will be notified and redirected to the IAM users dashboard.
+ Here, select the new user and you will see details related to it: Now that an IAM user has been created and assigned appropriate scoped permissions, we can create credentials which can be used to grant programmatic access to AWS services.
+ Create an Access Key and Secret Key for Programmatic Access Remember, we mentioned earlier that programmatic access to AWS services using the CLI or SDK will require the use of an IAM user and their access key and secret key.
+ So on the top right, select create access key.
+ You will be notified of recommendations just ignore those for now.
+ Since we will be working with the AWS SDK locally, select Local Code and select Next: As step 2, you will be prompted for adding any descriptive tags.
+ For now, we will leave this part out and select Create access key: Once you successfully create an access key, you will be notified and given recommendations on how to best handle it.
+ Following best security practices, you should keep the following in mind: Enable least privilege access — Keys should be restrictive and used by IAM users with appropriate scoped permissions Rotate access keys — New keys should be created from time to time to prevent tampering Disable keys or Delete keys — Keys that are no longer required should be removed On this page, you will notice the show secret key option.
+ When a new access key is created, you will be given this one-time opportunity to copy over the secret key.
+ Once you proceed to complete, you will not be able to view this credential again so store it some place safe.
+ You can copy this over to a notepad file for now.
+ You will need to add this to the .
+env file later in the back-end.
+ If you happen to lose it, you will need to delete the access key and create a new one and copy over the secret key.
+ You can create as many access keys as you like, but it is best security practice to limit the number of keys that a user requires and only assign them enough permissions to complete required tasks.
+ At this point, you will be redirected to the IAM user summary page and notice the newly created access key attached to their name.
+ The status of the key and when it was last used will also be mentioned there: AWS IAM Roles Although we will not be working with them, an IAM role is an identity that developers can create that contain certain permissions that can be used by users to perform tasks.
+ It is meant for short durations.
+ In the case of programmatic access, we want longer term access as we are working with a web application.
+ Three ways of working with AWS Services When working with AWS Services, there are three ways one can access them: AWS Management Console — One-stop shop for everything AWS just mere clicks away.
+ Requires login credentials to either root user or IAM user AWS CLI — Programmatic access to AWS services through the use of commands.
+ Requires access key and secret key of an IAM user AWS SDK — Programmatic access to AWS services through the use of application code in any languages supported by AWS.
+ Requires access key and secret key of an IAM user In each of these three cases, what is actually happening behind the scenes is that an AWS API is being used to provision services.
+ It may seem like actions such as managing services through the console, sending commands through the CLI, and using application code through the SDK are actions which directly create or manipulate an AWS service, that is not true.
+ Behind the scenes, for every action, an API call is made to AWS and that handles what is to take place.
+ AWS SDK (Software Development Kit) AWS SDK is a rich developer tool which allows users to develop and manage applications on AWS.
+ Many different programming languages are supported and since we are working with a React-Node application, it makes sense to work with the Node.
+js programming language.
+ You can simply use it by running npm install aws-sdk and this will install the AWS SDK package in your working environment.
+ The SDK contains functions related to AWS services which enable programmatic actions that can alternatively be done through the console.
+ In order to make use of anything related to the SDK, you will need to specify configuration which includes the access key and secret key of the IAM user (this will ensure authenticity and scope what the user can/cannot do based on their permissions), and the AWS region where the service will be used.
+ For more information related to the SDK and its features, you can visit their official docs here.
+ The official npm docs are here.
+ Code Overview You can follow along be cloning this repository.
+ The directory of concern is /demos/Demo24_AWS_IAM_JS_SDK.
+ Within your AWS account, you will need to setup a public AWS S3 bucket.
+ If you are unsure of how to do that, follow along here.
+ Remember, you will need to setup a S3 bucket policy as well as a CORS policy in order to successfully access the bucket.
+ The tutorial link covers that as well.
+ We will primarily focus on the back-end for this overview as that is where the AWS SDK is being utilized.
+ The web application is a simple one.
+ It allows a user to upload a picture and delete it from an AWS S3 bucket.
+ There is only one controller file in the back-end which takes care of this task /backend/Controller/PhotoController.
+js: As you can see, we are making use of the AWS SDK and two functions as it pertains to AWS S3.
+ We specify the configuration by passing credentials stored using dotenv.
+ We follow that up by instantiating a new object which represents the S3 bucket we will be working with.
+ In the uploadPhotoController function, we create a stream of data using the built-in fs module and pass that file data into a function provided by the aws-sdk package.
+ We use the uploadObject() function from the aws-sdk package which allows for the insertion of objects.
+ We need to specify the bucket name, key for the object (uniquely done using the uuid package), and the data of the object to be inserted.
+ A call back function lets us know whether the operation was successful and we pass this information back to the client.
+ Similarly, in the deletePhotoController function, we use the deleteObject() from the aws-sdk package to seamlessly delete a stored object within the S3 bucket.
+ We pass in the name of the bucket we like to access and key of the object that we would like to remove.
+ The key of the object is provided by the client.
+ A call back function lets us know whether the operation was successful and we pass this information back to the client.
+ That is about it!
+ There are other actions which can be performed on a S3 bucket such as fetching an object.
+ A function inside the aws-sdk package maps to this as well.
+ This is how we can make use of any AWS service programmatically.
+ Assuming the service is configured correctly and the user has the correct permissions, we can simply pass in their credentials and this will allow us to work with any enabled services and perform enabled actions on them.
+ You can think of the access keys and secret keys as coded identities.
+ Demo Time!
+ We now proceed with the demo, assuming you have been following along, this should be straight forward.
+ Make sure you have the correct dependencies installed in each server folder by running npm install and make sure to add a .
+env file to the back-end containing your AWS IAM credentials.
+ Your .
+env file should look like this: The region must be the same region where your S3 bucket resides.
+ With all this out of the way, start the front-end server.
+ You should see the following web page: Navigating to the upload picture section, you should see the following: All you need to do is click the button.
+ The application will make an API call to the back-end and upload a photo.
+ The photo is a sunflower patch and is located here /backend/util/sunflower.
+png.
+ Assuming everything was set up correctly, you should be notified like this: If you head over to the S3 bucket on your AWS console, you should notice a new object stored with a unique identifier as its name and .
+png as its extension: The key we used to upload objects made use of the uuid library.
+ We can see that in action here.
+ You can select the object to evaluate details, but there is not much else to do as we have not even granted retrieval permissions (GET).
+ Copy the id of the object name and head over to the delete photo section of the application.
+ Paste the id into the form: Select the button and if done correctly, you should be notified like this: Head back to your S3 bucket and refresh the page to see the list of bucket objects stored: You should notice that the requested object to be deleted has been removed from the S3 bucket.
+ That concludes the demo!
+ In practicality, users will not be allowed to search any S3 bucket like this.
+ In fact, they will be prohibited and that is not the way to use AWS services, but the purpose of this demo was to show the AWS SDK in action.
+ Conclusion Phew!
+ We covered quite a bit when it came to AWS IAM/SDK and using the SDK to programmatically access an AWS S3 bucket.
+ In summary, we looked at the following: What is an IAM user, how and why we should use them Understanding users, user groups, roles, permissions, policies, etc.
+ Creating access id — security key pairs for an IAM user Best security practices as it pertains to the overall cloud and identity management AWS SDK and how we can grant programmatic access to services using credentials And so much more!
+ Here are the links to the GitHub repository used for this demo and the AWS IAM and SDK docs.
+ I hope you enjoyed this tutorial and look forward to more down the road.
+ As always, until next time, this is Abdullah signing off!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

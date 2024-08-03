@@ -1,0 +1,116 @@
+Your Complete Guide to AWS Elastic Compute Cloud (EC2) Abdullah Muhammad · Follow Published in Stackademic · 9 min read · Jan 25, 2024 -- Covering EC2 instances, types of instances, pricing plans, volumes, connectivity, security, and so much more.
+ Knowledge of cloud service providers will be helpful, but not vital.
+ For a walkthrough and demo of setting up an EC2 instance, please refer to this tutorial before proceeding.
+ Introduction AWS Elastic Compute Cloud or EC2 as it is referred to as, was the first ever service launched by Amazon back in 2006.
+ The ability to make compute power extensible via the cloud has revolutionized the internet.
+ Today, thousands of companies build and host applications using EC2 instances.
+ Surely, new services have launched optimizing the need for compute resources such as ECS for running containers and server less applications using Lambda.
+ But, EC2 remains the standard, fundamental service of AWS which every cloud developer should be comfortable working with.
+ The capabilities of EC2 are boundless.
+ From running web servers, containerized applications, databases, and just about anything else, they are the definition of “cloud computers” or as we say, compute cloud.
+ EC2 is an IaaS (Infrastructure-as-a-Service) offering meaning that it grants the user full control over the underlying infrastructure.
+ This allows for greater flexibility and control when it comes to configuration and setup.
+ In some of the AWS tutorials we have covered, we briefly touched on EC2 for setting up a Nginx web server, but this was merely for demo purposes.
+ Today, we will do a deep dive into EC2 and cover the main aspects of working with this service.
+ EC2 Instance Types AWS offers performance incentives in its offerings.
+ For certain use cases, certain instances provide the necessary compute power to meet expected demand.
+ There are three categories that describe EC2 instance types: Compute Memory Network In total, there are six categorized EC2 instance types that AWS offers.
+ Some of these are well suited for certain situations than others.
+ The six types are as follows: General Purpose — These instances provide a balance of compute, memory, and networking.
+ They are well-equipped to handle a wide variety of demand Compute Optimized — Compute optimized instances are ideal for running applications that require a higher degree of computability.
+ This is achieved through the use of high-performance processors Memory Optimized — Memory optimized instances are a good use case for applications that process large data sets in memory Storage Optimized — Storage optimized instances are optimal for applications that require a high degree of read and write access to large data sets in storage Accelerated Computing — Accelerated computing instances make use of physical hardware (in this case, processors) to help perform arduous tasks such as like calculations as efficient as possible.
+ HPC Computing — High performance computing or HPC as they are called, are instances that are ideal for application workloads related to complex simulations and deep learning.
+ More information on these instance types can be found in the official AWS docs here.
+ Pricing Plans You can start working with EC2 instances for free.
+ The pricing varies in large part, due to the compute range you select when kickstarting an instance.
+ At the time of this writing, the t2.
+micro (t3.
+micro in specific regions) is the free-tier eligible instance and offers free service for 750 hours for each month for one year.
+ We will discuss types and AMIs in a bit, but in general, the following pricing plans are available when working with EC2 instances: Free-Tier — As mentioned earlier, you can set up a Free-tier instance when you use free-tier eligible components (image and type).
+ On-Demand — These instances allow you to pay for usage by hours or by seconds with no term commitments.
+ Reserved — Reserved instances are essentially a contract that can last one year or three years.
+ You pay upfront for usage and are locked into that price.
+ This offering allows for significant discounts when compared to the on-demand pricing plan.
+ Spot —Spot instances rely on the usage of unused capacity within AWS cloud.
+ This offering allows for a whopping 90% discount in pricing when compared to on-demand instances.
+ Savings — Similar to Reserved instances, Savings plans offer a 72% discount in pricing when compared to on-demand instances.
+ The difference here is that you are locked into a contract that is either one year or three years in duration with a set commitment.
+ As you can see, AWS offers quite a bit of flexibility for any budget when it comes to working with EC2 instances.
+ Compute Types and Amazon Machine Images When setting up an EC2 instance, the first thing you are prompted to select is an Amazon Machine Image or AMI for short.
+ You can think of the AMI as the underlying operating system of the virtual server.
+ You can build an EC2 instance using the pre-defined images provided by Amazon or you can build your own custom image (common ones include Linux, Ubuntu, Microsoft Windows, MacOS, RedHat, etc.
+).
+ Search EC2 in AWS Console > EC2 Dashboard > Launch Instances: Building custom images enables you to keep them private or let them be viewed by a select number of AWS users.
+ More information on AMIs can be found in the official docs here.
+ You also have the option of buying your own from a third-party provider on the AWS Marketplace.
+ AWS Marketplace This marketplace is not limited to EC2 images, but also provides services in categories related to machine learning, databases, SaaS (software-as-a-service), devOps, security, storage, and so on.
+ This is your place to look for any custom solutions you think your project could benefit from.
+ Compute Types After you select the AMI, you need to select a compute type: Here, you can choose select options that are free-tier eligible (as described earlier).
+ The following are the different classes of compute types: T2, T3a, T3, T4g, M4, M5a, M5zn, M5n, M5, M6a, M6in, M6i, M6g, Mac, M7a, M7i-flex, M7i, and M7g.
+ We will not discuss each of these in detail, but know that each of these compute types are differentiated based on their processor classifications.
+ More detail on each of these can be found here.
+ You are also free to select the size of the instance as well.
+ In the case of size, we have the following: nano, micro, small, medium, large, xlarge, and 2xlarge.
+ An instance type classification is given in the following format: <compute type>.
+<instance size> So taking the example from earlier, one of the commonly used free-tier eligible instances are of the t2.
+micro variety.
+ EC2 Volumes It is a common and even recommended security practice to create backups for your EC2 instances.
+ The reason for this is that once an EC2 instance is shut down, all data pertaining to it is wiped clean.
+ This is a major problem because EC2 instances may have to be shut down for reasons out of your control (disaster recovery, availability zone shut down, area-wide network issue, etc.
+).
+ AWS offers redundancy through the use of regions and AZs as we discussed in this article.
+ However, you might want to shut down an instance and have the data available to later plug into another instance.
+ We can achieve this with the help of block-level storage.
+ EBS — Elastic Block Store You can think these as the modern-day USBs except that they are completely virtual and portable.
+ EBS is a block-level storage offered by AWS which can be attached to any of your EC2 instances.
+ They are flexible and can have their size dynamically increased.
+ The key thing to note is that their volumes persist even when the EC2 instance is not running.
+ You can attach multiple EBS volumes to a single EC2 instance.
+ However, the EBS volume and instance must belong in the same availability zone.
+ EBS volumes come with the added feature of data encryption as well as snapshots.
+ Snapshots, as the name implies, take a backup of the current in-time data that is stored within an EC2 instance.
+ Snapshots can be used on any EC2 instance to migrate data regardless of availability zone.
+ More information on block-level storage and their internal specifications can be found here.
+ EFS — Elastic File Store Another type of storage offering provided by AWS is EFS or Elastic File Store.
+ This is a fundamental storage system that offers a bit more flexibility than the EBS offering.
+ You can think of EFS as a virtual file storage system which allows you to share data between multiple instances.
+ It offers scalability to meet the demand of handling high workloads (files containing large data).
+ Configuring EFS is very easy and straightforward.
+ The underlying infrastructure is already provisioned for you so you do not need to worry about setting up and maintaining configurations.
+ EFS provides data encryption in two forms: at rest and in transit.
+ Unlike EBS, which resides in a single availability zone, EFS can span across multiple availability zones which makes it highly available.
+ More information on AWS EFS and its internal specifications can be found in the official docs here.
+ EC2 Instance Store Finally, a third storage offering provided by AWS is EC2 Instance Store.
+ Unlike EBS and EFS, EC2 instance store offers temporary block-level storage for your instance.
+ It is ideal for usage where data undergoes frequent changes such as caches and other data.
+ We have not touched on load balancers as of yet, but you can also replicate this temporary storage across all instances.
+ Instance store can only be attached to a running or rebooted instance.
+ Instance store does not persist on an instance that is in stopped, hibernated or terminated state.
+ Any instance store associated with a stopped, hibernated or terminated instance will be erased.
+ These work best to fill short-term needs or when you simply need storage within the lifetime of your EC2 instance.
+ Should you feel that you no longer need an EC2 instance, you will need to offshore/migrate your instance store volume to either an EBS or EFS.
+ You can even use an S3 bucket for object storage (in this case, files or other related data).
+ More information on EC2 instance store can be found here.
+ Networking and Security Another aspect of working with an EC2 instance is deciding its network and security parameters.
+ We covered networking and security in great detail here.
+ When creating an instance, it will be assigned a default VPC, subnet, and default configurations for firewall and SSH traffic.
+ You have the ability to modify all of these according to your infrastructure needs.
+ Key Pair Certificate, SSH, and EC2 Instance Connect An added feature of working with EC2 instances is the ability to securely connect to your instance.
+ You can SSH remotely into it using a key-pair certificate.
+ You can create a new certificate by selecting Create new key pair.
+ You can also access the instance via AWS console.
+ Simply select your instance and continue by selecting Connect.
+ This will open the terminal window of the connected EC2 instance.
+ We have already covered creating an EC2 instance and running the Nginx web server.
+ So we will not be walking through that demo again.
+ This article mainly serves as a complementary piece to that tutorial, tying loose ends so to speak.
+ Conclusion We did a thorough deep dive into EC2 instances and understood their place within the AWS ecosystem.
+ It is a fundamental computing service that every cloud developer should master.
+ We worked backwards in that, we did demos using EC2 instances (such as the aforementioned Nginx tutorial), but in the end, covered every aspect as it relates to setting up and using an instance.
+ Attached here, are the official AWS EC2 docs so feel free to check them out.
+ The codebase for launching a basic website on an EC2 instance can be found in this GitHub repository (/demos/Demo33_AWS_EC2_In_Detail).
+ I hope you found this walkthrough guide helpful and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

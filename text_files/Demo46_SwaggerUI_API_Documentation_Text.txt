@@ -1,0 +1,124 @@
+Utilizing SwaggerUI for Effective API Documentation Abdullah Muhammad · Follow Published in Stackademic · 9 min read · Jul 25, 2024 -- This article assumes the reader is familiar with fundamentals related to the development and testing of APIs.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the past couple of tutorials, we explored APIs related to OpenAI and some nice utility APIs that can help in development for some commonly encountered situations.
+ If you remember, we also covered API testing using Postman and covered different aspects related to APIs.
+ Today, we will focus on API documentation and learn how to do it using a standard set by OpenAPI.
+ As you already know as a developer, documentation is key to any software application.
+ Open-source code often contains documentation in the form of a README.
+md file to inform developers how to use an application or software.
+ APIs are no different and that is why today we will explore how to correctly create API documentation.
+ The SwaggerUI Tool One of the most effective tools for working with APIs is provided by OpenAPI (also known as SwaggerUI).
+ SwaggerUI is a famous open-source framework that allows developers to design, develop, document, and publish APIs.
+ We will be using this tool to effectively create API documentation for a web application.
+ As mentioned earlier, we covered APIs in detail including how to test them using Postman.
+ If you are not familiar with those concepts, please revisit those articles before proceeding with this one.
+ It is also assumed you are familiar with the general overarching concepts related to APIs and are looking for an effective way to document them.
+ You will find the link to the official SwaggerUI website here.
+ You will need to sign up and register for the free trial if you have not done so.
+ Application Overview Before we proceed with creating the actual API documentation, we will briefly walkthrough the application for which we are creating the API documentation.
+ You can follow along by cloning this repository here.
+ The directory of concern is /demos/Demo46_SwaggerUI_API_Integration_Documentation.
+ The application implements the CRUD model we explored some time ago.
+ The application is simple and it involves working with user posts.
+ It makes use of a makeshift database in the form of a JSON file stored in the back-end and four endpoints one for each of the four different CRUD operations.
+ We will walkthrough the back-end portion of the application.
+ The front-end portion was built using React and serves a simple UI for users to interact with.
+ Back-end Walkthrough You will find a util directory in the backend directory consisting of the database file db.
+json and a module named dbPath.
+js which dynamically evaluates the location of the database file for reading and writing purposes.
+ The following list contains all the endpoints available to the client server which you can verify yourself by inspecting the Routes directory located in backend: GET /get-post-data — Fetch all posts currently within database POST /insert-post-data — Create and insert a new post PUT /update-post-data — Update a particular post using its ID DELETE /delete-post-data —Delete a post using its ID Although we do not have a separate model file defining what a Post consists of, the definition of one is simple to understand.
+ Each post consists of a unique ID generated using the UUID library (which we have explored in the past) and a value of type string which defines post content: { id: { type: string }, post: { type: string } } Back-end Controllers We now walkthrough controller functions which handle each of these different requests.
+ You can find all of them inside the Controller directory in backend.
+ We will start with the GetPostController.
+js file (backend/Controller/GetPostController.
+js): We make use of the built-in fs module to read and parse all the content of the db.
+json file.
+ We send this data back with a response status code of 200 if the retrieval process was successful.
+ If retrieval was not successful, we return an error message with a response status code of 400.
+ Let us look at creating a new post.
+ You will find the InsertPostController.
+js file located in the same destination as above: We incorporate UUID to create a random ID and assign it to the new post for insertion.
+ We read and parse the db.
+json file to append this new entry and write back the new content to the same file.
+ Next, let us focus on updating an existing post.
+ You will find the UpdatePostController.
+js file in the same destination: Again, we following a similar pattern.
+ We read, parse, and search the db.
+json file for the key (post ID) to be updated and update the entry of the post that matches the key provided in the request body.
+ Finally, we focus on deleting a post.
+ You can find the DeletePostController.
+js file in the same location as the previous three controller files: We read, parse, and search the db.
+json file for the key (post ID) to be deleted using the key provided in the request body.
+ We can delete an object key using the delete keyword and the key name.
+ Feel free to explore the front-end portion and running the entire application by running the front-end and back-end servers.
+ You should see the db.
+json file updating in real-time with each successful request.
+ There is quite a bit you can do by incorporating a mock database!
+ API Documentation using SwaggerUI We now explore the main purpose of this tutorial and that is API documentation.
+ Assuming you have an account set up and logged into SwaggerUI, we can proceed.
+ On the main page, selecting the Create API option should show you the following form: As you can see, you can fill out the relevant details pertaining to your API.
+ In this case, assigning a new name of PostsAPI is sufficient.
+ Note that some features of SwaggerUI are not free to use.
+ For this tutorial, we will only focus on the free-tier portion.
+ Once you have completed this section, you will be navigated to the main page for API documentation.
+ On the main page, a YAML file describes the details of your API documentation.
+ Attached to the root of this demo directory, you will find a YAML file which consists of the definitions for the back-end Posts API we explored earlier (API_Documentation.
+yaml): You can copy/paste this into the main editor on SwaggerUI.
+ If done correctly, you should see something like this: You can see the four different routes we discussed earlier on the left hand side as well as the schema.
+ To the right, you will find versioning, detailed descriptions for each endpoint, and the schema.
+ You can even test each endpoint on the right using the relevant parameters as specified in the endpoint definition.
+ The YAML file in the middle is used to describe each of these sections.
+ Let us walkthrough each section of the YAML file.
+ Exploring the API Documentation YAML File For effective documentation, we clarify key points such as versioning, title, description, and license.
+ Once all that is complete, you will notice the paths key.
+ Here, we define each route with its endpoint, descriptions, summary, response types, descriptions of those response types, and if need be, incorporating the schema which we will discuss in a bit.
+ For each endpoint, we start by defining its URL and request type.
+ You will find each of the four GET, POST, DELETE, PUT requests in this file.
+ After that, we provide simple values for the summary, operation, and descriptions sections.
+ Since the back-end server only resolves to status codes of 200 and 400, we provide separate definitions for those as well.
+ For PUT and POST requests, we are providing data to the back-end for processing and so we have a section called requestBody for handling that.
+ GET and DELETE requests do not have request bodies as GET only retrieves data and DELETE removes data.
+ Of course, there is a lot more we can add to this documentation, but these are the main concepts you should be familiar with.
+ SwaggerUI Schemas We did not have a separate model file defining what a Post object looks like.
+ However, we can define a Post schema which outlines the definition of a Post.
+ At the very end of the YAML file, you will find the components key which outlines information related to the schemas used in the documentation.
+ Since we are working with Posts, we define it under the schemas key using the Posts keyword.
+ We identify it as an object consisting of two required properties.
+ One is the ID (generated using UUID) and the other is the post.
+ Both are noted as string values under the properties section with the ID noted with a format of UUID.
+ Once the schema(s) are defined, we can make references to it in the documentation.
+ You will find the GET, PUT, and POST requests all reference this schema.
+ The Posts schema is a simple example of what a schema looks like, but as you can see, we can build out very complex schemas for API documentation.
+ Publishing API Documentation Once you are satisfied with API documentation, you can publish it live!
+ Just before that, you can view what your documentation would look like.
+ Select the following option on the top-right of the SwaggerUI editor screen: Selecting this will navigate you to a web page containing the details of your API documentation as outlined in the YAML file.
+ On this same panel, selecting Export > Documentation > HTML2 will download a zip file which contains files which define, in a single page, all the code needed to generate your API documentation!
+ If you unzip this directory, you will find a file named index.
+html.
+ Opening this file in an editor (such as VS code) will detail all the relevant code needed to generate that one page documentation.
+ For this tutorial, you will find that index.
+html file already located in the root of this demo directory.
+ You can host API documentation using GitHub pages (as we explored static hosting in previous tutorials) or any other type of hosting service you prefer.
+ You can also open this file using a browser of your preference such as Chrome, Firefox, Edge, etc.
+ The following is a screen showcasing the hosted index.
+html file: Of course, this is just the top part of the documentation page, however, selecting the different requests on the left panel will navigate you to the relevant section of the page containing the documentation.
+ That is all there is to it!
+ Feel free to further explore using SwaggerUI features for API documentation.
+ Conclusion We discussed how we can use SwaggerUI, a versatile tool that allows developers to design, develop, and publish API documentation.
+ We did a walkthrough of the web application we were going to generate documentation and utilized SwaggerUI to successfully create and publish API documentation.
+ We saw how easy it was to create effective documentation from a YAML file and walked through sections of the YAML file such as info, paths, requestBody, components, schemas, and so much more.
+ We also explored avenues for publishing and testing the publication of the API documentation from a index.
+html file.
+ In the root location of this demo directory, you will find a README.
+md file which consists of the following links: OpenAPI Specification SwaggerUI Postman As well as a table detailing what each of the index.
+html and API_Documentation.
+yaml files are all about.
+ The link to the repository used in this tutorial is here.
+ Once again, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com

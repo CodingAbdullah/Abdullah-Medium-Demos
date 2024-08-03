@@ -1,0 +1,124 @@
+The Page Object Model and the PageFactory Class in Selenium WebDriver Abdullah Muhammad · Follow Published in Stackademic · 8 min read · Apr 21, 2024 -- This article assumes the reader is familiar with JavaScript, Java, Maven, and general principles related to the Selenium WebDriver testing tool.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the last tutorial, we dove deep into Selenium WebDriver and explored many of its rich features for automating testing.
+ We looked at many of the key aspects of working with Selenium and utilized them to test a React.
+js application.
+ Testing a web application can be expansive and it can get confusing as to how one can go about it.
+ That is why there are different ways one can use Selenium WebDriver to test web application functionality.
+ Today, we will focus on utilizing two similar ways of testing using Selenium WebDriver: Page Object Model PageFactory Note that they are not distinct methods of testing.
+ In fact, the main way of testing is incorporating the Page Object Model (POM).
+ PageFactory is a useful utility class which helps enhance the testing experience using the Page Object Model method.
+ Page Object Model So what is the Page Object Model (POM)?
+ And why would we use it for testing?
+ Simply put, we implement the Page Object Model method of testing by representing each web page of the application as a separate class.
+ Each class contains its own set of variables and methods that help with accessing and using web elements related to the specific page.
+ As we looked at Selenium in the last tutorial, we focused on Selenium features and we did not implement the POM model.
+ Typically, we have standalone classes that represent each web page and separate classes which utilize those web page methods using best OOP (object-oriented programming) concepts as well as testing related concepts.
+ Utilizing the Page Object Model allows for the creation of organized and maintainable tests, reusability (as is the case with OOP), a separation of concerns, modularity, and redundancy.
+ In the code overview section, we will see the POM method in action.
+ We will go over the codebase that represents how we implement this method of testing.
+ PageFactory Utility Class In Selenium, we have a built-in utility class known as the PageFactory class.
+ The PageFactory class makes testing using the POM method easy.
+ Instead of relying on the By class to fetch web elements, we incorporate the built-in annotation @FindBy to search for and use web elements.
+ We also utilize the built-in initElements method of the PageFactory class to initialize these web elements annotated by @FindBy.
+ When testing using the POM method, it is not necessary to incorporate PageFactory into your tests.
+ PageFactory reduces code and effectively simplifies your web page class implementations.
+ In the code overview section, we will also see the POM method in action utilizing the PageFactory class.
+ We will go over the codebase that represents how we implement the POM method effectively using features provided by the PageFactory class.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is /demos/Demo41_Selenium_WebDriver_Page_Object_Model.
+ The web application we will test is the same as the one we tested in the last tutorial.
+ The codebase resides in /webapp and is essentially the same.
+ Feel free to explore the React.
+js application, but we will focus on the directory /webapp/selenium_test_2.
+ Under /src/main/java, you will find four different packages: pageobjectmodelpages pageobjectmodeltest pagefactorypages pagefactorytest The first two packages pertain to testing using the POM method only.
+ The last two packages pertain to testing using the POM method as well as incorporating the PageFactory class.
+ Page Object Model Implementation We will start by going over the POM implementation for testing.
+ Under the package pageobjectmodelpages, you will find three classes.
+ The first is the HomePage.
+java class: We make use of a constructor to initialize the web driver and we provide helpful methods for accessing and using the HomePage component web elements.
+ This simple class implementation organizes tests and promotes reusability, maintainability, and a separation of concerns, concepts which we discussed earlier.
+ The second component class we will look at is the Navbar which is found in the same package: Like the HomePage.
+java class, the Navbar.
+java class follows a similar implementation.
+ We make use of the web driver and the By class to access web elements and return them using helper functions.
+ Finally, we have the SearchPage component implementation which is found in the same package: Testing the SearchPage component is extensive.
+ Therefore, we have many more helper functions to help with that.
+ Similar to the other two classes, the SearchPage.
+java class consists of functions that help with accessing web elements and performing actions such as entering information into the search form, submitting the search form, and returning web element information (such as its text).
+ Page Object Model Testing We will now focus on using these web page class implementations for testing.
+ All tests can be found in the pageobjectmodeltest package.
+ The first one we will look at is the HomePageTest.
+java class: As you can see, testing the HomePage class is straightforward.
+ If you look at the tests we covered in the last tutorial, it is pretty much the same except that we make use of a separate class in order to access and use the HomePage component web elements.
+ Next, we test the Navbar component.
+ Tests for the Navbar component can be found in the NavbarTest.
+java class located in the same package: Like the HomePageTest.
+java test class, the Navbar.
+java tests class consists of a similar implementation.
+ We make use of the Navbar page class for testing.
+ Finally, we test the SearchPage component.
+ Tests for the SearchPage component can be found in the SearchPageTest.
+java class located in the same package: As expected, extensive testing is required for the different features of the SearchPage component.
+ Similar to how we tested it in the last tutorial, much is the same except that we make use of the SearchPage class in order to access and use its web elements.
+ Incorporating the POM method for testing is a great way to organize and maintain tests.
+ We will now focus on using the PageFactory class to implement the POM method.
+ Page Object Model Implementation Using the PageFactory Class We will start by going over the POM implementation for testing using the PageFactory class.
+ In the package pagefactorypages, you will find three classes.
+ The first of which is the HomePage.
+java class: Using the PageFactory class for implementing the POM method of testing reduces the codebase significantly.
+ We make use of the @FindBy annotation (discussed earlier) to access web elements by tagName and assign it to the variable after initializing the web driver.
+ There is no need to use the long-winded approach (albeit correct approach) we used earlier.
+ No need to use the web driver’s findElement() function and the By class to access web elements.
+ Next, we look at the Navbar test page class located in the same package: Like the HomePage.
+java class, the Navbar.
+java class consists of a similar implementation.
+ The common theme is that the codebase is reduced significantly.
+ Finally, we look at the SearchPage test page class (located in the same package): The codebase for accessing and using the SearchPage web elements is well written and organized.
+ We have simple, one-liner functions that access and perform actions on web elements.
+ As you can see, testing becomes easy using the POM method as well as the PageFactory class.
+ Feel free to explore the pagefactorytest package for testing which use the web page classes that incorporate the PageFactory class (seen above).
+ We will not go over those as the testing codebase is exactly the same.
+ Demo Time!
+ We will now walkthrough a demo of the testing process.
+ Assuming you have cloned the repository above.
+ You will need to import the selenium_test_2 directory in a Java IDE of your choosing.
+ Remember, this tutorial assumes you are familiar with Java and setting up a Maven project on your own.
+ For your convenience, you will find a .
+jar file located in /demos/Demo41_Selenium_WebDriver_Page_Object_Model.
+ A .
+jar file is like a zip folder containing all the relevant files, folders, and code needed to successfully run the project.
+ You can simply import this and have the project setup that way.
+ Before running any tests, we need to ensure the React.
+js web application is running.
+ To do this, ensure you have installed all the necessary dependencies by running npm install in /demos/Demo41_Selenium_WebDriver_Page_Object_Model/webapp.
+ After that, simply run npm start to kickstart the client server on Port 3000.
+ Inside the Java project, navigate to the src/main/java/pageobjectmodeltest package.
+ You should see the three different classes along with the chromedriver.
+exe file.
+ Select any of the classes and hit run in the console (option should be at the top of your IDE).
+ The starting point for any code in Java is the public static void main() method.
+ From here, you should see the web driver in action launching a new Google Chrome window and navigating to http://localhost:3000.
+ Everything is automated so once you hit run, you do not need to do anything else except watch the entire process.
+ You will need to run each test class individually which you can do by selecting a specific class and selecting run at the top.
+ Once you have completed all the tests in the pageobjectmodeltest package, feel free to proceed to the pagefactorytest package to run through the three test classes.
+ There should be no discrepancy in action as you run through each of the three different test classes.
+ Once everything is complete, the console will notify you of the results.
+ If all goes accordingly, you should see true for all the test cases in each of the two packages consisting of the three test classes (HomePageTest.
+java, NavbarTest.
+java, and SearchPageTest.
+java).
+ Conclusion We covered the Page Object Model and the PageFactory class in great detail using Selenium WebDriver.
+ We created and organized tests related to the three different components.
+ We saw how the POM method of testing allowed for reusability, maintainability, and allowed for a separation of concerns.
+ Incorporating the PageFactory class reduced the codebase and allowed for ease of access and use of the different web elements.
+ Through the demo, we saw that nothing changed in terms of the live tests.
+ The only thing different was the implementation behind-the-scenes.
+ Attached below are links to the GitHub repository used for this tutorial, the Page Object Model docs, and the official PageFactory class docs: GitHub Repository Page Object Model Docs PageFactory Class Docs As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture | Cubed More content at Stackademic.
+com

@@ -1,0 +1,150 @@
+The Core Concepts and Principles of Cloud Computing Abdullah Muhammad · Follow Published in Stackademic · 12 min read · Nov 23, 2023 -- This article does not require any technical knowledge.
+ It mainly serves to explain the importance of cloud computing and why it is an important technology for Software Engineers.
+ Introduction Perhaps this article should have been written much earlier, but nonetheless, it is never a bad idea to go through the core concepts and principles of cloud computing and why we use it.
+ Cloud computing is a rapidly growing and evolving space in IT.
+ It is integral, in my opinion, that every Software Engineer out there should learn what it is.
+ So far, in all of the tutorials we have covered cloud technologies, we have worked with AWS.
+ There are many other cloud platforms out there, but it is nice to get accustomed with one platform and build from there.
+ You see, platforms might be different, but they all provide similar services to a varying degree.
+ Mastering one platform allows you to quickly pickup another cloud provider as the concepts between them are similar in nature.
+ It is like learning a new programming language.
+ At first, it might be overwhelming and difficult, but allowing yourself to master one language will allow you to quickly pickup others out there.
+ Cloud Providers AWS is by far, the biggest cloud services provider out there.
+ Launched in 2006, it is the oldest cloud services provider with over 200+ services available.
+ As the digital age continues to grow, many of the other big tech companies have joined in on the action.
+ You can call it the cloud wars if you like.
+ Microsoft has their Azure platform.
+ Google has its own called GCP (Google Cloud Platform).
+ Oracle Cloud is up there as well.
+ Some other notable mentions include IBM, Digital Ocean, Alibaba, VMware, and many more.
+ The following graph illustrates the cloud computing services market looking at the big three: AWS, Azure, and GCP and how rapidly they have expanded in just the last five years: With 2023 come and gone, it has only grown much more.
+ As you can see, AWS takes the largest portion in terms of revenue which is quickly followed by Azure and Google.
+ The rest of the remaining 35% is shared amongst other cloud providers.
+ Tremendous growth has taken place and much of it was accelerated due to the COVID-19 pandemic.
+ You see, the market share for cloud computing was already growing prior to the pandemic.
+ However, with everything moving online, all it did was accelerate what would have taken several years to accomplish in a much smaller timeframe.
+ It is a strong belief that in the fore-coming years (8 years, counting forward from 2024), the market share for cloud computing is going to grow: There is no better time to learn cloud computing.
+ People say that the market is saturated and there is so much competition.
+ If a market is booming and successful, it will ALWAYS be competitive.
+ In the end, that is what you want.
+ Competition brings to life new ideas, tests your creativity, and in the end, allows you to build new technology.
+ There is no free lunch, but if you stay the course and continue to learn and grow, there will always be opportunities out there for you.
+ Cloud Computing vs.
+ On-Premise On-Premise Before cloud computing was ever a thing, tech companies mainly relied on physical infrastructure and large computers which handled data processing.
+ There was a large capital expenditure (CapEx) which companies had to pay up-front before any of the business ever got going.
+ This included paying for things such as physical infrastructure, housing costs (where the computers are located), maintenance, security, and paying the employees that would ultimately have to handle these facilities.
+ There was also the issue of scalability and efficiency.
+ For instance, how would one ensure that compute capacity was sufficient to handle a spike in workloads?
+ How does one make sure that if workloads decreased, there was no wastage of excess compute resources (idle running servers)?
+ Pretty complicated right?
+ Then there was the issue of maintaining the servers themselves such as fixing things that blocked them from working, security, upgrading software, networking, start/stop, and so much more.
+ This all changed when cloud computing came along which changed the game forever.
+ Cloud Computing Cloud computing allows one to use third-party services to enable their business digitally.
+ The concept of cloud computing was first enacted by AWS which is one of the reasons why it is the world’s top cloud services provider.
+ It allows for businesses to work on a pay-as-you-go pricing model meaning that you only pay for what you use without having to worry about making a massive payment up-front for working with anything.
+ This effectively reduces the capital expenditure (CapEx) to minimal values, but introduces a new kind of expense known as operational expenditure (OpEx).
+ This cost is associated with day-to-day operations.
+ In other words, costs associated with whatever you have used and nothing else.
+ Cloud providers offer three main types of services: Compute Networking Storage Most services will fall in one of these three categories, but as cloud computing expands, other sub-sections could include things such as server-less, security, cloud infrastructure as code (infrastructure as code, IaC), DevOps (CI/CD), AI, and so much more.
+ It allows anyone, an individual or a company, to provision any cloud infrastructure they like for a fraction of the cost they would need to pay for the equivalent on-premise setup.
+ You could be sitting at home and working with services that offer compute resources equivalent to many of the large physical servers that used to run back in the day, your options are endless.
+ It also allows for a business to provision cloud computing resources and go global within minutes.
+ For instance, if you were to deploy a website pertaining to your business, you could launch compute resources within minutes which allow you to host a website globally.
+ This was not the case back in the day.
+ It could days before you could launch a site of your own.
+ The internet was also in its infancy so there were limitations on site development as well.
+ Security Security is a major part of working with both on-premise and cloud computing services.
+ Cloud providers offer out-of-the-box security solutions which enable you to use them without having to worry about creating your own.
+ Of course, there is always the option for customization which only further adds to the element of flexibility when it comes to working with cloud computing services.
+ You do not need to worry about the physical security of the servers as cloud providers handle their own data centres.
+ You just create, use, and pay for what you need, nothing else.
+ With on-premise, you need to worry about the physical security of the data centres as well as the security of the servers themselves (hardware and software).
+ If you are not going in on this alone, you will for surely need to charge someone to handle this task for you and that can be hefty.
+ The only benefit of using on-premise is that you have full control of everything.
+ With cloud computing, since you are relying on a third-party provider, you are essentially tied to the hip, so to speak, as to what they offer you.
+ You can always go to another provider if you feel the current one does not meet your requirements, but seldom is the case.
+ There is a lot of competition out there so cloud providers ensure their solutions are extensive and flexible to fit any person’s needs and budget.
+ Hybrid: The Best of Both Worlds For an individual, this will likely never matter, but it is important to understand how cloud computing works at a micro-level to a macro, global-level.
+ Corporations that once relied on an on-premise setup have benefitted greatly from cloud computing.
+ They have been able to shift their focus to the business aspects of their missions instead of wasting time, money, and resources to handle on-premise setups.
+ This has lessened costs which in turn enabled scalability which was never thought possible.
+ Still, there is the idea of total control which comes from using an on-premise setup (which corporations always love) as well as using cloud computing services which enable the things discussed above.
+ In a perfect world, you combine the two and work with what is known as a hybrid model.
+ Most of the world’s corporations today have enacted this model to their own benefit and have not regretted taking such action.
+ The main takeaway in all this is businesses should focus on their mission as much as possible without having to allocate a huge chunk of their budget to manage their technological needs.
+ The process should be straight-forward, cost-friendly, and efficient.
+ Advantages of the Cloud and the Types of Services In this section, we will zero in on the key advantages of working with cloud computing services.
+ One of the main disadvantages of working with an on-premise setup is managing downtime.
+ It takes time to identify, troubleshoot, and kickstart a physical server.
+ It only becomes more daunting when you have to manage hundreds and thousands of them.
+ Quite a bit of a company’s budget must be allocated to the setup and maintenance of physical servers as discussed previously (CapEx).
+ The following is a list of the key advantages offered when working with cloud computing services (CapEx/OpEx is one of them as well, but we have covered that already): Scalability — The ability to scale up/down, in/out of resources based on demand.
+ Vertical scaling allows for increasing/decreasing the compute resources of a particular server (scale up/down).
+ Horizontal scaling allows for the increase/decrease of the units of compute (scale in/out).
+ Elasticity — The ability to adjust resources depending on demand, allowing for the handling of workloads.
+ Agility — The ability to quickly allocate and deallocate resources as you need them.
+ Reliability — The ability to be available and work as intended.
+ Resiliency — The ability to quickly bounce back after not functioning.
+ Fault Tolerance/Redundancy — The ability to keep functionality going even if parts of the infrastructure are not working.
+ High Availability — The ability to keep working even if mission-critical workloads do not.
+ Economies of Scale — The ability to purchase massive quantities of a particular service at lower costs.
+ There is also flexibility when it comes to the types of services cloud service providers offer.
+ They can be classified in other ways and not just in terms of the three main categories we discussed earlier.
+ We can classify services based on the management of them.
+ IaaS, PaaS, and SaaS When it comes to cloud computing services, there is a degree of control one has when working with them.
+ There are two main types of services in the cloud computing world: Managed Services — Services which you only use and do not worry about the setup.
+ A cloud-managed relational database is a great example.
+ Self-Managed Services — Services which allow you to manage the entire setup of the service itself as well as how to run it.
+ A good example can be when you set up a virtual server and install the necessary dependencies to run a desired web application.
+ Services are more commonly described in the following three ways: IaaS (Infrastructure as a Service) — Services which allow a user to effectively manage everything from the operating system level and above of a given service.
+ Working with and setting up a virtual server is a great example of IaaS.
+ PaaS (Platform as a Service) — Services which do not allow for the customization of the actual underlying operating system.
+ Instead, you use it by incorporating your own applications and data for usage.
+ A great example of PaaS is a cloud-managed relational database.
+ SaaS (Software as a Service) — Services which do not allow for the customization of anything.
+ Instead, you use the software as is under the license agreement.
+ A great example of SaaS is Microsoft Office 365.
+ You are not changing or adding anything to the software, you are using it as is.
+ As you can see, there is a degree of control given to a user when working with cloud computing services.
+ The following diagram illustrates all this perfectly: As discussed previously, an on-premise setup offers full control over everything, but as you shift further to the right, more and more control is lost depending on the type of service you use.
+ Regions and Availability Zones When it comes to availability, fault tolerance, and redundancy, regions and availability zones play a key role.
+ Cloud service providers provide global outreach and offer their services region specifically.
+ Each cloud provider has their own unique setup.
+ Still, the key concepts remain the same.
+ The world map is divided into regions and each region is isolated from one another.
+ These regions contain multiple availability zones which are isolated locations within a region.
+ An availability zone consists of multiple data centres which are all equipped with independent power, cooling, and networking infrastructure.
+ When an application is deployed to the cloud, it is often distributed across multiple regions so it does not matter if one availability zone goes down, a backup will be ready to take its place.
+ This enforces redundancy (not having to rely on a particular location), high availability (minimal downtime), and fault tolerance (the ability to recover quickly from downtime).
+ Intersection of AI, Blockchain, and DevOps AI With the recent boom of AI and prior to that, the blockchain, there is going to be a huge demand for cloud computing services in the future.
+ There is zero doubt about that.
+ As AI continues to grow, cloud service providers have created their own services which allow for the designing and implementation of machine learning models.
+ Not only that, data is an integral part of machine learning models and guess where all that is stored?
+ You bet, it is the cloud.
+ Some cloud service providers now offer built-in AI features.
+ For instance, if you are using a cloud-managed IDE for software development, you can incorporate the provider’s ready-made AI tool to help you along with the coding.
+ So, as you can see, there is going to be a tremendous opportunity for those who have expertise in both cloud and AI technology.
+ DevOps Cloud is also an integral part of DevOps as well.
+ While most developers focus on the development of a project, DevOps brings it all together.
+ This includes everything from designing, development, deployment, testing, and publishing.
+ Cloud service providers offer their own in-house services such as CI/CD pipelines, containers, servers, databases, infrastructure as code, repositories, and so much more.
+ This enables a fully-managed DevOps environment in the cloud.
+ It does not get much better than that, does it?
+ Blockchain Cloud can also be helpful when it comes to the blockchain.
+ Although the two paradigms are polar opposites to each other (cloud is a centralized technology, blockchain is decentralized), data related to the blockchain can be stored in the cloud for analytics or for later usage.
+ Many blockchain related APIs have now been developed for working and analyzing blockchain data and this field will only grow and expand in the coming years.
+ Do not worry, the blockchain ledger will always be the single source of truth ;) Conclusion All in all, we did a deep dive into cloud computing and on-premise technologies.
+ We saw the differences between the two and the brief history of each.
+ We understood CapEx vs.
+ OpEx, cloud computing efficiency, different cloud providers, growth, regions/availability zones, types of cloud computing services (IaaS/PaaS/SaaS), key advantages, future prospects, and so much more.
+ While there was no demo in this article (rarely is that the case), I hope you found this article informative and understood the importance of cloud computing and why it is going to be transformative in the coming years.
+ I hope you look forward to many more articles to come in the future.
+ Embrace the digital age!
+ Embrace the cloud!
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

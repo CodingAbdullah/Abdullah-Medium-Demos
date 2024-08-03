@@ -1,0 +1,134 @@
+Implementing BDD using the Cucumber Framework and Selenium WebDriver Abdullah Muhammad · Follow Published in Stackademic · 9 min read · May 12, 2024 This article assumes the reader is familiar with JavaScript, Java, Maven, and general principles related to the Selenium WebDriver testing tool.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the last couple of tutorials, we shifted focus to testing using Selenium WebDriver and explored the Page Object Model as a method for test implementation.
+ Today, we will focus on another concept known as BDD or Behaviour-Driven Development.
+ We will implement BDD using the same web application from the last two tutorials.
+ Behaviour-Driven Development builds upon TDD (Test-Driven Development) which is a concept you might already be familiar with.
+ Unlike TDD, which enforces writing test code prior to actual application code, BDD allows for the collaboration of developers and testers to help understand business requirements in order to build out the application.
+ Continuous feedback through automation testing allows developers and testers alike to understand key areas of improvement and a more rigorous approach to meeting business requirements.
+ Incorporating the Cucumber framework along with the Selenium WebDriver automation tool allows for seamless BDD.
+ What is the Cucumber Framework?
+ The Cucumber framework allows one to implement BDD through the use of scenarios written plain English.
+ These are written in files known as feature files.
+ If you are familiar with Domain-Specific Languages (DSL), you might be familiar with Gherkin.
+ It is what is used to write the different scenarios using English.
+ The ability to write in plain English enables testers, developers, and other non-technical entities to readily understand what/how the different components of an application are being tested.
+ The feature files outline step-by-step, different scenarios for the purposes of testing.
+ Descriptions for the different scenarios allows for clear documentation of test cases, outlining specific conditions for a particular test, and a step-by-step process for running each test case.
+ Each scenario outlined in a feature file is written in a Given-When-Then format which describes the different test cases.
+ The Given clause outlines preconditions before any action takes place.
+ Multiple actions within test cases can be outlined in separate When clauses and the Then clause outlines what the end result should be.
+ Certain test cases can take in predefined input to test web elements.
+ These specific test cases are written as a Scenario Outline.
+ Parameterization is supported within feature files and a list of different inputs can be provided in Data Tables in a separate clause known as Examples.
+ Each feature file is implemented in its own Java class known as a Step Definition file.
+ So where is the Selenium WebDriver integrated in all this?
+ As seen in the previous two tutorials, we follow the same principles related to test automation.
+ This includes following the Page Object Model as before, but now incorporating different feature files that correspond to each page outlining different scenarios for testing.
+ For each feature file, we create a separate Step Definition Java class which implements the different steps from the feature file.
+ This is where we integrate Selenium WebDriver and use the specific POM class (as seen before).
+ Testing the behaviour of an application to ensure it conforms to what is required enables a team to quickly scale the development of the application.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is /demos/Demo42_Selenium_WebDriver_Cucumber_Testing.
+ The web application we will test is the same as the one we tested in the last tutorial.
+ The codebase resides in /webapp and is essentially the same.
+ Feel free to explore the React.
+js application, but we will focus on the directory /webapp/selenium_test_2.
+ Under /src/test/java, you will find four different directories: features- Includes a feature file for each of the three different components (HomePage, Navbar, and SearchPage) options — Includes the Runner class for running through the different step definition classes pages — Contains the POM implementations for the three different components (HomePage, Navbar, and SearchPage) stepDefinitions — Contains the step definition implementations for the three different components Let us start by examining the features package.
+ Feature Files We will start by looking at the first feature file in the features directory.
+ Here is the HomePage.
+Feature file containing the different scenarios for testing the HomePage component: As you can see, we have the Feature clause at the top which highlights, at a high level, what we are testing.
+ This is followed by individual scenarios highlighted by the Scenario clause each with their own set of Given, When, and Then clauses which detail the different steps for testing.
+ Writing a feature file is that simple.
+ It does not get more complicated than that.
+ Here is the Navbar.
+Feature file in the features directory outlining the different scenarios for testing the Navbar component: Similar to how we tested the Navbar component before, it is as straight forward as it gets when we incorporate the Cucumber framework.
+ Finally, here is the SearchPage.
+Feature file for testing the SearchPage component.
+ Like the other feature files we looked at, it also resides in the features directory: As discussed earlier, we can test certain web components using predefined input through Parameterization and specific scenarios known as Scenario Outline.
+ We have an input field on the Search Page.
+ We are testing its functionality in the last scenario.
+ We pass test values into a field known as Text.
+ Parameterization allows us to use angular brackets (outlined as <>) and the variable name in the Examples clause (Text) to determine which step to pass in the input.
+ That is pretty much all there is to it!
+ Incorporating feature files for implementing BDD is that easy!
+ We now focus on implementing each of these different scenarios.
+ Step Definition Files We will start by implementing all the steps in the HomePage.
+Feature file which we examined above.
+ In the /src/test/java, you will find the stepDefinitions package, as mentioned earlier.
+ You will find the implementation of all the steps in all the scenarios outlined in the HomePage.
+Feature file in the HomePageStepDefinition.
+java file: We make use of built-in annotations provided by the Cucumber framework dependency.
+ For each of the different clause types, we have a corresponding annotation that represents them (@Given, @When, and @Then).
+ Beside each annotation, we re-write what is written in the specific scenario step from the particular feature file.
+ Below each, we create a public method that implements what is described of it.
+ This is where we incorporate the Selenium WebDriver, the different page classes that implement POM (as seen before), and the Assert class provided by the JUnit testing dependency to complete the scenario testing.
+ As you can see, this provides clarity in testing.
+ Each annotation is like a step in testing and it organizes the code in a way that developers and non-developers alike can understanding what/how the component is being tested.
+ In the same directory, you will find the NavbarStepDefinition.
+java file which implements the steps found in the Navbar.
+Feature file: We are testing the Navbar component and make use of the different annotations to represent the steps found in the Navbar.
+Feature file.
+ For each, we provide its implementation.
+ Finally, we test the SearchPage component.
+ In the same directory, you will find the SearchPageStepDefinition.
+java file containing the implementation of steps outlined in the SearchPage.
+Feature file: Nothing new on the whole, except for when we implement the Scenario Outline.
+ Recall that we can pass input to test certain web components.
+ For the @When(“User selects form and enters text \\”([^\\”]*)\\”) step, we are testing the search form.
+ We use a regular expression to indicate input.
+ Directly under the method definition for the step, we pass in a parameter which represents the input.
+ Each parameter corresponds to the variable outlined in the particular scenario clause.
+ Recall when we discussed Parameterization in the feature files.
+ This is where we are implementing it live in action.
+ That is all there is to it.
+ Implementing BDD using the Cucumber framework alongside Selenium WebDriver is very easy.
+ Now we briefly look at the class which brings it all together.
+ Cucumber Runner Class Before we can run through all the different feature files and step definitions, we must provide an entry point in order to do this.
+ For initiating the process, we must define a Runner class.
+ This can be found in the options directory in /src/test/java, as discussed earlier.
+ The class name is TestRunner.
+java and looks like this: It is an empty class, but contains two key annotations: @RunWith — Indicates that the Cucumber framework must be used @CucumberOptions — Specifies the different options for testing.
+ We make use of the features and glue options which indicate where the feature files and their implementations reside.
+ All that needs to happen is running this class as a Junit test.
+ It will simply scan through to find the feature files and run through all the step definition implementations to complete testing.
+ That is all there is to it!
+ Feel free to explore the pages directory if you like, but it is the same as before.
+ For each of the three different components (HomePage, Navbar, and SearchPage), there is a separate page class which implements POM, as covered in the previous tutorials.
+ Demo Time!
+ Before we dive into the actual demo, it would be nice if we detail the dependencies used in this project.
+ In the root location of the /webapp/selenium_test_2 directory, you will find the following pom.
+xml file: As you can see, we make use of the Selenium WebDriver dependency, but also include additional dependencies such as the JUnit dependency for using the Assert class.
+ There are three additional dependencies related to the Cucumber framework: Cucumber-Core Cucumber-junit Cucumber-java Should you have any difficulty creating a separate Cucumber project of your own, you can include this pom.
+xml file into your project to help get you started!
+ Depending on the IDE you are using, you might find it helpful to install the Cucumber framework plug-in.
+ If you are using the Eclipse IDE, you can install the Cucumber framework plug-in from the marketplace for free.
+ This tutorial assumes you are familiar with Java and setting up a Maven project on your own.
+ For your convenience, you will find a .
+jar file located in /demos/Demo42_Selenium_WebDriver_Cucumber_Testing.
+ Before running any tests, we need to ensure the React.
+js web application is running.
+ To do this, ensure you have installed all the necessary dependencies by running npm install in /demos/Demo42_Selenium_WebDriver_Cucumber_Testing/webapp.
+ After that, simply run npm start to kickstart the client server on Port 3000.
+ As stated earlier, we need to run the test runner class as a JUnit test in order to run through all the different feature files and their step definitions.
+ This will depend on your IDE, but it is straight forward.
+ Simply navigate to the Runner class /demos/Demo42_Selenium_WebDriver_Cucumber_Testing/selenium_test_2/src/test/java/options/TestRunner.
+java.
+ Select Run As > JUnit Test in the run options of your IDE (wherever that might be) and that is all there is to it!
+ You should see the running test results with each scenario step outlined with their corresponding pass/fail result.
+ Conclusion We covered BDD implementation using the Cucumber Framework alongside Selenium WebDriver.
+ We created and organized feature files which defined different scenarios for testing each of the three different web components.
+ In addition, we dove deep into the different components of a feature file such as Scenario, Scenario Outline, Given-When-Then clauses, and so much more.
+ We implemented the different feature files in their own separate step definition files and saw how easy it was to bring it all together in a Runner class.
+ Different annotations related to the Cucumber framework were looked at such as the @Given, @When, @Then, @RunWith, and @CucumberOptions.
+ BDD promotes the reusability, maintainability, and a separation of concern of test code.
+ Building on what we learned in the previous two tutorials, there is no reason to not use the Cucumber framework for automation testing.
+ Attached below are links to the GitHub repository used for this tutorial and the official Cucumber framework docs: GitHub Repository Cucumber Framework As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture | Cubed Tired of blogging platforms that force you to deal with algorithmic content?
+ Try Differ More content at Stackademic.
+com

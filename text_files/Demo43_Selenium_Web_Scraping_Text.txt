@@ -1,0 +1,121 @@
+Deep Dive into Web Scraping using Selenium WebDriver Abdullah Muhammad · Follow Published in Stackademic · 8 min read · May 16, 2024 -- This article assumes the reader is familiar with JavaScript, Java, Maven, and general principles related to the Selenium WebDriver testing tool.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Today, we will dive into a fun exercise involving the Selenium WebDriver tool.
+ We have used Selenium for test automation, but there is another fun, “hacky” way of utilizing this tool.
+ Web Scraping, the act of surfing web pages to “scrape” or “mine” data can be done using various APIs.
+ In fact, a tool I built months ago, makes use of a web scraper API to extract article information from a user requested Medium article.
+ It uses the article data to generate an audio file from it.
+ The process is straight forward, but with potential drawbacks.
+ For instance, many of these APIs are custom-built and for more robust scraping features, you might need to pay up.
+ For a simple example such as this, a simple web scraping API would suffice.
+ However, if the problem you are trying to solve is complex in nature, a more advanced scraping tool might be required.
+ This is where the Selenium WebDriver tool comes into play.
+ Selenium WebDriver is primarily used for testing, but as you will see in this tutorial, it can be much more than that.
+ We are going to use Selenium WebDriver to implement web scraping!
+ Selenium WebDriver for Web Scraping As you have seen in previous tutorials, we can incorporate the Selenium WebDriver tool to search, access, and perform actions on web elements.
+ The act of retrieving web elements from a page using the built-in selectors allows one to “scrape” data.
+ We can verify the data (as we do for testing), store it in a flat file/database or perform ETL operations which is a common practice for working with large amounts of data.
+ In this tutorial, we will create an application which incorporates the Selenium WebDriver to scrape a cryptocurrency website.
+ We will extract real-time prices of the three most popular cryptocurrencies: Bitcoin (BTC) Ethereum (ETH) Solana (SOL) CoinGecko is the website we will be using for retrieving these prices.
+ The application will also send an email to a desired email address containing the latest prices of the three cryptocurrencies.
+ Recall that we can use SMTP to send emails.
+ We saw this in the Nodemailer tutorial where we were able to send emails from a Node.
+js application using SMTP and the Nodemailer NPM dependency.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is /demos/Demo43_Selenium_WebDriver_Web_Scraping.
+ Since we are working with a live site, there is no web application for this project.
+ We simply have a Java project that incorporates Selenium WebDriver and other dependencies to successfully scrape coin prices and send the email.
+ All of the code for the project resides in /selenium_webdriver_web_scraping.
+ A .
+jar file containing all the project code is also available to you to download if you would like to do that.
+ Like before, we implement POM when working with Selenium.
+ We have three different packages in this project /src/main/java: pages — Contains a Java class for retrieving web elements from the CoinGecko cryptocurrency website runner — Contains a Runner class which acts as the entry point for the application util — Contains a utility class for working with SMTP and preparing/sending the email We will begin by first examining the Runner class.
+ Web Scraping Runner Class We mentioned the need for an entry point for the application.
+ The Runner class provides us that entry point and is located in the runner package (named Runner.
+java): We make use of the Scanner class to obtain user input (email and password) and pass it along to the PricesPage constructor for the purposes of retrieving and processing data and preparing/sending the email.
+ We initialize the web driver and make use of the ChromeDriver.
+ The chromedriver.
+exe file resides in the same location as this Runner.
+java class.
+ We prepare the driver by setting initial properties and navigating to the CoinGecko cryptocurrency website.
+ Now let us examine how we retrieve coin prices.
+ CoinGecko Cryptocurrency Prices Page In the pages package, you will find a lone class named PricesPage.
+java.
+ The implementation of this class can be seen below: Since we are concerned with retrieving only three cryptocurrency prices, we create a separate web element variable to represent each.
+ We make use of PageFactory for efficient web element retrieval and use the XPath selector provided by the By class to retrieve the three different web elements.
+ We initialize user information (email and password) and prepare the email message using the findCoinPrices() function.
+ This is where we make use of the web elements containing price information.
+ Lastly, we invoke a utility class function and pass in the email, password, and email message to complete the final step.
+ Utility Class for Preparing and Sending the Email The utility class allows us to gather all the information to prepare and send the email.
+ If you are not familiar with SMTP, you can complete this tutorial before proceeding.
+ Like the many other protocols out there such as HTTP/S, FTP, DNS, TCP, and SSH, SMTP is another one that deals with sending email messages using a server.
+ We can use Maven dependencies to work with SMTP similar to how we worked with it using Node.
+js and the Nodemailer dependency.
+ In the util package, you will find the JavaMailUtil.
+java class.
+ Its implementation can be found below: We make use of the Jakarta Mail dependency to easily prepare and send the email.
+ In the sendMail() function, we set properties for working with SMTP.
+ For this protocol, we typically work on port 587.
+ We enable ttls and set authentication to true.
+ We are working with GMail accounts only so we provide the GMail host address as well (smtp.
+gmail.
+com).
+ After that, we create a session by passing in the properties set earlier.
+ We use the Session class (provided by Jakarta Mail) and verify the credentials provided by the user (email and password) using an anonymous class of type Authenticator (also provided by Jakarta Mail).
+ Once that is complete, we proceed to create the email message.
+ Using the Message class (provided by Jakarta Mail), we make use of a custom function that returns an object of type Message which configures all the required information.
+ We set the session and ensure that the recipient and sender are set to same.
+ We provide a subject line and pass in the formatted text which contains all the cryptocurrency price information as the email text.
+ Finally, we make use of the Transport class (provided by Jakarta Mail) and the static method send() to send the email.
+ If all goes well, the console should print the successful message.
+ Quite a bit is taking place here, but once you understand that most of this is setting configurations, you will realize most of this boilerplate code.
+ Project Configuration File Lastly, we look at the pom.
+xml file to confirm the required dependencies for working with this project.
+ You can find the pom.
+xml file in /selenium_webdriver_web_scraping: We are making use of Selenium (as seen before), but also the Jakarta Mail dependency for working with SMTP to prepare and send emails.
+ All of this should be pretty straight forward.
+ Demo Time!
+ Now that we have covered the codebase for web scraping, it is time for a demo!
+ We will be working with GMail in this tutorial.
+ If you do not have a GMail account, please proceed to create one.
+ We will need to set some security features.
+ Google has an option for allowing less secure apps to access your email address.
+ However, by fall of 2024, this will no longer be an option.
+ For you to use SMTP, you will need to ensure that two-factor verification is enabled on your account.
+ The link to do this on your account can be found here.
+ Once you have setup two-factor verification, you will need to create an app password.
+ This is a unique code which you provide instead of the password to access your email via SMTP.
+ You can only create an app password for your account after you have turned on two-factor verification.
+ The link to create one on your account can be found here.
+ Ensure that you note the app password somewhere safe as it is visible once.
+ However, should you forget it, you can always create a new one.
+ When the application launches and prompts you to enter the email address and password, you will need to provide the email address and the app password you created above.
+ Selecting the IDE and Running the Project When working with Java projects, there are several IDEs you can choose.
+ Eclipse, NetBeans, and IntelliJ are some of most common ones.
+ We are going to work with Eclipse in this tutorial.
+ You will need to import the project in your own desired workspace.
+ Proceed to select the Runner class and simply hit run.
+ Upon launch, you should be prompted to enter the email address and password like this: After that, you should notice ChromeDriver start up and navigate to the CoinGecko website.
+ Ignore the warning messages for now as they are related to Chrome and the ChromeDriver versions.
+ When prompted to provide the email address and password, you should be able to enter your GMail account (inked out mine for security reasons) and the app password you created earlier.
+ You can clearly see mine, but this is irrelevant because by the time you will view this tutorial, I will have it deleted ;) This is for demonstrative purposes only.
+ If all goes accordingly, you should see the successful message print on the console (as seen in the screen).
+ Going to your GMail inbox, you should see the following email: The email subject, recipient, and text match what was set in the utility class.
+ The prices should conform to what was on the CoinGecko website when the ChromeDriver navigated to it.
+ Let it be known that on this date (May 15, 2024), the markets rallied hard!
+ So this will definitely be a worthwhile email notification to receive!
+ Conclusion We covered web scraping using the Selenium WebDriver and looked at how we can process the retrieved data.
+ We brought together concepts learned in previous tutorials such as the PageFactory and POM to create a class to help with cryptocurrency price retrieval.
+ In addition, we worked with SMTP and the Jakarta Mail dependency to prepare and send emails on the GMail platform.
+ We looked at a custom Runner class for working with web scraping as well as a utility class which handled the preparation and sending of emails.
+ We explored a very basic use case, but it is sufficient to provide a solid understanding of how you can use Selenium WebDriver for web scraping.
+ It is an awesome tool for you to use to do awesome things!
+ Attached below are links to the GitHub repository used for this tutorial and the official Selenium WebDriver docs and the Jakarta Mail docs: GitHub Repository Jakarta Mail Docs Selenium WebDriver Docs As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture | Cubed Tired of blogging platforms that force you to deal with algorithmic content?
+ Try Differ More content at Stackademic.
+com

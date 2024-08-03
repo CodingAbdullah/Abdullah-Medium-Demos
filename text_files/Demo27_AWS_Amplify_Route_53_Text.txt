@@ -1,0 +1,120 @@
+Exploring DNS Using AWS Amplify, AWS Route 53, and Namecheap Abdullah Muhammad · Follow Published in Stackademic · 10 min read · Nov 15, 2023 -- This article assumes the reader is familiar with AWS Amplify and DNS providers.
+ No coding expertise is required for working with this tutorial.
+ You will need a Namecheap account and some bits of cash will not be too shabby either ;) This tutorial works with AWS Amplify.
+ If you are not familiar with it, please complete this tutorial before proceeding with this one.
+ Introduction So far, we have explored web application deployment and hosting using AWS Amplify.
+ We have explored how we can deploy sites on other platforms such as Vercel, Netlify, and Google Firebase.
+ We even looked at using AWS storage for static hosting using S3 buckets as well as GitHub Pages for single page and multi-page application deployment.
+ Safe to say, quite a bit!
+ If you have been following along, you will be familiar with these tutorials.
+ However, one thing we did not explore was how we can assign a custom domain to a website.
+ You see, when a production deployment takes place, URLs are constructed in a certain format and are assigned to the web application.
+ This can be good if you are testing an application, but it is less than ideal to have a long, ugly looking URL.
+ Ideally, you want a clean, sleek looking domain for your website.
+ Domain names go a long way and some are more valuable than others (google.
+com is worth billions).
+ Say, you are designing an e-commerce store, you would like a strong domain name that correlates to your business.
+ Domain names matter a ton.
+ They matter in terms of ranking a website, generating leads for your business, SEO, etc.
+ Not to go on a tangent, but it is essentially the identity of your website.
+ What is DNS and a DNS Server?
+ DNS stands for: Domain Name System.
+ To put it simply, computers and websites on the internet communicate with each other using numbers.
+ These are known as IP addresses which uniquely identify a particular website.
+ However, when you navigate to websites on the internet, you are not using raw numbers to go to where you would like to go.
+ In fact, that would be terrible user experience because it is impossible to remember websites based on a combination of numbers.
+ That is where domain names come into play.
+ Rather than remember those cumbersome IP addresses, you simply use a domain name that is used to mask that IP address and access websites that way.
+ So essentially, you can think of a domain name as a translation from a human readable address to an IP address that represents that website.
+ DNS works much like a phone number directory as it maps addresses to their respective numbers.
+ DNS servers translate requests for names into IP addresses and it controls which server a user will reach when they type a domain name into their web browser.
+ Introducing AWS Route 53 AWS Route 53 is a highly available and scalable DNS web service provided by AWS.
+ It is used for domain registration, DNS routing, and health checking.
+ You can use Route 53 in unison with other services seamlessly.
+ For instance, you can register domains using Route 53 and attach them to other services such as EC2 servers, ALB (Application Load Balancers), ECS, and so on.
+ In this tutorial, we will host a website using the AWS Amplify service and attach a registered domain to it.
+ But why is it called Route 53?
+ The name originates from the fact that, like other ports, such as port 443 for HTTPS and port 80 for HTTP requests, port 53 is used by DNS which allows for an array of communication to take place.
+ It is also believed that the origin of the name came from US interstate routes.
+ Hence, the name “Route 53”.
+ We are not here to dwell on that though, we are here to see AWS Route 53 in action!
+ ICAAN and Service Providers While there is AWS Route 53, there are other domain name service providers out there.
+ You might be familiar with them such as GoDaddy, Domain.
+com, Hostinger, and so on.
+ Most of these are ICAAN-accredited service providers.
+ ICAAN stands for The Internet Corporation for Assigned Names and Numbers (ICAAN).
+ ICAAN is a non-profit organization responsible for the maintenance of databases which hold information related to namespaces and their numerical counterparts.
+ Namecheap is an ICAAN-accredited domain name service provider and we will use it in this tutorial.
+ We could use Route 53 for domain registration as well, but we will combine the idea of purchasing a domain name from a third-party provider and attaching it to the web application deployed on AWS using Route 53.
+ You will need to have a Namecheap account setup and have some cash on the side.
+ We will purchase the cheapest available domain for demonstration purposes.
+ Remember, domain names can vary heavily in terms of pricing, renewals, etc.
+ Namecheap Domain Purchase To start, head over to Namecheap and you should see the following: Namecheap is quite extensive and offers a variety of solutions for online businesses.
+ Feel free to explore, but for now, we will stick with the cheapest available options.
+ Select the Domain option in the Navbar and select Domain Name Search.
+ This should navigate you to the following page: At the time of writing this article, the .
+bio domain was the cheapest.
+ Selecting it should navigate you to the following page: Namecheap offers a set of plans for different domain handles such as .
+com, .
+net, and many more.
+ In the search bar, I entered the most random set of alphanumeric characters.
+ This will increase the likelihood that the domain is available and is the cheapest to purchase as well.
+ Let’s face it, nobody is going to buy abc57294720 :) Again, feel free to find one of your choice.
+ For this demo, we will stick with the cheapest: From here, you will see if the requested domain is available.
+ You can also choose from a list of related domain names with respect to your search query.
+ You can add to cart as many as you like.
+ We will stick with the one we searched earlier and simply select Add to Cart and Checkout at the bottom: As mentioned earlier, Namecheap offers extensive features for website hosting.
+ For now, we will stick with the default options with no add-ons.
+ You will need to confirm order and fill out the banking details with respect to your Namecheap account.
+ We will stick with the 1-year registration option and again, feel free to increase this based on your needs.
+ We are doing this to stick with the cheapest available option.
+ After that, Confirm Order and complete the transaction.
+ Once complete, you should get an email in your inbox confirming the purchase as well as on the completed payment page: From here, select the Manage option in the domain registration section and it should navigate you to the main domain dashboard: We will be adding name servers which we will discuss next when we go through AWS Route 53.
+ For now, this is all the setup we need from Namecheap.
+ Code Overview (Brief) The codebase for this tutorial will be the same as the one used for the tutorial where we dove deep into using AWS Amplify.
+ We will not be walking through deploying a web application using AWS Amplify as that has been covered in the aforementioned tutorial.
+ If you need assistance on using AWS Amplify, please refer to that tutorial before proceeding.
+ We will be using AWS Route 53 to attach the newly bought Namecheap domain name to the deployed AWS Amplify application.
+ If you would like to explore the codebase in more detail, you can clone the repository here.
+ The directory of concern is Demo27_AWS_Route_53_Domain_Providers.
+ There is only a front-end component to this application, nothing more.
+ For the AWS Amplify deployment, the actual repository is standalone and is located here.
+ It is the same repository we used for deployment in the AWS Amplify tutorial.
+ We will not dive deep into the application itself as it is a simple React application with a home page and login page that displays user credentials.
+ You must have the application deployed using AWS Amplify (tutorial link above) before proceeding with the next section of this tutorial.
+ Namecheap & AWS Route 53 Integration Now comes the fun part.
+ In your AWS account, search for AWS Route 53: You should see the following dashboard: Select Hosted zones under DNS management and proceed to create a new hosted zone: The domain name should be the same name you purchased via Namecheap.
+ After that, proceed as is and select Create hosted zone.
+ With this complete, head over to the domain dashboard on Namecheap and copy over these four name servers in the Custom DNS section: From here, simply select the green checkmark to complete the custom DNS assignment.
+ If successful, you will be notified that it may take up to 48 hours to propagate.
+ With this complete, head over to AWS Amplify to where you deployed your web application and select Domain management: From here, simply select Add domain: You will be prompted to select domains created within your account.
+ Since we already created a hosted zone for the domain name purchased, we can select it from the dropdown menu as shown below: After that, select Configure domain to decide how you would like it to look: You can leave this section as is.
+ Simply select Save to proceed.
+ The following procedure takes quite a bit of time to setup (up to 30–45 minutes at times) so you might want to leave it here and come back in a bit.
+ If the DNS propagation has not completed, it might take hours/days before the domain is actually activated.
+ Unfortunately, DNS propagation does not complete instantaneously.
+ It takes time to propagate changes across servers all around the world on the internet.
+ AWS Route 53 is efficient as it not only allows for domain name activation, but also allows for the creation and activation of SSL (HTTPS instead of HTTP) which is crucial for internet and website security.
+ Nonetheless, after waiting some time, you should see something like this: You can still use the AWS Amplify domain to navigate to your site.
+ But with the custom domain created and activated, you of course will want to use that.
+ Demo Time!
+ With all this now complete, it is time for a quick demo!
+ Navigate to whatever domain you purchased using Namecheap/Route 53 (in this case, it will be https://abc5729472.
+bio): You should see the following: You can see the lock beside the custom domain and this indicates that we have secure connection enabled as well (SSL).
+ Navigate to the login page, fill out the details, and submit: This is a dummy test application so we are not too concerned about credentials and how to secure them.
+ We are simply testing the application’s functionality after assigning it a custom domain.
+ That concludes the demo!
+ The application works as intended.
+ Feel free to navigate to this site if you like.
+ Conclusion Domain names are a crucial piece to any website you deploy.
+ It is the identity of your website and the first thing people will use to navigate to it.
+ We explored in great detail, how one can purchase a domain using a third-party provider and utilizing AWS Route 53 for effective domain name/SSL activation.
+ We explored concepts related to AWS Route 53 hosted zones, domain mapping, domain/SSL activation, domain registration plans, DNS/DNS system, ICAAN, name servers, and so much more.
+ Attached below are links to the AWS Route 53 enabled website along with the code repository containing the codebase for the website deployed: AWS Route 53 custom domain website Demo 27: AWS Route 53 & Namecheap Code Repository I hope you enjoyed this tutorial and look forward to more down the road!
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

@@ -1,0 +1,84 @@
+Task Scheduler Application Implementing the LRU Cache Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Feb 12, 2024 -- Walkthrough of a real-world implementation of the LRU Cache.
+ If you are not familiar with the LRU Cache, please refer to this tutorial before proceeding with this one.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Building off what we covered in the last tutorial, we will walkthrough a web application which utilizes the LRU Cache data structure.
+ The LRU Cache will be implemented in the back-end and it will be used to create, read, update, and delete user tasks.
+ Without further ado, let us dive right in.
+ You can clone the repository here.
+ The directory of concern is /demos/Demo36_LRUCache_Implementation.
+ The web application is a simple task handler that enables the four CRUD operations.
+ Code Overview The full-stack application uses React/Node.
+js for the front/back-end implementation.
+ There can only be a maximum of five tasks before the least prioritized task is deleted (following the LRU Cache principle).
+ The user can perform CRUD operations to modify the cache and the contents of its data are written to a persistent file stored in /backend/database/items.
+json.
+ This serves as a mock database and is sufficient for the scope of this web application.
+ LRU Cache The following is the implementation of the LRU Cache /backend/dataTypes/LRUCache.
+ts: Building on the implementation from the last tutorial, this is the LRU Cache implementation with two additional functions added for ease of use.
+ The getLRUCache() function and the getLRUCacheKeyMap() function which simply return the order of keys and key map, respectively.
+ Utility Functions There are utility functions that exist which provide modularity and ease of use when working with the controller functions.
+ The first one is the fileReader.
+ts module /backend/util/fileReader.
+ts: It is a nice utility function in that, it provides all LRU Cache data stored in a persistent file which serves as the mock database /backend/database/items.
+json.
+ The second utility function is the fileWriter which writes the LRU Cache data back in the items.
+json file /backend/util/fileWriter.
+ts: Similar to the fileReader function, the fileWriter function writes the data of the modified LRU Cache back into the database.
+ Both functions make use of the built-in fs module for file reading and writing out-of-the-box.
+ The final utility function /backend/util/setLRUCache.
+ts creates the LRU Cache with a capacity of 5 and adds in all the task IDs and their descriptions.
+ This serves to provide a copy of the actual LRU Cache stored in the items.
+json file for the purposes of modifications which are written back in the items.
+json file: Aside from the utility functions, there are two custom types /backend/dataTypes: Item — For defining task definitions by their ID and description LRU Cache — Class for working with the LRU Cache data structure We have already looked at the LRU Cache.
+ The following is the Item type definition: Pretty straight forward.
+ Now, we focus on the main controller functions which enable the CRUD operations.
+ Controller Functions The deleteTask function allows the user to delete any task based on their ID.
+ The ID is generated using the uuid library and is sufficient for the scope of this web application.
+ The function makes use of the utility functions to read and set the LRU Cache.
+ It proceeds to delete the requested task provided by the user and writes the modified LRU Cache back into the items.
+json file /backend/Controller/DeleteTaskController.
+ts: The getTasks function simply reads through the items.
+json file and returns the keys (or in this case, IDs) of the tasks the user has created /backend/Controller/GetTasksController.
+ts: The insertTask function enables the user to create a task by providing input text.
+ The function makes use of the uuid library to create a random ID and assigns it to the task.
+ After that, the LRU cache is updated and the modified version is written back into the items.
+json file /backend/Controller/InsertTaskController.
+ts: Finally, the last of the CRUD operations is the update function.
+ The updateTask function enables the user to update a description of an existing task and have it written back into the LRU cache.
+ You can find the implementation here /backend/Controller/UpdateTaskController.
+ts: The last controller function provides all the LRU Cache data to the user for viewing purposes and it can be found in /backend/Controller/ViewTasksController.
+js: Suffice to say, that is all we need from a back-end POV.
+ By providing a custom implementation of the LRU cache, we enable separation of concerns and modularity.
+ We will not walk through the front-end implementation as it follows similar React implementations we have looked at in the past.
+ Feel free to look into it though.
+ The client codebase is located in the /frontend portion of this directory.
+ Demo Time!
+ Assuming you cloned the repository, ensure that you ran npm install in each of the front/back-end directories.
+ This will install all the necessary dependencies to work with the project.
+ On two separate windows, from the root directory of this project, do the following: Run npm start in /frontend to launch the front-end server npx ts-node server.
+ts in /backend to launch the back-end server Upon launch, you should see this: Proceed to the Insert Task page and fill out a description for a task: Proceed to the View Tasks page and you should see your newly created task there: You can see the uuid library was used to assign this task a unique ID.
+ The table orders the tasks from the most recent to least recent.
+ Try to add five more tasks using the Insert Task page.
+ If done correctly, you should see this lone task evicted.
+ You can check this by heading over to the View Tasks page and it should display the following (in resemblance): The task we created the first time is now evicted.
+ This follows the LRU Cache principle of eviction which states that if the cache is at capacity, the least recently accessed item is evicted to make room for the new one.
+ Since the capacity is set to five, the sixth task is added by evicting the least recently accessed task.
+ In this case, it happens to be the first one.
+ Try to delete any of your tasks in the Delete Task page: You should see a dropdown automatically populated with the IDs associated with your tasks.
+ Selecting any of these IDs for deletion will remove them from the LRU cache.
+ You can view the updated list in the View Tasks page: Try updating a task in the Update Task page: Heading over to the View Tasks page should display the following: The order of the LRU Cache changes with any insertion, deletion or updates.
+ Whenever the retrieval or update process takes place, the key moves to the front of the cache.
+ This covers all areas of concern as it relates to the demo.
+ Feel free to explore this web application.
+ Conclusion In all, we investigated a good use-case for the LRU Cache data structure.
+ We saw how a simple web application can incorporate the LRU Cache behind the scenes to serve end-users.
+ We did not require any external software to create this application.
+ Everything was local including the database which was created using a simple JSON file.
+ Attached here is the code repository used in the demo.
+ As always, I hope you found this article informative and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

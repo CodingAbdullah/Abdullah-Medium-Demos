@@ -1,0 +1,78 @@
+Going Beyond the MERN Stack for Web Development Abdullah Muhammad · Follow Published in Stackademic · 5 min read · Oct 5, 2023 -- This article does not require any technical knowledge.
+ It mainly serves as a starting point for anyone looking to learn and develop applications using the undermentioned technologies.
+ Introduction In most of the tutorials covered so far, we have looked at using JavaScript for web development.
+ It is the language for the web and we covered the MERN stack which includes many of the rich libraries and frameworks built on top of it (Express.
+js, Node.
+js, and of course, React.
+js).
+ But “MERN” is not the only one out there and today we will be looking at many great alternatives to using MERN for full-stack development.
+ There is no right or wrong way to go about choosing your tech stack.
+ Often times, you have the freedom to choose how you would like to build out the different layers of your application.
+ Exploring the Frameworks & Stacks For starters, we will explore language-based libraries and frameworks for development.
+ After that, we will discuss how the different layers of an application can be considered a separation of concerns which enables us to select different languages for different ends of development.
+ The first language we will look at is JavaScript: JavaScript Aside from using the MERN stack, we can use front-end frameworks such as Angular.
+js, Vue.
+js, and Svelte.
+js in conjunction with Node/Express for full-stack development.
+ There are derived names such as MEAN which is basically the same as MERN except it uses Angular.
+js for front-end development.
+ Just like how React supports TypeScript development, all these frameworks also support it.
+ Important to note that TypeScript functionality is not lost using any frameworks built off JavaScript.
+ The aforementioned list of technologies are not the only ones.
+ There are countless more frameworks out there.
+ If you want a full-stack framework for production-ready sites, you can use the SSR framework, Next.
+js.
+ Next.
+js was developed by Vercel for developing server-side rendered, SEO-friendly sites.
+ It incorporates React for front-end development, but blends in server-side code using Node.
+js for quick and efficient delivery.
+ If you really love working with React, you might like to try out React-Remix.
+ There are subtle differences between Remix and Next.
+js, but Remix is faster in many ways.
+ For back-end development, Express.
+js is still king.
+ It really simplifies developing many of the core concepts of the server-side.
+ If you want to tickle your fancy though, Nest.
+js might be it.
+ It is a scalable framework for the back-end built using Node.
+js.
+ Note however, you can only work with TypeScript when working with Nest.
+js so be mindful of that when considering it for development.
+ That is about it when it comes to JavaScript and its ecosystem.
+ Remember, you have many options out there and if you do not want to learn any of these, you can stick to plain JavaScript.
+ After all, that is the language where all these great ideas come from!
+ Java Java is a high-level, object-oriented programming language enabling developers to create rich applications.
+ In the early days of Java, you could implement the MVC architecture by building web applications using JSPs (JavaServer Pages) and Servlets (server-side code).
+ But it has come a long way since then and Java Spring is now used along with Spring Boot and Spring MVC.
+ Java incorporates their own HTTP server environment using Apache Tomcat.
+ Nonetheless, Java is a popular language out there and if you want learn and develop using it, you can!
+ PHP When it comes to PHP, there are two common MVC frameworks out there: Laravel CakePHP There are differences between these two frameworks, but they both implement the MVC pattern for developing web applications with PHP.
+ C# If you have worked with C#, you are likely familiar with the .
+NET Framework.
+ It is developed and maintained by Microsoft and it too, enables developers to create a variety of different applications.
+ The .
+Net framework can be used to develop both desktop and web applications as well as other applications related to the Windows operating system such as Windows forms and WPF applications.
+ Python And finally, who can forget Python?
+ Python is a great language to start working with if you are new to programming.
+ It has become a staple in the data science community because of the many rich libraries it offers enabling analytics, business intelligence, and of course, machine learning.
+ Django is a Python-based web framework that follows a similar pattern to MVC enabling developers to create web applications that they desire.
+ It is the most common one in the world of Python and so it was worthy of a mention here.
+ Mix ’n’ Match!
+ As discussed earlier, you can develop web applications using a variety of languages.
+ For instance, you can develop a PHP back-end using Laravel and use React.
+js for the front-end.
+ A separation of concerns enables countless combinations of libraries, frameworks, and programming languages that can be used in conjunction for efficient web development.
+ For each of these, you can also use SQL or MongoDB for storing data in a database.
+ The sky is the limit!
+ Remember, the names and languages might be different, but the ideas are similar and you are not bound to any rules (except for what your boss wants, if you have one that is ;)).
+ Conclusion This of course, is not the complete list of languages, frameworks, and tools out there, but this article served its purpose in giving you a strong foothold on many of the famous ones out there.
+ You can start learning today and if you are familiar with any of these, maybe even do a deeper dive.
+ Nonetheless, your options are flexible and you are not bound to any rules.
+ I hope you enjoyed this walkthrough on alternatives to using the MERN stack (which we have explored at great length) for development and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

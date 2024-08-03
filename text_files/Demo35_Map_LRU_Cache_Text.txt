@@ -1,0 +1,77 @@
+Deep Dive into Maps, Sets, and the LRU Cache Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Feb 9, 2024 -- Overview of Maps, Sets, and the LRU Cache.
+ TypeScript is used as the expository language.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the last tutorial, we looked at Arrays, Linked Lists, Stacks, and Queues.
+ In this tutorial, we will build on what we learned last time and dive into other collection types such as Maps and Sets.
+ After that, we will focus on a complex data type which incorporates the aforementioned data structures to implement a LRU (Least Recently Used) Cache.
+ We will dive deep into what a LRU Cache is, walkthrough its implementation, and find real-world use cases for it.
+ Illustrative Explanations This section aims at providing an illustrative demo for a Map, Set, and LRU Cache.
+ Feel free to skip to the LRU cache section if you are already familiar with Maps and Sets.
+ Maps Maps consist of key-value pairs that “map” a key to a specific value.
+ They can come handy for keeping track of information and can be used in problem solving.
+ For instance, suppose you are trying to find the first second occurrence of a character in a string, you can solve this problem using a Map.
+ As you traverse through the string, add each character as a key to a map with the value being its occurrence.
+ As soon as you add a key that already exists, you know that its a second occurrence.
+ Keys are unique and so when you try to add the same key with a different value, only the value of the key is updated.
+ It follows that you cannot have duplicate keys.
+ Maps are prevalent in programming and a built-in Map Map<K,V> class is provided out-of-the-box for you.
+ Common functions include get, set, has, and delete.
+ A Map declaration for the problem above (using TypeScript) looks like this: let characterMap = new Map<String, Number>(); The following diagram illustrates a Map in action: We make use of the set and get methods provided by the Map class to enter in the characters and update their occurrences.
+ The ternary operator checks to see if the key exists.
+ If it does not, we enter one as its value.
+ If the key is already defined, we fetch the present value of the key and update it by one.
+ Sets Sets are a collection of unique items.
+ No matter how many times you insert an item into a set, only one copy of that particular value is ever stored.
+ Its a pretty handy data structure to have if you only want to store distinct values of a particular collection.
+ Set operations include union, intersection, addition, and subtraction.
+ Sets are also a common data structure and are provided out-of-the-box in TypeScript.
+ A declaration of a Set looks like this: let characterSet = new Set(); Built-in functions when working with Sets include add, difference, clear, delete, has, intersection, keys, union, and values.
+ The following diagram illustrates a Set in action: We traverse through the string and add in the characters to the Set using the add function.
+ In the end, we have a distinct set of characters related to the string.
+ In this case, the letters a, b, and c.
+ LRU Cache Now comes the fun part, we will discuss the Least Recently Used Cache or LRU Cache for short.
+ It is a data structure that implements an array that maintains the order of keys based on retrieval.
+ The most recently used key sits at the front and as you traverse through the array, keys are ordered by the last time they were retrieved with the least recently used key sitting at the end.
+ There is a capacity on the number of keys a cache can hold and as new keys are placed, the cache will check to see if its at capacity.
+ If so, it will evict the least recently used key from the back to make room for the key to be added at the front.
+ The following are common rules for a LRU Cache implementation: Keys retrieved move to the front and array is re-ordered Existing key has a new value set which moves it to the front Existing key has the same value as the key to be insert is expired (its value is set to undefined) and the new key is added with that value (eviction will take place if at capacity) Evicted keys are deleted from the array and their value is returned The LRU Cache can be implemented with an array that maintains the order of keys from the most recently accessed to the least recently accessed and a map that tracks key-value pairs.
+ Functions such as has(key), get(key), set(key, value), delete(key), and print can be found in common LRU Cache implementations and they are self-explanatory.
+ The following illustrates the LRU Cache in action: The values of these keys are stored in a map.
+ The array maintains the order and is used for the insertion, eviction, and deletion process.
+ Code Overview We will briefly walkthrough custom implementations of each data structure above.
+ You can clone the repository here.
+ The directory of concern is /demos/Demo35_Maps_Sets_LRUCache.
+ You need to ensure that you install the necessary dependencies to work with this project by running: npm install In the root directory /, the following code details usage of Maps and Sets MapsAndSets.
+ts: You can run this file with the following command: npx ts-node MapsAndSets.
+ts You should get the following output: You can see the same output from what we saw in the illustrative demo above.
+ The map structure successfully tracks the occurrence of all letters in the word and stores them as keys.
+ It stores their number of occurrences as their value.
+ The set successfully holds all the distinct letters found in the word.
+ The following is a custom implementation of the LRU Cache data structure: You can see implementation for the set, get, has, print, and delete functions.
+ We have an array that keeps track of the order of keys and a map which stores the values associated with those keys.
+ The main action takes place in the set function where we first check to see if the cache is at capacity.
+ If so, we check to see if the key to be added already exists and if it does, no eviction takes place as we just re-order the array.
+ If the key is distinct, we perform the eviction and add the new key in.
+ We also expire (set value to undefined) any keys that hold the same value as the key to be inserted.
+ We make use of built-in array functions such as splice, filter, and push to update the array accordingly.
+ Feel free to run this snippet of code by running the following in the root directory /: npx ts-node LRUCache.
+ts The following is a trace of the LRU Cache in action following the commands outlined in the code above: The trace is pretty self-explanatory.
+ The LRU Cache capacity is set to four and keys are populated until it reaches the limit.
+ When the fifth key is added, the least recent key is deleted.
+ If a key is inserted containing the same value as an existing key, the existing key is expired (value is set to undefined).
+ There are several use-cases for LRU caches in the real-world.
+ The following are just some examples: Maintaining a limited record of the most recently used items.
+ Keep track of items when they were last accessed.
+ A web application that keeps track of five items on a to-do list and as new items are added, the least prioritized tasks are removed.
+ Conclusion In this tutorial, we covered Maps, Sets, and the LRU Cache.
+ We saw an illustrative example and code implementation of each data structure.
+ Feel free to learn more about these data structures.
+ The LRU (Least Recently Used) Cache was an interesting study as it incorporates basic data structures to build a more complex one.
+ In a future tutorial, we will look at using a LRU Cache in a web application.
+ The following is a list of links to the GitHub repository and official docs related to Maps and Sets: GitHub Repository Maps Sets I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

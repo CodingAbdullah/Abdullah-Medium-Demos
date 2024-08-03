@@ -1,0 +1,96 @@
+Rapid Front-end Deployment with AWS Elastic Beanstalk Abdullah Muhammad · Follow Published in Stackademic · 9 min read · Dec 29, 2023 -- This article assumes the reader has a working knowledge of React.
+js and Node.
+js for web development.
+ Cloud knowledge is not necessary for working with this tutorial, but it is helpful.
+ Introduction In the last tutorial, we worked with LocalStack for local cloud development, free of charge.
+ We emulated the AWS S3 service and successfully tested it using a full-stack application built using React/Node.
+js.
+ LocalStack can come handy for working with AWS locally to develop and test applications, but even more-so if you are new to the cloud.
+ You see, there are many services AWS offers which can make it difficult to figure out the most efficient and cost-effective solution for your project.
+ It only gets more complicated if you are new to the cloud which is why LocalStack is a great tool to use.
+ If you insist on using AWS however, there are many great, “helper” services (as I like to call them) that can assist in cloud development at little to no cost.
+ We already worked with AWS Amplify, a common service used for quick front-end application deployment.
+ We even integrated other services such as AWS Route 53 for domain handling.
+ There is another great service AWS offers for end-to-end web application deployment known as AWS Elastic Beanstalk.
+ It is a great service cloud newbies can use to deploy their web applications offering high scalability, availability, application health monitoring, and so much more.
+ What is great about this service is that it is cost optimized.
+ You do not have to worry about trying to figure out how to deploy your application.
+ Elastic Beanstalk does this for you!
+ Flexibility Working with AWS Elastic Beanstalk AWS Elastic Beanstalk can work with different programming languages.
+ The most common ones for application development are supported.
+ These include Java, .
+NET, PHP, Node.
+js, Python, Ruby, Go, and many more.
+ All you have to do is simply upload your web application code bundle and Elastic Beanstalk handles the rest.
+ As discussed previously, many different capabilities are offered by Elastic Beanstalk out-of-the-box.
+ These include capacity provisioning, load balancing, automatic scaling, application health monitoring, and so much more.
+ It is a fully managed service meaning that you only worry about your code and nothing more.
+ You do have the ability to select resources if you like, but if you are new to the cloud, you can let Beanstalk handle that for you as well.
+ Elastic Beanstalk’s Dedicated Architecture Internally, Elastic Beanstalk utilizes its own architecture patterns for application deployment.
+ There are two types of environments that Elastic Beanstalk works in and there are six distinct services Beanstalk uses for deployment.
+ Some of these have not been covered in a tutorial, but you do not have to worry about that.
+ Elastic Beanstalk encompasses all of them and incorporates these six services for application deployment: AWS EC2 — Compute resources required for web application hosting/deployment AWS S3 — Optimal for object storage AWS RDS — Optimal for data storage AWS ELB (Elastic Load Balancer) — Optimal for scaling web applications AWS CloudWatch (X-Ray) — Optimal for application monitoring AWS IAM — Required for identity access and management As you can see, we have looked at all except AWS CloudWatch which is basically a service used to monitor service metrics and can come handy when you would like to optimize performance.
+ We will cover it in a future tutorial.
+ Aside from these six services, we mentioned there are two types of environments: Web Server — An environment where Elastic Beanstalk provisions the resources required to run your application.
+ AWS resources created in this environment include an Elastic Load balancer, an Auto Scaling group, and one or more Amazon Elastic Compute Cloud (Amazon EC2) instances.
+ More information can be found here.
+ Worker — Incorporates an additional service known as AWS SQS (Simple Queue Service).
+ In a worker environment, Elastic Beanstalk installs the necessary files required to work with the programming language of your choosing.
+ You can think of SQS (to be covered in a future tutorial) as a messaging system which other AWS services read data from indicating what to do next.
+ More information can be found here.
+ These architectural patterns in conjunction with the six services offer a separation of concerns and enable modularity of your web application.
+ Elastic Beanstalk’s primary focus is to ensure scaling, storage, and optimal performance.
+ Code Overview You can follow along here.
+ The directory of concern is /demos/Demo31_AWS_Elastic_Bean_Stalk.
+ The application we are going to deploy using Elastic Beanstalk is the same web application deployed in the AWS Amplify tutorial.
+ We will not do a deep dive into the codebase as it is a simple web application.
+ You can check the aforementioned directory for an in-depth analysis.
+ The main focus of this tutorial will be using the existing codebase for application deployment using AWS Elastic Beanstalk.
+ AWS Elastic Beanstalk Setup and Demo Assuming you have an AWS account setup, you can follow along.
+ We will not be walking through setting up an account.
+ It is assumed you already have one.
+ Login into your AWS account and navigate to the dashboard.
+ From here, search for Elastic Beanstalk.
+ You should be directed to this dashboard: From here, select the Create application option on the right to kickstart the deployment process: You will need to fill out the details related to the environment tier, application information, and environment information.
+ We will be working with the Web Server environment for this tutorial.
+ Add the application name you would like and check the availability of the domain name of your choosing.
+ Like many other services we have looked at in the past (Amplify, S3, EC2 come to mind), there is a custom URL that is assigned and AWS Elastic Beanstalk is no different.
+ Below that, you can fill out any environment information you think is necessary.
+ We will leave this space blank.
+ You can select managed platform as the default option and select Node.
+js from the drop-down.
+ You must select the Upload your code option and upload the front-end.
+zip zip folder located in /demos/Demo31_AWS_Elastic_Bean_Stalk.
+ Ensure you have added an application version number.
+ The following screen illustrates all this: You can leave the Presets option as is and select Next: After that, you will need to configure service access by determining the service role, EC2 key pair (to be used to access any EC2 instances), and an EC2 instance profile.
+ You will need to ensure the custom role you use encompasses the following policies: AdministratorAccess-AWSElasticBeanstalk AWSElasticBeanstalkMulticontainerDocker AWSElasticBeanstalkRoleWorkerTier AWSElasticBeanstalkWebTier AWSElasticBeanstalkWorkerTier We will not go through setting up roles and permissions to be used in AWS Elastic Beanstalk as AWS IAM and everything related to it can be found in this tutorial.
+ It is important to get this step right in the deployment process.
+ Once you have created a custom role, you will be able to view it as one of the default options like this: Next, we will need to configure network, database, and tags: You can skip the database and tags sections.
+ We are deploying the front-end application at this time and will not require to set it up.
+ Next, we will need to configure instance traffic and scaling.
+ We will stick with the default options provided to us in this tutorial: Finally, we need to configure updates, monitoring, and logging.
+ For monitoring, select the Basic option: After that, you have the option of choosing updates and any email notifications you would like to receive.
+ You can add these details if you like, but these will be left blank for this tutorial: Rolling updates and deployment options are set to default as well, but feel free to change these if you like: And finally, platform software provides default options and we will stick with those: After all this, selecting Next should navigate you to the review page where all the details of your deployment are available.
+ Feel free to edit anything you like, but you should be good to go.
+ Once you complete the final review and submit, you will be navigated to the environment dashboard and a set of logs will appear that will highlight steps of the deployment process.
+ If deployed correctly, you should see something like this: Navigating to the domain of the newly deployed application should yield the following web page: You can see the custom URL highlighting the Elastic Beanstalk deployed application.
+ Note that unlike AWS Amplify, where an SSL certificate is automatically generated for you, Elastic Beanstalk does not.
+ You can acquire a custom domain name and use the AWS Route 53 service in tandem with Elastic Beanstalk for custom URL assignment.
+ We have covered AWS Route 53 in detail here so feel free to check it out.
+ We can test the deployed application by navigating to the login section of the application.
+ Filling out and submitting the required details should yield the following: Obviously, we will not want to display user credentials like this, but this is a mock application we used to test deployment :) If you want to update any part of the codebase and re-deploy the application, you can by navigating to the environment you created and selecting the Update and deploy option.
+ From there, you will be prompted to upload a new zip containing the updated codebase you would like to deploy.
+ There is a lot more that comes with Elastic Beanstalk and we will re-visit some of these features in future tutorials as we cover more AWS services.
+ This concludes the Elastic Beanstalk setup and demo!
+ Conclusion We did a deep dive into using AWS Elastic Beanstalk and saw how easy it was to use for end-to-end application deployment.
+ We walked through key features of Beanstalk such as the two different types of running environments (web/worker), the six different AWS services Beanstalk incorporates, and how one can seamlessly setup and deploy a web application by navigating through the various steps.
+ We also touched on monitoring deployment via logs and how one can incorporate AWS Route 53 for custom domain assignment.
+ When we cover more AWS services in future tutorials, we will re-visit Elastic Beanstalk for a full-stack application deployment.
+ In this tutorial, we worked with deploying a front-end React.
+js application.
+ Linked here is the code repository used in this tutorial.
+ As always, I hope you found this tutorial informative and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

@@ -1,0 +1,163 @@
+Deep Dive into AWS VPC and its Network and Security Components Abdullah Muhammad · Follow Published in Stackademic · 13 min read · Jan 17, 2024 -- Covering AWS VPC, VPC flow logs, IP addresses, CIDR, subnets, NACLs, security groups, firewalls, gateways, and so much more.
+ This article assumes the reader has a basic understanding of cloud service providers such as AWS.
+ Development experience is helpful, but not required.
+ Introduction As we have seen, AWS offers a wide range of services to deliver complex cloud-based solutions for their clients.
+ Networking and security are key parts of cloud governance and cloud development.
+ This of course, is not lost on AWS and it offers a wide range of networking and security solutions.
+ Today, we will dive deep into what is AWS VPC, firewalls, subnets, gateways, network access control lists, security groups, and so much more.
+ It is important to understand networking and security in order to safe guard the services you deploy on AWS.
+ As the complexity of your application grows, so too does the management and security of the application.
+ AWS Networking Components There are several layers to networking and security.
+ The following is a list of the few things we will cover today: AWS VPC Public/Private Subnets IP Addresses (Elastic and Static) CIDR (Classless Inter-Domain Routing) Internet/NAT Gateways NACLs (Network Access Control Lists) Security Groups Route Tables Network Firewalls VPC Flow Logs Developing your AWS infrastructure with networking and security in mind is key to enabling a secure cloud application.
+ VPC — Virtual Private Cloud VPC or Virtual Private Cloud (as the name implies), is a secure, private cloud hosted within a public cloud (AWS).
+ AWS provides a default VPC when you launch services, but you can create your own.
+ It is like your safe, private workspace in which you can deploy any services you like and isolate them from the public environment.
+ Subnets You can enforce a “network within a network” architecture when using a VPC.
+ Subnets are essentially just that, a sub-network in which particular services can reside.
+ This allows you to add another layer of isolation and security to your services which makes networking more efficient.
+ Instead of traversing through the public internet to access services within your cloud infrastructure, you can connect to your services via shorter routes.
+ Subnets can be either private or public.
+ Public subnets can communicate with the outside world via internet.
+ So, by intuition, you probably already know what private subnets are all about.
+ They are completely isolated from the internet.
+ The only way to access services within a private subnet is to access them via other services internally (provided they have the appropriate permissions to do so).
+ Services within a private subnet however, can communicate with the outside world with the use of a NAT gateway which we will discuss a bit later.
+ The idea here is to isolate and secure as much of your AWS infrastructure from the outside world and only expose what is required to make your application function correctly.
+ A good example to consider is a full-stack application deployed to AWS.
+ It is harbored within its own VPC containing two services and three instances: EC2 instance within its own public subnet (front-end server for hosting website to be viewed publicly on the internet) EC2 instance within its own private subnet (back-end server for handling API requests) AWS RDS/DocumentDB —Database service within its own private subnet for storing data related to the application Note how the only service accessible from the internet is the front-end server.
+ The rest do not need to be accessed from the outside world.
+ They operate internally via the client server which processes user requests.
+ A simple, but straight forward example.
+ IP Addresses — Elastic and Static When working with AWS services, IP addresses are assigned to establish location and communication between services.
+ They can be both private and public.
+ Private IP addresses are not traceable from the outside world and are only accessible within your private network.
+ Public IP addresses however, are accessible from the outside world.
+ IP addresses are created using CIDR or Classless Inter-Domain Routing, which we will discuss shortly.
+ So what are Elastic and Static IP addresses?
+ Say for instance, you launch a new AWS EC2 instance or any other service for that matter, you will see a public static IP address by default from which the said service will be accessible.
+ However, every time you stop, delete or re-create a new instance, a new public IP address is assigned to that instance.
+ This might be an inconvenience for some and so for this, AWS allows the creation of Elastic IP addresses which can be attached to services.
+ This prevents automatic deletion and re-creation of public IP addresses and instead, the Elastic IP address attached to the service is automatically assigned upon start-up.
+ Key thing to note here though, is that you will be charged for Elastic IP addresses in your account even if they are not in use.
+ CIDR — Classless Inter-Domain Routing Within a private network, services are accessible using their private IP address.
+ We use CIDR for public and subnet (private) IP address assignment.
+ More information can be found here.
+ The key thing to note is the following notation: <address range>/<prefix> The starting address range in a subnet can be 10.
+0.
+0.
+0 and the prefix (which helps determine the range) can be any number less than 32 (for a 32-bit address).
+ We can calculate the range of addresses available from this information.
+ In a 32-bit address, we have the following: 2^(32-prefix).
+ So if we have something like this, 10.
+0.
+0.
+0/24, we know that we have 2^(32–24) = 2⁸ = 256 possible addresses within this range.
+ Now, usually there are reserved addresses which cannot be used.
+ In this case, it is likely that 10.
+0.
+0.
+0 is one of them so we start from 10.
+0.
+0.
+1 and move from there.
+ The further left you go, the greater significant bits, but we will not cover that in detail here.
+ It is enough to gather that CIDR is used for public and subnet IP address assignment.
+ Wait, will there not be duplicates?
+ A private network is isolated from the rest of the world.
+ Services are often encompassed within their own private network and are assigned two types of IP addresses.
+ For internet access, we use the public IP address.
+ For subnets and private networks, we use the private IP address of the particular service.
+ Internet (IGW) and NAT Gateways You might be wondering how instances within subnets establish communication with the internet.
+ Earlier, we mentioned that NAT (Network Access Translation) gateways are used by private subnets to access the internet (outbound) and not allow inbound internet traffic.
+ This is a common setup used for working with private subnet instances.
+ Internet Gateways are another and they are used by instances residing in a public subnet.
+ They help establish both inbound/outbound traffic from the internet.
+ NACLs — Network Access Control Lists NACLs or Network Access Control Lists offer security at a subnet level.
+ They have a set of rules that help determine what traffic inbound/outbound is allowed.
+ It is stateless, meaning that it does not have a recollection of past events and makes decisions based on incoming requests.
+ NACLs contain a weighted rule system which is essentially a priority-based rules system.
+ By default, traffic is denied unless a match is made with one of the rules.
+ Each rule has a number, action, protocol (HTTP, TCP, etc.
+), source/destination range, and a rule order.
+ The two actions are: Allow and Deny.
+ Once a match is made, no further evaluation takes place and so whatever the matching rule action was, takes precedence.
+ Every subnet in a VPC must have a NACL, but a single NACL might be enforced on multiple subnets.
+ It is not a strict, one-to-one mapping.
+ Security Groups Security Groups in AWS offer a stateful, instance-level network security layer.
+ When you create a service of any kind, a default security group is assigned to that particular service.
+ You can of course, create your own custom security groups and attach one security group to a set of services.
+ You can also assign multiple security groups to a single instance.
+ Similar to NACLs, you can create rules to determine what can enter/leave the instance as traffic.
+ Traffic that does not meet the defined rules is denied and the more specific rules take precedence.
+ Security groups allow for bi-directional access and denies (if inbound traffic is allowed, outbound is also allowed).
+ Route Tables Route Tables help determine the flow of traffic between subnets within a VPC.
+ Every VPC contains a default route table.
+ You can always modify this route table, but you can never delete it.
+ Subnets must be assigned a route table.
+ If they are not, they inherit the route table of the VPC they reside in.
+ As always, you can define custom route tables to determine traffic flow for specific subnets.
+ Multiple route tables can be attached to a specific subnet and the more specific rules take precedence should there be a conflict between two or more route tables.
+ Network Firewalls At a VPC level, you can incorporate AWS Firewall which is a fully managed service that offers security to your infrastructure.
+ It allows for the monitoring of both inbound/outbound traffic as it relates to your VPC providing essential protection.
+ AWS WAF or Web Application Firewall pertains to web applications deployed using AWS and protecting them from external threats.
+ You can filter out HTTP and HTTPS requests to figure out what is allowed access and what is not.
+ VPC Flow Logs AWS VPC comes with its own monitoring tool known as VPC Flow Logs.
+ These are essential for performing security analysis, troubleshooting, and monitoring activity within your infrastructure.
+ Logging can be done at a subnet or instance level and includes records related to source/destination IP address, port usage, protocol, timestamps, etc.
+ You can use these in unison with other AWS services such as S3 for storage and perform further analysis.
+ These are just some of the many essential components that AWS VPC offers as cloud networking and security solutions.
+ Web Application Setup We will focus on the key components of AWS VPC using a basic web application deployed on an AWS EC2 instance.
+ The codebase to be used is here and the directory of concern is /demos/Demo32_AWS_Cloud_Networking.
+ The following diagram illustrates the setup: The application is hosted on an EC2 instance using a Nginx web server that is installed on it.
+ The code repository to be used is located here.
+ The directory of concern is /demos/Demo32_AWS_Cloud_Networking.
+ If you are not familiar with setting up and hosting a website using AWS EC2, please refer to this in-depth tutorial, it covers all this in great detail!
+ The idea here is very simple.
+ We have a client-facing web application with no back-end or database and we are using the default settings when setting up the EC2 instance.
+ Typically, if we used a full-stack application, we would follow the model discussed previously (two services, three instances) with the front-end server residing in a public subnet and the back-end server and database in their own private subnets.
+ EC2 Network Configuration Once you have successfully launched your EC2 instance, you can find the relevant network information here: As mentioned previously, public/private IP addresses can be used to access the EC2 instance in a public/private network, respectively.
+ You can find the VPC ID, subnet ID, and the inbound/outbound security rules under the Security tab: You need to ensure that inbound/outbound traffic is allowed for all port ranges, protocols, and source.
+ We can do this by modifying the existing security group or create a new one.
+ Select Security Group > Edit Inbound Rules > Select All Traffic > Save: This will allow you to access the EC2 server via Instance Connect and setup the EC2 instance.
+ All this is covered in the Nginx tutorial mentioned earlier.
+ It is assumed you know how to setup the web server.
+ Investigating the VPC and Setting up VPC Flow Logs After setting up the web server on the EC2 instance, we can investigate the VPC by selecting the VPC ID from above.
+ This will allow us to view subnets, route tables, security groups, and NACLs within the VPC: We can find the subnet the EC2 instance resides in by looking up the subnet ID under the EC2 instance dashboard (from above).
+ Just below this screen, you will see a nice illustrated resource map which details the flow between the different network components: We can find the different subnets within the VPC.
+ The last one (subnet-1e335252) corresponds to the subnet in which the EC2 instance resides in.
+ Looking at this flow chart, we also see that these are public subnets because they use an internet gateway to communicate with the internet (as seen under network connections, igw-c9aed4a1).
+ To setup flow logs, select the Flow Logs tab above the flowchart.
+ Fill out the name and set the interval to 1 minute.
+ Leave everything else as the default option.
+ Assign a name to the destination log group (can be any) and create an IAM role to work with VPC flow logs.
+ If you are not sure what IAM is, you can refer to this tutorial before proceeding.
+ Docs on what policies are associated with VPC flow logs can be found here.
+ To setup the custom role, select the Set Up Permissions option beside the IAM role field > Create Role > Custom Trust Policy.
+ After that, paste in the following (which can also be found in the aforementioned docs link): Selecting Next should prompt you to add permissions.
+ Simply search for and add the following policy: Selecting Next should prompt you to review your custom policy along with assigning a role name.
+ Once all that is complete, select Create Role to complete the process: Head back to the create VPC flow logs setup page and select the refresh icon on the right to update roles available.
+ Select the newly created custom role and you are good to go!
+ We could send the flow logs file to a S3 bucket, but we will not do that here.
+ Selecting the Create Flow Logs button at the bottom should complete the process.
+ Demo Time!
+ It is assumed you have hosted the web application using this code repository under /demos/Demo32_AWS_Cloud_Networking.
+ If you have not done so, you can follow along in the aforementioned tutorial here to see how it is done.
+ We will not be walking through it.
+ The URL format of a hosted website on an EC2 instance is the following: https://<Public IP Address>/ The public IP address as mentioned before, can be found by looking up information related to the EC2 instance in the EC2 instance dashboard.
+ Assuming everything is done correctly, you should see the following: Navigating to the other test page should confirm all is working fine: At this point, we can also view the VPC flow logs by navigating to the VPC the EC2 instance is residing in.
+ Select Flow Logs > Your custom created flow log this should navigate you to the CloudWatch dashboard.
+ From here, select Log Groups under Logs and select the log group name you assigned when you created the VPC flow log: Scrolling to the bottom, you should find log streams.
+ These contain recorded data related to activity within the VPC: Selecting any should yield something like this: If you see something like this, the logs are working correctly.
+ These can be used for data analysis or put to storage using a S3 bucket.
+ Nonetheless, there are several options one can use for processing this data.
+ This concludes the demo!
+ Conclusion All in all, we did a thorough deep dive into AWS VPC and the various components that make it up offering network and security solutions.
+ Networking and security are key cogs of cloud development and it is important to understand them.
+ We looked at VPC, VPC flow logs (how to set them up), NACLs, security groups, private/public subnets, internet/NAT gateways, and so much more.
+ There is a lot more to VPCs such as VPC peering (establishing communication between two separate VPCs), AWS PrivateLink, and so on.
+ However, what was covered today was quite comprehensive and allowed the reader to build a solid foundational understanding of networking and security as it relates to AWS.
+ Listed below are links to the code repository used for this tutorial and link to the official AWS VPC docs: GitHub Repository Official AWS VPC Docs I hope you enjoyed this tutorial and look forward to more in the future!
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

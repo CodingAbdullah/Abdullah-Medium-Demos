@@ -1,0 +1,69 @@
+Exploring Use Cases for Working with OpenAI APIs Abdullah Muhammad · Follow Published in Stackademic · 6 min read · May 25, 2024 -- This article assumes the reader is familiar with fundamentals related to web development and APIs.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction As you have seen in recent tutorials, I explicitly mention of a tool I created related to Medium articles (you can see it above).
+ It is a web scraper tool that allows users to create an audio file of an article by providing the URL of that publicly available Medium article.
+ The process is straight forward.
+ First, the application scrapes the web page of the Medium article (based on the URL provided).
+ It uses a web scraper API to do this.
+ Second, it proceeds to transform the data (remove DOM elements, caption text, and align paragraph text).
+ Finally, it uses the OpenAI TTS API to translate article text to speech using a pre-defined voice option.
+ It uploads the audio file to an AWS S3 bucket where the users can download the .
+mp3 file.
+ Simple, right?
+ It is incredible to witness the power of APIs as it relates to software development.
+ We simply plug-in what we need from these bits of software and create customized solutions.
+ AI Evolution A lot evolves in the tech world.
+ Most of the popular programming languages in existence today are very different from the first, machine-level languages back in the day.
+ Today, the focus and hype is around AI and much of it has to do with OpenAI and its ChatGPT model.
+ We will not dive into all that, but rather focus on some good use cases for building applications using their APIs.
+ We will dive into a couple of applications I built using OpenAI APIs and discover scenarios where using them makes sense.
+ AI Image Generation Using the DALLE-2 API The first API we will focus on is the DALLE-2 API.
+ Note that they have upgraded imaging with their new DALLE-3 API, but the application I built uses the former.
+ The following diagram illustrates how I incorporate the usage of the DALLE-2 API to build the Dalle2’s Bestie website: This is a full-stack application that incorporates React, Bootstrap, and Redux for front-end development and Node, Express, and MongoDB for back-end development.
+ It also makes use of AWS services in particular, the AWS S3 bucket to upload, store, and delete AI generated images.
+ The database consists of user, authentication, and picture models to store data.
+ The back-end server is where all the behind-the-scenes action takes place.
+ When you use any OpenAI API, you must authenticate yourself prior to usage.
+ Utilizing a Node.
+js server allows one to make authenticated API calls securely.
+ The DALLE-2 API allows anyone to generate an AI image based on a prompt.
+ The API offers image flexibility by allowing users to select options related to size, model, image standard, and the number of images to generate per call.
+ Upon a successful API call, a unique URL is generated that points to the image on the web.
+ The URL expires after a certain amount of time and is sent as a response after a successful API request.
+ The Dalle2’s Bestie website parses response data and utilizes the URL to fetch and store the AI generated image into a S3 bucket.
+ Pretty straight forward use case right?
+ If you are building an application that requires image generation, this is one way to go.
+ Rather than build your own custom model to generate an image, you can rely on this ready-made API to take care of this task for you.
+ If your application requires more advanced features and flexibility, you can opt into a subscription plan.
+ Generating Audio Files Using the TTS API The second API we will focus on is the TTS API.
+ As mentioned earlier, the Medium Article Scraper website incorporates the use of this API in the back-end.
+ There is no diagram detailing the inner workings of the application, but you can picture it being similar to the one we saw in the previous application.
+ The following diagram however, illustrates a containerized implementation of the application: We utilize an AWS S3 bucket to store the audio files generated using the TTS API.
+ The Medium Article Scraper tool is a full stack application that utilizes two different servers: The front-end server uses React The back-end server uses Node and Express The back-end server is where all the behind-the-scenes action takes place.
+ Two APIs are used to fulfil the text-to-speech task: Web Scraper API — Generates a string representation of the DOM of a web page from a valid URL pointing to the page (included in the request body) OpenAI TTS API — Generates speech based on text provided in the request body (flexibility in voice type is allowed) The TTS API allows one to generate an audio file from text provided in the request body of the API call.
+ As mentioned earlier, this is the last step in the three-step process to successfully generate an audio file from text.
+ Web scraping can be challenging because it is an open-ended problem.
+ Parsing text from a generic web page can be cumbersome because two pages can vary vastly from each other.
+ Even the most comprehensive solutions might not cover all edge-cases which is why having a guideline to follow can be helpful.
+ Since we are only dealing with Medium articles, we create a guideline to follow when it comes to parsing text of Medium articles.
+ Once the parsing and cleaning of article text takes place (using the web scraper API), we simply pass this text into the TTS API to generate the audio file.
+ The TTS API offers flexibility by allowing users to select options related to the model, voice, input, language, and output file format.
+ This is another example where one can use an OpenAI API.
+ If you are building an application that requires text-to-speech, this is one way to go.
+ Rather than build your own custom model to generate text-to-speech, you can rely on this ready-made API to take care of this task for you.
+ If your application requires more advanced features and flexibility, you can opt into a subscription plan.
+ Conclusion We learned about the importance of APIs and their significance as it relates to software development.
+ Rather than having to build out your own APIs, you can use trusted, third-party APIs to successfully create customized solutions.
+ We know that AI is revolutionary and so we explored OpenAI APIs related to AI image generation and text-to-speech.
+ We dove into customized solutions that utilized both APIs and learned of use cases where one can use these APIs.
+ As you know, nothing is free and there is a cost-tradeoff when it comes to using APIs.
+ For advanced features, it is likely you will need to pay up so unless you want to build your own, you will need to explore this route.
+ Attached below are links to the two websites I created, the OpenAI DALLE-2 API docs, the OpenAI TTS API docs, the Web Scraper API docs, and the official API docs provided by IBM: Medium Article Scraper Tool AI Image Generator OpenAI DALLE-2 API Docs OpenAI TTS API Docs Web Scraper API Docs Official API Docs As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture | Cubed Tired of blogging platforms that force you to deal with algorithmic content?
+ Try Differ More content at Stackademic.
+com

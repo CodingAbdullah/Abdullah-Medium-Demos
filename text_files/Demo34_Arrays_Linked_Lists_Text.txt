@@ -1,0 +1,103 @@
+Your Guide to Arrays, Linked Lists, Stacks, and Queues Abdullah Muhammad · Follow Published in Stackademic · 8 min read · Feb 6, 2024 -- Providing brief explanation of each data structure with illustrations and demo.
+ TypeScript is incorporated mainly as the expository language.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Understanding data structures in Computer Science can be overwhelming especially if you are a beginner.
+ It is important to learn about the different data structures that exist in the computing world.
+ Understanding them and knowing when to use them is equally important.
+ This article aims at providing the reader with a short and easy rundown of each of the following data structures: Arrays Linked Lists Stacks Queues A short description is provided for each followed by an illustration.
+ A code overview explains how one can implement these data structures.
+ Illustrative Explanations For anyone that has an ounce of programming knowledge, you already know about types such as String, Number, Boolean, etc.
+ No matter what language you decide to pick up, these are the most common data types.
+ They may be given different names, offer slightly different implementations, but in the end, more or less, the same.
+ Arrays Arrays are no different.
+ In Java, you can create an array of a fixed type and fixed length.
+ In the JavaScript world, things are a bit different as the length is not fixed nor is the type.
+ However, the main idea remains the same.
+ An array is simply a list of values.
+ TypeScript offers an implementation where we can have Arrays of static types with dynamic size.
+ Arrays are so popular that most languages provide their own implementation through a built-in class with helper functions.
+ TypeScript is a superset to JavaScript so it inherits all of its functions such as push, pop, unshift, map, reduce, filter, and so on.
+ Below is a simple illustration of the array data structure: TypeScript enforces static typing so if we are going to work with an array of numbers, we can simply declare it as type number and use it.
+ You can visit the MDN docs here for more documentation.
+ Linked Lists The next data structure we are going to look at are Linked Lists.
+ Typically, most array implementations consist of a static type and fixed size, but linked lists are dynamic.
+ They comprise of nodes which hold a value and are connected to each other with the help of references.
+ This creates what is known as a list of nodes or a linked list.
+ Linked lists offer one-way referencing as illustrated in the diagram above.
+ There are variations to linked lists such as doubly linked lists (references to the previous and next nodes) and circular linked lists.
+ When starting out, we have the head node initialized to null.
+ When a value is added, it starts from the head node and traverses its way down with the help of references to insert a new node.
+ Compared to arrays, finding values takes considerably more effort with linked lists as one might, at worst case, traverse the entire list to find it.
+ We have not looked at Big-O Notation, but we will in the future.
+ The tradeoff here is that linked lists are not fixed in terms of size, but they use more memory.
+ Stacks Are you are familiar with the idea of a stack?
+ Think Pringles.
+ Yes, that tasty stack of chips!
+ When you open a can of Pringles and you reach for that delectable delight, what chip are you eating?
+ The top one right?
+ As you take them out one-by-one, the last chip will be the one at the bottom right?
+ That is the concept of a stack.
+ It follows what is known as the LIFO principle or the Last In First Out principle.
+ If you were to put all the chips back into that Pringles can, the first one will be at the bottom.
+ However, the last one you put into the can will be the first one at the top and the first you will eat the next time you open it :) The following illustrates this concept in detail: You can create a simple implementation of a stack with the help of a custom class using an array of a fixed size.
+ Typically, we make use of the push and pop functions to annotate the desired action to take (push to insert objects and pop to remove and return the latest value, if any).
+ When would we use a Stack?
+ String reversals!
+ You can populate the characters of a string within a stack one-by-one (push).
+ After that, append the values starting from the top of the stack working your way down to an empty string (pop), hence reversing the order.
+ Queues Similar to stacks, you can think of queues when you are shopping and are waiting your turn at the checkout.
+ Service is based on a first come, first serve basis right?
+ That is exactly what a queue intends to accomplish.
+ It follows the FIFO principle or First In First Out principle.
+ The first item to be inserted at the creation of the queue is the first one to be deleted.
+ The following diagram illustrates this concept in detail: You can implement a custom queue class using an array which follows this basic principle.
+ Terminology varies, but the idea is the same.
+ We typically use enqueue (insertion) and dequeue (deletion) to designate the two types of action that can take place.
+ Like linked lists, there are variations that exist when working with queues such as priority queues.
+ However, for this tutorial, we will focus on queues.
+ A good use case for a queue is string formatting.
+ Suppose you have a long string that needs formatting (we will re-visit this in the demo) you can create new lines of strings based on sentence ending punctuation.
+ Code Overview We will briefly walkthrough custom implementations of each data type above (aside from arrays of course).
+ You can clone the repository here.
+ The directory of concern is /demos/Demo34_Arrays_Stacks_Queues.
+ You need to ensure that you install the necessary dependencies to work with this project by running: npm install The following is the linked list implementation LinkedList.
+ts: You can see an empty linked list initialized under the class definition making use of the linked list class functions.
+ In /, you can run npx ts-node LinkedList.
+ts and this should return you the following result: You can see the linked list data type in action.
+ The following is the stack implementation Stack.
+ts: You can see an empty stack initialized under the class definition making use of the stack class functions.
+ In /, you can run npx ts-node stack.
+ts and this should return you the following result: You can see how the stack follows the LIFO principle we discussed earlier.
+ Finally, the following is the queue implementation Queue.
+ts: Similar to the other two, we initialize an empty queue under the class definition and make use of the queue class functions.
+ In /, you can run npx ts-node queue.
+ts and this should return you the following result: You can see how the queue follows the FIFO principle we discussed earlier.
+ Demo Time!
+ As discussed earlier, you can make use of the queue data type for string processing.
+ In fact, the example we are going to see in the demo draws from a similar problem I solved when I created the medium article scraper tool.
+ When working with a text file consisting of an extremely long string, we can format it by creating new lines on every sentence ending punctuation.
+ You will see an unformatted file located in /demos/Demo34_Arrays_Stacks_Queues/files/unformattedText.
+txt that contains a long one-line string.
+ I will not paste what it looks like, but you can see it for yourself.
+ The formatFile.
+ts file (located in the root directory) reads the text file, formats the string using sentence ending punctuation and a Queue, and writes the modified text to a new file.
+ It also incorporates the built-in fs module from Node.
+js and the custom queue data type discussed earlier.
+ This is what formatFile.
+ts looks like: The comments are self-explanatory: Read in the unformatted text as input Initialize an empty queue and push (from start to finish) any sentence ending punctuation Split the string into an array on sentence ending punctuation Traverse through the sentence array and remove the queue elements (following the FIFO principle) and append them at the end of each sentence split Append newline characters thereafter The queue comes handy in determining the order of punctuation and since it follows the FIFO principle, it is the obvious choice for solving this problem!
+ You can run this file (assuming you have installed dependencies) using: npx ts-node formatFile.
+ts This should generate a file called formattedFile.
+txt in the same location as unformattedFile.
+txt containing the following: Pretty cheeky things written in there would you not agree?
+ Anyway, that is all!
+ Conclusion We walked through some of the basic, but important data structures.
+ Of course, there are a lot more and we will cover them in future tutorials.
+ We saw how we can implement complex data types from simple ones such as creating custom linked lists, stacks, and queues data types using an array and functions provided by the Array class.
+ Attached here is the code repository used for this tutorial.
+ As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

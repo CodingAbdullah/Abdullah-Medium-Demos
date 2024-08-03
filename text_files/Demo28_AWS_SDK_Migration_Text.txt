@@ -1,0 +1,92 @@
+Migrating an Existing Codebase Using AWS SDK V2 to V3 Abdullah Muhammad · Follow Published in Stackademic · 8 min read · Nov 23, 2023 -- This article assumes the reader is familiar with AWS and the AWS SDK.
+ Strong knowledge of web development, libraries, and frameworks such as React and Node.
+js will be helpful as well.
+ This article builds on what was covered in this tutorial.
+ If you are not familiar with the AWS SDK, AWS IAM, and the AWS S3 service, please refer to that tutorial before proceeding with this one.
+ Introduction So far, we have explored how we can use the AWS SDK in conjunction with AWS IAM to programmatically access and communicate with various AWS services.
+ The ability to create and scope a user to certain permissions before using their credentials to access AWS services was a quick and secure way of working with the desired services.
+ However, AWS has created a newer version of their SDK and it is named V3.
+ Today, we are going to explore some of the changes that have been made to the SDK and how some of the refactoring has made the library more useful.
+ If you are not familiar with the SDK, IAM, or any other AWS service, please refer to the tutorial link above.
+ We are going to be working with the same codebase from that tutorial in addition to some changes reflecting the new SDK version.
+ Project Setup As seen before, we are going to be working with a full stack application with a separate front-end and back-end (React/Node.
+js) that will communicate with each other to complete desired tasks.
+ The main activity takes place in the back-end where the AWS SDK is used to programmatically access the AWS S3 service through the use of an IAM identity.
+ This allows us to insert and delete objects stored inside the S3 bucket.
+ All this is covered in the aforementioned tutorial link.
+ If you are not familiar with this setup, please refer to that tutorial before proceeding with this one: That is all there is to it.
+ The codebase will be the exact same except for changes which reflect the new SDK version.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is /demos/Demo28_AWS_SDK_Migration.
+ Here, you will find three directories.
+ Two pertaining to the back-end with each relating to V2 and V3 of the AWS SDK.
+ The third is the front-end directory containing all the relevant client code.
+ As seen in the aforementioned tutorial, the main file we will focus on is the controller file in the back-end.
+ This will handle the insert and delete object requests in a S3 bucket.
+ V2 Implementation The older implementation using AWS SDK V2 can be found in /backend_v2/Controller/PhotoController.
+js: In typical fashion, we pass in configuration of an AWS IAM identity using their access id, secret key, and the AWS region from where we would like to access the AWS service.
+ After that, we make use of the AWS SDK to access the S3 service and utilize the ready-made functions the package has to offer such as the upload() and deleteObject() functions.
+ We ensure that the AWS IAM identity has been assigned the appropriate permissions which will allow it to programmatically access and perform these actions.
+ If you are not familiar with setting up an AWS IAM identity and assigning it permissions, please refer to the aforementioned tutorial to figure out how to do that.
+ The same goes for setting with the S3 bucket.
+ The tutorial covers how to set up a S3 bucket and assign it appropriate policies for usage.
+ V3 Implementation There is adequate documentation on the web that extensively covers how one can migrate an existing codebase from AWS SDK V2 to V3.
+ AWS itself provides a nice jumpstart guide which developers can use in their own projects.
+ Link can be found here.
+ The newer implementation using AWS SDK V3 can be found in /backend_v3/Controller/PhotoController.
+js and is as follows: One of the main benefits of working with V3 is that packages are modularized.
+ In V2, we needed to add the entire aws-sdk package.
+ However, we can make use of package modularity provided by V3 and only access those service specific packages we need in the codebase.
+ We need to install the services specifically using the following format: @aws-sdk/client-<service name> This will scope down the large package as we will be able to only import the desired service and the functions it provides that we would like to work with.
+ In this case, we install the @aws-sdk/client-s3 package in order to work with the AWS S3 service.
+ Each package contains functions which correspond to the various actions that can be performed with the given service.
+ For instance, when working with the S3 service, we can GET, PUT, DELETE objects stored inside a bucket.
+ We can also perform actions on the bucket itself such as creating and deleting a bucket.
+ In the codebase, we import DeleteObjectCommand and PutObjectCommand which correspond to the PUT and DELETE object actions.
+ We also import the S3Client and pass in an object containing the region from where we would like to access the bucket as well as a credentials object which contains the AWS IAM identity access id and secret key enabling programmatic access.
+ The S3Client contains a promisified function called send() which allows us to pass in a command type which itself takes in an object containing details pertaining to the action type (bucket name, object key for naming, object data, etc.
+).
+ We simply resolve the promise with a try-catch block which will indicate whether or not the specific request was completed successfully.
+ We follow this exact process in both the uploadPhotoController() function as well as the deletePhotoController() function.
+ That is all there is to it.
+ Most, if not all, AWS services are modularized this way in SDK V3.
+ Feel free to explore other services such as DynamoDB, RDS, and so on.
+ We have explored working with each of these services in the past using SDK V2.
+ AWS provides extensive documentation related to SDK V3 so feel free to check it out here.
+ Demo Time!
+ Assuming, you have been following along, the demo is pretty straight forward.
+ We will follow the same procedure we did when working with the S3 bucket using AWS SDK V2.
+ Before proceeding, make sure you have your AWS IAM identity set up with appropriate permissions enabling S3 access.
+ Make sure you have created a S3 bucket and assigned it appropriate bucket and CORS policies as well.
+ All this is covered in the aforementioned tutorial (AWS SDK V2) so feel free to refer to that before proceeding with the demo.
+ We will be working with the backend_v3 directory as that contains the AWS SDK V3 code which we would like to test.
+ Make sure you have the correct dependencies installed in each of the backend_v3 and frontend directories by running npm install.
+ You will also need to add a .
+env file in the root location of the backend_v3 directory containing the following: As usual, the back-end server will run on port 5000 and the front-end server will run on the default port 3000.
+ Running npm start in each directory in a separate terminal should yield the following: Navigating to the upload picture section, you should see the following: All you need to do is click the button.
+ The application will make an API call to the back-end and upload a photo.
+ The photo is a sunflower patch and is located here /backend/util/sunflower.
+png.
+ Assuming everything was set up correctly, you should be notified like this: If you head over to your S3 bucket using the AWS console, you should notice a new object uploaded with a unique identifier as its name and .
+png as its extension: The key we use to upload objects make use of the uuid library.
+ We can see that in action here.
+ You can select the object to evaluate details related to it.
+ Now, copy the id of the object name (without the extension) and head over to the delete picture section of the application and paste in the id into the form: Head back to your S3 bucket and refresh the page to see the list of bucket objects stored: You should notice that the lone object has been removed from the S3 bucket.
+ That concludes the demo!
+ Conclusion All in all, we dove deep into AWS SDK V3 and some of the many changes that have been made following the migration from V2.
+ This is just scratching the surface though and there is a lot more that comes with V3.
+ We explored working with modularized packages, incorporating service specific functions for working with the S3 service, setting up credentials using S3Client, and so much more.
+ Feel free to explore more.
+ Each AWS service comes with its own modularized package containing helpful functions which help accomplish tasks programmatically.
+ Linked below are the GitHub repository used for this demo along with links to the official AWS SDK V3 documentation, AWS SDK V3 GitHub repository, and a quick start Node.
+js/AWS S3 guide: Demo 28 GitHub Repository AWS SDK V3 Official Documentation AWS SDK V3 GitHub Repository Node.
+js/AWS S3/AWS SDK V3 Quick Start Guide AWS SDK V2 is expected to be in maintenance mode by the end of 2023.
+ From here on out, we will be using AWS SDK V3 when working with AWS services.
+ I hope you enjoyed this tutorial and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

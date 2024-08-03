@@ -1,0 +1,140 @@
+Exploring Local Cloud Development using LocalStack Abdullah Muhammad · Follow Published in Stackademic · 10 min read · Dec 23, 2023 -- This article assumes the reader is familiar with at least one cloud platform.
+ Preferably, AWS, but working knowledge of any platform is sufficient.
+ Introduction So far, we have used AWS, a popular cloud services provider for web application deployment and usage.
+ We explored common services such as AWS Amplify, S3, EC2, database instances, and so on.
+ However, services provided by AWS or any cloud services provider for that matter, will cost money.
+ If you stick with a free-tier, you will likely be bound to certain usage limits and limited flexibility.
+ Those who are new to cloud may also find that there are many different solutions to a particular scenario.
+ For instance, when it comes to website hosting you could use S3 (provided you are hosting static content), Amplify, EC2, and so on.
+ The conundrum is not using the services, but how to go about using them in order to make it as efficient and cost-effective for your project.
+ This will vary case-to-case and depends on key factors.
+ What if you could test using cloud services in real-time without having to pay for them?
+ What if you could experiment different solutions prior to final deployment?
+ That is where LocalStack comes into play.
+ What is LocalStack?
+ LocalStack is a local cloud emulator allowing for developing, testing, and deploying applications locally without having to worry about using a cloud services provider.
+ A great use case for an emulator could be when we are trying to develop AWS applications locally.
+ We can reduce the development time and increase efficiency when it comes to deployment.
+ Emulating services locally allows for easier testing as well.
+ Not to mention the cost savings that come with using an emulator.
+ No need to create different testing/sandbox environments for applications nor do we need to worry about the additional costs that come with it.
+ Still, there are paid plans that come with LocalStack that you can enrol in should the free-tier leave a lot to be desired.
+ LocalStack can be accessed via command-line and offers different installation instructions for common operating systems.
+ We can run commands that will emulate AWS services locally in real-time.
+ “Wait, how do we access it locally?
+ Do we not need an API key to authenticate?
+” In the past, LocalStack used API keys, but it is moving on from them.
+ We now have to work with authentication tokens to access the emulator locally.
+ LocalStack comes with a 14-day free trial and works on a license-basis.
+ Once the free-tier expires, you will need to purchase a plan.
+ We will walk through setting up and using LocalStack later in this article.
+ LocalStack Setup To start, head over to LocalStack and select the Get Started option at the top of the navbar.
+ You have the option of signing up with email or GitHub account.
+ Personally, I use the GitHub option as it integrates nicely into your workspace.
+ After that, you should see something like this: From here, you have options on how to get started, diving deeper into using LocalStack, and so on.
+ Select the My License option on the sidebar.
+ It should reveal the following: For this demo, we will stick with the free-trial version, but feel free to select and read about others if you like.
+ After selecting the free-trial option, you will need to fill out the remaining personal information to proceed.
+ Once all that is complete, navigate back to the dashboard and select the Auth Tokens selection on the sidebar.
+ It should reveal the following: This page generates a personal authentication token for you.
+ You also have the option of resetting it anytime for security reasons.
+ You will need to add this as an environment variable locally in order to work with the LocalStack API.
+ Head over to the terminal and paste in the command as is: Whenever we make calls using the CLI, we are in fact, making an API call to LocalStack behind the scenes and we will be authenticated using this token.
+ Your freedom of calls depends on your subscription (free-trial/paid).
+ For more advanced features, you will need a paid subscription.
+ This concludes setting up the LocalStack account.
+ Now, it is on with local installation.
+ LocalStack/LocalStack-CLI Installation With the account now setup, we have to install the LocalStack emulator locally in order for it to work.
+ I am working with a MacOS machine so I will be following the guidelines related to that specific operating system.
+ LocalStack has different installation instructions related to Linux, Windows, and so on.
+ Feel free to visit the docs here for more assistance.
+ On MacOS, we have brew which is a free and open-source package manager that simplifies installation on MacOS.
+ In the terminal, run the following: brew install localstack/tap/localstack-cli You can verify everything was installed correctly using the following command: localstack -version You should get 3.
+0.
+2 as the version number (at the time of this writing) in response.
+ This ensures that the installation completed successfully and we can now work with the LocalStack API using the CLI.
+ You also need Docker if you are going to work with the CLI.
+ An image for LocalStack exists on DockerHub which can be pulled and be used locally.
+ We have covered Docker in detail in this tutorial so feel free to refer to it before proceeding with the LocalStack CLI installation.
+ After that, we need to install LocalStack itself.
+ It is developed using Python and comes with its own package.
+ Note that it is provided by Python and does not offer a Node equivalent.
+ So ensure you have Python and PIP installed locally in order to install localstack.
+ Assuming you have installed Python and PIP, running python3 -m pip install localstack should ensure it has been installed successfully.
+ AWS-CLI Installation We will not be walking through the AWS CLI setup.
+ Documentation for installing it locally can be found here.
+ You can verify installation using the aws --version command.
+ A successful installation will return the appropriate version installed.
+ We will need to use the AWS-CLI to setup a test IAM user to be used for creating and interacting with local AWS services.
+ AWSLocal Package Installation Conveniently, there is a package out there that acts as a wrapper when working with LocalStack and it is called awslocal.
+ You can think of it as working with the AWS-CLI and LocalStack in tandem to emulate local AWS services.
+ Documentation on how to use it for specific services can be found here.
+ Note that it is provided by Python and does not offer a Node equivalent.
+ So again, ensure you have Python and PIP installed locally in order to install awslocal.
+ To verify correct installation, run awslocal --version to yield the version number of the package installed.
+ From here, we will setup credentials of a test IAM user and access the AWS S3 service via command-line.
+ After that, we will be able to setup and interact with the newly created local S3 instance with the full-stack application we will be walking through next.
+ Code Overview Like before, we will be working with a full-stack application using React and Node.
+js.
+ We will be interacting with an S3 bucket for object storage using the AWS SDK.
+ However, instead of creating a live S3 bucket using AWS, we will be working with the LocalStack emulator to create a test version of the S3 bucket for object storage.
+ The codebase will be similar to what we covered in the AWS SDK migration tutorial, but with slight changes.
+ The front-end portion will be the same and we will be focusing on the back-end.
+ The main file where most of the action takes place is in the bucketController.
+js file /backend/Controller/bucketController.
+js: We are working with the AWS SDK V3 package which allows for greater modularity when it comes to using each of the AWS services.
+ Since we are working with the S3 service, we do not need to install the entire SDK package.
+ We can simply install and work with the package related to S3.
+ With the S3 package, we get specific features which we utilize in setting up the S3 instance locally and interacting with it.
+ We pass in test credentials when creating the S3 instance using S3Client and this is slightly different than what we did when we were working with a live S3 instance.
+ Since we are working with LocalStack, we do not need to worry about protecting credentials here, we can pass them in as is.
+ LocalStack provides documentation on bucket naming and the endpoint URL.
+ You can learn more about it here.
+ Essentially, LocalStack offers two ways of making requests: Virtually-Hosted Style — Requests will have the bucket as part of the Host header of your request.
+ Endpoint needs to be prefixed with s3.
+, like s3.
+localhost.
+localstack.
+cloud.
+ Path Style — If endpoint cannot be prefixed with s3.
+, configure your SDK to use Path style request instead.
+ Use s3.
+localhost.
+localstack.
+cloud as the endpoint URL.
+ In this case, we make use of the Virtually Hosted Style option by prefixing a bucket name.
+ The bucket name is test following the format described above.
+ That is all there is to it, the rest is the same as before.
+ Demo Time!
+ On with the real stuff!
+ Assuming you have the code repository cloned and the CLIs installed, we can proceed with the demo!
+ On two different shell windows, ensure that you have ran npm install to install the necessary node_modules directory for each of the two servers (front/back).
+ After that, spin up the two servers by running npm start in the /frontend directory of one window and in the second, run node server.
+js in the /backend directory.
+ This should successfully complete launch of the full-stack application.
+ If done correctly, your browser window should automatically open displaying the following: Now, on a separate shell window, we will need to interact with the AWS-CLI in order to setup a test user and local S3 service.
+ We first need to setup the credentials of the IAM user we will use to interact with any local service.
+ Running aws configure --profile default should allow you to do the following: As you can see, we are working with test credentials and pass in a default region value of us-east-1.
+ These credentials coincide with what we passed into the S3Client when setting up the S3 instance using the AWS SDK.
+ From here, we simply need to run commands to setup and use the local S3 bucket.
+ In another separate shell window, run the following commands in the command line: localstack start -d — Run the service in detached mode which basically means the application is now running successfully in the background localstack status services — This will allow you to verify all is good to go awslocal s3api create-bucket --bucket test — This will create a local S3 bucket named test awslocal s3api list-buckets — This should list all the S3 buckets you have created locally and you should see test there As covered before, by default, LocalStack runs on http://localhost:4566.
+ The project is already configured to work with the LocalStack API as the IAM user credentials, S3 bucket name, and LocalStack URL are all set using the S3Client via SDK.
+ We can now test the running application in real-time.
+ Navigate to the Upload Picture section of the application: Select the Upload Photo option on this page and you should be notified: This uploads the sunflower picture as was done in the AWS SDK V3 migration tutorial.
+ The picture is stored in the back-end and is located here /backend/util/sunflower.
+png.
+ You can run the following in the command-line to see if you successfully uploaded the image: awslocal s3api list-objects --bucket test Here, you can see the key of the file object which is basically an assortment of alphanumeric characters randomly generated using the uuid library version 4 (covered in the bucketController.
+js file above).
+ We can now proceed to delete this object from the S3 bucket by navigating to the Delete Picture section of the application and entering in this alphanumeric key.
+ If done correctly, you should see something like this: That is all for the demo!
+ Conclusion All in all, we covered quite a bit in detail when it came to working with the LocalStack cloud emulator.
+ We did not need to setup any services manually.
+ The setup was done programmatically using the CLI and with the help of the AWS SDK package.
+ LocalStack is a great tool to use for local development and testing prior to final deployment.
+ You do not incur fee charges for any of the services you use which allows for greater flexibility.
+ There were quite a bit of tools we used to hit the ground running and they are all linked below: Docker Python/PIP installation AWS-CLI awslocal package LocalStack + LocalStack CLI Attached here is the code repository used for this tutorial and the LocalStack S3 docs so feel free to check these out as well.
+ I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Venture

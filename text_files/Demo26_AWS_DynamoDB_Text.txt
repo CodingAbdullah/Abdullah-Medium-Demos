@@ -1,0 +1,149 @@
+AWS DynamoDB, AWS SDK, and Node.
+js for Back-end Development Abdullah Muhammad · Follow Published in Stackademic · 12 min read · Nov 6, 2023 -- This article assumes the reader has a basic understanding of databases, Node.
+js and AWS.
+ We will be using the AWS SDK in this tutorial.
+ If you are not familiar with it, you can go through this tutorial before proceeding with this one.
+ Introduction In the last tutorial, we went into detail looking at the AWS DocumentDB service for working with a fully managed, cloud NoSQL database.
+ Today, we will turn to another common NoSQL database service provided by AWS known as DynamoDB.
+ There was quite a bit of configuration required to work with DocumentDB.
+ We can make use of the AWS SDK and work with DynamoDB locally without the hassle of settings things up.
+ We can configure settings locally and programmatically access the DynamoDB and perform the necessary actions we like.
+ It is a popular service among the many database services AWS offers.
+ So far, we have looked at AWS RDS using the Sequelize ORM tool and AWS DocDB for cloud development and deployment.
+ AWS DynamoDB vs DocumentDB DynamoDB is similar to DocumentDB in that, it is a NoSQL database.
+ However, it does not have the MongoDB functionality built in.
+ DocumentDB provides JSON data storage like MongoDB, but DynamoDB is based on a key-value storage setup.
+ Rather than create clusters which are then replicated to provide high availability, scalability, and reliability, DynamoDB works with tables.
+ There is no instance setup.
+ DynamoDB is a server-less database service and is optimal for working with large, unpredictable workloads.
+ It has the ability to efficiently scale based on usage and traffic.
+ The AWS SDK provides functions for working with tables including inserting, querying, updating, and deleting data (CRUD).
+ We will programmatically access DynamoDB using the IAM user we set up and the AWS SDK to perform these basic operations in a demo.
+ The following diagram illustrates what we will do: Project Configuration The codebase that will be used for this demo will be very similar to the one used in the last tutorial.
+ We will go over the differences in the code overview.
+ For now though, we will need to configure the IAM user to have access to the AWS DynamoDB service.
+ This will enable programmatic access to DynamoDB.
+ If you are not familiar with IAM users, permissions, policies, roles, etc.
+ You can complete this tutorial, before proceeding with this one.
+ We will not walkthrough the process of creating an IAM user.
+ Instead, we will demonstrate how we can edit the permissions of an existing one and add the DynamoDB access policy.
+ Configuring IAM User We will be using the same IAM user configured in the AWS SDK tutorial.
+ To find yours, login into your AWS root user account and search for AWS IAM.
+ After that, you will see the IAM dashboard.
+ You can select users to see those created under your account.
+ After that, you can select any that you have and if you do not have any, you will need to create a new one.
+ If you do have one, selecting it should show you the following (in resemblance): From here, you can select Add permissions > Add permissions under the Permissions policies section.
+ This will display the following: Selecting the third option (attach policies directly) will enable you to attach any AWS-defined policies or any custom ones you have created: Searching “Dynamo” in the search bar should yield policies related to the DynamoDB service.
+ For this tutorial, select AmazonDynamoDBFullAccess: Proceeding Next should allow you to review the policy you are going to attach: From here, simply select Add permissions.
+ Upon successful completion, you should be redirected to the IAM user summary page with a notification that the requested policy was attached: The IAM user has full access to DynamoDB and can now be used to programmatically access the DynamoDB service!
+ Code Overview You can follow along by cloning this repository.
+ The directory of concern is /demos/Demo26_AWS_DynamoDB_Node.
+ The front-end portion of the code is very similar to the last tutorial.
+ The main focus will be on the back-end where we are incorporating the AWS SDK and programmatically accessing the DynamoDB service.
+ While DynamoDB is a NoSQL database, there are characteristics to it that are similar to working with relational databases.
+ Unlike MongoDB/DocumentDB, where we work with collections and documents, DynamoDB uses tables and schemas which define them.
+ Each row within a table is identified with a primary key column, principles which are enforced in relational database systems.
+ While DynamoDB incorporates those features, it does not use raw SQL to query through data.
+ It simply uses the key assigned to the table for all kinds of data manipulation.
+ We can use the built-in functions provided by the SDK which will allow us to seamlessly insert, read, update, and delete data from the tables we create.
+ Defining a DynamoDB Instance In /backend/AWS, you will find a module which creates and exports a ready-made DynamoDB instance: Rather than have this code re-written numerous times, it is wise to modularize the codebase and have a separation of concerns.
+ We create and configure an AWS DynamoDB instance and export it for use.
+ Remember, you will need to set up your own IAM user and store its credentials in a separate .
+env file.
+ You will also need to specify the region where you will use DynamoDB.
+ We went through assigning full access permissions to DynamoDB for an IAM user above so feel free to re-visit that section before proceeding.
+ Your .
+env file should be stored at the root level in the /backend directory and should resemble something like this: Defining the User Model Before we do anything, we must create models which represent the tables where data is to be stored in DynamoDB.
+ For this demo, we will be working with a basic user model.
+ In /backend/Model, you will find a module that defines a schema for the user table: We first define what the table will be using the TableName attribute.
+ After that, we define the primary keys.
+ For the user model, we will assume the user has four input fields firstName, lastName, emailAddress, and password.
+ We can safely assume that the emailAddress field can be considered a primary key as there can only be one account associated with it which in turn will uniquely identify each row (user) within the table.
+ For the key schema definitions, there are two types of keys: HASH and SORT.
+ In the first case, HASH represents a partition key and it uses an internal hash function to evenly distribute data items across partitions based on key values.
+ In the second case, RANGE represents a sort key and it uses the same partition key to keep items in sorted order.
+ For now, we will stick with HASH.
+ For the attribute definitions, each attribute describes the key schema for the table.
+ There are only three valid values allowed: S| String, B| Boolean, and N| Number.
+ A primary key need not be a single attribute, it can be comprised of multiple attributes so long as one or a combination of many, uniquely identify each row within a table.
+ And lastly, we define a read/write capacity for the table.
+ For this demo, five will do for each ReadCapacityUnits and WriteCapacityUnits attributes under ProvisionedThroughput.
+ Creating the User Table Before we can perform any CRUD operations against a table, we must create the table.
+ DynamoDB does not create the tables for you upon insert requests.
+ You need to explicitly create them yourself.
+ Below is the snippet where we do just that.
+ In /backend/util, you will find a module that incorporates the DynamoDB instance we created and exported earlier and the user table schema we defined to create the table inside the database.
+ We make use of the createTable() function provided by the SDK: We must run this module to create the table before we can perform any operations against the desired table.
+ Writing Logic for Each of the Four CRUD Operations Speaking of those operations, we define functions for handling each of the four CRUD operations (create, read, update, delete) in a controller module in/backend/Controller.
+ The CRUDController.
+js file is quite extensive and we will briefly touch on the logic in each of these functions: For the most part, the logic incorporated here is very similar to what we used in the last tutorial having worked with DocumentDB.
+ The difference is integrating the functions AWS SDK offers for working with DynamoDB.
+ For the insertUser() function, we do what we did previously.
+ We check to see if the user exists inside the user table using the email address as the primary key and the getItem() function provided by the SDK.
+ If we find the user exists, we reject the request.
+ If not, we proceed to salt/hash the password using the bcrypt.
+js package and insert the user using the insertItem() function provided by the SDK.
+ In each of these cases, we define an object which are parameters passed into each of the DynamoDB functions for retrieving items (based on email) and inserting items.
+ For inserting, we define two new attributes dateCreated and dateUpdated and pass in the current timestamp as values.
+ For the readUser() function, we make use of the scan() function provided by the SDK.
+ We simply define what table we would like to search through inside DynamoDB and return all information pertaining to it.
+ For the updateUser() function, things get quite extensive.
+ Since we are using the bcrypt.
+js package to salt/hash passwords, we first check to see what attributes the user has requested to update.
+ We define and populate an empty object holding these values and first check to see if the user exists by checking the table for that email address (again, using the getItem() function and passing in the search parameter).
+ If we do not find a user, we reject the update request.
+ If we do, we proceed to check if the client has requested to update the password as well.
+ If so, we proceed to salt/hash the password prior to storage.
+ After that, we define an expression which is similar to what we use in SQL update statements using the SET keyword.
+ We programmatically create the statement using the attributes requested to be updated and store this string inside the expressions variable.
+ Following that, we define values for each of the attributes to be updated in the statement in another variable known as expressionAttributes.
+ Some attributes may not be requested to be updated such as firstName, lastName, and password.
+ The dateUpdated attribute will always be required so there are no conditions for that.
+ Parameterized values are passed in using the : convention followed by the variable name.
+ The variable name must match what is provided as a value inside the expressionAttributes object for successful mapping.
+ All of this is then passed in as a parameter object inside the updateItem() function provided by the SDK for updating the requested user.
+ If the client did not request to update the password, we do what we did above except without the salting/hashing password step.
+ Deleting a user is pretty straightforward.
+ We define an object which contains information related to the table we would like to perform the action.
+ We use the primary key to determine which user to delete (in this case, their email address).
+ This is then passed into the deleteItem() function provided by the SDK and the user is deleted from the table.
+ That concludes the code overview!
+ Feel free to sift through the code above and explore sections which may sound confusing.
+ We will not walkthrough the front-end as it is pretty much the same as before.
+ If you would like a more detailed explanation on DynamoDB functions and how to use them, you can refer to this link for the official documentation.
+ Demo Time!
+ Alright!
+ It is time for some fun!
+ I assume you have cloned the repository above and have been working and following along /demos/Demo26_AWS_DynamoDB_Node.
+ Make sure you have your IAM user set and ready with full access permissions to DynamoDB (a walkthrough above if you need it), .
+env file containing IAM user credentials, and ran npm install in each of the /backend and /frontend directories to install the necessary dependencies for this project.
+ We will be using port 5000 for the back-end server and the default port 3000 for the front-end server.
+ Before we can run the servers, we will need to run the file which creates the DynamoDB table as discussed earlier.
+ We cannot perform operations on a table without having it in place.
+ In /backend/util, run node createTable in your console.
+ If done correctly, you should see something like this: Navigating to the DynamoDB service on AWS, you should see the user table created under the tables section of the service dashboard: With the table now created, we can go ahead and jumpstart the two servers.
+ If done correctly, the launch page should look like this: Proceed to the Insert User section and fill out the details accordingly: If we head over to the AWS console and search through the Explore items option on the left side and select the user table, we should find the following: We see the email address, date created/modified (the same upon creation), first/last names, and the hashed password of the new user.
+ Heading over to the Read User section in the web application, we should see the following: We can see the newly created user here as well.
+ Now, let us try to update this user.
+ Head over to the Update User section and fill out any fields you would like to update.
+ Remember, email addresses cannot be changed and they must be used to figure out which user attributes need to be updated: In this case, we update the last name and password of the requested user.
+ The application knows which user to update by using the email address provided.
+ If we head over to the Read User section, we should see the updated attributes along with the new date modified timestamp: The table reflects the intended changes.
+ We can check the AWS console by refreshing the user table page.
+ We should find the following: We can proceed to delete this user in the Delete User section.
+ You must provide the correct email address of the user you want to delete: Navigating to the Read User section, we should find that no records exist: And finally, checking the AWS console after refreshing, the intended action should have taken place: Of course, we can create new items from the AWS console and AWS CLI (as discussed in the AWS SDK tutorial), but for the purposes of this demo, we wanted to explore how we could do this programmatically using the SDK.
+ That concludes the demo!
+ Feel free to explore edge cases with this application (inserting duplicate users for instance) the application watches out for those!
+ Conclusion We did a thorough deep dive into using AWS DynamoDB, another one of the many popular services AWS offers in terms of managing and storing data.
+ We explored the differences between DynamoDB and DocumentDB both of which are key cloud, NoSQL database services.
+ We discussed at length, how DynamoDB works behind the scenes (server-less, scalability, key-value data integration, tables, etc.
+), allowing an IAM user to work with DynamoDB by assigning appropriate permissions, defining table schemas/primary keys/attribute definitions, and working with the SDK to programmatically perform operations on a DynamoDB table.
+ There was a lot more in between, but these were the main talking points.
+ Linked below are the GitHub repository and AWS documentation links to AWS DynamoDB: GitHub Repository AWS DynamoDB Documentation I hope you enjoyed this tutorial and look forward to more in the future.
+ Until next time, this is Abdullah signing off!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+

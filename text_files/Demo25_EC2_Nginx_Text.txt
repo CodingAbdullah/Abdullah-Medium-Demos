@@ -1,0 +1,212 @@
+AWS DocumentDB, EC2, Nginx, and Node.
+js for Cloud Development Abdullah Muhammad · Follow Published in Stackademic · 19 min read · Oct 27, 2023 -- Strong knowledge of Linux and Shell scripting is required to work through the cloud services configuration and setup.
+ Basic understanding of AWS and Node.
+js is sufficient for working with the code overview portion of this tutorial.
+ Introduction Today, we will look at another AWS service related to databases and see how it can be used as an alternative to the multi-cloud service, MongoDB Atlas.
+ Recently, we saw how we could incorporate relational databases with Node.
+js by using AWS RDS and Sequelize.
+ The ability to utilize an ORM tool such as Sequelize enabled seamless database interaction and the implementation of CRUD operations using AWS RDS.
+ We were able to interact with the relational database without having to write a single SQL command.
+ In this tutorial, we will be focusing on non-relational database alternatives to MongoDB Atlas.
+ Basically, replacing MongoDB Atlas outright with another non-relational database service provided by AWS.
+ The main one we will focus on today is AWS Document DB (DocDB for short).
+ What is AWS DocumentDB?
+ AWS DocumentDB is a fully managed NoSQL database service offering MongoDB compatibility that makes it easy to operate critical workloads and data storage.
+ Since it is a fully managed service, it provides scalability and reliability out-of-the-box and all that is required is configuration and connection.
+ We looked at using MongoDB Atlas in the past, but for today, we will focus on working with a simple web application which implements the basic CRUD operations using AWS DocumentDB.
+ AWS DocumentDB Setup Before we proceed to the code overview, it is important to note that we will be working extensively with the network configuration and setup.
+ We will cover AWS services (some of which you might have heard) to communicate with DocumentDB and we will discuss these in detail.
+ Every AWS service that is created is assigned a default VPC (Virtual Private Cloud).
+ You can think of AWS VPC as a private network within the cloud containing your AWS infrastructure.
+ DocumentDB clusters however, reside in their own private subnet which essentially means that there can be no communication to and from the internet using this service.
+ Another service residing within the same VPC however, can communicate with it and that is where we will use another AWS service known as EC2.
+ We will be using an AWS EC2 instance to communicate with the DocumentDB cluster.
+ An EC2 instance stands for Elastic Compute Cloud and is essentially a virtual server deployed on AWS.
+ It works through the command line just like any other computer does and we will use the connection configurations of the EC2 instance to then communicate with the DocumentDB cluster.
+ We will also enable communication, both inbound and outbound from the DocumentDB cluster to ensure everything runs smoothly.
+ Do not worry about these services (EC2, VPC, subnets, etc.
+), we will walkthrough using these services and in future tutorials, cover these in great detail.
+ Moving along, in order to setup DocumentDB, you will need to search it in the AWS console and select Create Cluster: For the configuration, you will need to specify an identifier along with the the remaining configuration.
+ You can leave the default settings as is, except for the Instance Class.
+ Scroll all the way to the bottom and select, free-tier eligible.
+ Scrolling further, you will find the Authentication and Network Settings section: Specify the username and password for the authentication section.
+ You will need to store these someplace safe as these are the credentials you will need to use to programmatically access your DocumentDB instance later.
+ Scrolling through, you can leave the cluster and encryption-at-rest options as default: You can leave the backup and performance insights sections as is: You can leave the log exports and maintenance sections as is as well.
+ Although, it is good practice to maintain logs of your AWS services, we will leave these out for this tutorial: No need to add tags for this tutorial, but you can enable Deletion protection if you like.
+ After that, proceed to create cluster: Once you have successfully created the DocumentDB cluster, you will be navigated to the AWS DocumentDB cluster section where you will see the database cluster being created live.
+ It will take a while to fully create the new cluster.
+ AWS creates replicas of the cluster which supports minimal downtime, high availability, and quick recovery.
+ All key concepts related to cloud and cloud infrastructure.
+ Once complete, you should notice the status is set to available and your new cluster is ready to go!
+ Configuring DocumentDB Inbound/Outbound Cluster Traffic Before we can proceed, select the new cluster.
+ After selecting cluster, make sure to copy the cluster endpoint (located last) in the Connect section.
+ You will need this along with the username, and password you created in the setup process: You need to ensure that security groups are configured to allow inbound traffic to the database as well as outbound traffic for responses.
+ Without this, you will not be able to access the database programmatically.
+ AWS automatically assigns a default security group to the instance.
+ It is your job to make sure that the security group conforms to what you need.
+ For the purposes of this tutorial, just ensure that both inbound/outbound traffic from all sources is enabled.
+ In my case, selecting the default security group, we see the following: If you do not see rules set like this, you can edit them by selecting the Edit inbound/outbound rules buttons respectively: That is all for setting up and configuring the DocumentDB cluster!
+ Establishing Connection to DocumentDB Cluster We have not looked at AWS VPC, subnets, and cloud network configurations.
+ We will touch on these in a future tutorial, but DocumentDB resides in a private subnet of its own.
+ This essentially means that it is not connected to the internet.
+ A service within this VPC however, can connect to this cluster and therefore perform the required actions we want.
+ The following diagram illustrates what we discussed earlier in the setup: The process is simple: Establish communication to the EC2 instance through the console or locally using SSH with a .
+pem certificate file Run commands within the EC2 instance to download Git/Node, clone repository, and install the necessary dependencies required to run the project Install the Nginx web server and point to an optimized production build that will host the React application Run the back-end server in the background using a process manager that will allow the nginx web server to communicate with the back-end The EC2 instance is where we will be able to communicate with the DocumentDB cluster as well as setup the full-stack web application.
+ What we do local will now be configured to be done in a virtual web server.
+ Creating an AWS EC2 Instance Head over to the search tab and lookup AWS EC2.
+ You should see the following dashboard displayed.
+ From here, select the Instances (running): Select the top-right button to proceed: Assign a name and tags as you wish.
+ An Amazon Machine Image (AMI) is simply the operating system that the EC2 instance will be running on.
+ Stick with the free-tiers, we do not need anything fancy (Amazon Linux works best): Scrolling down further, you can determine the instance type which is essentially, compute power.
+ Here too, a free-tier size works well: In order to access this compute cloud resource remotely, we will need to authenticate the connection.
+ For the key pair, select Create new key pair and the modal should open up.
+ Assign a name and leave the default options as is, the key pair file will be automatically downloaded to your machine upon creation.
+ Store this someplace safe as it will be required later IF you want to connect to the instance remotely: For the network settings, make sure the EC2 instance VPC network is the same as the DocumentDB cluster.
+ For now, allow any traffic from the internet to the instance: You can leave the Configure storage and Advanced details options as is and proceed to Launch Instance: Upon successful launch, you should be notified that your instance was created successfully and notice that the state of the instance eventually resolves to running (it takes time to load).
+ After that, select the new instance and select the Security tab and proceed to select the Security Group of that instance as shown below: From here, you will need to add traffic to port 27017 which is the port on which clusters communicate from.
+ You will need to add inbound traffic for localhost connections as well.
+ All this can be done like this: It is good security practice to limit as much traffic to an EC2 instance as possible.
+ You should only allow inbound traffic for completing the required tasks and nothing more.
+ After that, you can simply save rules and with that now set up, we can use the EC2 instance as we like!
+ We will cover EC2, VPCs, subnets, and security groups in a future tutorial, but for this demo, this is all you need to concern yourself.
+ Setting up the AWS EC2 Development Environment Now that we have created the EC2 instance, we need to setup the development environment in order to successfully use it for the project.
+ For simplicity, we will connect to the EC2 instance through the AWS Console.
+ If you would like to connect to the DocumentDB from outside the VPC, you can follow along here.
+ We need to install/configure/add the following: GIT (pushing/pulling code to and from the EC2 instance) Node/NPM (configuring the node environment in the EC2 instance) PM2 for node server (process manager for background processes) Nginx (web server for hosting the React application) and configure the nginx.
+conf file Clone the project into the EC2 instance Install the necessary dependencies Add the necessary environment variables required to run the project.
+ Modify front-end request URLs Build a production optimized React project for Nginx hosting “So we are emulating the local environment on the EC2 server?
+” Yes!
+ That is indeed the case!
+ Head over to the EC2 instance and select the top right button where it says Connect: You should see connection options to the EC2 instance.
+ For now, stick with the first one and select Connect with your username: You should see a dark screen appear and you are now live with your EC2 instance!
+ From here, we can start to setup the environment.
+ Installing Packages through Commands on AWS EC2 Instance Run sudo yum install git -y in the command prompt like this: It will install the required packages and notify you like this.
+ You should run git -v to confirm the version number installed: After that, you will need to install Node and this can be done by running sudo yum install nodejs -y.
+ Assuming all goes well, you can confirm the versions of Node.
+js and NPM using these commands: You will also need to install a special package for the EC2 instance known as PM2 or Process Manager.
+ This allows us to run processes in the background within the same terminal for the server without having to worry about opening new ones.
+ For information related to PM2, you can refer to the official docs here.
+ For now, you can proceed by running sudo npm install -g pm2.
+ After successful installation, you should run pm2 -v .
+ It gives a nice overlay of how to use it.
+ All this will make sense as we proceed: After that, we need to install the Nginx web server as this is what we will use to host the front-end React application.
+ Simply run the following sudo yum install nginx: You can run nginx -v to verify that the web server was installed correctly.
+ With the installations out of the way, you can proceed to clone the repository into the EC2 instance with the following: git clone https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos.
+git If done correctly, you should see something like this: That is all for installing and setting up the development environment in the EC2 instance!
+ Code Overview!
+ Phew!
+ That was quite of work.
+ Emphasis should be on the fact that we are emulating the local development environment into the EC2 instance for the reason that the DocDB cluster resides in a private subnet.
+ As discussed earlier with a diagram, only services connected to the same VPC as the DocDB cluster can communicate with the cluster which is why we went ahead and created an EC2 instance and the development environment.
+ You can follow along by cloning this repository locally, the same as used in the EC2 instance.
+ The directory of concern is /demos/Demo25_AWS_DocDB_MongoDB_Node.
+ The codebase for the demo is very similar to what we worked on when we covered MongoDB with Node.
+js.
+ The main controller file /backend/Controller/UserController.
+js handles all four CRUD operations: In the MongoDB with Node.
+js tutorial, we used bcrypt.
+js for password salting/hashing and we are using that library again.
+ For each of the four CRUD operations, we use the Mongoose library for creating the User model and also its functions that allow for the inserting, updating, reading, and deleting Users from the database (update(), find(), delete(), read()) as seen previously.
+ “What about connecting to DocumentDB, how is that done?
+” We pass in the connection string provided by the DocDB cluster to the Mongoose library’s connect() function.
+ Note that we will only be able to connect to the DocDB cluster from the EC2 instance.
+ This will not work locally as the service trying to connect to the cluster must reside in the same VPC.
+ In the main server.
+js file /backend/server.
+js, we establish the connection like this: We pass in the DocDB cluster username and password created when we initially set up the service and use the connection string provided by the cluster: If you are wondering where to find yours, you will find it under the connection section of the DocDB cluster you created.
+ Simply copy over that string and add in your credentials safely.
+ You will need to push this code to your GitHub account for the demo.
+ There is a global-bundle.
+pem file in /backend.
+ This is a global certificate that allows you to establish a connection to a DocDB cluster.
+ This certificate file can be downloaded here.
+ This is a special case.
+ Note: .
+pem/.
+ppk files or any other certificate files are confidential and should not be published publicly, these contain private key data.
+ For instance, the key-pair file generated when creating the EC2 instance should not be committed to your repository.
+ Add that certificate to your .
+gitignore file as done in /backend/.
+gitignore.
+ For the front-end portion of the code, the only difference if any, is that we are using the HashRouter for traversing through routes as BrowserRouter is not compatible with Nginx (like many other web servers).
+ You can explore the front-end codebase further if you like, but that is it for the overview.
+ Time to focus on the demo!
+ Demo Time!
+ We created/configured the AWS DocDB cluster, AWS EC2 instance, and walked through the code setup.
+ But before we can proceed, make sure you have pushed the latest code back to your GitHub repository.
+ In your EC2 instance, run git pull inside the Abdullah-Medium-Demos clone you did earlier.
+ This will update the codebase reflecting your changes (connection string to DocDB etc.
+).
+ Run npm install in each of the frontend and backend directories in /demos/Demo25_AWS_DocDB_MongoDB_Node.
+ This will install all the required dependencies needed to run the project successfully: Ignore the warnings and recommendations.
+ You will need to add a .
+env file in /backend with the following information (you can edit the port and database name values as you like): These credentials will be required inside the connection string you provide to Mongoose connect() to communicate with the DocDB cluster.
+ You can add this file by running sudo vi .
+env in /backend.
+ This will open the vi editor: Press i to insert and copy/paste the gist above into the editor Edit and add your values by going through the editor using arrow keys Press escape, :, w, q keys in succession Press enter to exit the editor To confirm you created and edited the file correctly, you can view its contents by running the cat .
+env command and this will display the contents of the .
+env file.
+ Any further editions will require you to run sudo vi .
+env and go through the process again.
+ That is how you work with a virtual cloud server using Linux commands through and through!
+ :) Kickstart the Back-end Server with PM2 Now that the back-end server has been configured, it is time to launch it.
+ However, we want to launch it in the background so that we can continue to build out and deploy the front-end server.
+ Navigate to /backend, run pm2 start server.
+js and this will automatically start the node server on port 5000 (assuming that is what you set in your .
+env file): And that is all for starting the back-end server!
+ We do not need to do anything, the node server is now running as a background process.
+ Kickstart the Front-end Server For starting up the front-end server, navigate by running cd /usr/share/nginx/html.
+ After that, run the following: git clone https://github.
+com/CodingAbdullah/Abdullah-Medium-Demos.
+git “Why are we cloning this repository again” We need to configure the Nginx server in order to host the React application.
+ Once that is complete, run ls to check if the repository was cloned.
+ Upon confirmation, run npm install in /Abdullah-Medium-Demos/demos/Demo25_AWS_DocDB_MongoDB_Node/frontend.
+ Just like we did before, but this time, we will focus on the front-end directory as that is what will be used for the Nginx configuration.
+ Front-end Request URL Modifications Now, we need to modify the request URLs we are making to the back-end server.
+ This is not the efficient way to do it, but for each server that is spun up, a different public IP address is assigned.
+ Instead of using http://localhost:5000 to communicate with the back-end server, we will need to use the following format when launching from an instance: http://<Public IP Address of EC2>:<Port>/<endpoint> So for each of the URLs in the InsertUserPage, UpdateUserPage, and DeleteUserPage components, we will need to change the existing URL to this one.
+ As an example, for the InsertUserPage, I will need to change it to http://18.
+223.
+159.
+3:5000/insert-user .
+ The request type remains unchanged.
+ In your case, the EC2 instance public IP address will be different so you will need to change yours accordingly.
+ For each of these pages, you can edit using the vi editor in /frontend/src.
+ For example, Run cd Components Run cd InsertUserPage Run sudo vi insertUserPage.
+jsx The editor will open and you can use arrow keys to navigate to the part where axios is making the API call and modify the values after pressing the i key: Like before, simply press escape and then the :, w, q keys in succession and press enter to save and exit the editor.
+ Now repeat this process for the UpdateUserPage and DeleteUserPage components.
+ Read User Page and React Query Modification For the fetching of data, the application makes use of the React-Query library.
+ So to modify the request URL for this particular function, you will need to navigate to /frontend/src/utilFunctions and from there, run sudo vi userData.
+js and follow the same modification process mentioned above: And that is all!
+ Creating an Optimized Production Build Assuming you are inside /frontend, run sudo npm run build in the command line to kickstart the production build for the application: This will create a build directory containing an optimized production build of the React application (check by running ls in the command line).
+ If you navigate to the browser using the public IP address of the EC2 instance (found in the EC2 dashboard), you should see the following: Now we need to change the configurations of the Nginx server to point to the build directory we just created.
+ In the EC2 instance, run sudo vi /etc/nginx/nginx.
+conf: This will open the editor and the nginx configuration file.
+ Press i to insert information: Under the root section of the server block (highlighted), you have to add the path pointing to the build directory, which would simply be the following: /usr/share/nginx/html/Abdullah-Medium-Demos/demos/Demo25_AWS_DocDB_MongoDB_Node/frontend/build; The same path as what was put in root attribute of the server block.
+ After that, you can simply press escape, :, w, q keys in succession and press enter to save and exit the editor with the updated information.
+ Run sudo service nginx restart in order to reboot and restart the server: Live Cloud Action Check the public IP address of the EC2 instance in the browser and you should see the following: Navigate to the Insert User page and fill out the details as you like: We can check insertion by visiting the Read User page: We can proceed to modify this user by visiting the Update User page: We can choose how many fields we would like to update, the choice is yours.
+ The email is used as a point of reference to determine if the user exists and if so, what values need to be updated.
+ We can proceed to check on this user be re-visiting the Read User page: As you can see, the date when the user data was modified was updated along with the user’s first name and last name.
+ If you look above, we also updated the password, but for security reasons, we do not show that.
+ Copy the User ID you see on this (your) page and proceed to the Delete User page and enter: We can now proceed to the Read User page to see if the DocumentDB cluster has in fact removed them: And that is all!
+ We did a live demo using AWS EC2 for configuring and managing both front-end/back-end servers and AWS DocDB for data storage!
+ This application also checks for errors, but we focused on the correct scenarios.
+ Feel free to play around with the application if you like.
+ Conclusion If you made it this far, congrats!
+ This was the longest tutorial yet, but such was the case because it involved so many services that we had not looked at before.
+ You might be wondering if it is worth the time to do all this when you can connect to MongoDB Atlas.
+ That may be true, but when working with cloud technology, you need to familiarize yourself with a lot of things.
+ This comes with experience and in your professional life, you will be working with a ton of different services of varying complexity.
+ Containers, Networking, CI/CD pipelines which are fully automated, codifying infrastructure, development/production builds, etc.
+ All things we will look at in future tutorials.
+ But for today, I would not worry about that :) We covered quite a bit, but the main things we looked at were: Creating a DocDB cluster Provisioning an EC2 instance Setting up the development environment inside the EC2 instance (Git, Node/Npm, Pm2, Nginx, etc.
+) Configuring the Nginx server Configuring the code to adequately run in the cloud environment All that and much more in between.
+ Linked below are the various services used in this tutorial along with the code repository: GIT Node/NPM PM2 Nginx AWS DocDB Docs AWS EC2 Docs GitHub Code Repository I hope you enjoyed this tutorial and look forward to more down the road!
+ Thank you!
+ Stackademic Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us on Twitter(X), LinkedIn, and YouTube.
+ Visit Stackademic.
+com to find out more about how we are democratizing free programming education around the world.
+
