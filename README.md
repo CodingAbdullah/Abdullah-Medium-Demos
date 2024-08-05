@@ -5,7 +5,13 @@ A repository containing code for demos published to Medium. This page will updat
 1. Links to code demo Medium articles. 
 2. Links to miscellaneous articles (coding, blockchain/web3, etc.)
  
+
+
+### `Audio and Text Files`
+Separate directories have been added for audio files and text files related to each article published. Select articles within a given size will have their audio files published, but for each article, there will be a separate text file associated with it.
 <br />
+
+You can find more information in the relevant directories (`audio_files` and `text_files` located at the root level).
 
 Table highlighting the current demos completed along with their code repository and Medium article.
 
