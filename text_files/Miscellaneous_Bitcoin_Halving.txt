@@ -1,0 +1,86 @@
+Bitcoin Halving and Expectations for 2024 and Beyond Abdullah Muhammad · Follow Published in Cubed · 6 min read · Jan 19, 2024 -- Brief overlook, halving, mining rewards, supply, CBDCs, ETFs, overall market, new innovations (ordinals, BRC-20, inscriptions), and much more.
+ Introduction Bitcoin has come a long way since its inception in 2008.
+ Inspired by the financial crisis of the time, Bitcoin paved the way for modern peer-to-peer transactions without the need for an intermediary.
+ Empowering monetary freedom for all through decentralization was Satoshi Nakamoto’s vision.
+ 21 million Bitcoin will ever be mined (limit to be reached by the year 2140 or thereabout) and with the increasing demand for Bitcoin and Bitcoin’s limited supply, it is hard not to see Bitcoin doing numbers again.
+ Despite the cries of “look at the volatility”, since its inception, Bitcoin has outstripped Gold in growth in the degree of multiples.
+ And you know Gold, it has been around for thousands of years.
+ Bitcoin is basically a digital representation of that.
+ Four-Year Halving Cycle Theory But I am not here to give you a lecture on Bitcoin and what blockchain is all about.
+ There are countless articles out there that can explain everything there is to know about it.
+ We are talking about 2024 and what to expect this coming year and next year.
+ We are fast approaching the conclusion of another halving cycle in Bitcoin’s history.
+ Every four years, the mining rewards for Bitcoin are halved (2012, 2016, 2020, 2024).
+ Since 2008, Bitcoin has completed three halving cycles, and this year, on 22 Apr 2024 (approximately 16:14:13 UTC), will mark the fourth.
+ We started at 50 BTC/block back in 2008 and the halving cycles since have reduced the rewards from 50, 25, 12.
+5, and 6.
+25 to what will be 3.
+125 BTC/block on this date.
+ This creates deflationary pressure on BTC and has historically proven to be an inflection point as it relates to its price.
+ Nothing is for certain, but based on historical data, we can expect to see a bull run extending late this year, well into next year.
+ The common rule to follow is a one-year bull market, and a three-year bear market following the conclusion of a halving cycle.
+ Most of Bitcoin’s supply has already been mined.
+ In fact, at the time of this writing, more than 19.
+5 million of the 21 million supply has been mined.
+ Most of the mining rewards took place prior to the first halving and that is an obvious conclusion to draw from the math.
+ In the early years, it was easy to get your hands on Bitcoin, but as you can see, the rewards decrease with each halving and it gets harder and harder to acquire even one Bitcoin.
+ Governments like to print money causing inflation.
+ Bitcoin mining rewards like to half causing deflation.
+ They are not the same!
+ HODL those BTC bags!
+ :) Institutional Adoption I heard about BTC back in 2014 during a second-year Economics class.
+ My professor deemed it to be a “highly speculative, but interesting” form of investment.
+ She did not refute it but also said that the market for it was too small to be used as a medium of exchange.
+ Fair enough, that was ten years ago and about as open a response as you could get from Main Street.
+ Most on Main Street, including the big boys over at Wall Street, deemed it to be a shady, speculative form of investment.
+ It was not long ago Larry Fink, the CEO of BlackRock, said that Bitcoin is the “index for money laundering.
+” Bitcoin ETFs But things change and now, Larry Fink is on the side of Bitcoin, or is he?
+ You see, the elite already have most of the world’s assets in their back pocket.
+ By approving the first Bitcoin ETFs (made official on January 9/24), institutions like BlackRock can compete with other institutions by tapping into yet another financial instrument.
+ We will not dive into ETFs, but suffice it to say, a major long-term development for this space.
+ The Rubicon was crossed and if they were approved for Bitcoin, you can bet your house that ETFs for the likes of Ethereum and so on will also be approved in the not-so-distant future.
+ Not sure if this was Satoshi’s vision, but the house always wins.
+ The technology remains, but the big boys at the table will be able to do big things and this too, will have repercussions going forward.
+ The CBDC Trojan Horse Governments love control and right now, around the world, they are racing to create what is known as a CBDC or a Central Bank Digital Currency.
+ In fact, many initial drafts have been outlined and completed.
+ Long story short, these are digitally issued currencies and they will essentially grant the government full access to your bank accounts.
+ They can choose to withdraw or freeze your account whenever they like.
+ Now, of course, many deem this to be a “conspiracy theory”, but would you grant any government access to your funds?
+ They could in theory even do that now (Bitcoin to the rescue!
+), but with no physical currency medium (cash), it is all game when it comes to digital holdings.
+ Remember to not confuse CBDCs with Bitcoin or other cryptocurrencies.
+ At the heart, one is fully centralized operating under the guise of a “digital currency” and the others operate as decentralized networks.
+ In the coming years, CBDCs will be something to keep an eye on.
+ New Innovations As with any technology, there are innovations that are made to the initial product in hopes of making it better.
+ Bitcoin is no different.
+ Decentralization has its own cost trade-offs such as speed for security, decentralization, and transparency.
+ BRC20 A developer by the name of Domo created what is known as the BRC20 standard.
+ It is similar to what the ERC20 standard is to Ethereum in that, it allows for the creation of fungible tokens on the Bitcoin network.
+ This opens up a new niche market within the Bitcoin ecosystem and more exciting opportunities.
+ Expect this to grow considerably in the coming bull run.
+ Bitcoin Ordinals and Inscriptions Similar to the BRC20 standard, you can now buy Bitcoin NFTs.
+ Yes, you heard that right, Bitcoin NFTs!
+ Ordinals as they are called are the equivalent of NFTs on other chains using the Bitcoin blockchain.
+ We use a denomination known as Satoshis to determine the order in which they are mined.
+ If you are familiar with Ethereum, you know that Wei is the denomination used in its ecosystem (1 ETH = 10¹⁸ WEI).
+ When Bitcoin Punks launched last year, there was quite a bit of hype around them.
+ What is the use case for these things?
+ Many Bitcoin hard-liners do not like the idea of inscriptions.
+ However, it does allow people to play around with these instruments on Bitcoin just like they do on chains elsewhere.
+ NFTs are a niche market within the crypto space itself.
+ Many people dabble in crypto, but even fewer people have or will ever buy NFTs.
+ Still, in the coming bull run, as the hype returns, be on the lookout for these things as they relate to Bitcoin.
+ You will hear more and more about them in the coming months.
+ Conclusion 2024 looks to be a promising year.
+ We have likely made it past the worst of the 2022–2023 bear market and with interest rates lowering, promising numbers on inflation, and halving, there is a broader market re-alignment taking place.
+ Quite a number of reasons to be bullish for the coming year and what lies ahead.
+ How high will Bitcoin go?
+ When will it reach an ATH?
+ Questions like these are things I tend to stay away from as that is nearly impossible to determine.
+ I have my own predictions for what is to come this cycle and as always, nothing should be construed as financial advice.
+ As they always say, do your own research!
+ We live in an information age with things changing ever so much on a daily basis.
+ It is hard enough to predict day-to-day cryptocurrency prices, but if you have a long-term vision and analyze the macro, you can make safe bets and always remember, nothing is get-rich-quick.
+ I hope found this article informative and look forward to more related to Bitcoin and Cryptocurrencies in the future!
+ Thank you!
+

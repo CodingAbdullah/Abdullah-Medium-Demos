@@ -4,7 +4,7 @@ A repository containing code for demos published to Medium. This page will updat
 <b> There are two separate tables below:
 1. Links to code demo Medium articles. 
 2. Links to miscellaneous articles (coding, blockchain/web3, etc.)
- 
+</b>
 
 
 ### `Audio and Text Files`
