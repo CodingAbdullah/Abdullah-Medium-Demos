@@ -405,7 +405,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo47_Protocols_Encryption_Certificates</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-internet-protocols-for-software-development-c349cb4810c9">Exploring Internet Protocols for Software Development</a>
         </td>
     </tr>
     <tr>
