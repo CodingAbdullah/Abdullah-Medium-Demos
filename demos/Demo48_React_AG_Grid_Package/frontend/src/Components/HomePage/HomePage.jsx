@@ -5,6 +5,7 @@ const HomePage = () => {
     return (
         <div className='home-page'>
             <h1>Exploring the AG-Grid Package</h1>
+            <ReactAgGridTable />
         </div>
     )
 }
