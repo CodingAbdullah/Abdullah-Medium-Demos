@@ -5,7 +5,7 @@ import { coinInfo } from '../../UtilFunctions/coinInfo';
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
-// Custom React component for Ag Grid Table
+// Custom React component for AG Grid Table
 const ReactAgGridTable = () => {
 
     let coinTableRowData = [];
@@ -34,7 +34,7 @@ const ReactAgGridTable = () => {
                     <p style={{ color: String(params.value).charAt(0) === '+' ? 'green' : 'red' }}><b>{ params.value }</b></p>
                 )
             }
-        },
+        }
     ]);
 
     // Conditionally rendering component
@@ -45,7 +45,7 @@ const ReactAgGridTable = () => {
         return <div>Error loading table</div>
     }
     else {   
-        // Render Ag-Grid React component with row and column data
+        // Render AG Grid React component with row and column data
         // Display coin price data
         // Format the coin information data
         for (var i = 0; i < 3; i++) {
@@ -63,7 +63,7 @@ const ReactAgGridTable = () => {
         // Rendering the custom table using AG Grid React
         return (
             <>
-                <p><i><b>Cryptocurrency Price Information</b></i></p>
+                <p style={{ marginTop: '1.5rem' }}><i><b>Cryptocurrency Price Information</b></i></p>
                 <div className="ag-theme-quartz" style={{ marginTop: '1rem', marginLeft: 'auto', marginRight: 'auto', height: 260, width: '100%' }}>
                     <AgGridReact
                         rowData={ coinTableRowData }
