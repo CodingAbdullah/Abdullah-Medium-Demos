@@ -413,7 +413,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo48_React_AG_Grid_Package</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/ag-grid-products-for-rapid-front-end-development-a534fc02a5d1">AG Grid Products for Rapid Front-End Development</a>
         </td>
     </tr>
     <tr>
