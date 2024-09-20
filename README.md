@@ -418,7 +418,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo49_GlacierDB_Decentralized_Database</code>
+            <code>/demos/Demo49_AWS_EC2_Single_Tier_Architecture</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -426,7 +426,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo50_Hash_Encryption_Algorithms</code>
+            <code>/demos/Demo50_GlacierDB_Decentralized_Database</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -434,7 +434,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo51_Publish_Node_Packages</code>
+            <code>/demos/Demo51_Hash_Encryption_Algorithms</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -442,7 +442,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo52_Code_IDEs</code>
+            <code>/demos/Demo52_Publish_Node_Packages</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -450,7 +450,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo53_Bash_PowerShell_Scripting</code>
+            <code>/demos/Demo53_Code_IDEs</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -458,7 +458,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo54_AntD_React</code>
+            <code>/demos/Demo54_Bash_PowerShell_Scripting</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -466,7 +466,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo55_Vulnerability_Check_Node</code>
+            <code>/demos/Demo55_AntD_React</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -474,7 +474,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo56_SDLC</code>
+            <code>/demos/Demo56_Vulnerability_Check_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -482,7 +482,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo57_AWS_EC2_No_SSL_Setup</code>
+            <code>/demos/Demo57_SDLC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -490,7 +490,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo58_AWS_EC2_Single_Tier_Architecture</code>
+            <code>/demos/Demo58_AWS_EC2_No_SSL_Setup</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
