@@ -5,9 +5,8 @@ const documentDBRoute = require("./Route/documentDBRoute");
 const mongoose = require('mongoose');
 
 // Establish connection to DocumentDB using Mongoose library and MongoDB
-mongoose.connect('mongodb://' + process.env.AWS_DOCDB_USERNAME + ':' + process.env.AWS_DOCDB_PASSWORD + 
-                '@mediumdemodb.cluster-clzvikposz04.us-east-2.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem' + 
-                '&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false')
+mongoose.connect('mongodb://' + process.env.AWS_EC2_USERNAME + ':' + process.env.AWS_EC2_PASSWORD + '@' + 
+                process.env.AWS_INSTANCE_PUBLIC_IP + ':27017' + '/' + process.env.DATABASE_NAME)
 .then(() => {
     console.log("Connected to database!");
 })
