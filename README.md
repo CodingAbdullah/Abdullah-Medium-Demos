@@ -434,7 +434,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo51_GlacierDB_Decentralized_Database</code>
+            <code>/demos/Demo51_Web_Domains</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
