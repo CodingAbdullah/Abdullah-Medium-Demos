@@ -1,0 +1,134 @@
+Decentralized Storage Utilizing GlacierDB and the Blockchain Abdullah Muhammad · Follow Published in Stackademic · 10 min read · Sep 30, 2024 Preliminary knowledge of the blockchain, web3, and database storage will be helpful for working with this tutorial.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction There are plentiful options as a developer for data persistence.
+ In the past, we explored relational and non-relational data storage solutions.
+ We looked at MongoDB and MySQL as well as AWS services related to data storage (DynamoDB, AWS RDS, etc.
+).
+ Today, we will explore an interesting project known as the Glacier Network.
+ It utilizes blockchain technology for data storage to ensure the safety and security of data.
+ Of course, with centralized storage mechanisms, there is always a looming threat of hacks and a single point of failure.
+ Storing data in a decentralized manner ensures the safety and security of critical information.
+ In addition to the Glacier Network, we will also explore other methods of distributed data and file storage: Glacier Network SDK — For development purposes, exploring features IPFS — Inter Planetary File System Filecoin ($FIL) — Blockchain for data storage incentives Celestia ($TIA) — First ever modular blockchain Glacier Network offers three key services and an incentive for early users in the form of a potential airdrop ($GLS).
+ Of course, I will not cover the airdrop side of things, but focus on a key product for data storage.
+ What is the Glacier Network?
+ Glacier’s mission is to become a data-centric blockchain network that can manage large amounts of data empowered through the use of the blockchain and existing protocols.
+ There are three different services they offer: GlacierAI — AI compute services powered through the blockchain GlacierDB — Decentralized storage built using blockchains such as Filecoin GlacierDA — Utilizing the Celestia blockchain for enhancements Of these three compute services, we will focus on GlacierDB.
+ Exploring GlacierDB GlacierDB is a decentralized database service that focuses on providing a secure and scalable solution for distributed data storage.
+ It integrates the blockchain and promotes secure data persistence through the use of nodes that store information.
+ This promotes immutability as well as security since there is no single point of failure.
+ Other key features that GlacierDB offers are security, interoperability, and user control.
+ We have looked at full-stack MERN applications which offer a simple, centralized way of developing software.
+ In the blockchain world, the setup is slightly different.
+ We have what we normally construe as the “UI” (front-end), but the back-end is where things get interesting.
+ If you are familiar with smart contracts and blockchain technology, you understand we utilize a deployed smart contract to interact with a blockchain.
+ These applications are known as decentralized applications or dApp for short.
+ The following illustration best describes what I mean: Now extend this idea of a peer-to-peer, distributed, immutable ledger to databases.
+ Instead of relying on a single, centralized storage mechanism, we have nodes that are interconnected and store data.
+ That, in layman terms, is how GlacierDB works.
+ It is a database service that utilizes blockchain technology under the hood to offer a decentralized data storage service.
+ GlacierDB is essentially an extension of MongoDB, but on the blockchain.
+ You work with the same ideas and concepts related to non-relational data storage (namespace, collections, documents, etc.
+).
+ We will see how we can utilize GlacierDB in a web application when we explore the GlacierDB SDK a bit later.
+ GlacierDB Walkthrough Assuming you have a crypto wallet (Metamask preferred), you can follow along this brief overview.
+ Head over to the official Glacier Network website and under the Developers section, select Filecoin.
+ Select the Playground option and connect your wallet to the main section.
+ Here, I have already created a namespace to work with: You can create a dataset and set different fields to go along with them.
+ This is very similar to the MongoDB Atlas setup we have looked at in the past.
+ For every action you take, it will be recorded on the Glacier blockchain and you will be prompted to confirm it via Metamask.
+ Dataset > Collection > Document.
+ That is how it goes.
+ The following screens illustrate the creation of a new dataset, defining a collection, its attributes, and inserting documents.
+ Note for each action, we confirm it via Metamask and document it on the blockchain.
+ We can confirm this to be true by visiting the official GlacierScan website.
+ As you may know, for every blockchain, there is a dedicated dApp known as its scanner.
+ Here, you can see the recent activity related to the above set of actions we took: You can see the different transaction IDs and the action associated with it underneath.
+ Activity is at an all-time low, it looks like I am the only one using it!
+ ;) Now it is time to explore the Glacier SDK.
+ Glacier SDK for Development The official docs to the Glacier SDK can be found here.
+ You can follow along by cloning the following repository.
+ The directory of concern is /demos/Demo50_GlacierDB_Decentralized_Database.
+ We will analyze snippets of code that can be utilized to work with GlacierDB.
+ There is a lot of boilerplate code that will need to be used to connect your wallet to the Glacier Network.
+ But first, you will need to install the following package: npm install @glacier-network/client Here is a code snippet to successfully establish a connection to the Glacier Client using Node.
+js.
+ It can be found in glacier_client_sdk/index.
+ts: There are four supported endpoints.
+ Two are related to testnets and the other two are mainnet endpoints: Arweare — Mainnet BNB Greenfield — Mainnet Filecoin — Testnet BNB Greenfield Vector — Testnet Think of these blockchain networks as development and production environments.
+ Blockchains have their own “test” networks where you can test and develop your decentralized applications without having to worry about incurring costs or usage of sensitive data.
+ Mainnets are the real deal and that is where your decentralized applications are “deployed to production.
+” When you are connecting to Glacier, you will need to use GlacierClient() and pass in one of the four appropriate URL endpoints.
+ Browser Usage Usage in the browser is pretty straight forward.
+ We need to connect to the browser wallet.
+ Connecting to a browser wallet can be done using a custom hook useMetaMask found in glacier_client_sdk/custom_hooks/useMetaMask.
+ts: Simply put, we utilize the global window property and access the ethereum attribute.
+ If you have a crypto wallet installed in your browser, this property will become available to you.
+ After that, we request the user to select an account from the number of accounts available.
+ Once the user makes the account selection, we proceed to set the provider.
+ Ensure to install the @metamask/providers npm package locally to access the MetaMask providers type.
+ Once this portion is complete, we can proceed to use the Glacier Client using a custom hook useGlacier found in glacier_client_sdk/custom_hooks/useGlacier.
+ts: We utilize the custom useMetaMask hook in the useGlacier custom hook to work with the Glacier Client.
+ Once signature confirmation is complete, we can now work with Glacier.
+ Again, all this can be found in the documentation here.
+ We can now use these custom hooks inside any front-end React component and seamlessly utilize MetaMask to establish connection to Glacier.
+ Feel free to use the frontend directory and utilize these custom hooks to interact with Glacier.
+ The front-end codebase consists of React page components for working with the four CRUD operations.
+ There is documentation provided for more Glacier use cases, but we will not cover that in this tutorial.
+ We will now look at other ways of working with data on the blockchain.
+ Data on the Blockchain Aside from Glacier, there are other exciting projects that work with data on the blockchain.
+ While the Glacier Network is a promising concept, we will look at IPFS and the Filecoin project.
+ IPFS IPFS stands for Inter Planetary File System.
+ It is a protocol and a file sharing peer-to-peer network.
+ Similar to HTTP/S, you can host a website using IPFS.
+ As mentioned earlier, instead of relying on a central server for data and web hosting, we can utilize a distributed file system.
+ Each file is uniquely identified with a hash to ensure data integrity and efficient retrieval upon request.
+ It is content-based and not location-based as is the case with the traditional internet.
+ As with any decentralized application, the peer-to-peer design is always at play.
+ Here, we have a distributed network of nodes that enable file sharing without the need of a central entity.
+ If we are developing dApps, we can utilize IPFS as a robust file storage mechanism.
+ To work with IPFS, we can use the IPFS Desktop App.
+ In a future tutorial, we will explore hosting a website using IPFS.
+ After we upload the relevant files, we will get back a unique content identifier (CID) which we can use a modern web browser to access.
+ By utilizing the IPFS gateway, the URL will look something like this: https://ipfs.
+io/ipfs/<your-CID> We replace the placeholder with the CID we obtained and we will be able to access the website!
+ Pretty simple and straight forward.
+ With IPFS, you can also “pin” your website to ensure it remains up and running.
+ Filecoin Filecoin is a layer above IPFS and is used for a different purpose other than file storage.
+ It offers a financial incentive layer for file storage in that users can buy and sell storage space.
+ Filecoin offers users who have storage capacity its native token (FIL) to store and retrieve data.
+ Miners (as is the case with other blockchains), earn tokens by providing a proof that they are storing data correctly over a span of time.
+ So what is the difference between IPFS and Filecoin?
+ Difference between the two lies in the fact that IPFS offers decentralized file storage while Filecoin provides an incentive to ensure that data is stored securely over time (no tampering).
+ Filecoin relies on its own virtual machine (FVM) which enables developers to develop and deploy smart contracts on the Filecoin blockchain.
+ PoRep & PoSt While most blockchains rely on Proof of Work (PoW) or Proof of Stake (PoS) consensus mechanisms, Filecoin is slightly different.
+ Filecoin utilizes Proof of Replication (PoRep) and Proof of Spacetime (PoSt) as its consensus mechanisms.
+ PoRep — Ensures a miner has stored a unique copy of data PoSt — Verifies that a miner is continuously storing data over time This approach allows Filecoin to incentivize storage and retrieval of data over the blockchain.
+ The Filecoin project has been around for a while and had its heydays during the 2021 bull run.
+ Data Availability and Modularity with Celestia One of the computing services offered by Glacier is GlacierDA and while we did not look into it, Celestia is the underlying blockchain behind it.
+ Celestia is a first of its kind, modular blockchain.
+ It separates the consensus layer and data availability layers from the execution layer.
+ To put it simply, every aspect about the underlying layers are separated from each other promoting modularity.
+ This allows for scalability as each layer conducts their own tasks, but also allows developers to seamlessly build their own blockchains using Celestia.
+ Yes, you can create your own blockchain using the Celestia architecture under the hood and that is exactly how they built GlacierDA.
+ Celestia also offers interop ability it utilizes the Cosmos IBC protocol (Inter-Blockchain Communication Protocol) to enable communication between different blockchains.
+ Celestia is part of a broader ecosystem known as Cosmos whose native token is Atom.
+ Celestia recently had their airdrop last year ($TIA).
+ Developers can utilize the Cosmos SDK to successfully create their own blockchain.
+ In a future tutorial, we will work with the Cosmos SDK!
+ Conclusion We looked at quite a bit in this article.
+ We focused primarily on the Glacier Network and the services it offers.
+ It is a promising project that enables data storage through decentralization.
+ We worked with GlacierDB and saw how data can be stored and retrieved (through the use of the playground or programmatically using the Glacier Client npm package).
+ We discussed other means of data storage aside from working with databases in the form of files using IPFS.
+ We saw how we can incentivize users to offer their services via Filecoin and the two different consensus mechanisms (PoRep and PoSt).
+ Finally, we touched on a promising new blockchain project, Celestia.
+ We understood how it enables anyone to create their own blockchains using Celestia under the hood and the Cosmos SDK.
+ Attached here are the official docs to the Glacier Network, IPFS, Filecoin/Celestia blockchains, Cosmos SDK, and the GitHub repository used in this tutorial.
+ I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
