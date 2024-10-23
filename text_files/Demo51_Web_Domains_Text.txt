@@ -1,0 +1,121 @@
+Selecting the Right Web Domain for your Business Abdullah Muhammad · Follow Published in Stackademic · 8 min read · 3 days ago -- Preliminary knowledge of web development and web domains will be helpful for working with this tutorial.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction We have looked at setting up a web domain using a domain name provider such as Namecheap.
+ In addition to that, we have used AWS Route 53 to set up a web domain for a website.
+ Today, we will focus on web domain selection and how selecting the right web domain is crucial for building your online brand.
+ We will work with Namecheap for selecting a domain and explore the different features of Namecheap that make up most of the common features found in internet domain providers (GoDaddy, Bluehost, etc.
+).
+ Building your Brand When building an e-business, the end product is important (ensuring the product fits user needs), but branding and marketing are just as important as well.
+ How will customers know that you have a solution that solves their problem?
+ What is the point of having an application if nobody knows about it?
+ While a domain does not address everything, it is an important part of branding that can help ensure you are visible among the thousands of websites out there.
+ At the end of the day, SEO, backlinking, content accretion matter just as much, but having that solid domain can really put your content “out there”.
+ It does not make sense to purchase say, “blog.
+net” as a domain for your blog.
+ Sure, your site is a blog so technically this domain makes sense to a certain extent.
+ But you want to be specific and narrow down to a name that pertains to your blog content.
+ Not a lengthy or generic name, but rather, a minimal and direct one.
+ A generic domain such as “blog.
+net” might seem like a good idea, but for ranking and SEO, it is counterproductive.
+ Instead of “blog.
+net”, if your blog is about physics, a name like “physics101.
+com” would be more fitting.
+ We will explore domain extensions and their use cases, SEO tools for keyword research, and the Google Trends Analytics tool that can help you nail down those keywords in your domain name search!
+ Domain Extensions and their Use Cases The following is a list of ten common domain extensions.
+ Some of these you are likely familiar with: .
+com – Commercial extensions are the most common in the web world.
+ They can be used by anyone and are commonly utilized by e-commerce, blogs, startups, and so on.
+ This is the most expensive extension to secure given its popularity .
+net – Network extensions are associated with network and IT.
+ If your content is related to this field, it would be wise to secure this extension for your name .
+io – Input/Output extensions are a creative concept.
+ The acronym “io” is associated with development.
+ These domain extensions are used by sites related to development, startups, etc.
+ .
+ai – Artificial intelligence is really heating up.
+ Got a SaaS that deploys a solution using AI?
+ Securing this domain extension is a must and due to its popularity, they have become pricy .
+tech – Technology domain extensions are associated with sites that host content related to all things technology with a broad scope .
+dev – Developer domain extensions are a subset of Technology.
+ These extensions are specifically geared toward sites that host content related to development, coding, etc.
+ They enforce security through SSL/TLS and can only be accessed via HTTPS, an added benefit .
+xyz – A funky new wave of web domains are now incorporating this extension.
+ It serves no specific purpose and is generic in nature .
+edu – Education domain extensions are used by educational platforms, schools, universities, colleges, publications, and other e-learning tools .
+gov – Government domain extensions are utilized by governments.
+ Classified documents are often found on these sites .
+org – Organization domain extensions are associated with non-profit organizations, charitable associations, etc.
+ They have been around for a while and are a go-to if your site content is geared towards a non-profit Whatever extension you choose, make sure it is relevant to the content of your site.
+ Some extensions will be pricy (we will explore pricing later), so select one that is price friendly and fits the above criteria.
+ Exploring Namecheap Let us explore Namecheap.
+ If you are a first-time user, you will be eligible for some sweet discounts.
+ Of course, we will not purchase anything in this tutorial, but feel free to explore purchasing on your own.
+ Some key sections of Namecheap are described below: Domains – Purchase a new domain through the marketplace or transfer an existing one Hosting – Options for hosting using your domain (WordPress, shared hosting, etc.
+) Email Services – Setup a business email using your newly purchased domain WordPress Integrations – Got a WordPress site?
+ Manage its hosting or migrate a site to WordPress Marketing – Branding tools for ads, SEO, socials, and reviews can be found in this section.
+ You can also find design tools such as font/logo/site makers, business name generators, etc.
+ Security and Migration – SSL certificates, domain privacy, anti-spam protection and everything else pertaining to security can be found here Much more is provided to you out-of-the-box by Namecheap, but this is a concise summary.
+ If you are familiar with WordPress and have websites that utilize it, Namecheap comes with some crucial integrations which you can fit in seamlessly.
+ In this article, we will focus on domain selection, keyword research, and pricing.
+ Domain Search When searching for a domain on Namecheap, you can start from the main page.
+ Let us search the term “software”: At the time of this writing, the .
+com extension for “software” has been taken.
+ Namecheap allows you to fill in an offer, but as you can see, you will likely need to pay a fortune to obtain “software.
+com”.
+ During the late 90s – early 2000s, when the internet was still in its infancy, people were buying and selling internet domains.
+ It was part of the craze during the .
+com bubble and many smart people got in on the play early.
+ Single letter domains or simple word domains like “software” are nearly unattainable.
+ As I alluded to earlier, simple and direct keywords are way more valuable than long-tail keywords.
+ For SEO purposes, obtaining a simple domain such as this will be pricy and as such, these domains are designated as premium by Namecheap.
+ Undoubtedly, obtaining a premium domain will help with SEO, visibility, and search volume.
+ In the end though, your content, backlinking, etc.
+ will have a greater say in your ranking.
+ Domain Name Analysis Short is sweet and it cannot be overstated enough.
+ You want to find keywords that perfectly encapsulate what your online business is about.
+ Your domain name is your identity on the web.
+ Whether it is e-commerce, blog, startup, etc.
+ ensuring you get your research right will be key to success.
+ In this section, we will explore tools you can use for keyword research to help find that perfect domain name for your business.
+ Keyword Tool The first tool we will look at is KeywordTool.
+io.
+ It is very simple and easy to use.
+ All you have to do is enter in your desired keyword to search metrics related to it.
+ A comprehensive chart will detail information related to the particular keyword as well as probable phrases associated with it.
+ For instance, if you are searching for “software”, you will find data related to keywords such as “software developer” and “software engineer”.
+ The following screen illustrates what I mean: As you can see, the user searches for “how to” and the tool finds metrics associated with the phrase, but also metrics associated with queries that contain the particular phrase.
+ This tool is beginner friendly and will detail search volume, trends, and competition.
+ SEMrush SEO Tool The next tool we will look at is SEMrush.
+ They offer a suite of tools for keyword optimization.
+ I will focus on one particular tool known as the keyword magic tool.
+ Here, you can enter in your desired keyword and find interesting data related to it: I am using SEMrush to find metrics related to the keyword, “ai”.
+ You can see rank competitiveness (how hard it is to rank for this keyword), its search volume, and so on.
+ I have scoped the search to phrase match which ensures that each of the results returned, contain the desired phrase.
+ Try to find similar phrases that contain a decent amount of search volume and also rank more easily.
+ Compile a list of similar keywords that best describe your content and check Namecheap for domain and domain extension availability.
+ On the left panel, you will find additional metrics related to your keyword search which can be helpful during the research process.
+ Of course, there is a lot more to SEMrush, but a simple tool such as this can be sufficient enough during the research process.
+ You also have the option of upgrading your account to access additional features.
+ Google Trends Analytics Another tool you can utilize in your quest for finding the right domain is the Google Trends Analytics tool.
+ Here, you can plug-in keywords to track their trends over a period of time.
+ You can compare search volume of these keywords against each other to track what people are focused on at a given time.
+ This will help you gauge what keywords you should focus on during your search.
+ Here is an example where I use the tool to search for and compare the following terms: software ai developer This is a historic timeline which highlights the search volume of these three keywords.
+ It is not until recently, that the term “ai” picks up steam, which highlights the tool’s accuracy (we are currently in a “AI bubble”).
+ If you look up “.
+ai” domain extensions for many of your keywords, you will notice a hefty price tag associated with them.
+ There is no bigger search engine than Google so you should add this tool to your arsenal of tools for keyword research.
+ Conclusion We thoroughly discussed the process of domain name search and how to find one that perfectly encapsulates your online business.
+ We looked at domain extension types, their uses cases, and used Namecheap to search for domain names and differentiated between common and premium domains.
+ We worked with keyword research tools such as KeywordTool.
+io, SEMrush, and Google Trends Analytics.
+ Links to each of these can be found below: Keyword Tool SEMrush SEO Tool Google Trends Analytics Selecting the right domain is crucial for your online business.
+ It is your identity on the web and the first thing people will use to reference your site.
+ I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
