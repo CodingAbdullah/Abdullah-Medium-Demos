@@ -1,0 +1,152 @@
+AG Grid Products for Rapid Front-End Development Abdullah Muhammad · Follow Published in Stackademic · 11 min read · Aug 28, 2024 Familiarity with front-end development libraries such as React.
+js will be beneficial for working with this tutorial.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction If you are a front-end developer, you likely know of several third party libraries that can help expedite the development process.
+ Often times, you are looking for a quick and effective tool to help you with front-end design.
+ You are focused on delivery and not so much on the details related to design, CSS styling, and so on.
+ In the past, we explored a beginner-friendly and easy-to-work-with front-end CSS framework called Bootstrap.
+ Today, we will focus on another effective tool for front-end development called AG Grid.
+ Unlike Bootstrap, which fits a more broad use-case for front-end development, AG Grid fits a more specific use-case.
+ Often times, you are working with data (especially in the field of data science) and you want a quick and effective way of displaying and working with the data.
+ That is where AG Grid comes into play.
+ Instead of building charts, dashboards, and tables from the ground up, you can use AG Grid’s community based products for easy integration and usage.
+ The best part about it is that it integrates with nearly any language or framework.
+ If you are no React.
+js expert, you can integrate AG Grid with Angular, Svelte, Solid, and many other frameworks out there.
+ In-Depth Look at AG Grid In their own words, AG Grid is described as “the professional choice for developers building enterprise applications.
+” It includes feature-rich products that can seamlessly integrate into any project.
+ While we will not be building enterprise applications in this tutorial, we will see a glimpse of the power of their products in a simple demo.
+ I am personally using their products in a separate project I am building which is associated with the Ethereum blockchain (ethwdashboard.
+xyz).
+ Incorporating AG Grid here makes sense because much of the project involves data retrieval from cryptocurrency APIs.
+ It requires an interactive way of allowing users to view the data.
+ In the next section, we will dive into some of the key components of AG Grid such as the product offerings, enterprise vs.
+ community offerings, and much more.
+ AG Grid Products As stated on their home page, AG Grid products are used by 90% of the Fortune 500 companies.
+ When you have that level of trust, it is clear you are the gold standard in the services you offer.
+ So what exactly do they offer?
+ Great question!
+ So let us dive right in.
+ There are two main products AG Grid offers: AG Grid — Offering users an interactive way of displaying data through custom data grids AG Charts — Offering users an interactive way of display data through custom charts Their first offering allows developers to create feature-rich data tables with great design and UI/UX flexibility.
+ Their second offering allows developers to display data in an interactive chart format.
+ Enterprise vs.
+ Community Versions AG Grid comes with a free and paid version.
+ AG Grid is so feature-rich that in many instances, the free, Community version will suffice.
+ However, as with many companies, if you are using their products to build extensive, enterprise applications, you will need to sign up for the paid, Enterprise version.
+ The Community version works best for small projects and the enterprise version works best for enterprise-grade projects.
+ Each of the AG Grid and AG Charts offer the similar pricing plans.
+ The difference lies in the pricing of the Enterprise version.
+ For information related to licensing and the community and enterprise versions, you can refer to this page.
+ For the demo, we will focus on using the Community version.
+ AG Grid and AG Charts Dependencies and Setup As with many JavaScript projects, AG Grid has published NPM packages for each of the different languages they support.
+ We will focus on the package related to React called ag-grid-react as that is the library we will use for front-end development.
+ You can find the official docs for getting started with AG Grid using React here.
+ When working with the community version of AG Grid, we need to install the community version.
+ The NPM package for that is ag-grid-community and its official docs can be found here.
+ We follow a similar procedure when working with AG Charts.
+ We need to install the ag-charts-react NPM package for working with React and the ag-charts-community NPM package for working with the community version.
+ The official NPM docs for AG Charts and the AG Charts community version can be found here and here.
+ Key Features of AG Grid There are a lot of key components to AG Grid.
+ The documentation is extensive and covers a lot more in detail than what we will cover here.
+ Nonetheless, we will discuss the following four key features: Table Definitions — Defining and using column/row data Cell Rendering — Mapping data using the special cellRenderer function Re-sizing — Incorporating the special flex key for table re-sizing Themes and Colouring — Exploring the built-in CSS classes Table Definitions We define rows and columns of the data table using the useState React hook.
+ When defining rows of data, we define an array of objects.
+ Each object within the array represents a row of data and each key within an object represents the column name and its corresponding data (value): useState([{}, {}, … , {}, {}]) Similarly, we define columns the same way.
+ The key distinction here is that we use the field key to represent a column with the value being the column name: useState({ field: ‘name’, field: ‘age’, … }) To map the rows to the columns, the object keys within the row definition must match those of the field keys defined in the column definition.
+ Pretty straight forward stuff.
+ Once we have defined the row and column data, we use the AgGridReact custom component provided by the ag-grid-react NPM package.
+ We pass in the row and column definitions via props.
+ The two props are rowData and columnDefs.
+ Cell Rendering Often times, we would like to format raw data for readability and elegance.
+ Data tables are nice, but nobody wants to read a table that has no format, style, and messy data.
+ AG Grid has a solution to representing data in a more elegant way.
+ Within the column definitions, we can provide an additional property called cellRenderer.
+ The value of this property is a function which returns the row data of the column in a defined format.
+ The function has one parameter and that is how it is able to access the row data corresponding to the column name: {field: ‘name’, cellRenderer: (params) => … } Examples of defining columns using the cellRenderer function can be found in the official docs.
+ We will see this function in action in the code overview section of this tutorial.
+ Re-Sizing Within the column definitions, we can define how we would like to size each column.
+ We can do this by providing an additional property known as flex.
+ The value of this property is a string representation of a number.
+ Say, we would like column A to be two times the size of column B, we would designate flex: ‘2' as a key-value pair in the column definition for A and flex: ‘1' as a key-value pair in the column definition for B.
+ We can also use an event listener to dynamically re-size a table based on window size, but we will not cover that in this tutorial.
+ Re-sizing a data table in AG Grid is very easy and is a key feature for effective data representation.
+ Themes and Colouring Finally, we will cover themes and colouring.
+ There are two main Grid themes: Quartz — Theme defined in the ag-theme-quartz.
+css file Alpine — Theme defined in the ag-theme-alpine.
+css file Both of these CSS files are part of the community version of AG Grid and can be readily imported using the import JavaScript statement.
+ They are part of the ag-grid-community NPM package.
+ I have never touched the CSS classes and that is because the CSS style definitions on their own are on point.
+ There is always the option for modification and that can be done by editing the files above.
+ We apply styles to the data table by wrapping it (wrapping the AGGridTable component) in a div with the className attribute consisting of the name of the CSS file we would like to apply the styles from.
+ Pretty simple and straightforward.
+ Key Features of AG Charts Charting data is a bit different than managing rows and columns.
+ In the end though, we are working with data and it is all about data visualization.
+ AG Charts offers numerous ways of visualizing data and it supports common charts such as line, bar, pie, etc.
+ CSS styling in AG Charts is the same as AG Grid and just like we had the custom AgGridReact component, we have a AgChartsReact component which handles all the charting.
+ All we need to worry about is passing in the relevant data to the AgChartsReact component props.
+ For this tutorial, we will focus on creating a line graph using AG Charts.
+ The following are props which we will discuss as part of the AgChartsReact component: data — Takes in an object representing data points to be presented title — Takes in a string representing the chart title subtitle — Takes in a string representing text underneath the title legend — Takes in an object with properties that can be set axes — Takes in an array of two objects with each object representing an axis (x, y).
+ Some properties such as title, position, type, and domain can be set.
+ Once all this has been figured out, we pass these properties into the AgChartsReact component and we are good to go.
+ Charting has never been any easier and using AG Charts is one way to solve all your data visualization needs.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is demos/demo48_React_AG_Grid_Package.
+ AG Grid for Creating Data Tables We will focus on creating a data table using AG Grid.
+ There is a custom component located in the frontend/src directory called ReactAgGridTable.
+ The code source for it is below: As you can see, we are making use of the @tanstack/react-query package for efficient data fetching.
+ We are fetching data related to cryptocurrency prices of three different coins: Bitcoin Ethereum Solana If you are not familiar with using @tanstack/react-query, you can refer to this tutorial to help you out.
+ Essentially, we are conditionally rendering the component based on query status (loading, error, success, etc.
+).
+ You can see the row and column definitions using the useState hook.
+ We are providing the column definitions with additional fields such as flex and the cellRenderer function which will determine the size and rendering of the data within each cell.
+ Since columns are dependent on row data, we can modify row data anywhere in the code and the custom component will take in the latest modified version of row data.
+ Once we have successfully fetched the data, we modify it and pass in the modified details to the AgGridReact component.
+ We also provide the data table with a style using one of the CSS files we discussed before.
+ The function responsible for data fetching can be found in the coinInfo.
+js file located in the /frontend/UtilFunctions directory: We are using the free version of the CoinGecko API to successfully fetch cryptocurrency data.
+ That is all there is to creating data tables using AG Grid!
+ AG Charts for Creating Charts Now, we will focus on creating a line graph using AG Charts.
+ There is a custom component located in the frontend/src directory called ReactAgChart.
+ The code source for it is below: Again, we are making use of the @tanstack/react-query package for efficient data fetching.
+ We are fetching the price history of Bitcoin.
+ We are conditionally rendering this custom component and are providing the props of the AgChartsReact component with data.
+ We have discussed about these props before so if you need more information related to them, feel free to read the official docs.
+ Once we have successfully fetched data, we modify it and pass all the information into the AgChartsReact component.
+ We also provide the chart with a style using one of the CSS files we discussed before.
+ The function responsible for data fetching can be found in the bitcoinPriceInfo.
+js file located in the /frontend/UtilFunctions directory: We are using the free version of the CoinGecko API to make these successful API calls.
+ Note how we modify the data using the map function to ensure that each data point consists of two parts (time and price).
+ We use the dayjs library to help with efficient date and time handling.
+ Date and Time are an integral part of charting so it is important to handle this part diligently in order to display data properly.
+ That is all there is to creating charts using AG Charts!
+ Demo Time!
+ We are only working with a front-end in this tutorial.
+ Ensure you have cloned the repository (mentioned earlier) and have ran npm install to install the dependencies defined within the package.
+json file.
+ Ensure the following five packages are installed: ag-charts-community ag-charts-react ag-grid-community ag-grid-react dayjs To proceed, run npm start in the command line to kick start the client server.
+ If done correctly, you should see the following: There two sections, table and chart which we will discuss in this demo.
+ Proceed to the table section by selecting it at the top: You can see the data renders according to what we defined in the row definition as well as the cellRenderer function in the column definitions.
+ The images, colouring, and price styling were all defined this way and the table looks clean and easy to read.
+ You can modify the column sizes by dragging their edges and even pick a column out by dragging it outside the table.
+ Refreshing the page will return the table as is.
+ Now we will discuss charting.
+ Proceed to the chart section by selecting it at the top: Again, you can see the data renders according to what we defined in the data portion of the AgChartsReact component.
+ Note how the x axis uses the time and date data which was provided using the dayjs library and the y axis uses the raw price data fetched from the CoinGecko API.
+ All the labels and axes information was provided via props and you can see them in the chart above (title, subtitle, and so on).
+ We ensure the y axes is within a specified range using the minimum and maximum price points and pass this information into the domain property (check code above).
+ We know the graph is a line graph because that is what we explicitly defined in the series prop.
+ That is all!
+ Conclusion We learned about data visualization techniques using data tables and charts.
+ We did a walkthrough of an important project which can be helpful along the way.
+ AG Grid is an emerging JavaScript tool and I feel it will see tremendous growth in the near future.
+ We discussed their two main products, grids and charts.
+ We utilized the community versions of both of their products and a did code overview and demo for each.
+ Here are the links to the code repository, AG Charts docs, AG Grid docs, and the day.
+js library.
+ I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
