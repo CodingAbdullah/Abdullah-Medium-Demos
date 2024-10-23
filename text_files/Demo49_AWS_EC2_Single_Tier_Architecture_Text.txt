@@ -1,0 +1,84 @@
+The AWS EC2 Single-Tier Architecture Pattern Abdullah Muhammad · Follow Published in Stackademic · 7 min read · Sep 20, 2024 -- Exploring the use of a single EC2 instance to power all your front-end, back-end and database requirements.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction We covered AWS EC2 in great detail and looked at using an EC2 instance for setting up a web application.
+ We will now focus on implementing design patterns using EC2 instances.
+ In this tutorial, we will dive deep into the Single-Tier architecture pattern.
+ In this design pattern, we use a single EC2 instance to setup and manage application requirements.
+ Whether you are running a front-end application, full-stack application or incorporating a database, a single EC2 instance might be sufficient enough to handle this workload.
+ I say might because there are limitations to this model as it relates to availability and reliability.
+ Running your entire workload on a single EC2 instance is risky because it becomes a single point of failure that can bring down the entire system.
+ If there was, say, another EC2 instance or a cluster of instances which enhanced performance (enabled scaling), this would ensure maximal uptime, reliability, scalability, and performance.
+ These are benefits you might be familiar with if you read my article discussing the fundamental concepts of cloud computing.
+ Luckily, these benefits are attainable in higher-tier architecture patterns which we will discuss in future tutorials.
+ The Single-Tier Model The Single-Tier model has its advantages when working with applications.
+ If you are running a small workload, it makes sense to work with a single server.
+ If you are working on a budget or have an application that does not incur high user traffic, implementing the single-tier model might be ideal for you.
+ The model can be best described with the following illustration: We make use of AWS VPC as well as a public subnet to enable inbound internet traffic to the server.
+ Within the server, we configure the front-end, back-end, and the database.
+ That is all there is to working with the single-tier model.
+ We previously worked with a single EC2 instance when we covered AWS DocumentDB.
+ However, the database was isolated from the EC2 instance and was residing in a private subnet of its own.
+ The following illustration explains what we worked on in that AWS DocumentDB tutorial: In the single-tier model, we incorporate the database within the EC2 instance and setup configurations for the front-end and back-end servers.
+ The database we will use for data persistence will be MongoDB.
+ It is simple, effective, and easy to setup and use.
+ We will not go into the details of launching and configuring an EC2 instance nor will we dive into setting up the required dependencies to run both the front-end and back-end servers.
+ Feel free to refer to the AWS DocumentDB tutorial for further details on these concepts.
+ The tutorial is lengthy, but it does a thorough walkthrough of the entire setup process.
+ In this tutorial, we will focus on installing, setting up, and utilizing MongoDB inside an EC2 instance.
+ Project Configuration Before we proceed, I would like to outline the services you will need to install and configure on your EC2 instance.
+ The following list is a summary with a link to each service: Node/NPM Git Nginx PM2 Mongod Each of these aside from Mongod was covered in the AWS DocumentDB tutorial.
+ Let us proceed to configuring MongoDB on an EC2 instance.
+ Configuring MongoDB The official site of MongoDB contains documentation related to setting up MongoDB on an AWS EC2 instance.
+ We are working with the free-tier AMI (AWS Linux 2023) so we will follow steps for setting up MongoDB for that.
+ Connect to your EC2 instance and enter the following command to create the desired file: sudo touch /etc/yum.
+repos.
+d/mongodb-org-7.
+0.
+repo Inside this file, enter the following information: [mongodb-org-7.
+0] name=MongoDB Repository baseurl=https://repo.
+mongodb.
+org/yum/amazon/2023/mongodb-org/7.
+0/x86_64/ gpgcheck=1 enabled=1 gpgkey=https://pgp.
+mongodb.
+com/server-7.
+0.
+asc Now, we install the latest version of MongoDB using the following command: sudo yum install -y mongodb-org We can check to see the version of mongod installed using: mongod --version If MongoDB was installed correctly, you should see something like this: We can start and verify if MongoDB is running by using the following commands: sudo systemctl start mongod sudo systemctl status mongod By default, MongoDB runs on port 27017 so ensure inbound/outbound traffic is enabled on that port in your EC2 instance.
+ Optionally, we can start to work with MongoDB by running a shell session using: mongosh And that is all there is to it!
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is demos/Demo49_AWS_EC2_Single_Tier_Architecture.
+ The codebase closely resembles what we covered in the AWS DocumentDB tutorial.
+ The main difference is the way we connect the database to the back-end node server.
+ The back-end/server.
+js file details how we do this: In this case, we utilize the mongoose library as before, but include four additional properties in the database connection string: AWS_EC2_USERNAME AWS_EC2_PASSWORD AWS_INSTANCE_PUBLIC_IP DATABASE_NAME All of these can be set as environment variables stored locally inside a .
+env file.
+ That is about it.
+ In the front-end server, the codebase uses http://localhost:5000 to send requests to the back-end server.
+ Here, you will need to modify this string to the following format: http://<public_ip_address>:<port_number> This will need to be done in each of the following four files: DeleteUserPage.
+jsx InsertUserPage.
+jsx UpdateUserPage.
+jsx userData.
+js (located in utilFunctions directory) Feel free to revisit the AWS DocumentDB tutorial for a more detailed explanation on the front-end and back-end codebases.
+ Since it is practically the same, we will not cover them in detail in this tutorial.
+ Demo Time!
+ Assuming you have configured and launched the front-end, back-end, and MongoDB database, we can proceed (refer to the AWS DocumentDB demo section for assistance).
+ The demo involves performing the basic CRUD operations against your database.
+ Since the front-end UI closely resembles that of the front-end in the AWS DocumentDB demo, the following screens roughly illustrate what the UI should look like after each successful operation.
+ The Nginx web server should direct to the home page and it should look something like this: *NOTE THE FOLLOWING SCREENS ARE FROM THE AWS DOCUMENTDB TUTORIAL, BUT YOUR UI SHOULD LOOK EXACTLY THE SAME AFTER EACH SUCCESSFUL OPERATION* Proceed to the Insert User section and fill out the details accordingly: Heading over to the Read User section in the web application, we should see the following: Now, let us try to update this user.
+ Head over to the Update User section and fill out any fields you would like to update.
+ Remember, email addresses cannot be changed and they must be used to figure out which user attributes need to be updated: In this case, we update the last name and password of the requested user.
+ The application knows which user to update by using the email address provided.
+ If we head over to the Read User section, we should see the updated attributes along with the new date modified timestamp: We can proceed to delete this user in the Delete User section.
+ You must provide the correct email address of the user you want to delete: Navigating to the Read User section, we should find that no records exist: So just like before, your results should match screens posted above.
+ Feel free to refer to the AWS DocumentDB tutorial if you have any difficulty.
+ That is all!
+ Conclusion We covered quite a bit as it relates to implementing the single-tier architecture pattern using AWS EC2.
+ We were able to create a front-end server, back-end server, and configure a MongoDB database all within a single server.
+ We touched on the pros and cons of working with this design pattern and did a walkthrough of setting up MongoDB inside an AWS EC2 instance.
+ Linked below are the GitHub repository used for this tutorial and the official guide to installing MongoDB on an AWS EC2 instance: GitHub Repository AWS EC2 MongoDB Installation Guide I hope you enjoyed this tutorial and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
