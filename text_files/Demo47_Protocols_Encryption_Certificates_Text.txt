@@ -1,0 +1,181 @@
+Exploring Internet Protocols for Software Development Abdullah Muhammad · Follow Published in Stackademic · 12 min read · Aug 18, 2024 -- This article assumes the reader is familiar with fundamentals related to the internet and the OSI model.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Interacting with the world wide web means that you have directly or indirectly worked with existing protocols.
+ When we navigate to any web page on the internet, we make use of the HyperText Transfer Protocol or HTTP for short.
+ This protocol is used to load web pages from a given hypertext.
+ When we looked at SMTP for mail transfers, we explored the OSI model and the different layers that exist (seven in total).
+ Today, we will briefly walkthrough some common protocols in those layers such as HTTP/S, FTP, TCP, UDP, SSH, TLS/SSL, etc.
+ We will work with tools that enable the use of such protocols and incorporate a demo where we work with establishing a secure connection to an EC2 server and perform secure file transfers.
+ Exploring File Transfer Protocols Like SMTP for mail transfers, we have an application layer protocol known as FTP or SFTP which stands for File Transfer Protocol (for a secure setup, Secure File Transfer Protocol) for working with file transfers.
+ We will be using a tool known as FileZilla to transfer files to a remote AWS EC2 server.
+ FTP follows a client-server architecture.
+ An architecture pattern we became familiar with when we developed full-stack applications using React and Node.
+ Prior to any file transfers, you must authenticate yourself by providing the username and password of the server you are trying to connect to.
+ Often times, you will be transferring files that contain sensitive information and as such, one should use SFTP to ensure files that contain sensitive data are not lost in transit to malicious actors.
+ Files transferred using SFTP have their data encrypted ensuring a safe and secure transfer.
+ The following diagram illustrates how FTP works: If you cannot be bothered with the details, you can be assured that FTP is very easy to use and file transfers take place in mere seconds.
+ FTP is a simple and effective protocol that every software developer should be familiar with.
+ Exploring Web Browsing Protocols The most famous protocol out there is HTTP which stands for HyperText Transfer Protocol.
+ It is an application layer protocol used for handling the transfer of data over the web.
+ It also has a security counterpart referred to as HTTPS or HyperText Transfer Protocol Secure.
+ Similar to other protocols, these two protocols also utilize the client-server architecture pattern.
+ Users make a request from the client server (browser) to a web page and the back-end server sends back a response (navigate to the requested site).
+ The following diagram illustrates HTTP in detail: To ensure security of both requests and responses, it is wise to use HTTPS.
+ HTTPS utilizes TLS/SSL which encrypts data in transit and digitally signs the requests and responses ensuring no sensitive data is leaked to malicious actors.
+ In rare occasions, where data and security are not key issues (landing pages, user guides, etc.
+), HTTP should suffice.
+ Exploring Transport Layer Protocols We will now focus on two common transport layer protocols, TCP and UDP.
+ TCP stands for Transmission Control Protocol and UDP stands for User Datagram Protocol.
+ They are similar protocols each with their own strengths and weaknesses.
+ TCP was one of the earliest internet protocols invented and it primarily describes how data is transferred between parties.
+ It is used in almost every aspect of the internet from web browsing to data transfers in the form of emails and files.
+ In order for TCP to work, a connection must be established with the intended receiver ahead of time.
+ Data is sent in an orderly fashion meaning that it can be sequenced and sent as many times until successful transmission.
+ TCP is a reliable, albeit slower internet protocol.
+ Unlike TCP, where a connection must be established ahead of time, UDP does not have this requirement.
+ Data transfers with UDP are much faster, but with caveats.
+ Data lost in transmission cannot be recovered and resent like TCP and data cannot be sequenced.
+ TCP is a secure transmission protocol.
+ UDP is not.
+ The following diagram highlights the differences between TCP and UDP: Nonetheless, both of these protocols are useful and each of these has their own specific use cases where they shine the brightest.
+ Exploring Cryptographic Network Protocols Finally, there are some common cryptographic network protocols worth looking into.
+ In this article, we will focus on TLS/SSL and SSH.
+ Both of these protocols are part of the application layer of the OSI model.
+ SSH stands for Secure Shell Protocol.
+ It is used for operating networks securely in an environment that is not secure.
+ You can establish a secure connection to a remote server using this protocol over the internet.
+ To ensure security, you must authenticate yourself before you can establish a connection to a remote server (usually in the form of a password or key).
+ If that were not the case, anyone could theoretically connect to any server they like!
+ By successfully “SSHing” into a remote server, you gain full remote access to that server.
+ You write commands from your local computer to be run inside the remote server using a terminal window.
+ The following diagram illustrates SSH in action: We establish a secure connection to the SSH server through a special encrypted tunnel that protects communication from external parties.
+ This process is called a handshake.
+ Once the handshake is complete, communication with the remote server is established.
+ We now look at TLS/SSL.
+ TLS/SSL stands for Transport Layer Security/Secure Sockets Layer which is primarily used for data encryption and authentication.
+ As mentioned earlier, TLS/SSL is used in HTTPS to ensure security and privacy.
+ Data integrity is a key component of the internet.
+ In short, TLS/SSL ensures data transfers over the web are secure from tampering and that the two parties communicating with each other are who they claim to be.
+ We will not dive deep into TLS/SSL aside from the brief explanation above.
+ Cloudfare has a wonderful article that does a deep dive into TLS/SSL.
+ Quick Summary of Common Internet Protocols Feel free to view the table below which highlights key aspects of the protocols covered in this tutorial: There is also a README.
+md file containing this information in this GitHub repository (demos/Demo47_Protocols_Encryption_Certificates).
+ Demo Time!
+ Assuming you have an AWS account (if you do not, you can create one or simply follow along), login into it and navigate to the EC2 instance dashboard.
+ If you are not familiar with AWS EC2, please refer to this tutorial before proceeding.
+ You will also need to install Putty, PuttyGen, and FileZilla as we will be using these tools in the demo.
+ Ensure you download the appropriate application relevant to your computer’s operating system.
+ The following paragraphs briefly describe each tool and what they are used for: Putty is a free tool that supports the use of several network protocols.
+ It was originally written for Windows, but now provides support to various operating systems.
+ It is primarily used for remote access via SSH PuttyGen is also a free tool and an extension of Putty.
+ It is key generator for Putty and used for managing SSH keys.
+ We will be using this tool in the demo for performing key conversions FileZilla is a free tool used for performing file transfers using FTP.
+ It offers a friendly user interface for working with files, file systems, and connection options to remote servers Now, as you setup a new EC2 instance, ensure that you select the free-tier eligible machine image (Amazon Linux AMI).
+ For inbound/outbound traffic, ensure that all inbound traffic is allowed to this server.
+ If you do not want to allow all traffic, at least allow inbound SSH traffic on Port 22.
+ This will be required as we will try to connect to this EC2 instance via SSH.
+ For the key pair, create a new key pair to connect with your EC2 instance: For the private key file format, leave the default option (.
+pem) as is for now.
+ We will cover what .
+pem and .
+ppk key file formats are and what they are they used for momentarily.
+ Upon creating the new key pair, the .
+pem file should automatically download locally on your computer.
+ Feel free to adjust any other settings related to your EC2 instance, but this should be sufficient for the demo.
+ Once you have launched the EC2 instance, you should see it on the main EC2 dashboard.
+ What are .
+pem and .
+ppk Files?
+ .
+pem stands for Privacy Enhanced Mail.
+ It is a file format used to store keys and certificates.
+ These files are Base64 encoded and designate a header/footer to indicate the beginning and end of the file.
+ .
+ppk stands for Putty Private Key.
+ It is a file format specifically geared towards SSH authentication for Windows.
+ This format was developed by Putty and is used when trying to connect to a remote server via SSH using Putty for Windows.
+ .
+pem files are more universally used while .
+ppk files are used specifically for Windows SSH authentication via Putty.
+ In either case, these files are used to authenticate your connection to a remote server.
+ It is best practice to keep these files safe and never expose them to anyone.
+ Unauthorized access to these files allows malicious actors to connect and gain full access to your EC2 instance which is a major security hazard.
+ You can convert between the .
+pem and .
+ppk file formats using PuttyGen.
+ Open the PuttyGen application: Select Load.
+ This will prompt you to select any key file from your computer (you might need to select all files to see the .
+pem file).
+ Here, select the .
+pem file that downloaded locally when you were setting up your EC2 instance.
+ The interface should look like the following: You can select different parameters.
+ 2048 bits in a generated key is sufficient, but if you would like more security, you can double it to 4096.
+ Under the actions section, select Save private key.
+ This will allow you to save the equivalent .
+ppk file locally.
+ Utilizing Putty Now, we will focus on using the .
+ppk file and Putty for establishing a secure connection to the AWS EC2 server.
+ Open Putty and enter in the Public IP address of your EC2 instance in the Host Name section: Port 22 is associated with SSH so we leave that as is.
+ Now, on the left panel, there is the Connection setting.
+ Select Connection > SSH > Auth > Credentials.
+ Here, we will select Browse and look for the location of the .
+ppk file we generated using PuttyGen: Once this is complete, select Session to return to the main panel and select the Open option at the bottom.
+ You will be prompted with a security alert.
+ Select Accept and proceed to the terminal window.
+ For Linux-based systems, the default user name is ec2-user.
+ If all is done correctly, a successful SSH connection to the server should be established.
+ The terminal window should look like this: Viola!
+ Here, you can run any valid Linux commands, you have full access!
+ Let us try to install Node.
+js and NPM on this server.
+ To proceed, clear the screen using the clear command.
+ After that, enter sudo dnf nodejs npm.
+ This should prompt confirmation of the installation details.
+ Here, you should enter y to confirm.
+ Once the process is complete, confirm successful installation by entering the following commands: node -v npm -v At the time of writing this article, these are the latest versions of Node.
+js and NPM.
+ Working remotely became a trend and working remotely on your EC2 instance is not too shabby either!
+ If you love Linux, this is pretty easy stuff.
+ To exit the SSH session, simply enter exit and the session will end for you.
+ Bringing it Together We now explore using the .
+ppk file and FileZilla for setting up a secure connection to the EC2 server and utilizing SFTP for secure file transfers.
+ Open FileZilla: At the top, select File > Site Manager.
+ Fill out the relevant details as they pertain to your EC2 server.
+ Enter in the following details: Public IP Address of your EC2 server, set Port to 22 Logon Type should be Key File User should be set as ec2-user Key File is the .
+ppk file and you can set the location of that file using the browse option Once filled out, select Connect at the bottom: If done correctly, a message should be displayed and you should be able to see the local file system as well as the remote server’s file system: Implementing SFTP with FileZilla has never been any easier.
+ You simply drag and drop files from either side and the files will transfer seamlessly.
+ The UI is simple, easy to understand and work with.
+ You can clone the Medium Demos GitHub repository if you have not done so (link to the repository is here).
+ I will transfer the Demos47_Protocols_Encryption_Certificates directory located in demos to the remote EC2 server: You can see if file transfers are successful by reading the messages as they come.
+ You can also view the transfer metrics at the bottom which indicate how many transfers were successful and how many failed.
+ The interface allows you to view the contents of directories if that is what you are transferring over.
+ Note that there is a README.
+md file as well as a index.
+html file located within the directory I transferred over to the remote EC2 server.
+ We can interact with these files in greater detail by connecting to the remote EC2 server via SSH.
+ And you know how to do that, right?
+ Back to Putty!
+ Connecting to the remote EC2 server via SSH… there they are: Let your Linux instincts kick in and do as you please!
+ With FileZilla, you can transfer over thousands of files in mere seconds.
+ It is that simple and easy to implement SFTP.
+ That concludes the demo!
+ Conclusion We explored the different application layer and transport layer protocols in the OSI model.
+ We looked at protocols we use on a daily basis such as HTTP and some that might not be as common such as SFTP.
+ These protocols are crucial components that make up the modern internet as we know it today.
+ In the demo, we looked at using some of these protocols.
+ We established a secure connection using SSH to a remote AWS EC2 server and utilized FileZilla for implementing SFTP.
+ We looked at key file formats such as .
+pem and .
+ppk and how we can use these files for SSH authentication.
+ Although there is no code associated with this tutorial, there is a README.
+md file and a index.
+html located in the demo directory associated with this tutorial (link is here).
+ You can find more information related to the OSI model and its layers here.
+ As always, I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord Visit our other platforms: In Plain English | CoFeed | Differ More content at Stackademic.
+com
