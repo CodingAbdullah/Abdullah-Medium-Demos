@@ -1,0 +1,15 @@
+{
+  "name": "js_libaries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bcrypt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "js_libaries": "file:"
+  }
+}
