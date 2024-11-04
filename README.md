@@ -445,7 +445,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo52_Hash_Encryption_Algorithms</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/stackademic/enhancing-web-security-with-encryption-and-hashing-algorithms-1f10660cab2b">Enhancing Web Security with Encryption and Hashing Algorithms</a>
         </td>
     </tr>
     <tr>
