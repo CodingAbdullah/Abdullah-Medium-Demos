@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 export const BitcoinHistoricPriceAction = async () => {
 
     // Request Bitcoin prices
-    let BITCOIN_PRICE_ENDPOINT = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7';
+    let BITCOIN_PRICE_ENDPOINT = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily';
 
     // Setting options for authenticated API call
     let options = {
