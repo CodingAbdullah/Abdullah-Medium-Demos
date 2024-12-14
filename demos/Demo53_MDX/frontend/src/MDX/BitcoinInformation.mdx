@@ -1,0 +1,70 @@
+import BitcoinPriceTable from '../Components/BitcoinPriceTable.tsx';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+<br />
+# Bitcoin Price Information
+
+<br />
+## Features
+Displays the current Bitcoin price.
+Updates in real-time using React Query.
+User-friendly table layout.
+
+<br />
+<br />
+
+## Usage
+The `BitcoinPriceTable` component is responsible for rendering the price data. It can be used as follows:
+
+<BitcoinPriceTable />
+
+<br />
+<br />
+
+## Component Code
+Here is the code for the `BitcoinPriceTable` component:
+
+<SyntaxHighlighter language="typescript" style={dark} customStyle={{ width: '50%', marginLeft: "auto", marginRight: 'auto' }}>
+{`import { useQuery } from '@tanstack/react-query';
+
+const BitcoinPriceTable = () => {
+    const bitcoinPriceQuery = useQuery({
+        queryKey: ['bitcoinPrice'],
+        queryFn: async () => {
+            const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }
+    });
+
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                        bitcoinPriceQuery.data.coinPrices.map(dayPrice => {
+                            return (
+                                <>
+                                    <tr>
+                                        <td>{dayPrice.time}</td>
+                                        <td>{dayPrice.price}</td>
+                                    </tr>
+                                </>
+                            )
+                        })
+                }
+            </tbody>
+        </table>
+    )
+}
+
+export default BitcoinPriceTable;`}
+</SyntaxHighlighter>

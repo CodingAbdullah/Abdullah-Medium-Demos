@@ -1,0 +1,44 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@tanstack/react-query": "^5.62.7",
+    "axios": "^1.7.9",
+    "cra-template-typescript": "1.2.0",
+    "customize-cra": "^1.0.0",
+    "dayjs": "^1.11.13",
+    "frontend": "file:",
+    "react": "^19.0.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.6.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
