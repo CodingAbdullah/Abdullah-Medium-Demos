@@ -453,7 +453,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo53_MDX</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/deep-dive-into-mdx-js-for-documentation-and-integration-with-react-b45f8ec71bce">Deep dive into MDX.js for Documentation and Integration with React</a>
         </td>
     </tr>
     <tr>
