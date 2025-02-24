@@ -12,6 +12,7 @@
     "@ai-sdk/groq": "^1.1.11",
     "@mendable/firecrawl-js": "^1.18.2",
     "@radix-ui/react-slot": "^1.1.2",
+    "@vercel/analytics": "^1.5.0",
     "ai": "^4.1.46",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
