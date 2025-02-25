@@ -469,7 +469,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo55_Agents_Tools</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/vercel-in-depth-analytics-v0-dev-cli-ai-sdk-and-the-world-of-llms-6ff9ca00161b">Vercel In-Depth: Analytics, v0.dev, CLI, AI SDK, and the World of LLMs</a>
         </td>
     </tr>
     <tr>
