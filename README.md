@@ -477,7 +477,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos_Demo56_Crypto_Dashboard</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/how-i-built-a-detailed-dashboard-for-the-ethereum-blockchain-using-next-js-ce59869115ec">How I Built a Detailed Dashboard for the Ethereum Blockchain Using Next.js</a>
         </td>
     </tr>
     <tr>
