@@ -485,7 +485,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos_Demo57_Top_React_Libraries</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/top-5-react-libraries-for-web-development-in-2025-b14e504ff914">Top 5 React Libraries for Web Development in 2025</a>
         </td>
     </tr>
     <tr>
