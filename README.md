@@ -493,7 +493,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo58_SSG_SSR_ISR_Frameworks</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/detailed-look-at-ssg-ssr-isr-and-hydration-in-web-development-4042ed9b800c">Detailed Look at SSG, SSR, ISR, and Hydration in Web Development</a>
         </td>
     </tr>
     <tr>
