@@ -824,6 +824,14 @@ Table highlighting the current demos completed along with their code repository 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo100_AWS_AI_Practitioner_Summary_Article</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
 </table>
 
 <br />
