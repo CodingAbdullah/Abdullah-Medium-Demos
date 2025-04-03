@@ -1,1 +1,0 @@
-Demo 59 - AWS AI Practitioner
