@@ -1,0 +1,134 @@
+How I Built a Detailed Dashboard for the Ethereum Blockchain Using Next.
+js Abdullah Muhammad · Subscribe Published in Stackademic · 11 min read · Mar 5, 2025 Basic understanding of web development and the Ethereum blockchain will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the past couple of tutorials, we did a walk through of the Next.
+js framework, Vercel components, and tools related to integrating AI into your development workflow.
+ In the code overview and demo sections, we implemented portions of a web project (Ethereum dashboard) which I had been re-building using Next.
+js.
+ Of course, aside from the world of web development, I am familiar with the crypto and web3 space and decided to create this project to make it easier for new people to navigate the Ethereum blockchain.
+ There is a lot to learn when it comes to the blockchain space and even for traditional web2 developers, it is a paradigm shift from the usual way of development.
+ I do not intend on diving deep into the key aspects related to Ethereum (there are many resources out there for that), but I will do a walk through of how I created a one-stop site for users to view all things related to Ethereum and beyond.
+ Project Dependencies When installing and configuring Next.
+js, we use the npx create-next-app@latest .
+ command.
+ There are quite a few dependencies that come with Next.
+js.
+ The following is a list of key dependencies when working with Next.
+js: Next.
+js React.
+js Types/Node.
+js Types/React.
+js TailwindCSS Typescript This is the minimum setup required for working with Next.
+js applications.
+ When building out the dashboard, there are additional libraries that are needed for development.
+ Required dependencies are listed below along with a short description: Vercel AI SDK — Working with different AI models for ease of access Vercel Analytics — Incorporating page visits and data related to visitors DayJS — Date handling for data related to charting Firecrawl API — Web scrape pages for LLM-ready data Lucide-React — Icon library for utilizing ready-made icons Recharts — Efficient graph library for data related to coin pricing Shadcn/ui— Component library for Next.
+js SWR — Similar to @tanstack/react-query, but optimized for Next.
+js Zod — Library for enforcing schemas for the TypeScript language So far, we have covered the AI SDK, Analytics, DayJS, Firecrawl API, and the Zod libraries.
+ Icon and component libraries such as Lucide-React and Shadcn/ui contain comprehensive documentation and are easy to understand and use (we will cover them in the future).
+ So, the focus of this tutorial will be features related to graphing and efficient data fetching using the Recharts and SWR libraries.
+ You said your dashboard is related to Ethereum so where does your data come from?
+ Great question!
+ Acting as a data aggregator, the dashboard collects information and formats it using well-known, secure APIs.
+ The next section describes the different API providers and what their APIs are used for.
+ Crypto API Providers We will touch on the different API providers used in the development of the Ethereum dashboard.
+ Most of the these providers consist of a set of free APIs as well as paid APIs.
+ Paid APIs have their own benefits such as enhanced rate limits, higher request volume, additional endpoints, and so on.
+ For the dashboard, I bought the paid version of the CoinGecko API.
+ The team reached out and offered me a 50% discount on year one of usage and along with it, I get additional API keys and endpoints to work with.
+ The following is a list of the API providers used in this project: Alchemy — Blockchain data provider for wallet balances, transactions BlockNative — Real-time Ethereum gas price monitoring BeaconChain — Insights into Ethereum staking and validators CoinGecko — Fetch live market data, trending coins, and pricing details Etherscan — Transaction details and blockchain explorer integration Moralis — Multi-chain support for NFTs and tokens Opensea — Insights into trending NFT collections, metadata, and so on Transpose — Advanced analytics and wallet history queries A combination of these eight providers allows anyone to build a comprehensive cryptocurrency dashboard.
+ I built one for Ethereum as a passion project as well as for other famous Layer Two solutions (Arbitrum, Optimism, and Polygon).
+ Extensive documentation for each provider can be found by clicking each of their respective titles above.
+ In the next section, we will cover the different components that make up the Ethereum ecosystem as well as the different features of the dashboard that allow users to view data related to these key components.
+ Ethereum Ecosystem There is a lot to know when it comes Ethereum.
+ Not only is it the largest “altcoin” aside from the one and only Bitcoin, there are key components that make up its ecosystem as a whole.
+ As Ethereum merged into the new protocol known as, Proof-of-Stake, users can contribute to the ecosystem by staking their Ethereum for a certain amount of APY while also ensuring the network is secure.
+ From market prices, decentralized finance, digital assets, and web3 development, there is so much opportunity in Ethereum.
+ The following list describes key components that make up Ethereum: DeFi (Staking and Validators) — Stake to secure the Ethereum ecosystem EIP Protocols — Standard protocols related to Ethereum development ERC-20 Tokens — Fungible tokens deployable via smart contracts on the Ethereum blockchain ERC-721 Tokens — Non-fungible tokens deployable via smart contracts on the Ethereum blockchain ERC-1155 Tokens — Semi-fungible tokens deployable via smart contracts on the Ethereum blockchain ENS Domains — Similar to web2, web3 domains are simply ERC721 tokens that connect to an Ethereum wallet, upon mint (.
+eth domains) Ethereum Gas — The required amount to complete a transaction on Ethereum Layer Two Solutions — Scaling solutions related to Ethereum for cost-effectiveness and efficiency purposes Market Prices — ETH, Ethereum’s native gas token can be bought and sold on the market And so much more.
+ If you do not have a clue about Ethereum or how the blockchain works, you will find this list confusing.
+ I tried to best summarize each of these key components.
+ You can learn more about Ethereum using this official guide.
+ Ethereum Dashboard Components Building on the last section, the Ethereum dashboard aims to provide users with information related to these key components.
+ The APIs do all the heavy lifting and we simply use Next.
+js/React to display this information to the users.
+ Most of the components are information tables that format and tabulate the data provided by the APIs.
+ There is also a section (as we saw in the last tutorial) where the dashboard makes use of the Firecrawl API and the AI SDK to produce real-time market insights.
+ The following list summarizes what the dashboard allows users to lookup: DeFi, Staking, and Validator Information EIP Protocols ENS Lookups (Address to ENS, ENS to Address, Name, and by ID) ERC-20 Collection Analytics ERC-20 Holdings by Wallet ERC-20 Token Lookups ERC-721 Collection Analytics ERC-721 Holdings by Wallet ERC-721 Token Lookups Ethereum Gas Metrics Layer Two Solutions Pricing and ERC-20 Token Pricing Real-Time Market Insights Wallet Stats (PnL, Net Worth, etc.
+) Wallet Transaction Activity And so much more.
+ The dashboard contains helpful links related to EVM chains (blockchains compatible with Ethereum) as well as information related to popular EIP protocols.
+ Feel free to visit the official Ethereum dashboard website and explore these features yourself!
+ Code Overview In this section, we will briefly cover efficient data fetching using the SWR library and graphing using the Recharts library.
+ You can follow along by cloning the following repository.
+ The directory of concern is src/app.
+ Official documentation related to the repo can be found here.
+ The SWR library is similar to @tanstack/react-query which allows users to efficiently fetch, cache, and re-validate data.
+ The library comes with its own custom hook, useSWR which can only be used in client components (React hooks only work with client components).
+ You can perform data fetching using the Fetch API for server components and often times, that approach is probably the best (you get data fetching and the benefits of working with server components).
+ The official docs dive deeper into useSWR, but we will focus on three key parameters: Key — Uniquely identify a particular request for caching Fetcher function — Function used to perform the data fetching request Options — Object that consists of properties such as refresh interval, etc.
+ When working with coin pricing, we wrap the client component that makes use of this hook with a server component.
+ An example of this can be found below.
+ We display information related to coin pricing and take advantage of Next’s dynamic file routing:/src/app/prices/[coin]/page.
+tsx: We utilize a custom coinValidator function to check the validity of the coin ID being passed in prior to rendering the client component.
+ The GenericChartPage is the client component where the SWR library is being used /src/app/components/GenericChartPage.
+tsx: The component fetches data using useSWR and renders the relevant information using the Recharts library.
+ Since SWR is optimized for Next.
+js applications, we pass in the route from where we want to query data from /api/.
+.
+.
+.
+ We pass in the coin ID as well as the interval in the useSWR hook for charting purposes.
+ As seen in Next.
+js tutorial, we make use of a fetcher function that specifically handles POST requests (PostFetcher) and pass this in as a parameter to the useSWR hook.
+ The back-end route used for making the request is the following /api/coin-prices-by-day/route.
+ts: The response returns an object that maps the price to an object that consists of the time stamp and the price.
+ We pass this data to the GenericChartPage component and map the range of the y-axis using Math functions such as min/max.
+ The Recharts library is an effective charting library for working with React.
+js.
+ It supports common charts such as Bar, Line, Pie, and so on.
+ It contains helpful components for tooltips, axis and legend configuration, and so much more.
+ It comes with its own responsive container with which you can wrap your graph component and each component consists of its own built-in props so all you have to do is plug and play.
+ More information on Recharts can be found be viewing their official docs here.
+ Demo Time!
+ If you want to run the website locally, you will need to read up this official README.
+md file related to the project.
+ For the demo, we will use the official site link to walk through some of the key features we discussed earlier.
+ Here is what the home page looks like: The home page is detailed, clean, and easy to navigate.
+ Here, you see the Recharts library in action as that is what we are using to chart data related to the global cryptocurrency market cap.
+ Upon completing the form, you should see information related to the particular wallet.
+ The following screen details wallet transaction activity: As seen from the browser URL, we are using dynamic routing and utilizing the wallet address passed into the search request to fetch the relevant data.
+ We are also using the SWR library.
+ As the page loads to mount components, we are running requests to the back-end to fetch data and conditionally render the information tables.
+ Navigating to Prices > Coin Prices in the navigation bar should yield the following: Again, the information tables are neatly detailed and easy to navigate.
+ For each of these coins, you can select them to view more information about their pricing history.
+ For example, if you select Bitcoin in the Top 100 table, you should see the following: We capture the coin ID from the dynamic route slug (from the CoinGecko API request) and utilize it to fetch more information related to Bitcoin.
+ In this case, we use the SWR library to fetch historical price information of Bitcoin and use the Recharts library to chart this data as the component mounts.
+ Now let us revisit the often discussed section, market insights.
+ You can navigate to market insights by selecting Extra Data > Market Insights: As seen in the previous tutorial, we are making use of the Firecrawl API and Vercel’s AI SDK to generate these market insights.
+ Finally, for helpful information related to different Ethereum protocols, you can navigate to that page by selecting Extra Data > EIP Protocols: The remaining sections of the dashboard are simply forms which you fill out to view information.
+ Feel free to explore those sections.
+ That is all as it relates to the demo of the Ethereum dashboard site.
+ The design was inspired by the v0.
+dev agent.
+ Originally, this site was built using a combination of React.
+js and Node.
+js/Express.
+ It was fully deployed and hosted on AWS using services such as Amplify (front-end) and EC2 (back-end).
+ I recently upgraded the dashboard and decided to migrate it using Next.
+js.
+ By doing this, not only did I enhance user experience with additional features, but I also reduced cloud costs to $0.
+ Conclusion All in all, we extensively covered the development of the Ethereum dashboard, a passion project of mine.
+ We built on the knowledge of the previous two tutorials and did a walk through of the key components that make up the Ethereum ecosystem.
+ We saw how the dashboard allows users to view data related to these key components and explored the Recharts and SWR libraries for graphing and efficient data fetching.
+ Below, you will find the links to the official GitHub repository used to build this project as well as links to the official Ethereum dashboard site, official Ethereum guide, Recharts library, and the SWR library.
+ Official Ethereum Dashboard Site GitHub Repository Recharts Library SWR Library I am always open to making adjustments and improvements to the dashboard so feel free to like and drop a comment, it is always appreciated.
+ I hope you found this tutorial informative and that it inspires you to use Next.
+js for your future web projects.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Differ Check out CoFeed, the smart way to stay up-to-date with the latest in tech 🧪 Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com

@@ -1,0 +1,111 @@
+Deep Dive into MDX.
+js for Documentation and Integration with React Abdullah Muhammad · Subscribe Published in Stackademic · 6 min read · Dec 14, 2024 Basic knowledge of Markdown and React.
+js will be helpful for walking through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Today, we will explore working with Markdown and using MDX.
+js to incorporate React components (JSX) into Markdown files.
+ You may have come across Markdown in the past.
+ Those cute looking README.
+md files across different GitHub repos detailing documentation and instructions.
+ You can think of .
+mdx as an extension of .
+md in that, you can generate rich-looking documentation using JSX components and publish these pages using any static site based framework such as Next.
+js.
+ The syntax is straight forward and easy to follow.
+ The basic rules of Markdown syntax remain intact.
+ The main difference is that you can readily add JSX to your .
+mdx file using JSX syntax.
+ We will highlight some of the main features of working with MDX and explore a demo where we see MDX in action.
+ MDX The link to their official documentation is here.
+ We will look at MDX as is and then explore integrations using React and TypeScript.
+ MDX provides support for both JavaScript and TypeScript out-of-the-box.
+ It is assumed you already know Markdown and how it works so we will dive right in.
+ We will not walkthrough the basics as the official docs cover it nicely.
+ There is quite a bit of configuration when it comes to working with MDX files, but it is nothing too complicated and we will walkthrough the setup process.
+ We will incorporate a famous library known as React-Syntax-Highlighter for effective documentation involving code.
+ Feel free to refer to their official docs here.
+ MDX NPM Dependencies When working with React, we have the flexibility of working with four different file extensions, .
+js, .
+jsx, .
+ts, and .
+tsx.
+ Of course, this depends on if you are working with JavaScript or TypeScript.
+ When working with MDX, you will need to setup additional configuration.
+ The following is a list of NPM dependencies: @mdx-js/loader — Web pack loader for MDX.
+js @mdx-js/react — Package that enables development using React.
+js @customize-cra — Package for customizing Create-React-App applications @react-app-rewired — Seamlessly setup configuration for your project These four packages will be helpful for setting up and working with MDX.
+ Project Setup You can follow along by cloning the following repository.
+ The directory of concern is demos/Demo53_MDX.
+ In the root location of your project, you will need to set two different files and both are related to MDX configuration.
+ /config-overrides.
+js: /mdx.
+d.
+ts: The first file relates to overriding existing configuration and adding a rule for handling MDX files.
+ The code is self-explanatory and it incorporates the use of the @mdx-js/loader dependency.
+ The second file simply defines a type definition for MDX nothing too complicated here.
+ Finally, we have to re-define scripts within the package.
+json file incorporating a module we briefed on earlier: For additional documentation related to each of these, feel free to refer to the official NPM docs.
+ That is all there is to setting up and working with MDX, it is extensive, but can be simplified to these three steps.
+ Code Overview Now we dive into the actual code of the demo project we will be working on.
+ It is a simple project that highlights the historical price data of Bitcoin in the past seven days.
+ In the src directory, inside the Components folder, you will find the following file BitcoinPriceTable.
+tsx: Nothing too fancy here, we make use of the built-in table HTML element and organize data gathered from a custom function that retrieves Bitcoin price data.
+ We make use of the @tanstack/react-query library to fetch Bitcoin data and work with the different states of query fetching to conditionally render the table component.
+ Speaking of that custom function, it is located here utilFunctions/bitcoinPrice.
+ts: Pretty straight forward stuff.
+ We make an API call to retrieve historic price data for Bitcoin and modify and return the data using a commonly known date handling library, day.
+js.
+ If you read through the AG-Grid tutorial, you are already familiar with the day.
+js library.
+ It provides built-in functions for efficient date handling.
+ Finally, we need to wrap this custom BitcoinPriceTable using the MDXProvider for working with React.
+ You can find this custom component here /Components/MDXViewer.
+ts: Since this is a standalone component and the only one for this project, we can simply add all the necessary providers here.
+ This includes the MDXProvider component for working with React that comes with the @mdx-js/react package and the QueryClientProvider for working the @tanstack/react-query package.
+ Again, very straight forward and easy to understand.
+ BitcoinInformation.
+mdx File Now, comes the fun part.
+ The MDX file!
+ /MDX/BitcoinInformation.
+mdx GitHub does not have support for .
+mdx file types so I cannot post the Gist here, but you can review the code using the location provided above.
+ In that MDX file, we are making use of react-syntax-highlighter.
+ It is a famous highlighter package found in blogs, documentation, etc.
+ It has custom props and we are making use of the dark style type for highlighting the code snippets within the MDX file.
+ You can refer to additional documentation related to the syntax highlighter here.
+ You can also see how we seamlessly integrate JSX into the MDX file.
+ The custom component, BitcoinPriceTable is imported and used directly inside the MDX file.
+ Imports related to the syntax highlighter and custom types mirror exactly how they are done in JavaScript/TypeScript.
+ That is all there is to it.
+ Effectively, the rest is littered with HTML tags and Markdown syntax.
+ Demo Time!
+ Assuming you have cloned the repository above, you can follow along.
+ Ensure you have the necessary dependencies setup via npm install and have modified the package.
+json file, as mentioned earlier.
+ Running npm start should yield the following: The MDX file is pretty large so I decided to display it in three different screens.
+ This is how you work with and render MDX files using React.
+ You can see the scrollable syntax highlighter snippets in action as well as the custom component, BitcoinPriceTable we imported using JSX above.
+ Pretty, neat, and clean.
+ Pretty straight forward.
+ Conclusion We explored MDX extensively in this tutorial.
+ We saw how we can incorporate JSX into Markdown files and utilize the MDX files themselves inside of a React project.
+ We touched on the differences between Markdown and MDX as well as the different dependencies required for working with MDX.
+ We did a thorough walk through of the configuration steps needed for working with MDX (setting up config files, type definition files, modifying scripts, etc).
+ As well as a demo where we used libraries such as @tanstack/react-query, day.
+js, and react-syntax-highlighter for effective data retrieval related to Bitcoin and its documentation.
+ Linked below are resources used in this tutorial as well as the link to the GitHub repository: GitHub Repository mdx.
+js TanStack — React Query React Syntax Highlighter day.
+js I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord | Newsletter | Podcast Create a free AI-powered blog on Differ.
+ More content at Stackademic.
+com Have a story to share?
+ Join our global community of writers today!
+

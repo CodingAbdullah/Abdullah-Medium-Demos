@@ -1,0 +1,134 @@
+Enhancing Web Security with Encryption and Hashing Algorithms Abdullah Muhammad · Subscribe Published in Stackademic · 10 min read · Nov 4, 2024 Basic knowledge of algorithms and security of the web will be helpful for walking through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction As the digital world continues to grow, cybersecurity will play a leading role in ensuring the safety and security of computer systems.
+ From social media, banking, and just about everything else, much of what you value is now living on the internet.
+ It is paramount to ensure these things are safe from nefarious actors.
+ Today, we will explore hashing and encryption algorithms and their applications and usefulness in the real-world.
+ We will look at JavaScript libraries that can be helpful for working with hashing and encryption algorithms such as the bcryptjs and crypto libraries.
+ The content will be divided into two categories: Encryption — Investigating AES, RSA, and Blowfish algorithms Hashing — Exploring SHA256, SHA512, and Bcrypt algorithms We will explore three algorithms from each section with a real-world example from each.
+ Encryption and Hashing Algorithms So, what is the difference between encryption and hashing?
+ Great question!
+ We explored hashing as it pertained to data storage using MongoDB and learned that it is a one-way function.
+ It primarily serves the purpose of data integrity and verification.
+ Put it simply, it can be described using the following function: x -> H(x) For every one input, x, there is a particular Hash value associated with it, H(x).
+ There is no way of decoding or decrypting this hash, except that it is the same value.
+ Instead of storing a raw password inside a database, we can store its hashed value.
+ This approach is particularly useful because in an event where hackers gain access to a company’s database, they will have accessed sensitive information, but despite this, the accounts associated with users will remain safe.
+ Intuitively, when a user tries to login, we can verify if their credentials are correct by comparing their password to its hashed version and check to see if the hashed version matches what is stored in the database.
+ If they match (only one hashed value can be associated with a given text), we know that it is correct.
+ As it pertains to encryption, things are slightly different.
+ Encryption can be thought of as a two way function.
+ The ciphered text, c (encrypted value) is generated using an encryption key, k and raw text, x: C = E(k, x) Not to get deep into the Math, but the inverse of this function will determine the original text.
+ Meaning that, if you have the encrypted data and encryption key used to encrypt the data, you can successfully decrypt the data.
+ Encryption is used in the real-world for the purposes of security.
+ For instance, messaging apps now use encryption to protect data.
+ Protecting data in transit can be done using the encrypted HTTPS protocol.
+ We will now explore common algorithms from each section.
+ Exploring Encryption Algorithms As it pertains to encryption, there are two additional categories to consider: Symmetric algorithms — One key for encryption/decryption Asymmetric algorithms — A public key for encryption and a private key for decryption Speed is a key factor with each set of algorithms.
+ It makes sense that symmetric algorithms are faster as they use one key for the encryption and decryption process.
+ However, key management is an issue because it is important to ensure the lone key is stored someplace safe.
+ For enhanced security, asymmetric algorithms make more sense because the public key can be openly shared with anyone.
+ However, for the decryption process, only the sender and receiver should be knowledgeable of the private key.
+ There is no one-size-fits-all solution when it comes to data encryption.
+ So choosing so what algorithm to use should be done on a case-by-case basis.
+ AES — Advanced Encryption Standard The first encryption algorithm we will look at is a symmetrical one and it is called the Advanced Encryption Standard or AES for short.
+ It uses one key for the encryption and decryption process.
+ We will not dive deep into the extreme technicalities of it, but here is an article that best summarizes what it is all about.
+ In layman terms, a secret key is used to encrypt blocks of data.
+ AES uses small bits of data (128 bits to be exact) which forms these blocks.
+ After that, rounds of rotations take place which further add complexity to the encryption process (making it harder to decipher the original text).
+ The rounds of rotations are based on the key size used during the encryption process.
+ There are three different key sizes associated with AES: 128 bits 192 bits 256 bits To be specific, 10 rounds of rotations take place if you are using a 128-bit key, 12 rounds for a 192-bit key, and 14 rounds for a 256-bit key.
+ AES is used to protect sensitive information like banking and data in messaging apps.
+ RSA — Rivest-Shamir-Adleman The second encryption algorithm we will look at is RSA which stands for Rivest-Shamir-Adleman.
+ This one in particular is an asymmetric encryption algorithm and is widely known and used for securing data transmission.
+ An article linked here covers the RSA algorithm in great detail.
+ RSA makes use of a public key which consists of two very large numbers (when I say large, I mean large!
+).
+ One of the numbers is a product of two large prime numbers and the private key also consists of these two prime numbers.
+ As an example: let a, b = <very large numbers> let a = x*y <product of two large prime numbers, x and y> public_key = (a)(b) <consists of these two large numbers> public_key/private_key = (a) <both consist of the prime products> We use the Euler’s totient to decipher the public and private keys: E(n) = (x — 1)(y-1) Again, not to dive deep into the Math, but it gets extremely difficult to decipher how to factorize the large product.
+ It also follows that if you were able to decipher it, the private key would also be compromised.
+ Therefore, the key size is crucial for working with the RSA algorithm for encryption.
+ A large key size of 1024-bits or 2048-bits is a nice way to ensure data encryption.
+ The article above dives deep into how the encryption and decryption process works using RSA so we will not revisit it here.
+ The main takeaway here is that it is a common asymmetric algorithm used for encryption and is primarily used to secure data transmission.
+ Blowfish The third encryption algorithm we will look at is Blowfish.
+ It is another symmetric encryption algorithm that can be used for enhancing security.
+ Similar to AES, it uses one key for the encryption and decryption process and is very fast.
+ It too, encrypts chunks of data (64-bits to be exact) and performs 16 rounds of rotations regardless of key size.
+ With Blowfish, there is a range of key sizes that are supported.
+ To be specific, anywhere from 32-bits to 448-bits.
+ AES is more secure given that its block size is much larger than Blowfish.
+ It is also the industry standard when it comes to encryption and security.
+ However, Blowfish is faster and offers flexibility in key size which enhances security and should be considered in cases where speed is the key factor.
+ Here is an article which explains Blowfish in great detail.
+ Exploring Hashing Algorithms In this section, we will focus on hashing algorithms and go over three specific ones as they relate to hashing.
+ The first one we will look at is the SHA-256 hashing algorithm.
+ SHA-256 Algorithm As the name implies, SHA-256 stands for Secure Hash Algorithm 256-bits.
+ It is a cryptographic hash function that produces an exact output of 256 bits from an input data of x size.
+ It is a deterministic hashing algorithm meaning that (as is the case with every hashing algorithm) for every input, there is only one unique possible output.
+ It is a fast, reliable, and efficient hashing algorithm.
+ A single character change in the input resolves to a totally different hash.
+ For each input, a particular padding pattern takes place which ensures that the total length is a multiple of 512 bits.
+ After that, a similar process that encryption algorithms follow takes place.
+ The padded input is divided into 512-bit blocks with each block processed in rounds and once all is said and done, they are put back together to form the final hash.
+ One common area where this algorithm is used is in blockchain technology.
+ Bitcoin uses the PoW (Proof-of-Work) consensus mechanism and utilizes the SHA-256 algorithm for rewarding miners that generate the correct hash for a block of transactions.
+ The blocks are then linked together (“blockchain”) using the previous block’s hash as a reference point.
+ The blockchain ensures immutability because for each block, there is always one unique hash.
+ If any part or all of the data within the block is changed, the hash is invalid.
+ This site contains a helpful tool that visually describes how the SHA-256 algorithm is used in determining the hash for a particular block on Bitcoin.
+ Feel free to explore it.
+ SHA-512 Algorithm Similar to the SHA-256 hashing algorithm, SHA-512 is an extension of it.
+ Rather than generating a 256-bit hash, SHA-512 produces a hash of 512-bits.
+ This has its advantages because the longer the hash, the more secure it can be from vulnerabilities.
+ There is a tradeoff in terms of speed.
+ SHA-512 is more secure, but slower to use compared to SHA-256.
+ It is advised to use the SHA-512 algorithm in safety-critical systems and in instances where security is a top priority.
+ Bcrypt Algorithm Bcrypt is another popular hashing algorithm and is specifically used for hashing passwords.
+ Unlike SHA-512, it incorporates a technique which makes brute-force attacking extremely difficult for hackers.
+ The Bcrypt algorithm uses the Blowfish algorithm under the hood.
+ As discussed earlier, for every input, there is a unique hash associated with it.
+ However, the Bcrypt algorithm utilizes salting which is a mechanism that enables different hashes for identical passwords.
+ This further adds a layer of complexity to anyone attempting to decipher the original value.
+ It is a common and effective algorithm for password management and it ensures that in an event of a data breach, accounts remain safe as its the salted/hashed versions of the passwords that are stored in the databases, not the original passwords.
+ In a previous tutorial, we looked at Bcrypt for salting/hashing passwords.
+ We will revisit that JS library in the next section.
+ JS Libraries We will explore JS libraries that can be helpful for implementing algorithms out-of-the-box without having to provide any ingenuity of your own which helps expediate the development process.
+ You can follow along by cloning this repository.
+ The directory we will focus on is demos/Demo52_Hash_Encryption_Algorithms.
+ Bcryptjs Library The first JS library we will explore is the bcryptjs library.
+ The following code contains its implementation demos/Demo52_Hash_Encryption_Algorithms/js_libraries/bcrypt.
+js: Now, assuming you have cloned the repository and have installed the necessary dependencies via npm install, you can run this file and receive the following output: As noted earlier, Bcrypt uses a salting mechanism so the hash generated for the same password will be different each time.
+ The Bcryptjs library is very easy to understand from a development perspective.
+ It already has built-in functions for salting and hashing passwords as well as comparing passwords to their supposed hashed versions.
+ If the comparison is true, the password is valid and if not, it is invalid.
+ We can understand the bcryptjs library in a more elaborate way.
+ In the same directory location, you will find the following file demos/Demo52_Hash_Encryption_Algorithms/newUserBcryptImplementation.
+js: When we insert a new user into the database, we perform the necessary checks to ensure the user does not exist (contains the same email address) and ensure the password the user enters is salted/hashed correctly prior to storage.
+ When a user tries to login, we check to ensure the password entered conforms to its salted/hashed version stored in the database.
+ We make use of the built-in compare function we discussed earlier.
+ That covers the main aspects of working with the Bcryptjs library.
+ The Built-in Crypto Node.
+js Module Node.
+js provides a native crypto module out-of-the-box.
+ There is a lot you can do with this built-in module such as working with hashing algorithms like the SHA-512, public/private keys for encryption, generating certificates, and generating keys with a pre-defined number of bytes.
+ A list of what the crypto module provides is exhaustive so here is a link to the official crypto Node.
+js documentation.
+ It covers all aspects of working with this module in great detail.
+ Conclusion We dove deep into encryption and hashing algorithms.
+ We looked at specific types of encryption algorithms both asymmetric and symmetric and their usefulness in the real-world.
+ We also explored the SHA family algorithms as well as the Bcrypt algorithm which is popular for hashing passwords.
+ Below are a set of links pertaining to each algorithm, the JS libraries we looked at in this tutorial, the GitHub repository, and the Bitcoin Blockchain tool: Demo 52 — GitHub Repository Bitcoin Blockchain Tool AES — Advanced Encryption Standard RSA — Rivest-Shamir-Adelman Blowfish SHA-256 SHA-512 Bcrypt Bcryptjs Library Crypto Node.
+js Library I hope you found this guide helpful and look forward to more in the future.
+ Thank you!
+ Stackademic 🎓 Thank you for reading until the end.
+ Before you go: Please consider clapping and following the writer!
+ 👏 Follow us X | LinkedIn | YouTube | Discord | Newsletter | Podcast Create a free AI-powered blog on Differ.
+ More content at Stackademic.
+com

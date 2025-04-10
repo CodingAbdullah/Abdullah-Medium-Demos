@@ -1,0 +1,104 @@
+Detailed Look at SSG, SSR, ISR, and Hydration in Next.
+js Abdullah Muhammad · Subscribe Published in Stackademic · 7 min read · Mar 27, 2025 Basic understanding of web development will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In this short article, we will explore three different methods for page rendering using Next.
+js.
+ In the previous tutorial, we explored some helpful React libraries and mentioned that React is a UI library primarily focused on front-end development.
+ You can develop SPAs (Single Page Applications) using pure React, which means pages are rendered on the client-side.
+ Next.
+js, however, is a full-stack framework that uses React as its core for developing full-stack applications.
+ As such, Next.
+js supports three different page rendering methods, which we will explore in this article.
+ We will also highlight libraries and frameworks that support each of these rendering methods.
+ The three page rendering methods are as follows: SSG — Static Site Generation SSR — Server-Side Rendering ISR — Incremental Static Regeneration Note that not all web applications require a full-stack framework.
+ The method you choose for developing your application truly depends on the project’s needs and scope.
+ For a simple, static site that requires no back-end or authentication, SSG (Static Site Generation) is usually the best choice.
+ If you are building a full-stack application that involves data that requires frequent updates, SSR (Server-Side Rendering) is the way to go.
+ For sites that work with data, but only need occasional updates, ISR (Incremental Static Regeneration) is the ideal solution.
+ The best part about working with Next.
+js is that you can mix and match these rendering methods for each page to optimize your web app.
+ There is no one-size-fits-all approach.
+ Pages that do not require frequent updates can be SSG rendered, while others that work with data can be SSR or ISR rendered, and so on.
+ In the forthcoming sections, we will explore how to implement each of these rendering methods using Next.
+js.
+ Understanding Hydration We know that Next.
+js relies on file-based routing to render pages.
+ By incorporating the built-in Fetch API provided by JavaScript, we can inform Next.
+js how to render specific pages.
+ With the introduction of React server components, there is an added layer of complexity one should be familiar with and that is the concept of Hydration.
+ Hydration is the process where JavaScript features such as event listeners are attached to the pre-rendered HTML sent from the server, making the page interactive.
+ React server components require no hydration because there is no JavaScript interactivity in these components.
+ We know that we cannot use React hooks, browser APIs, and so on.
+ This enhances performance as these components are rendered as is from the server.
+ Hydration is associated with client components.
+ The server sends the pre-rendered HTML file to the client where all the JavaScript features are loaded in which “hydrates” the page for interactivity.
+ This is why it is best practice to work with server components wherever possible in order to minimize the amount of JavaScript sent to the client.
+ That is because delays can occur as this process takes place which means the page will not be operable.
+ You should also implement granularity in your pages where you separate portions of the page that require client interactivity with those that do not.
+ Implementing Different Page Rendering Methods In this section, we will explore how to implement each of the rendering methods we discussed earlier with a brief description and code example.
+ SSG — Static Site Generation SSG is a rendering method where static pages are generated at build time and then served as cached content via a CDN.
+ This is ideal for content that does not need to be frequently updated or does not need to be updated at all.
+ The HTML file is created once during the build process and then served to the user.
+ This is ideal for content-heavy sites such as blogs, documentation sites, portfolio sites, and so on because you will not need to update the loaded pages.
+ The content on the pages will never change.
+ Utilizing SSG results in fast page loads enhancing site performance.
+ If you are working with data that does not need to be updated, you can fetch data once and cache it using the Fetch API.
+ The API comes with its own data caching options.
+ It no longer caches fetched data by default, you have to explicitly opt into it: There are a variety of caching options that come with the Fetch API.
+ To implement SSG, we can utilize the built-in force-cache option.
+ This tells Next.
+js to fetch the data once and store it forever.
+ There will be no subsequent API calls made to the same source.
+ Alternatively, you have the option to set data caching by exporting a named constant, dynamic (it must be named this way) and setting it to a string value of force-static.
+ SSR — Server Side Rendering Server-Side Rendering (SSR) is a rendering method where pages are generated on the server for each request, rather than at build time.
+ This ensures that content is always up-to-date utilizing the latest data.
+ We know that we can implement SSR with React using the Next.
+js framework.
+ In Next.
+js 15, we get SSR out of the box because unlike SSG, where we need to explicitly declare data caching, fetch requests are not cached by default.
+ Thus, ensuring that SSR is the default behavior.
+ You can implement SSR in several ways as you can see below: Since data caching is not the default option, you do not need to pass in any cache parameter options in your fetch request.
+ By default, Next.
+js will understand that subsequent requests to update data will need to be made.
+ However, if you would like to explicitly declare this behaviour, the Fetch API comes with its own option for that and it is called no-store.
+ You also have the option to set this behaviour by exporting a named constant, dynamic (it must be named this way) and setting it to a string value of force-dynamic.
+ ISR — Incremental Static Generation If you want the best of both worlds, ISR is the way to go.
+ If your pages are working with data and you also want the benefits of SSG, you can have the page rendered at build time and update data at specific intervals.
+ This hybrid approach ensures that you can update your static pages after having built the entire site without having to update the entire site.
+ You can see ISR in action below: Like we saw with SSG, we need to set the cache options parameter to a value of force-cache.
+ This ensures that data fetched is cached and will be updated at a later time.
+ For ISR, we need to pass in an additional parameter called next and set the revalidate property to a specific number (value in seconds).
+ This will tell Next.
+js to initiate another fetch request once that specific time has passed.
+ You also have the option to set this behaviour by exporting a named constant, revalidate (it must be named this way) and setting it to a number which tells Next.
+js how many seconds it has to wait before re-initiating another fetch request.
+ As you can see, we get the benefits of both SSG and SSR and in many cases, this is probably the best way to design most of your web pages.
+ Note also, how each of these pages are React server components which allows us to optimize these components using the different rendering methods we discussed.
+ You do not get this benefit with client components because of the Hydration process we also discussed earlier.
+ Alternative Solution for Client Components Client-side Components (CSR) have their place in Next.
+js development.
+ The key is optimizing their usage whenever you need them.
+ For web applications, you will definitely need to work with React hooks, state, and so on.
+ That is why there is a dedicated package for optimizing the data fetching process with client components known as SWR (Stale-While-Revalidate) .
+ It is similar to TanStack Query in that you get data fetching, caching, revalidation out of the box, but it is optimized for Next.
+js applications.
+ The package comes with its own custom hook known as useSWR which means that it can only work with client components.
+ You can see the SWR library in action in the Next.
+js tutorial.
+ Conclusion In all, we discussed in great detail, the different rendering strategies when working with Next.
+js.
+ We discussed SSG, SSR, ISR, and looked at an example of each rendering strategy.
+ We covered the hydration process as it relates to client components and how we can optimize the usage of client components using the SWR library.
+ Below, you will find links to the GitHub demo repository used in this article (Demo58_SSG_SSR_ISR_Frameworks), the SWR library, and the official Next.
+js docs allowing you to read a bit more about each rendering strategy.
+ GitHub Repository SWR Library Next.
+js Official Docs I hope you found this article informative and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Differ | Twitch Check out CoFeed, the smart way to stay up-to-date with the latest in tech 🧪 Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com

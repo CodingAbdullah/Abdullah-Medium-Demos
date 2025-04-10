@@ -1,0 +1,174 @@
+Vercel In-Depth: Analytics, v0.
+dev, CLI, AI SDK, and the World of LLMs Abdullah Muhammad · Subscribe Published in Stackademic · 12 min read · Feb 25, 2025 General understanding of AI and LLMs will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In the last article, we looked at Next.
+js 15 and more specifically, the App Router for web development.
+ We covered, in great detail, key features of using App Router such as file-based routing, API routes, effective data fetching/caching, special files, and so much more.
+ Vercel is the team that backs the Next.
+js project and it regularly makes updates to the React.
+js framework.
+ Today, we will explore key services that Vercel provides that can enhance your web development experience.
+ We will explore Vercel’s web development agent, v0.
+dev, analytics, CLI, and the AI SDK for rapidly developing web applications by integrating popular LLMs.
+ We will look at OpenRouter which is a marketplace where you can purchase LLMs for your project.
+ We will do a walk through of the Ethereum dashboard that I built using Next.
+js and tools such as the AI SDK for generating market insights as well as the Firecrawl API.
+ Key Features of Vercel As seen in the hosting services tutorial, we know that Vercel offers free hosting services for quick and effective deployment.
+ You authorize Vercel to access your GitHub account and grant permissions to access the repository from which you want to deploy a web application.
+ You get CI/CD features out of the box as Vercel automatically starts the build and deploy steps for every commit made to your GitHub repository.
+ This ensures that your web application is up to date, free of bugs with the latest commit.
+ You can set the branch from where you want to deploy, monitor analytics (as we will cover shortly) as well as set environment variables from your .
+env file for production deployment.
+ You can deploy React applications or applications written in any other language.
+ Since Vercel backs Next.
+js, it is fully optimized for the deployment of web applications written in Next.
+js.
+ Subscription Offerings Vercel offers different subscription tiers you can subscribe to.
+ For starters, you can use the free-tier offering which allows you to deploy an app or a personal project.
+ You get the same features out of the box as you would if you were subscribed to the paid offerings, but you are limited in the quantity of projects you can deploy.
+ I am personally subscribed to the $20/month plan which offers me flexibility to work on as many projects I want.
+ I get added benefits such as faster builds, observability tools, and enhanced web security.
+ Of course, if you are company or looking to deploy enterprise-grade applications, the enterprise plan would work best, but you will need to get in touch with a sales representative for that.
+ So far, I have deployed six projects using Next.
+js and Vercel with no added costs (except for domain purchases).
+ No AWS EC2 and no additional costs associated with AWS.
+ Vercel Domain Name Assignment Similar to AWS Amplify, Vercel offers its users the ability to purchase and utilize a domain name of their choice.
+ Unlike AWS, where you had additional configurations related to AWS Route 53 and setting hosted zones, you do away with all of that and simply assign custom name servers to the domain of your choice.
+ Navigate to your Project > Settings > Domains > Add: So, for example, if you had purchased a custom domain through a domain name provider such as Namecheap, you would set the custom name servers to the following: ns1.
+vercel-dns.
+com ns2.
+vercel-dns.
+com We covered how to do this in the article linked above.
+ Pretty straight forward.
+ Vercel Analytics There are many different tools you can use to analyze websites.
+ Popular ones include Google Analytics where you can analyze traffic and bounce time.
+ These metrics can help you optimize website traffic and improve site SEO.
+ Vercel offers Next.
+js applications a more versatile way of analyzing websites.
+ You can easily integrate Vercel analytics into your project by first enabling analytics on your project through the Vercel dashboard.
+ After that, you would install the following npm package to your web application: npm install @vercel/analytics For Next.
+js applications utilizing the App Router, you would wrap your root layout (as seen in the previous tutorial) using the Analytics component and set the prop mode to a value of production like this: As you can see, the Analytics component has been added to the root layout of the Ethereum dashboard web application.
+ Once you have completed this part and enabled Vercel analytics on your project, you can visit website metrics on the Vercel dashboard.
+ There is a separate tab that appears named Analytics which you can click and view website metrics: In the case of the Ethereum dashboard, I can see metrics related to visitors, pages visited, bounce rate, country traffic origin, devices, operating systems of those devices, etc.
+ It may not be as detailed or flexible as Google Analytics, but it offers you a quick look at some key metrics, most notably website traffic.
+ Vercel CLI Utilizing the Vercel dashboard to manage all your web application needs (domains, environment variables, deployments, etc.
+) is perfect, but you also do this using the Vercel CLI.
+ You can perform common tasks from your command line by installing the Vercel CLI locally.
+ First, you install the official Vercel CLI npm package: npm install –g vercel You can verify if the installation was successful using: vercel --version This should output the latest version of Vercel that you installed.
+ Once that is complete, you will need to authenticate yourself and allow Vercel access to your account.
+ You do this with vercel login.
+ Deploying a Next.
+js application is easy.
+ Once you have authenticated yourself, navigate to the root directory and run vercel in your command line.
+ There are handful of other useful commands that come with the CLI for things such as setting and pulling environment variables, linking to a local project, checking deployment logs, opening the project dashboard, and so on.
+ Link to the official Vercel CLI docs can be found here.
+ v0.
+dev – Vercel Web Development Agent Perhaps my favourite feature of working with Vercel is their web development agent.
+ Go from zero to an AI inspired MVP of what you are looking for.
+ Consider it “version zero” (as the name implies) of your web application: Since it is a Vercel offering, it integrates well with your Next.
+js applications (assuming you are using it for development).
+ You can integrate your GitHub account with v0 and even import a project you are currently working on.
+ You also have the option of starting from scratch and building out your MVP or final product end-to-end using v0.
+ With its GitHub integration, you can manage commits, pushes and utilize Vercel for production deployment.
+ You get the full development experience: You can ask v0 to explain concepts related to coding, but keep in mind it is prone to errors so your expertise will need to sort out portions that do not look right.
+ It can generate basic components such as landing pages, sign up forms, and it allows you to import from Figma.
+ v0.
+dev has the ability to read pages from a URL and contains community templates that you can use to kickstart development.
+ There is much more coming for this web development agent and this is just the beginning.
+ It is not the only one out there though.
+ Many others have grown in popularity.
+ Some of which you might already be familiar with: Bolt.
+new Loveable Dev Cursor AI (fork of VS Code) Replit Claude AI (not an agent, but the Claude-Sonnet models) Vercel AI SDK Finally, we will look at Vercel’s AI SDK for effectively integrating and working with AI in your development workflow.
+ You might be considering the traditional way of working with AI models.
+ That is, import the specific API key into a .
+env file and after that, installing the appropriate libraries associated with the appropriate provider, and then integrating the LLM into your code.
+ With Vercel’s AI SDK, you get a unified approach and do away with the risk of vendor lock-in (relying on a single provider).
+ By installing the required provider package, you unlock LLMs associated with that provider and with the correct API key, you have the ability to plug in any LLM you want to use for your project.
+ The official docs contain a section where they cover the providers supported and their associated models.
+ You can install the SDK using: npm install ai The AI SDK has two major components to it: - AI SDK Core - AI SDK UI The AI SDK Core (setting up a back-end to utilize the LLMs) is where you install the required provider package and set a model you want to use.
+ The AI SDK UI consists of four React hooks for processing and working with AI-generated data in your front-end (useChat, useCompletion, useObject, and useAssistant).
+ The SDK allows you to stream data generated from the LLM to your front-end UI without having to worry about generating the complete response before displaying anything to the user.
+ This is done from the back-end using functions generateText, generateObject, streamText, and streamObject.
+ You can enforce the model to generate structured data using a schema enforcer library such as Zod (a library we will look at in the code overview).
+ The SDK code allows you to further enhance the response with the use of prompts, messages, systems, tools, etc.
+ This package has been growing in popularity and integrates nicely with Next.
+js.
+ In the code overview section, we will look at utilizing the AI SDK for generating market insights.
+ Putting it all together, Vercel offers developers with an edge in modern web development.
+ Exploring the World of LLMs In the world of LLMs (and there are so many out there), you have the ability to work with all kinds of models using a unified platform with a single API key.
+ OpenRouterAI supports a marketplace where you can explore and purchase models (each model has their own pricing) and utilize them in your projects.
+ You can track trending models to understand industry appeal, categorize them, utilize parameters, look up token usage, and so much more.
+ You have the ability to route requests to different models based on preference or pricing.
+ We know that each model has their own strengths and weaknesses so preference of which model to use can be based on the specific need.
+ For instance, Anthropic’s Claude Sonnet 3.
+5 model (and now, their newly introduced model, 3.
+7) is the industry standard for generating code using AI.
+ Other models will be better at different things such as image generation, text-to-speech, speech-to-text, research, etc.
+ At the end of the day, what matters is ensuring the best model is available to you when you need it for your specific requirements.
+ That is what OpenRouterAI aims to accomplish without worrying much about overhead.
+ Firecrawl Web scraping and collecting data is a big part of working with AI tools.
+ I have worked with scraping tools using third-party APIs, most notably when I built the Medium Article Scraper tool.
+ However, there is one powerful tool that stands out and that is the Firecrawl API.
+ It allows you to scrape websites and generate LLM data.
+ It has the ability to intelligently find information and structure data based on a schema you provide (using the Zod library).
+ Different file formats for outputting data are supported such as markdown, text, json, and so on.
+ There are two main features associated with this library: Scraping Crawling Scraping is what we covered just now.
+ Crawling is slightly different in that you simply navigate to the pages you need to and retrieve data from there.
+ Firecrawl has a promising future and a community that is growing and worth exploring.
+ Their official docs can be found here.
+ Code Overview You can follow along by cloning the following repository.
+ The directory of concern is demos/Demo55_Dashboard_Agents_Tools/demo.
+ We will explore generating live market insights using Firecrawl, Zod, the AI SDK, and a web application built using Next.
+js.
+ For starters, let us look at the back-end.
+ The project consists of one back-end route (/src/app/api/market-insights-data).
+ In this route, we are incorporating Firecrawl, Groq provider, AI SDK, and two schemas using the Zod library.
+ First, we scrape the CoinGecko home page for data related to the cryptocurrency market.
+ We set the data format to JSON and set the schema for the generated response using a custom schema we built using Zod named, marketSchema (src/app/utils/constants/MarketSchema.
+ts): Put it simply, Zod is a schema validator for the TypeScript language.
+ It enforces type safety by allowing users to utilize built-in methods for working with all kinds of data types supported with TypeScript.
+ When we pass this schema into the Firecrawl API request, we are ensuring that the data collected from the web scrape conforms to the attributes above with a specific data type.
+ Once that is complete, we utilize the AI SDK and Groq’s Llama model for generating market insights using this data.
+ We use the generateObject function and pass in the required parameters such as the model and prompt.
+ The prompt is hard coded and you can see we have converted the Firecrawl generated data into a string to help with the AI response.
+ For this task, we have created another schema object to help structure the AI generated response.
+ The schema is called AITextGeneratedSchema (src/app/utils/constants/AITextGeneratedSchema.
+ts): Utilizing the Firecrawl data and this schema, we are asking Groq’s model to generate in plain English, a summary of the following market attributes (summary, Bitcoin/Ethereum analysis, trending coins, etc.
+).
+ If the task is successful, we return market insights data back to the front-end.
+ For the front-end portion, we are using one page designated as market-insights.
+ This is simply a RSC component that wraps a client component where all the action takes place.
+ The child component is called MarketInsightsSection.
+tsx and can be found here /src/app/components/MarketInsightsSection.
+tsx: We utilize the built-in Fetch API to make a call to the back-end and retrieve the latest market insights data.
+ For this portion, we have a front-end data type to define and capture market insights and it is called AIMarketDataType (/src/app/utils/types/AIMarketDataType.
+ts): We iterate through the keys of the market insights data response and display the relevant content to the user.
+ We are using the Lucide-React library to enhance the UI and overall look of the website.
+ That is about it as it relates to this section.
+ This is a simple example of using Firecrawl and the Vercel AI SDK for generating market insights.
+ Demo Time!
+ Now it is time for a quick demo!
+ Assuming you have cloned the repository above, ensure you run npm install to install the required dependencies needed for this project.
+ You will also need to specify a .
+env file in the root of this directory (demos/Demo55_Dashboard_Agents_Tools/demo) containing the following secrets: GROQ_API_KEY FIRECRAWL_API_KEY These must be named this way in order for the back-end route to work properly.
+ The AI SDK has a way of figuring out which API key to use based on the model using a specific naming convention.
+ Now, kickstart the development server by running npm run dev .
+ This should yield the following: Navigating to the Market Insights section at the top, should show what we are looking for: As you can see, the keys map to the headers of each section and each section consists of its own AI generated data.
+ That is all for the quick demo!
+ Conclusion All in all, we covered quite a bit in this tutorial.
+ We looked at Vercel in great detail and the many services it offers that enhance developer experience.
+ Tools such as the dashboard, analytics, CLI, web development agent, and the AI SDK are all extremely useful for developing modern web applications using Next.
+js.
+ We explored the world of LLMs and how we can utilize tools such as OpenRouterAI to work with any LLM as well as the Firecrawl API and Zod for generating and structuring LLM-ready data from a simple web scrape.
+ Below, you will find useful links to everything covered in this tutorial as well as the GitHub repository.
+ GitHub Repository Vercel Analytics Vercel CLI v0.
+dev Vercel AI SDK Firecrawl API OpenRouterAI Zod I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Differ Check out CoFeed, the smart way to stay up-to-date with the latest in tech 🧪 Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com
