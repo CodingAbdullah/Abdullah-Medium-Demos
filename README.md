@@ -512,6 +512,14 @@ Table highlighting the current demos completed along with their code repository 
             Link to Medium Article to be posted when complete
         </td>
     </tr>
+      <tr>
+        <td>
+            <code>/demos/Demo61_SQL_Guide</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
+        </td>
+    </tr>
     <tr>
         <td>
             <code>/demos/Demo61_Vercel_Edge_Functions</code>
