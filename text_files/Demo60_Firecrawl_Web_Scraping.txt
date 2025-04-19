@@ -1,0 +1,96 @@
+Detailed Look at the Firecrawl API and the Zod Schema Library Abdullah Muhammad · Follow 8 min read · Just now Basic understanding of web development will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In this article, we will dive deep into the Firecrawl API and the Zod schema library.
+ You have seen me touch on these libraries before.
+ For instance, when I discussed how I re-built the Ethereum dashboard with Next.
+js and when I discussed generating AI content by collecting and structuring data from a web scrape using the Firecrawl API.
+ This tutorial will be dedicated to developing a deeper understanding of how we can work with the Firecrawl API and the Zod schema library.
+ Sounds a bit strange, why are you discussing two seemingly different libraries?
+ Zod is a universal schema validation library that you find casually used in the documentation of different development tools.
+ You see it with the Firecrawl API documentation and you also see it in Vercel’s AI SDK documentation.
+ Notwithstanding, these are only two examples, there are a plenty more out there.
+ If you are not familiar with Zod or its applicability, understanding documentation can become cumbersome.
+ So today, we will focus on gaining a deeper understanding of the Firecrawl API and the Zod schema library and see how these two libraries complement each other.
+ So without further ado, let us dive right in!
+ Zod Deep Dive As mentioned before, Zod is a schema validation library perfectly tailored for TypeScript development.
+ TypeScript is a superset to JavaScript and it provides important features such as classes and most notably, type safety through static typing.
+ The latter is the key concept that Zod is centred around.
+ The idea of enforcing data to adhere to a specific schema or a set of acceptable values.
+ The beauty of Zod is not enforcing type safety (TypeScript already does this), but enforcing what should be acceptable values using the built-in types supported in TypeScript.
+ This includes your typical primitive data types such as String, Number, and Boolean.
+ As well as complex reference types such as Arrays, Functions, and of course, Objects.
+ It serves well for validating form and API data as well as external data.
+ The official Zod docs dive deeper into each of the aforementioned types, but the following list highlights the most commonly used ones: String (z.
+string()) Number (z.
+number()) Boolean (z.
+boolean()) Date (z.
+date()) Symbol (z.
+symbol()) Big Integer (z.
+bigint()) You can utilize the Zod library to create a schema that highlights how data in your application should be structured and accepted.
+ For instance, if you are defining how an object should look like, you can define a criteria for each field within it.
+ Say, a particular field should accept a type of string with a length of 10, you can define this acceptable criteria using the Zod library by chaining functions together to suit your needs.
+ The documentation goes deeper into this, but here is an example of how you would accomplish what I mentioned above: const schema = z.
+object({ name: z.
+string().
+length(10) }); You define an object using the object() function with an object defined inside of it with key-value pairs each utilizing the Zod library to further refine and define what each value should be acceptable in each field.
+ You can see how this can be helpful when you structure raw data to a certain format of acceptable values and this is the common use case for incorporating the Zod library.
+ You also have the ability to enforce optional, non-empty, nullable values, and so much more.
+ I utilized Zod for formatting all the data from the web scrape using the Firecrawl API for the Ethereum dashboard.
+ More on how I did this a bit later.
+ The following section provides a neat summary on the core, commonly used Zod validator functions.
+ Zod Validator Functions The following list highlights commonly used functions for different data types.
+ You can learn more about each of these by reading the official Zod docs: String Validators min(len), max(len) — Define a minimum, maximum length for a string length(len) — Define a length for a particular string email() — Enforce string values to adhere to proper email syntax (@, etc.
+) url() — Enforce string values to adhere to proper URL syntax uuid() — Enforce string values to adhere to proper UUID syntax regex(pattern, message?
+) — Enforce string values to adhere to proper regular expression patterns and throw (optional) error messages if they do not includes(str), startsWith(str), endsWith(str) —Enforce string values to adhere to proper substring patterns defined within each of these functions Number Validators The following validator functions adhere to values of type Number.
+ Most of these should be self-explanatory, but I will go ahead and highlight them: max(len), min(len) — Define minimum, maximum values of a number int() — Define a number to be of type Integer positive() — Enforce a number to be of positive range negative() — Enforce a number to be of negative range nonnegative() — Enforce a number to be 0 or greater nonpositive() — Enforce a number to be 0 or lower multipleOf(n)— Enforce a number to be a multiple of a number, n And so much more.
+ Date Validators min(date), max(date) — Enforce dates to be of acceptable range Array Validators min(n), max(n) — Enforce array lengths to be of a set particular range length(n) — Enforce array lengths to be of a specific value Object Validators required() — Enforce fields within an object to be required at all times merge() — Enforce the merging of two objects partial() — Enforce the idea that field values within an object are optional Additional Function Validators The following are additional validators that can come handy at times, depending on your use case: .
+transform(func) – Enforce the transforming of a validated value .
+default(value) – Provide default values to a particular field .
+optional(), .
+nullable(), .
+nullish() — Enforce optional and nullable values depending on your use case We looked at quite a few validator functions in the Zod schema library.
+ Feel free to explore more in the official docs.
+ Firecrawl API We have touched on the Firecrawl API numerous times in the past.
+ However, we covered one aspect of this awesome library and that is its web scraping feature.
+ Aside from scraping, you can also web crawl sites and gather interesting data.
+ What is the difference between web scraping and web crawling.
+ Well, the difference is subtle, but important.
+ Off the top, if you are concerned with gathering data from specific web pages, web scraping is the way to go.
+ Firecrawl goes above and beyond what you typically find in web scrapers.
+ As we saw in a previous tutorial, Firecrawl allows you to scrape and format data so it conforms to a specific standard such as JSON, text, markdown, and so on.
+ Not only that, it ensures data is readily available to be used by LLMs.
+ It helps with the process of gathering data for the purpose of training and fine-tuning both custom and foundational models.
+ Web crawling is slightly different.
+ Web crawling refers to the process of systematically browsing the web and fetching web pages.
+ The main goal of web crawling is to gather raw data from various web pages, which can then be processed, analyzed, or scraped.
+ Some of the key features of web crawling include: Automated navigation allows crawlers to traverse a website and follow different pages through links from one page to another Internal and External Link Search allows for the discovery and gathering data from new pages Collect raw content from websites such as HTML, CSS, images, and JavaScript.
+ Key use cases for web crawling include search engines and data mining.
+ Firecrawl + Zod = Awesome 🚀 So now that we learned about Firecrawl (web scraping and crawling) and the Zod schema, what happens when we can utilize both?
+ Awesome things can happen!
+ We have already explored a use case for it when we discussed generating market insights powered by AI.
+ So in this section, we will detail that process.
+ There will be no code demo in this article as we are building off what we previously looked at in this tutorial.
+ Feel free to explore the code demo in that tutorial.
+ In the rebuilding of the Ethereum dashboard site, I incorporated the Firecrawl API, Zod, and the Vercel AI SDK to generate AI related content.
+ I defined a Zod schema to entail what the Firecrawl web scrape data should conform to.
+ The Firecrawl API was smart enough to figure out how to format the data (API asked for a schema) We utilized a pre-defined Zod schema which then detailed how the AI SDK should structure incoming data.
+ We then passed the incoming data (structured data from the Firecrawl web scrape) into the AI SDK to generate the final result which we displayed to the user.
+ The following diagram dives deeper into that process: Website → Firecrawl API (Web Scrape) → Zod → Enforced Structured Web Scrape Data → AI SDK → Zod → Enforced Structured Market Insights Data → AI SDK Client → User.
+ The end result is what you see.
+ AI generated market insights which utilize the latest market data by web scraping live cryptocurrency data.
+ You can view live market insights by visiting the site here.
+ Firecrawl Web Crawl The syntax and documentation for web crawling does not differ much from web scraping.
+ We have seen code for working with the Firecrawl web scrape API and you can read more about it here in the official docs.
+ You also read more about web crawling and its uses by reading about it here.
+ Conclusion We covered quite a bit as it relates to the Firecrawl API and the Zod schema library.
+ We looked at the key features of the Zod schema library and its validator functions as well as commonly used data types.
+ We dove deep into the Firecrawl API and aside from web scraping, we learned of another important feature known as web crawling.
+ Below, you will find links to the GitHub demo repository (Demo60_Firecrawl_Zod_Web_Scraping) which contains useful summary sheet on what was discussed in this article and links to the official Firecrawl and Zod docs.
+ GitHub Repository Firecrawl API Zod Schema Library I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+
