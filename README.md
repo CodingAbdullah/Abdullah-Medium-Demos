@@ -509,7 +509,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo60_Firecrawl_Zod_Web_Scraping</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/detailed-look-at-the-firecrawl-api-and-the-zod-schema-library-6504313ffbb6">Detailed Look at the Firecrawl API and the Zod Schema Library</a>
         </td>
     </tr>
     <tr>
