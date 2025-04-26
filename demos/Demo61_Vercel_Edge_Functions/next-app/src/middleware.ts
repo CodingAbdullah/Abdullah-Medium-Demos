@@ -8,19 +8,21 @@ export function middleware(request: NextRequest) {
   // Get token from cookies
   const token = request.cookies.get('token')?.value;
   
-  // No token found, redirect to login
+  // If no token exists, direct the user to the main page.
+  // Send a response redirect
   if (!token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
   
   try {
-    // Verify JWT - using sync version for simplicity
+    // Verify JWT
     const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
     verify(token, JWT_SECRET);
     
-    // Token is valid, allow request
+    // If the token is valid, transfer control of request to the appropriate route handler function
     return NextResponse.next();
-  } catch (error) {
+  } 
+  catch (error) {
     // Token is invalid, redirect to login
     return NextResponse.redirect(new URL('/login', request.url));
   }
