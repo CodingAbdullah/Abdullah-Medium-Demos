@@ -517,7 +517,7 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo61_Vercel_Edge_Functions</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/exploring-vercel-edge-functions-middleware-and-cron-jobs-c1e43b159c08">Exploring Vercel Edge Functions, Middleware and CRON Jobs</a>
         </td>
     </tr>
     <tr>
