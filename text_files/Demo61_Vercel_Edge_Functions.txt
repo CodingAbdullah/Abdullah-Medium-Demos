@@ -1,0 +1,89 @@
+Exploring Vercel Edge Functions, Middleware and CRON Jobs Abdullah Muhammad 6 min read · 5 days ago Basic understanding of web development will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction We have looked at many aspects of Next.
+js and Vercel in past tutorials (analytics, CLI, developer console, and so on), but today, we will focus on three key features we have not covered so far: Edge Functions Middleware CRON jobs The article will be short and sweet.
+ We will cover each of these concepts in greater detail and why you should use them in development.
+ When we covered data caching using Next.
+js, we looked at designating different options through the use of keywords (force-static, force-dynamic, etc.
+).
+ Next.
+js flexibility in terms of caching allows developers to enforce different types of page rendering such as SSG, SSR, and ISR.
+ We studied each of these closely in the Next.
+js caching tutorial.
+ When we cover Edge functions, we will cover what they are and how easily we can integrate them into the applications we are building.
+ You can follow along by cloning this GitHub repository.
+ The directory of concern is /demos/Demo61_Vercel_Edge_Functions/next-app.
+ Let us dive right in!
+ Vercel Edge Functions Edge functions allow one to define functions that are easily accessible and performant with low latency.
+ They are nothing more than the API routes we explored with Next.
+js except that they are designated in a unique way that, when deployed to Vercel, instructs to deploy the API route in a unique way.
+ You should know that Vercel itself is a cloud platform which utilizes its own global infrastructure to deploy server-less functions.
+ This has added benefits such as low latency as we discussed earlier, but also availability as it does not rely on a single server.
+ With its integrated CDN, you have the option of data caching as well as geo-location, logging, and analytics to track and check function performance.
+ You can think of Vercel Edge Functions a lot like AWS Lambda (an AWS service we will explore in a future tutorial).
+ But the benefits you get with edge functions allows you to do a lot more because the functions themselves utilize Vercel’s web APIs and deployments are optimized to handle edge functions.
+ Such may not be the case if you rely on AWS Lambda as that service is a more general use, server-less service.
+ Like AWS Lambda, there some subtle disadvantages to consider.
+ For instance, cold starts.
+ Utilizing edge functions works best for workloads that are small or spontaneous in nature.
+ For compute-heavy or workload-intense activity, you are better off utilizing the built-in API route functionality.
+ The following codebase illustrates how to create a Vercel Edge Function src/app/api/edge/route.
+ts: We simply create an API route in the back-end (like we have seen before) and designate it as an edge function using a variable named runtime with a string value of edge.
+ Vercel has these little shortcuts about them that really enhance developer experience.
+ Of course, behind the scenes, a lot more work is done to ensure what we want takes place.
+ Feel free to utilize these wherever you see fit.
+ In the end, edge functions have their place in Next.
+js development and it is up to you to decide when is the best time to use them.
+ This is just another optimization method for you to consider when looking to improve the performance of your Next.
+js applications.
+ Middleware We discussed JWTs and how to use them when creating protected back-end routes using Express.
+js.
+ Feel free to read a refresher on JWT authentication and middleware in this article.
+ The concepts are largely the same in the context of Next.
+js, but the implementation is slightly different.
+ Next.
+js App Router Approach When working with back-end routes with Express, we would define an intermediate function that would perform certain checks before passing control to a final function that would handle the actual request.
+ The intermediate function would be invoked if a user tried to access a route that was protected.
+ We would ensure the user is authenticated (checking JWT status) before proceeding with the actual request (invoking the next function).
+ When defining middleware in a Next.
+js application, we simply designate a file named middleware.
+ts in the project root directory and hard-code the protected routes where this middleware function would need to be invoked.
+ We use a special variable named config and export an object that consists of an array of all path patterns to consider as protected routes.
+ The following codebase illustrates how you can utilize a middleware function to handle JWT authentication in Next.
+js /src/middleware.
+ts: We check to see if a token is valid and if so, we verify its credentials.
+ If successful, we pass control to the request handler function.
+ In every other case, we send back an error and request to redirect the user to the login page.
+ At the end, we export a variable named config that contains detailed information on the protected routes where this middleware function should be invoked.
+ Vercel CRON Jobs Ever thought of a unique way of automating tasks without worrying about running them yourself?
+ Well, there is the concept of CRON jobs that allows you to do just that.
+ You may or may not be familiar with CRON jobs, but they are schedulers that organize tasks to be run independently at set intervals.
+ CRON jobs utilize a simple syntax to designate desired intervals to schedule running jobs.
+ We will briefly cover the syntax and how a Next.
+js application can utilize a CRON job for development.
+ A CRON expression utilizes five spaced characters using asterisks.
+ Each asterisk acts as a placeholder for the different types of intervals: * * * * * First denotes intervals in minutes (0–59) Second denotes intervals in hours (0–23) Third denotes intervals in days of a month (1–31) Fourth denotes intervals in months (1–12) Fifth denotes intervals in days of a week (0–6) You can leave some placeholders in place (*) which would act as a wildcard.
+ For instance, if you have the following expression: * 5 * * 5 This expression indicates that you would like a job to run every fifth hour and every minute of that hour (5:00–5:59 AM) on every fifth day of the week (Friday) of every month.
+ You can make these as simple or complex as you need to suit what you are looking for.
+ The official Vercel docs on CRON jobs actually has a CRON expression validator for you to test a custom CRON expression.
+ The following example illustrates how one can create a CRON job.
+ We first need to define the CRON job expression in a file named cron.
+json in the project root directory like this /src/cron.
+json: We define an object that contains the CRON expression as well as path(s) to consider.
+ The codebase below defines a simple back-end route that will run on the desired interval src/app/cron/route.
+ts: The back-end route should output the date and time when the request was invoked.
+ You can verify if it works correctly by matching what the CRON schedule is to the date output.
+ As you can see, this is very straight forward and easy to setup.
+ Conclusion In all, we dove deep into three important concepts as it relates to Next.
+js development: Vercel Edge Functions Middleware CRON Jobs Each have their place in development and it is important to at least understand how they work.
+ Attached below, you will find links to the GitHub repository used in this tutorial, the official documentation links to Vercel Edge Functions, Middleware, and CRON jobs.
+ GitHub Repository Vercel Edge Functions Middleware CRON Jobs I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Differ | Twitch Check out CoFeed, the smart way to stay up-to-date with the latest in tech 🧪 Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com
