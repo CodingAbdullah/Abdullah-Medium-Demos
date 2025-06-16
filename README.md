@@ -520,9 +520,17 @@ Table highlighting the current demos completed along with their code repository 
             <a href="https://medium.com/@abdullah_95/exploring-vercel-edge-functions-middleware-and-cron-jobs-c1e43b159c08">Exploring Vercel Edge Functions, Middleware and CRON Jobs</a>
         </td>
     </tr>
+        <tr>
+        <td>
+            <code>/demos/Demo62_Next_MDX_Blog</code>
+        </td>
+        <td>
+            <a href="https://medium.com/@abdullah_95/building-out-a-next-js-blog-using-aws-s3-mdx-react-and-supabase-c68f5d02e9f6">Building Out a Next.js Blog using AWS S3, MDX, React, and Supabase</a>
+        </td>
+    </tr>
     <tr>
         <td>
-            <code>/demos/Demo62_SQL_Guide</code>
+            <code>/demos/Demo63_SQL_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -530,7 +538,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo63_Docker_Extended_Guide</code>
+            <code>/demos/Demo64_Docker_Extended_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -538,7 +546,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo64_Terraform_Guide</code>
+            <code>/demos/Demo65_Terraform_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -546,7 +554,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo65_Supabase_Guide</code>
+            <code>/demos/Demo66_Supabase_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -554,7 +562,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo66_Linux_Powershell_Guide</code>
+            <code>/demos/Demo67_Linux_Powershell_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -562,7 +570,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo67_Jenkins_Guide</code>
+            <code>/demos/Demo68_Jenkins_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -570,7 +578,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo68_Kubernetes_Guide</code>
+            <code>/demos/Demo69_Kubernetes_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -578,7 +586,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo69_Go_Guide</code>
+            <code>/demos/Demo70_Go_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -586,7 +594,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo70_Google_Chrome_Extensions_Guide</code>
+            <code>/demos/Demo71_Google_Chrome_Extensions_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -594,7 +602,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo71_NextJS_AuthJS</code>
+            <code>/demos/Demo72_NextJS_AuthJS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -602,7 +610,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo72_NextJS_TRPC</code>
+            <code>/demos/Demo73_NextJS_TRPC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -610,7 +618,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo73_NextJS_Drizzle</code>
+            <code>/demos/Demo74_NextJS_Drizzle</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -618,7 +626,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo74_NextJS_UploadThing</code>
+            <code>/demos/Demo75_NextJS_UploadThing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -626,7 +634,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo75_NextJS_Email_Resend</code>
+            <code>/demos/Demo76_NextJS_Email_Resend</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -634,7 +642,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo76_NextJS_Stripe_Payments</code>
+            <code>/demos/Demo77_NextJS_Stripe_Payments</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -642,7 +650,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo77_NextJS_Quickstart_SaaS</code>
+            <code>/demos/Demo78_NextJS_Quickstart_SaaS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -650,7 +658,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo78_Tailwind_CSS</code>
+            <code>/demos/Demo79_Tailwind_CSS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -658,7 +666,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo79_Publish_Node_Packages</code>
+            <code>/demos/Demo80_Publish_Node_Packages</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -666,7 +674,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo80_Code_IDEs</code>
+            <code>/demos/Demo81_Code_IDEs</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -674,7 +682,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo81_React_UI_Libraries</code>
+            <code>/demos/Demo82_React_UI_Libraries</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -682,7 +690,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo82_Vulnerability_Check_Node</code>
+            <code>/demos/Demo83_Vulnerability_Check_Node</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -690,7 +698,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo83_SDLC</code>
+            <code>/demos/Demo84_SDLC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -698,7 +706,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo84_AWS_EC2_No_SSL_Setup</code>
+            <code>/demos/Demo85_AWS_EC2_No_SSL_Setup</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -706,7 +714,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo85_AWS_EC2_Two_Tier_Architecture</code>
+            <code>/demos/Demo86_AWS_EC2_Two_Tier_Architecture</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -714,7 +722,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo86_AWS_Load_Balancing</code>
+            <code>/demos/Demo87_AWS_Load_Balancing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -722,7 +730,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo87_AWS_ECS_Docker_Containers</code>
+            <code>/demos/Demo88_AWS_ECS_Docker_Containers</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -730,7 +738,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo88_AWS_CloudFront_Hosting</code>
+            <code>/demos/Demo89_AWS_CloudFront_Hosting</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -738,7 +746,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo89_AWS_ACM_KMS_Encryption</code>
+            <code>/demos/Demo90_AWS_ACM_KMS_Encryption</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -746,7 +754,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>    
     <tr>
         <td>
-            <code>/demos/Demo90_AWS_SQS_SNS_SES_Messaging</code>
+            <code>/demos/Demo91_AWS_SQS_SNS_SES_Messaging</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -754,7 +762,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo91_AWS_CloudTrail_CloudWatch_Monitoring</code>
+            <code>/demos/Demo92_AWS_CloudTrail_CloudWatch_Monitoring</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -762,7 +770,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo92_AWS_Lambda_Serverless</code>
+            <code>/demos/Demo93_AWS_Lambda_Serverless</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -770,7 +778,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo93_AWS_Lambda_API_Gateway_Development</code>
+            <code>/demos/Demo94_AWS_Lambda_API_Gateway_Development</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -778,7 +786,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo94_AWS_SAM_Serverless_Application_Model</code>
+            <code>/demos/Demo95_AWS_SAM_Serverless_Application_Model</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -786,7 +794,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>    
     <tr>
         <td>
-            <code>/demos/Demo95_AWS_AppSync_Step_Functions</code>
+            <code>/demos/Demo96_AWS_AppSync_Step_Functions</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -794,7 +802,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo96_AWS_CLI_Scripting</code>
+            <code>/demos/Demo97_AWS_CLI_Scripting</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -802,7 +810,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo97_AWS_AppSync_Step_Functions</code>
+            <code>/demos/Demo98_AWS_AppSync_Step_Functions</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -810,7 +818,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo98_AWS_CodePipeline_CI_CD</code>
+            <code>/demos/Demo99_AWS_CodePipeline_CI_CD</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -818,7 +826,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo99_AWS_Cost_Control</code>
+            <code>/demos/Demo100_AWS_Cost_Control</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -826,7 +834,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo100_AWS_Additional_Services</code>
+            <code>/demos/Demo101_AWS_Additional_Services</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -834,7 +842,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo101_AWS_CloudFormation_IaC</code>
+            <code>/demos/Demo102_AWS_CloudFormation_IaC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -842,7 +850,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo102_AWS_Cloud9_IDE</code>
+            <code>/demos/Demo103_AWS_Cloud9_IDE</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -850,7 +858,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo103_AWS_CloudFormation_CodePipeline</code>
+            <code>/demos/Demo104_AWS_CloudFormation_CodePipeline</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -858,7 +866,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo104_AWS_CloudFormation_Terraform</code>
+            <code>/demos/Demo105_AWS_CloudFormation_Terraform</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -866,7 +874,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo105_AWS_Final_Deployment_Demo</code>
+            <code>/demos/Demo106_AWS_Final_Deployment_Demo</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
