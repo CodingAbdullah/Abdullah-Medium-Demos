@@ -520,12 +520,20 @@ Table highlighting the current demos completed along with their code repository 
             <a href="https://medium.com/@abdullah_95/exploring-vercel-edge-functions-middleware-and-cron-jobs-c1e43b159c08">Exploring Vercel Edge Functions, Middleware and CRON Jobs</a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo62_Next_MDX_Blog</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/building-out-a-next-js-blog-using-aws-s3-mdx-react-and-supabase-c68f5d02e9f6">Building Out a Next.js Blog using AWS S3, MDX, React, and Supabase</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo63_Next_Email_Resend</code>
+        </td>
+        <td>
+            Link to Medium Article to be posted when complete
         </td>
     </tr>
     <tr>
