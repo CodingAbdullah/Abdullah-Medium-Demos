@@ -1,4 +1,5 @@
 import getSupabaseClient from "@/utils/supabase/supabaseClient";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
     const body = await request.json();
@@ -7,6 +8,9 @@ export async function POST(request: Request) {
     const { firstName, lastName, email, password } = body;
 
     try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         // Fetch any users with the associated email address
         const { data, error } = await getSupabaseClient()
         .from('user')
@@ -18,10 +22,10 @@ export async function POST(request: Request) {
         }
         
         if (data.length === 0) {
-            // No user exists with that email address, insert a new one with it
+            // No user exists with that email address, insert a new one with it using a hashed password
             const { data, error } = await getSupabaseClient()
             .from('user')
-            .insert({ firstName, lastName, email, password });
+            .insert({ firstName, lastName, email, hashedPassword });
 
             if (error) {
                 return Response.json({ error: 'Could not complete request' }, { status: 500 });
