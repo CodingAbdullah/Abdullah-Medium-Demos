@@ -15,12 +15,12 @@ export async function POST(request: Request) {
     // Update User with new password
 
     const { data, error } = await getSupabaseClient()
-    .from('emailToken')
+    .from('EmailToken')
     .select('*')
     .eq('email', email);
 
     if (error) {
-        return Response.json({ error: error.message} , { status: 500 });
+        return Response.json({ error: error.message } , { status: 500 });
     }
     if (data.length === 0) {
         return Response.json({ error: "No email token with the email address exists" }, { status: 500 });
@@ -29,10 +29,10 @@ export async function POST(request: Request) {
         const emailToken = data[0].token;
         
         try {
-            const verification = await jwt.verify(emailToken, process.env.TOKEN_SECRET!) as { tokenID: string };
+            const verification = await jwt.verify(emailToken, process.env.TOKEN_SECRET!) as { tokenId: string };
 
             // Compare the verification ID with the hashed verification ID from JWT payload
-            const comparison = await bcrypt.compare(verificationID, verification.tokenID);
+            const comparison = await bcrypt.compare(verificationID, verification.tokenId);
             
             if (comparison) {
                 // Generate salt and hash the new password
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
                 
                 // Update user password in the users table
                 const { error: updateError } = await getSupabaseClient()
-                .from('users')
+                .from('User')
                 .update({ password: hashedPassword })
                 .eq('email', email);
                 
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
                 
                 // Delete the email token
                 const { error: deleteError } = await getSupabaseClient()
-                .from('emailToken')
+                .from('EmailToken')
                 .delete()
                 .eq('email', email);
                 
@@ -59,24 +59,24 @@ export async function POST(request: Request) {
                     return Response.json({ error: "Could not delete email token" }, { status: 500 });
                 }
                 
-                return Response.json({ message: "Password successfully reset! Email Token deleted." }, { status: 200 });
+                return Response.json({ message: "Password successfully reset! Email Token deleted" }, { status: 200 });
             } 
             else {
-                return Response.json({ error: "Invalid verification ID, password will not be reset" }, { status: 401 });
+                return Response.json({ error: "Invalid verification ID, password will not be reset" }, { status: 500 });
             }
         }
         catch (err) {
             // If token does not exist, or is invalid, delete it
             const { data, error } = await getSupabaseClient()
-            .from('emailToken')
+            .from('EmailToken')
             .delete()
             .eq('email', email);
 
             if (error) {
-                return Response.json({ message: 'could not delete token'}, { status: 500 });
+                return Response.json({ message: 'could not delete token' }, { status: 500 });
             }
             else {
-                return Response.json({ error: "Token expired, deleted from EmailToken collection!" }, { status: 401 });
+                return Response.json({ error: "Token expired, deleted from EmailToken collection!" }, { status: 500 });
             }
         }
     }

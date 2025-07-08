@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
         // Fetch any users with the associated email address
         const { data, error } = await getSupabaseClient()
-        .from('user')
+        .from('User')
         .select('*')
         .eq('email', email);
 
@@ -24,8 +24,8 @@ export async function POST(request: Request) {
         if (data.length === 0) {
             // No user exists with that email address, insert a new one with it using a hashed password
             const { data, error } = await getSupabaseClient()
-            .from('user')
-            .insert({ firstName, lastName, email, hashedPassword });
+            .from('User')
+            .insert([{ firstName, lastName, email, password: hashedPassword }]);
 
             if (error) {
                 return Response.json({ error: 'Could not complete request' }, { status: 500 });

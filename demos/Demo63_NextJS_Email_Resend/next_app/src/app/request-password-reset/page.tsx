@@ -23,7 +23,7 @@ export default function RequestPasswordResetForm() {
         else {
             setShowAlert(false);
             
-            const res = await fetch('/api/email-token/create-email-token', {
+            const res = await fetch('/api/crud/email-token/create-email-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

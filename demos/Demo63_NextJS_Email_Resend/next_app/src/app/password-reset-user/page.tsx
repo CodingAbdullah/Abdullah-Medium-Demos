@@ -25,13 +25,13 @@ export default function PasswordResetForm() {
         else {
             setShowAlert(false);
             
-            const res = await fetch('/api/email/delete-email-token', {
+            const res = await fetch('/api/crud/email-token/delete-email-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    validationID: validationCodeRef.current!.value.trim(),
+                    verificationID: validationCodeRef.current!.value.trim(),
                     email: emailAddressRef.current!.value.trim(),
-                    password: newPasswordRef.current!.value.trim()
+                    newPassword: newPasswordRef.current!.value.trim()
                 })
             });
 

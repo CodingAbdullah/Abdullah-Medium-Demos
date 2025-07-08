@@ -26,7 +26,7 @@ export default function RegisterUserForm() {
         else {
             setShowAlert(false);
             
-            const res = await fetch('/api/user/create-user', {
+            const res = await fetch('/api/crud/user/create-user', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

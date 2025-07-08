@@ -15,10 +15,26 @@ export async function POST(request: Request) {
     // Setting the email client
     const resend = new Resend(process.env.RESEND_EMAIL_KEY);
 
+    // Check to see if email address exists inside the User table
+    const { data, error } = await getSupabaseClient()
+    .from('User')
+    .select('*')
+    .eq('email', email);
+
+    if (error) {
+        return Response.json({ error }, { status: 500 }); // If error occurs, return a Response
+    }
+    else {
+        if (data.length === 0){
+            return Response.json({ message: "No email address exists! Cannot reset password" }, { status: 500 });
+        }
+        // All else, continue
+    }
+
     try {
         // Hash the UUID with bcrypt (optional - for additional security)
-        const saltRounds = 10;
-        const hashedTokenId = await bcrypt.hash(verificationID, saltRounds);
+        const salt = await bcrypt.genSalt(10)
+        const hashedTokenId = await bcrypt.hash(verificationID, salt);
 
         // Create JWT payload with the UUID
         const payload = {
@@ -28,13 +44,13 @@ export async function POST(request: Request) {
         };
 
         // Generate JWT token using the payload
-        const jwtSecret = process.env.JWT_SECRET || 'your-secret-key';
-        const jwtToken = jwt.sign(payload, jwtSecret);
+        const jwtSecret = process.env.TOKEN_SECRET;
+        const jwtToken = jwt.sign(payload, jwtSecret!);
         
         // Store in database or use as needed
         // Retrieve Email Tokens (if any) that belong to user
         const { data, error } = await getSupabaseClient()
-            .from('emailToken')
+            .from('EmailToken')
             .select('*')
             .eq('email', email);
 
@@ -45,8 +61,8 @@ export async function POST(request: Request) {
         // If no email token associated with the account, create the email and send verification ID
         if (data.length === 0) {
             const { data, error } = await getSupabaseClient()
-            .from('emailToken')
-            .insert({ email, token: jwtToken });
+            .from('EmailToken')
+            .insert([{ email, token: jwtToken }]);
 
             if (error) {
                 return Response.json({ error: error.message }, { status: 500 });  
@@ -72,7 +88,7 @@ export async function POST(request: Request) {
         else {
             // If email tokens exist, remove all of them from the database before proceeding
             const { data, error } = await getSupabaseClient()
-            .from('emailToken')
+            .from('EmailToken')
             .delete()
             .eq('email', email);
 
@@ -82,8 +98,8 @@ export async function POST(request: Request) {
             else {
                 // Once that is complete, insert the newly created Email Token into the Supabase database
                 const { data, error } = await getSupabaseClient()
-                .from('emailToken')
-                .insert({ email, token: jwtToken });
+                .from('EmailToken')
+                .insert([{ email, token: jwtToken }]);
 
                 if (error) {
                     return Response.json({ error: error.message }, { status: 500 });
