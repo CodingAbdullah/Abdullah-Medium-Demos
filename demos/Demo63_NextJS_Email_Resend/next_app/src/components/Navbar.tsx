@@ -17,10 +17,10 @@ export default function Navbar() {
                             Register User
                         </Link>
                         <Link 
-                            href="/login-user"
+                            href="/request-password-reset"
                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center"
                         >
-                            Login User
+                            Request Password Reset
                         </Link>
                         <Link 
                             href="/password-reset-user"
