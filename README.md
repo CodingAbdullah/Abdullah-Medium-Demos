@@ -533,20 +533,12 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo63_Next_Email_Resend</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/sending-emails-in-a-next-js-application-using-the-resend-package-3b004d5a0cd2">Sending Emails in a Next.js Application Using the Resend Package</a>
         </td>
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo63_SQL_Guide</code>
-        </td>
-        <td>
-            Link to Medium Article to be posted when complete
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>/demos/Demo64_Docker_Extended_Guide</code>
+            <code>/demos/Demo64_SQL_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -554,7 +546,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo65_Terraform_Guide</code>
+            <code>/demos/Demo65_Docker_Extended_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -562,7 +554,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo66_Supabase_Guide</code>
+            <code>/demos/Demo66_Terraform_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -570,7 +562,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo67_Linux_Powershell_Guide</code>
+            <code>/demos/Demo67_Supabase_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -578,7 +570,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo68_Jenkins_Guide</code>
+            <code>/demos/Demo68_Linux_Powershell_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -586,7 +578,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo69_Kubernetes_Guide</code>
+            <code>/demos/Demo69_Jenkins_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -594,7 +586,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo70_Go_Guide</code>
+            <code>/demos/Demo70_Kubernetes_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -602,7 +594,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo71_Google_Chrome_Extensions_Guide</code>
+            <code>/demos/Demo71_Go_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -610,7 +602,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo72_NextJS_AuthJS</code>
+            <code>/demos/Demo72_Google_Chrome_Extensions_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -618,7 +610,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo73_NextJS_TRPC</code>
+            <code>/demos/Demo73_NextJS_AuthJS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -626,7 +618,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo74_NextJS_Drizzle</code>
+            <code>/demos/Demo74_NextJS_TRPC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -634,7 +626,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo75_NextJS_UploadThing</code>
+            <code>/demos/Demo75_NextJS_Drizzle</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -642,7 +634,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo76_NextJS_Email_Resend</code>
+            <code>/demos/Demo76_NextJS_UploadThing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
