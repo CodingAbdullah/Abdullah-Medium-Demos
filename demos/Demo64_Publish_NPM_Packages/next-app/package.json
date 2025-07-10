@@ -1,7 +1,14 @@
 {
-  "name": "next-app",
+  "name": "kingabdullah-dummy-npm-package",
   "version": "0.1.0",
-  "private": true,
+  "description": "A sample web application for NPM publication purposes",
+  "author": "CodingAbdullah",
+  "keywords": ["next", "react", "typescript"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingAbdullah/Abdullah-Medium-Demos.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
