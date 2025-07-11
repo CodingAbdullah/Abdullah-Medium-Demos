@@ -537,11 +537,11 @@ Table highlighting the current demos completed along with their code repository 
         </td>
     </tr>
     <tr>
-    <td>
-        <code>/demos/Demo64_Publish_Node_Packages</code>
+        <td>
+            <code>/demos/Demo64_Publish_Node_Packages</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/quick-look-at-publishing-packages-to-the-npm-registry-f37a3e673495">Quick Look at Publishing Packages to the NPM Registry</a>
         </td>
     </tr>
     <tr>
