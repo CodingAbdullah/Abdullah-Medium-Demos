@@ -1,0 +1,86 @@
+Quick Look at Publishing Packages to the NPM Registry Abdullah Muhammad 6 min read · 5 days ago -- Basic understanding of JavaScript, NPM, and web development will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In this short article, we will explore publishing your own NPM packages.
+ We have looked at NPM in the past and its rich JavaScript ecosystem, but we did not touch on package publishing.
+ Publishing requires you to have an account with NPM.
+ This allows you to authenticate yourself and publish a package of your own.
+ In this article, we will explore two packages that I have published myself to the NPM ecosystem.
+ We will touch on publishing a dummy package to NPM and learn how the publication process works.
+ The key component to all this is the package.
+json file.
+ Not only is it vital for developing modern JavaScript applications, it serves as a blueprint which NPM uses to document the key features of your JavaScript application.
+ This includes everything from title, versioning, licensing, installation, documentation, dependencies, and so much more.
+ It is important to ensure all the key features (including the optional ones), are filled out in order to publish a package that developers can read through and understand how to use.
+ There is no point in publishing a package that nobody knows how to use.
+ Documentation is key.
+ Key Features of the package.
+json File Let us now look at the key features of the package.
+json file.
+ This will help you get familiarized with the most vital things you need to include for NPM publishing.
+ Aside from including a detailed README.
+md file (which NPM uses for publishing package documentation), the following features are noteworthy to include for a successful publish: name — Name of the package you would like to publish version — Version number of the package to be published main — The entry point for your JavaScript application when accessing this package license — Copyright and usage rules are outlined with a license name The following list details optional fields you can include as well: description — What the package entails, what it allows developers to do keywords — Fields the package is related to (frameworks, languages, etc.
+) author — Whose name the package is being published under repository — Link to the version control repository responsible for maintaining the package homepage — Website link that is dedicated to detailing information about the package scripts —Highlight commands that can be used in development dependencies (mandatory if project uses any) — Any third-party packages the package itself depends on for development public/private publishing — Boolean field that indicates whether to publish a package privately or public for everyone to access The gist below highlights what a minimal package.
+json file looks like for a successful NPM publish: Of course, adding more details to the file would make for a better publish, but the minimum required fields are all complete.
+ Publishing a Dummy Package You can follow along by cloning this repository.
+ The demo directory we will be focusing on is /demos/Demo64_Publish_NPM_Packages/next_app.
+ The application is a simple Hello World website that uses the Next.
+js App Router.
+ We will publish this dummy web application to NPM.
+ Most NPM packages serve as solutions for developers to integrate into their own projects.
+ Packages are basically third-party problem solvers which developers can readily use without having to code out their own custom solutions.
+ To get started, you need to ensure dependencies are installed by running npm install.
+ Once that is complete, we look at the package.
+json file and look at the key features we discussed earlier: As you can see, the package.
+json file encompasses fields we discussed earlier.
+ Optional fields are also added to enhance developer experience.
+ A basic README.
+md file is also provided that covers documentation for the package: A basic file for a basic web application which succinctly details how to use this package.
+ Publishing to the NPM Registry To start the publication process, you need to authenticate yourself.
+ You do this by running npm login from the development console (inside this repo).
+ You need to enter in your NPM account credentials in the prompt window.
+ Once that is complete, NPM will know the destination of the published packages.
+ After that, you simply run npm publish to build and upload your newly created package to the NPM registry.
+ The console will notify you if there are any errors during the publishing process.
+ You can see the published package by searching for Packages under your account on the NPM website.
+ The following image details what you should see upon a successful publication: You can see the NPM package page containing all the relevant information from your package.
+json file.
+ This includes the title, description, versioning, dependencies, keywords, licensing, and the README.
+md file which serves the main documentation for the package.
+ If we want to re-publish this package, we can do so by adjusting the version number in the package.
+json file.
+ You cannot re-publish under the same version number.
+ My Own Published Packages Recently, I have published two packages to NPM which I believe are great tools for developers in the web3 and blogging space.
+ They are listed below: Ethereum Hooks Next MDX Blog Starter Kit Ethereum Hooks The Ethereum hooks package is dedicated to providing developers easy access to free crypto API endpoints by invoking from a set of custom hooks.
+ The package itself uses a custom hook for optimizing the data fetching process.
+ With the help of these custom hooks, developers can readily access data related to the Ethereum ecosystem such as ENS, ERC20/721 tokens, wallet activity, and so on.
+ No need to write excessive boilerplate code for fetching data on the Ethereum blockchain.
+ Simply pass in values as parameters to any of these custom hooks and you get access to everything.
+ Common API libraries supported: Alchemy, CoinGecko, etc.
+ Feel free to explore and learn more about this package here.
+ Next MDX Blog Starter Kit Jumpstart blog development with the help of Next.
+js, MDX, AWS S3, and Supabase.
+ The web application utilizes the App Router for development and allows users to serve static and dynamic content using Supabase.
+ Packages related to MDX (Markdown + JSX) are used such as MDXRemote for fetching content from Supabase.
+ A custom mdx-components.
+tsx file is also provided which details custom MDX components and styling for built-in elements used in MDX files.
+ AWS S3 is used for storing files and images that belong to published blog posts inside a S3 bucket.
+ The layout design is inspired by the Lovable development agent.
+ The package contains scripts for running CRUD operations on articles, SQL scripts for setting up the Supabase database, Powershell/Shell scripts for quick project setup, and a Dockerfile for running a containerized version of the web application.
+ Feel free to explore and learn more about this package here.
+ Conclusion To conclude, we looked at publishing packages to the NPM registry.
+ We touched on the key features of a package.
+json file and what is required for publishing.
+ We did a demo of the publication process using a dummy web application and looked at two commands that help with the authentication and publishing process.
+ We also explored two packages that I pushed to the NPM registry.
+ Below, you will find links to the NPM registry, GitHub repository used in this article, package.
+json docs, and links to the two published packages we discussed earlier: GitHub Repository package.
+json Docs NPM Registry Docs Ethereum Hooks NPM Package Next MDX Blog Starter NPM Package I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Twitch Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com

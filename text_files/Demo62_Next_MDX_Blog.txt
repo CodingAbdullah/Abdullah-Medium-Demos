@@ -1,0 +1,178 @@
+Building Out a Next.
+js Blog Using AWS S3, MDX, React, and Supabase Abdullah Muhammad 11 min read · Jun 15, 2025 -- Basic understanding of MDX, Next.
+js, and React.
+js will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In this short article, I will cover a GitHub repository that I created to serve as a starter kit for you to use when constructing a blog using MDX/Next.
+js.
+ We will look at serving both static and dynamic content using MDX, JSX components, Next.
+js, and storing article data using Supabase.
+ We will cover Supabase in a future tutorial, but for now, understand that it is a highly available, scalable Postgres SQL database.
+ We looked at MDX and serving content using it in a previous tutorial with React.
+ However, create-react-app is now deprecated and it is recommended to use a framework that integrates the React library instead.
+ So in this article, we will cover using MDX in a Next.
+js app.
+ Code Overview and Setup You can follow along by cloning this GitHub repository (mdx-medium-blog-post-provider).
+ We are using Next’s App Router for development.
+ The goal is to allow you to jumpstart blog development by writing articles featuring all the key styling features you get when you write on this platform, Medium.
+ We will look at styling built-in elements as well as building your own JSX components and incorporating them in your markdown files.
+ Remember, MDX is a combination of both Markdown and React.
+ It allows you to construct files using plain Markdown and render JSX components into your MDX files.
+ We will use helper packages such as gray-matter and react-syntax-highlighter to help with processing file data and styling custom components.
+ MDX Setup and Custom JSX Components To work with MDX, we need the following packages: @mdx-js/react, @mdx-js/loader, @types/mdx, and @next/mdx.
+ This will help us setup and use MDX in the project.
+ In the root location (mdx-medium-blog-post-provider), you will find a file named specifically, mdx-components.
+tsx.
+ It needs to be named this way when working with the App Router.
+ The file consists of a custom React hook useMDXComponents and a custom type MDXComponents imported from the @types/mdx package.
+ The React hook exports an object which maps element names (like h1 , p, code, etc.
+) to functions which outline styling to be used across MDX files.
+ In your MDX files, there is no need to import components or define styling of elements.
+ If you define your styles in this way, Next will know how to render each component at run-time.
+ This is how the mdx-components.
+tsx file is defined in this project: We outline styling for basic elements such as lists, paragraphs, blockquotes, headings, tables, and font styling such as bolding and italicizing.
+ We incorporate optimization components such as Image and Link provided by Next.
+js when we outline styling for both the a and img HTML elements.
+ We have defined three custom components that we import and pass into the React hook named CodeBlock, GitHubGist, and MDXImage.
+ We will cover each of these shortly in the next section.
+ You can find each of these components in /src/components/customMDXComponents.
+ CodeBlock For working with code blocks, we can define custom styling for it.
+ The react-syntax-highlighter package is a popular package for defining and using syntax styling in a custom component.
+ There are many styling libraries out there, but I chose to stick with the react-syntax-highlighter package.
+ It is very easy to use and allows you to choose and integrate popular styles into your custom components.
+ Here, we are using the vscDarkPlus theme from the package and you can see the implementation below: Pretty simple and straight forward component to understand and use.
+ GitHubGist When working with GitHub Gists, care must be taken to ensure scripts are handled safely.
+ You should not inject scripts directly into your pages without checks.
+ Otherwise, site pages can be vulnerable to scripting attacks (XSS).
+ GitHub allows you to gather publicly accessible Gists.
+ You can access a Gist’s raw content with a single API call using its specific Gist ID.
+ We access content using the raw_url property.
+ Below, you will find code for this custom component.
+ I use the react-syntax-highlighter for importing and using a custom style for the GitHub Gist: A custom GitHubGistType data type is defined for handling props src/utils/types.
+ Defined within this type are two properties, the GitHub Gist ID and the figure caption text.
+ You can find more information on accessing GitHub Gists by reading up their official docs here.
+ MDXImage When working with imaging, I decided to construct a custom component that allows users to import images and use figure captions underneath.
+ A custom MDXImageType data type is defined for handling props src/utils/types.
+ Defined within it are image properties such as src, height, width, alt, and figure caption text.
+ We also use Next’s Image component to optimize image rendering.
+ Static and Dynamic MDX Content When working with MDX content, there are two ways of accessing and displaying content.
+ The static method allows you to readily work with files stored locally while the dynamic method fetches, loads, and displays MDX content to the user.
+ For small content sites, the static method is probably ideal because the file size and quantity may not be that much, but for content-rich sites, you may prefer the dynamic route.
+ In this project, we will explore both methods of content rendering.
+ Static Rendering In the src/markdown section, you will find two MDX files.
+ One is used for static rendering and the other, while located in the project directory, is actually fetched from Supabase.
+ We will explore the latter a bit later.
+ For static rendering, the process is straight forward.
+ The MDX file is stored locally (ArticleContent.
+mdx ) and loaded via a JSX component.
+ We have one route that handles static rendering and that is located here /src/app/sample-blog-post-page/page.
+tsx.
+ We have defined a custom component known as StaticArticle to render the page content.
+ It can be found here /src/app/components/StaticArticle.
+tsx.
+ How can you use MDX files inside your JSX components?
+ That is a great question.
+ We will look at adding page extensions to your project a bit later, but understand that you can use MDX files in your JSX components by importing them as if they were a JSX component.
+ File-based page routing works the same way.
+ For example, we define routes using folders and content of a specific path is defined using a page.
+tsx file.
+ You have the option of working with both page.
+mdx and page.
+tsx files as your content sources.
+ MDX files can contain JSX components, but if your page incorporates other aspects of TypeScript, you can opt to use a page.
+tsx file and import standalone MDX content from MDX files as a JSX component.
+ You can find more information on this by reading up the official Next/MDX documentation here.
+ Dynamic Rendering You can render MDX content dynamically by fetching it from a data source.
+ In this case, I am fetching article content from a Supabase database.
+ The table definition I used for the starter kit can be found here /scripts/sql/DDL/createTable.
+sql: Most of these properties are straight forward to understand.
+ However, the most important properties we are concerned with are the slug and content properties.
+ For dynamic post rendering, we use these article slugs to define dynamic page routes and use these slugs to fetch article content that is rendered in a separate JSX component dedicated to rendering MDX content.
+ For simplicity, we use the name of the MDX file to serve as the slug.
+ The second MDX file, /src/markdown/DynamicArticleContent.
+mdx is used for dynamic post rendering.
+ The article is inserted into the Supabase database and when we access this route /app/dynamic/[dynamic_blog_post], we capture the slug associated with the requested article.
+ We run a fetch call using this slug to see if it exists in the Supabase database.
+ If none exists, we throw an error and if it does, we render page content.
+ Here is the page.
+tsx file for the aforementioned dynamic route: We wrap a custom defined JSX component known as DynamicArticle that captures and renders article content using the slug we pass in via props.
+ Below, you will find the code gist associated with that custom component: We use a function defined in the src/utils/functions/crud/fetchArticle.
+ts file to fetch article data associated with the captured slug.
+ If none exists, we throw an error (as stated earlier) and if not, we appropriately render article data.
+ If you look into the fetchArticle function, you will find that no API calls are made to the back-end to fetch data.
+ That is because we are working with a React server component and we do not need to worry about revealing credentials client-side.
+ We have custom components for handling the article header and footer, but the main component we are concerned with is the MDXRemoteArticle component.
+ Note that we pass in the fetched content as a prop to the MDXRemoteArticle component.
+ Its code gist can be found below: We use a custom component known as MDXRemote provided by the next-remote-mdx/rsc package for rendering remotely fetched MDX content.
+ MDX files can contain front-matter which is like article metadata (it is defined with opening and closing ---).
+ It is separate from the actual article Markdown content.
+ You can see we use the gray-matter package to de-structure front-matter content from the actual article content we capture from Supabase (using the content property) and pass this into the source prop of the MDXRemote component.
+ We also pass in the useMDXComponents custom hook function (we defined earlier) to tell the MDXRemote component how to render the MDX content.
+ There are more subtle pieces to rendering dynamic MDX content, but that pretty much sums it up.
+ Project Configuration When configuring the project, a lot of setup is required.
+ Firstly, we need to define a way to access Supabase.
+ We can do this by defining a Supabase client object of type SupabaseClient (imported from the @supabase/supabase-js package) and passing in the Supabase URL and anon key.
+ Remember, you need to define a .
+env file of your own and pass in your credentials that way.
+ You can find the Supabase client exported in a file located here /src/utils/functions/SupabaseClient.
+ts.
+ You can also find files that contain functions for enabling CRUD operations on your articles here /src/utils/functions/crud/.
+.
+.
+.
+ A custom script that allows you to invoke these CRUD functions can be found here /scripts/action-script/article-manager.
+ts.
+ In the scripts directory, you will find Shell, PowerShell, and SQL scripts for working with setting up the main components of this project as well as setting up the Supabase database with some mock content.
+ A Dockerfile resides in the root location of the project which allows you to create an image and run a containerized version of the project locally.
+ And if you thought that was not enough, you can take a look at the next.
+config.
+ts file where we handle working with MDX and external links.
+ Below, you will find that file associated with this project: Images are uploaded and fetched from AWS S3.
+ I have added my own S3 bucket URL, but feel free to modify it and add your own.
+ We handle MDX files by incorporating the .
+md and .
+mdx file extensions in the page extensions property as well as wrapping and exporting the Next.
+js configuration object using the createMDX() function.
+ Additionally, you will find constants and JSX components we have not explored in this article.
+ These are primarily used for mock data and page component setup.
+ That is all there is to the project setup.
+ Demo You can kickstart the development server by running npm run dev.
+ Ensure that you have installed the required project dependencies by running npm install and added the required secrets in a separate .
+env file of your own (SUPABASE_URL, SUPABASE_ANON_KEY).
+ Upon loading, you should land at the home page: You have two routes in the starter kit.
+ One is associated with static rendering and the other is dynamic rendering of MDX content.
+ Selecting the first route should yield the following: For this route, we are using the ArticleContent.
+mdx file located in the src/markdown directory.
+ Selecting the second route from the home page should yield the following: For this route, we are using the DynamicArticleContent.
+mdx file located in the src/markdown directory.
+ As you can see, the UI in both cases is exactly the same.
+ However, the page content is rendered very differently behind the scenes.
+ Global styling is defined in the globals.
+css file located in the project’s root location.
+ Feel free to make changes to styling as you wish.
+ Deployed Project and NPM Package I have also deployed a production version of this starter kit.
+ You can find it running live here.
+ I have published an NPM package for you to readily install via npx locally.
+ There is no need to clone the GitHub repository and make changes that way.
+ If you would like a quick, standalone way of working with the starter kit independently this is the way to go.
+ The link to the NPM package can be found here.
+ Conclusion All in all, we did a deep dive into a starter kit you can use to kickstart your own Next.
+js blog using MDX content.
+ We looked at key features of MDX when working with Next.
+js such as the mdx-components.
+tsx file as well as custom JSX components that can be used in your own MDX files.
+ We explored static and dynamic rendering of MDX content as well as storing and retrieving articles from foreign sources such as Supabase.
+ A dedicated section of this article briefly touched on project configuration and how you can use the different files to jump start development.
+ Below, you will find links to the GitHub repository used in this article as well as links to the official MDX docs, Next.
+js docs, Supabase docs, official starter kit link, and NPM package link: GitHub Repository Official MDX Docs Next.
+js Docs Supabase Docs Official Starter Kit Link NPM Package Link In the official Medium article repository (demo 62), you can read up a nice summary of the project setup.
+ I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Twitch Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com

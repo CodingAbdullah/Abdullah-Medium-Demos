@@ -1,0 +1,121 @@
+Sending Emails in a Next.
+js Application Using the Resend Package Abdullah Muhammad 11 min read · Jul 8, 2025 -- This article assumes the reader has knowledge of full stack development and is comfortable working with JavaScript.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In past tutorials, we covered JWTs, protected routes, authentication using Node.
+js, and the Express.
+js framework.
+ We explored sending and receiving emails using the Simple Mail Transfer Protocol and the Nodemailer package.
+ Today, we will cover the Resend package for efficient email handling and using Next’s App Router.
+ We will look at using JWTs (again) for completing successful password resets.
+ When building out an enterprise grade application, it is almost certain that some sort of email communication will be required.
+ We can utilize SMTP and packages that handle emails programmatically to successfully create and send emails.
+ This is a modified diagram of what we looked at previously: We will use the App Router and JWTs for registration, password resets, and sending/receiving emails containing password reset tokens.
+ Resend Resend is a module similar to Nodemailer that allows developers to create and send emails easily.
+ We will utilize this package for successfully completing password resets.
+ Whenever a user requests to reset their password, they must provide their email address.
+ Often times, a token or link is sent to the email address with a specific expiry date and the user must verify themselves in order to reset their old password.
+ That is what we will implement in the code overview section.
+ We will incorporate the Resend library, JWTs, UUIDs, and the Bcryptjs library to successfully create, secure, and send emails containing an ID which the user must use to verify themselves before proceeding to reset their password.
+ Link to the Resend module is here.
+ SMTP We covered the Simple Mail Transfer Protocol in the Nodemailer tutorial.
+ Simply put, it is a layer seven protocol in the OSI (Open Systems Interconnection) model.
+ Like other protocols such as HTTP/S, SSH, and FTP (we covered these as well) it allows one to send and receive emails programmatically.
+ Similar to how other application layer protocols have designated ports such as port 80 for HTTP or port 443 for HTTPS, email clients use SMTP on ports 465 or 587 for sending and receiving emails to/from a mail server.
+ When we use the Resend email package, we do not have to worry about any of these intricate details.
+ We simply utilize the package’s built-in functions for sending and receiving emails.
+ The Process The approach of resetting passwords is straightforward.
+ The following is copied straight from the Nodemailer tutorial: User must enter email of a registered account to request password reset If email is invalid, an alert is thrown, else an email containing the verification ID is sent with an expiry time of 5 minutes User must login to their email account and copy/paste the verification ID User must paste this ID and create a new password User is notified if the password change was successful That is all there is to it.
+ In the demo, we will work with Supabase for setting up a database and creating tables that contain information on users and the password reset tokens.
+ If you are not familiar with Supabase, you can read their official docs here.
+ In a future tutorial, we will explore Supabase in greater detail.
+ Just know that it is a robust, scalable PostgreSQL database solution for data storage.
+ Code Overview You can follow along by cloning this repository.
+ The directory we will be focusing on is /demos/Demo63_NextJS_Email_Resend/next_app.
+ For password resets, we rely on a custom model named EmailToken.
+ This model consists of two attributes: email and token.
+ It will be used to keep track of all the verification IDs sent via emails and ensure only one verification ID exists per user.
+ So, if a user requests to reset a password over and over, the old token stored in the EmailToken table is deleted and a new one is saved.
+ This ensures that there is only one valid token associated per user.
+ A new email is also sent containing the new verification ID.
+ Streamlined Performance with Supabase and RSC Components The beauty about working with Supabase is that, unlike MongoDB, where we need extra code to create and work with database models, we can create tables and define their schemas inside the Supabase database using the console.
+ We can also run CRUD operations (create, read, update, and delete) from React server components themselves as code written in these components runs server-side.
+ We run authenticated calls to the Supabase database and perform the desired change operations without leaking Supabase credentials.
+ We do away with the extra step of setting up a back-end and running calls to it.
+ Within the React server components, we can also utilize the Resend package for creating and sending emails containing the tokens for password resets.
+ Database and Resend Setup The second model we will be working with is called User and it consists of four attributes: firstName, lastName, email, and password.
+ You can create these two models inside Supabase by first creating a new project and editing tables using the Table Editor option of the console.
+ You can define each of these models like this: User firstName— text lastName— text email— varchar password — varchar EmailToken email — varchar token — text Very easy and straight forward to do inside Supabase.
+ You will also need to grant full access to these tables by defining a policy and setting it to ALL.
+ You can do this by selecting the Database option inside the console and selecting policies from the list.
+ From there, you can select each of these tables and granting full access by defining and setting an ALL access policy.
+ You will need to copy over your Supabase credentials in a separate .
+env file in the root directory of the project.
+ The two keys in a Supabase project are defined below: SUPABASE_URL='<Project URL goes here>' SUPABASE_ANON_KEY='<Project Anon key goes here>' You can find these keys in the main section of your Supabase project.
+ Simply copy and paste these values into the keys mentioned above.
+ To work with Resend, you will need to setup an account or grant access to your GitHub account.
+ Once you are through, you will need to copy over the API key they provide you with in order to work with the Resend module.
+ Simply copy and paste it into your .
+env file like this: RESEND_EMAIL_KEY='<API key goes here>'.
+ That is all for setting up the database and Resend module.
+ Password Reset Process Registering a user is very easy.
+ First, you check to see if the email address the user entered is valid (as are the other requested fields).
+ You run a check against the User table to ensure the email address does not already exist.
+ If not, you register the account (perhaps with an additional step of sending a verification code to the email address to ensure the user is in fact who they claim they are).
+ Resetting passwords is where things get slightly complex.
+ If a user requests to reset their password, we first run a check to see if the email address requesting the change exists in the system.
+ If so, we do the following: UUID library is used to generate a random ID as the verification ID The verification ID is hashed using the Bcryptjs library Any previous EmailToken records associated with user are deleted A new JWT is signed with an expiry of five minutes and uses the hashed ID as the payload The email and JWT are stored as a new record inside of the EmailToken table Resend is used to create and send an email that contains the un-hashed value of the verification ID “Wait, why are we using JWTs?
+” They make the password reset process easy.
+ We want to set a time limit for how long the verification ID can be valid for.
+ By saving them as a payload inside a JWT, we can know for sure that if the JWT expires, the ID will also be invalid.
+ JWTs can be decoded.
+ By ensuring the ID is hashed before storing it as a payload inside a JWT, we maintain its authenticity in case of a data breach.
+ “So in essence, the EmailToken table saves one JWT consisting of a payload that contains the hashed version of the verification ID associated with an account?
+” Yes, that is all there is to it.
+ Once the user successfully resets the password using their email address, the verification ID, and new password, the following process takes place: Check the EmailToken table for the particular email and extract the JWT token If JWT is not valid, the verification ID expired so respond with an error and delete the EmailToken record If JWT is valid, decode the payload and compare the submitted verification ID to the hashed ID stored inside JWT If comparison runs false, user entered an invalid ID and respond with an error If comparison runs true, hash the new submitted password and update the User record inside User table and delete the EmailToken record associated with the email as well And that is all!
+ We are leveraging the power of many different libraries all at once and have incorporated Resend to help along the way!
+ Deep Dive into the CRUD Operations We will start by registering a user.
+ After that, we will touch on password resets.
+.
+ Below, you will find the codebase used for registering a new user /src/app/api/crud/user/create-user/route.
+ts: We first check to see if a user exists with the given email address.
+ If no records are found, we proceed to create the new user and insert a new record into the Supabase database.
+ We also make use of the bcryptjs library to successfully salt and hash the password before inserting it into the database.
+ The following GitHub Gist details the process of requesting a password reset token for a password reset /src/app/api/crud/api/create-email-token/route.
+ts: Everything in this codebase follows a process we detailed earlier.
+ Some noteworthy things to touch on: JWT expiry time is set to five minutes and a personal TOKEN_SECRET value is used to sign the token Database checks are run to ensure the user exists and only one token can be associated with the user UUID, bcryptjs, jsonwebtoken, and the Resend library are used to create the verification ID, hashed ID payload, JWT, and the email containing the JWT which consists of the hashed ID as the payload onboarding@resend.
+dev is used to send out emails (from attribute) this is a built-in email address provided by Resend which we can use to send out emails Custom EmailTemplate JSX component is used to define the email structure which is the email body and is provided via the react attribute You can find the EmailTemplate JSX component here /src/app/components/EmailTemplate.
+tsx.
+ Finally, the actual password reset takes place here /src/app/api/crud/email-token/delete-email-token/route.
+ts: Again, we first check to see if the user exists.
+ If so, we proceed to first verifying the JWT is valid and then checking to see if the verification ID the user provided matches that of the JWT payload.
+ We use the jsonwebtoken and bcryptjs libraries to help with this (verify and compare functions).
+ If the comparison runs true, we proceed to update the user account password to the newly provided password.
+ Prior to insertion, we make sure to salt and hash this password.
+ Finally, we delete the password reset token associated with the account and complete the password resetting process.
+ Feel free to explore the utils directory and other front-end components that make up this web application on your own.
+ You will find the SupabaseClient module here and that is used to establish connection to the Supabase database.
+ Demo Time!
+ Make sure to have a valid email account and ensure the account is setup to receive emails.
+ Ensure all dependencies are installed via npm install and that you have added four credentials in a separate .
+env file of your own: SUPABASE_URL SUPABASE_ANON_KEY TOKEN_SECRET RESEND_EMAIL_KEY All good?
+ Upon launching the development server, you should land on the home page and proceed to the register user section by selecting Register User at the top: If done correctly, you should see something like this: Now, we try to reset the password!
+ Proceed to the Request Password Reset page and enter in the email address for which you want to reset the password: Upon form submission, you should be sent an email containing the verification ID you will need to use to successfully reset the password of your account (assuming the account exists).
+ You should also see an entry of a password reset token in the EmailToken table inside Supabase: To reset the password, you will need to visit the Password Reset page and enter in the email address, verification ID (you obtain from the email), and the new password.
+ You should receive an email that looks something like this: The email body conforms to the structure outlined in the EmailTemplate JSX component we noted earlier.
+ All you need to do now is copy/paste this verification ID into the password reset form and complete the reset process: Once this is successful, you will notice that the email token associated with this account is removed from Supabase: You will also notice that the user password associated with the account is updated to contain the new hashed password: That is all for the demo!
+ Emails sent using Resend are a breeze.
+ We do not need to worry about setting up a mail server or worry about additional configurations such as setting the header signatures, acceptable email domains, and so on.
+ All we need to do is provide a custom JSX component which defines the email body, utilize a built-in Resend email address (for ease of testing), and a valid email account that can send/receive emails.
+ Conclusion In all, we explored the Resend email package in great detail for sending and receiving emails.
+ We looked at registering user accounts and resetting account passwords.
+ We used the UUID, bcryptjs, and jsonwebtoken libraries for password resets and setup a Supabase database which contained information related to accounts and password reset tokens.
+ Below, you will find links to the GitHub repository used in this tutorial as well as links to the Resend email package, JWT official docs, and the Supabase official docs: GitHub Repository Resend Email Package JWT Official Documentation Supabase Official Documentation I hope you found this tutorial helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Twitch Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com
