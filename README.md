@@ -546,7 +546,15 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo65_NextJS_UploadThing</code>
+            <code>/demos/Demo65_NextJS_Drizzle</code>
+        </td>
+        <td>
+            <a href="https://medium.com/@abdullah_95/database-management-using-drizzle-orm-supabase-and-next-js-13904b38c818">Database Management Using Drizzle ORM, Supabase, and Next.js</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo66_NextJS_UploadThing</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -554,7 +562,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo66_NextJS_AuthJS</code>
+            <code>/demos/Demo67_NextJS_AuthJS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -562,7 +570,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo67_NextJS_Stripe_Payments</code>
+            <code>/demos/Demo68_NextJS_Stripe_Payments</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -570,7 +578,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo68_NextJS_TRPC</code>
+            <code>/demos/Demo69_NextJS_TRPC</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
@@ -578,15 +586,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo69_Supabase_Guide</code>
-        </td>
-        <td>
-            Link to Medium Article to be posted when complete
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>/demos/Demo70_NextJS_Drizzle</code>
+            <code>/demos/Demo70_Supabase_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
