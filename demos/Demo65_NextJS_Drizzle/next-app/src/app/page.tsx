@@ -1,4 +1,4 @@
-
+// Home page for custom application
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
