@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.83.0",
@@ -20,8 +23,10 @@
     "next": "15.4.4",
     "pg": "^8.16.3",
     "postes": "^1.0.0",
+    "postgres": "^3.4.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "superjson": "^2.2.2",
     "zod": "^4.0.9"
   },
   "devDependencies": {
