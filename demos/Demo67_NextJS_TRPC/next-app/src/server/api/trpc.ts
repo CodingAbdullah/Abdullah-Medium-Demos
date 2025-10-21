@@ -1,6 +1,7 @@
 import { initTRPC } from '@trpc/server';
 import { ZodError } from 'zod';
 
+// Initialize the TRPC server
 const t = initTRPC.create({
   errorFormatter({ shape, error }) {
     return {

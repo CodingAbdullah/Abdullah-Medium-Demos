@@ -3,7 +3,7 @@ import { usersRouter } from './routers/users';
 
 // Router for working with the User object inside the Supabase database
 export const appRouter = createTRPCRouter({
-  users: usersRouter,
+  users: usersRouter
 });
 
 export type AppRouter = typeof appRouter;
