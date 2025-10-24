@@ -11,7 +11,7 @@ export const usersRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string().min(1),
-        email: z.string().email(),
+        email: z.string().email()
       })
     )
     .mutation(async ({ input }) => {
@@ -19,7 +19,7 @@ export const usersRouter = createTRPCRouter({
         .insert(users)
         .values({
           name: input.name,
-          email: input.email,
+          email: input.email
         })
         .returning();
       

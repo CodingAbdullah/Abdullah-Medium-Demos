@@ -564,8 +564,8 @@ Table highlighting the current demos completed along with their code repository 
         <td>
             <code>/demos/Demo67_NextJS_TRPC</code>
         </td>
-        <td>
-            Link to Medium Article to be posted when complete
+        <td>            
+            <a href="https://medium.com/stackademic/type-safety-with-trpc-and-the-next-js-app-router-1025533d37be">Type Safety with tRPC and the Next.js App Router</a>
         </td>
     </tr>
     <tr>
