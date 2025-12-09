@@ -1,0 +1,85 @@
+Database Management Using Drizzle ORM, Supabase, and Next.
+js Abdullah Muhammad 5 min read · Jul 23, 2025 -- Basic understanding of relational databases, SQL, and the Next.
+js App Router will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In this article, we will explore the Drizzle ORM library which is a very useful library for working with relational databases.
+ It is similar to the Sequelize ORM library which we explored when we touched on AWS RDS, a cloud relational database service.
+ The beauty about Drizzle is that the learning curve is low.
+ If you are familiar with relational databases and concepts related to SQL such as tables, records, primary/foreign keys, database constraints, DML/DDL, and models, you should be well equipped to learn Drizzle.
+ In this article, we will cover Drizzle configuration, create schemas, connect with Supabase, migrations, and touch on the advantages you get with Drizzle over the simple Supabase-js library.
+ Note that the Supabase client library is good for basic queries and type safety is optional.
+ We have not explored Supabase in an article, but we will in a future one.
+ Drizzle offers you the ability to create complex queries while guaranteeing type safety along the way.
+ Drizzle enhances security because queries run on the server which ensures that there is safety and privacy of data when queries are being processed.
+ As an ORM tool, it offers developers the ability to create SQL-like queries that can be programmatically performed on database tables.
+ SQL and Database Refresher The documentation concerning Drizzle is thorough and comprehensive so there is no need to go through the basic concepts.
+ You can read more about them in their official docs here.
+ We will cover database interactions.
+ More importantly, the CRUD operations.
+ SQL Dialects and Nomenclature If you have worked with MySQL or any variation of SQL (there are tons of dialects out there), you will have come across a concept of “enforcing schema”.
+ In this tutorial, we will work with Supabase which is a scalable PostgreSQL database which, more or less, is similar to MySQL.
+ Various objects can exist within a relational database.
+ They could represent different things such as indexes, tables, and so on.
+ In fact, SQL has a subset language used to create these objects known as, Data Definition Language (DDL).
+ Data is stored in tables and that is where the “enforcing schema” concept comes into play.
+ When we define table structure using Drizzle, we are essentially setting rules that dictate what data can be inserted into the table.
+ “What describes how we can interact with these objects?
+” Aside from DDL, there is another subset language in SQL that describes how we can interact with database objects and it is known as Data Manipulation Language (DML).
+ That is where the basic CRUD operations come into view.
+ We write commands against the table to “manipulate” data stored there.
+ “Great!
+ But so far, you have talked about SQL.
+ How does this relate to Drizzle?
+” Drizzle is an ORM which allows one to map table attributes as an object which we can programmatically run queries against.
+ There is no need to run SQL code as these are considered the equivalent of running DML statements.
+ Drizzle ORM is very similar to Sequelize so if you have worked with it or any other ORM tool, this should be straight forward.
+ Drizzle Deep Dive You can follow along by cloning the following repository.
+ The directory of concern is demos/Demo65_Drizzle_Supabase/next-app.
+ We will look at all the required Drizzle dependencies needed to kickstart development and then proceed to looking at configuration, schemas, migrations, and most importantly, queries.
+ Drizzle ORM Configuration To get started, we need to install the following packages: drizzle-orm postgres drizzle-kit @types/pg pg Once that is out of the way, we need to set it up in a custom drizzle.
+config.
+ts file which lies in the root location defined below /src/drizzle.
+config.
+ts: We define a very simple configuration file which details the location of the schemas we are working with as well as the SQL dialect.
+ Simple and straight forward.
+ Drizzle Supabase Connection In order for Drizzle to know which database to perform operations, we must define and establish a database connection.
+ The following file details that /src/db/database.
+ts: Now, with every query request, Drizzle will have access to the appropriate database.
+ Since we are working with Supabase and accessing it via an ORM, the connection setup is slightly different.
+ We only need to specify the DATABASE_URL to connect to it.
+ When working with the Supabase client library, you will need an ANON_KEY along with the DATABASE_URL to connect to it.
+ Drizzle Schemas This is the heart of it all.
+ Inside the db directory, you will find a sub-directory named schemas.
+ In the schemas directory, you will find a simple file which defines the User model (or, in this case, a table) detailing all the related attributes associated with it.
+ This defines what records are acceptable in the User table.
+ Insertion of records that do not match this criteria will be rejected.
+ Remember, relational databases enforce schemas so data must adhere to it.
+ The following file details the User schema src/db/schema/User.
+ts: We use built-in functions such as text, serial, and timestamp to set the different data types.
+ We can also add constraints to each of the table attributes using functions such as primaryKey, notNull, and unique.
+ Drizzle Migrations Supabase needs to understand what tables it is working with.
+ In the past, we would have a separate directory dedicated to making migrations to the database.
+ Instead, we can simply run a command to migrate local data to the database.
+ We can define a set of scripts as seen in this package.
+json file definition: For simple workflows, you can run npm run db:push and this will allow Drizzle to migrate your local work to the database.
+ After that, you are good to go.
+ Drizzle Queries The back-end makes use of the User schema we defined earlier.
+ We can create a separate file that is dedicated to running the most basic CRUD operations src/db/queries/UserTableQueries.
+js: We can make use of operators provided by the drizzle-orm library such as eq to help structure database queries.
+ There are loads of operators you get with the drizzle-orm library which can help you create complex database queries.
+ Conclusion We explored the Drizzle ORM library in detail and worked with a Supabase database to establish a database connection, create schemas, perform migrations, and run queries.
+ A section of this article was devoted to refreshing memory on SQL and SQL nomenclature.
+ Drizzle is a safe, server-side tool that every Next.
+js developer should be familiar with.
+ You get the added benefit of type-safety by having the ability to write queries in pure TypeScript.
+ No need to ever write SQL code.
+ Below, you will find links to the GitHub repository, Drizzle ORM docs, and the official Supabase docs: GitHub Repository Drizzle ORM Docs Supabase Docs I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+ Thank you for being a part of the community Before you go: Be sure to clap and follow the writer ️👏️️ Follow us: X | LinkedIn | YouTube | Newsletter | Podcast | Twitch Start your own free AI-powered blog on Differ 🚀 Join our content creators community on Discord 🧑🏻‍💻 For more content, visit plainenglish.
+io + stackademic.
+com

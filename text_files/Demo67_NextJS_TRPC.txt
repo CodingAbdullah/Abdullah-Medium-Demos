@@ -1,0 +1,61 @@
+Type Safety with tRPC and the Next.
+js App Router Abdullah Muhammad 5 min read · Oct 22, 2025 -- Basic understanding of TypeScript and the Next.
+js App Router will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction One of the most underrated libraries out there is tRPC.
+ It works well with TypeScript development and streamlines the work process.
+ Think of it as an intelligent way to help your front-end and back-and communicate with each other in a unique, type-safe way.
+ We often have to create custom data types for working with data fetch requests (as you have seen numerous times) with Next.
+js and the MERN stack.
+ tRPC offers a unique way of being able to access custom types defined within your API routes.
+ We do away with REST API development and instead work with a server that creates and handles requests through procedures.
+ We utilize the Zod schema library (covered here) to validate input data.
+ There are two main types of procedures we are concerned with: Queries Mutations Similar to ReactQuery where users make calls to the back-end, tRPC allows one to use a server that defines a tRPC server and further defines procedures that handle specific requests.
+ As you saw with ReactQuery, the useQuery hook allows one to gather data (GET requests) while useMutation allows one to modify and update data (POST, PUT, DELETE requests).
+ You get type safety at each point of communication between the front-end and back-end without the need of having to check and define types to ensure adherence.
+ There is boilerplate code you will need to get familiar with such as setting up a tRPC server on the server-side and a client that communicates with this server from the front-end.
+ We will use tRPC to enable CRUD operations using procedures and the Drizzle ORM library (we covered that here) to work with User objects inside a Supabase database.
+ Folder Structure There is quite a bit of boilerplate code to get to so let us not waste time.
+ The following picture details the layout of working with the tRPC library for development: Initialize the tRPC Server We first have to initialize a tRPC server which handles all of the different routes.
+ These routes are referred to as procedures.
+ The following code block details how we setup that tRPC server: Connect Drizzle to Supabase We now use Drizzle ORM to interact with Supabase and setup a User schema using the Drizzle library.
+ We will use this schema to later process database requests.
+ It is helpful to re-visit the Drizzle ORM docs if something is confusing to you.
+ Create tRPC Routers In tRPC, we have routers and procedures.
+ The functions that handle the requests are referred to as procedures.
+ The following defines a public procedure for working with users: Combine Routers Combine all routers (you may have multiple, e.
+g.
+, user, post, auth) into a single root router.
+ This helps keep things in order: Expose the API via Next.
+js Route Handler Once all this has been setup, we can proceed to exposing the tRPC router using the Next.
+js App Router route handler.
+ Next, we expose the tRPC router using the Next.
+js App Router route handler: Create the tRPC Client To consume the API from React components, initialize a client: Use tRPC in Your Frontend Now, with the tRPC client setup, we can readily use it in the front-end React components.
+ The following code snippet illustrates this in great detail: That is all there is to working with tRPC!
+ You are all set and ready to go!
+ Simply integrate this boilerplate setup into your own projects and you should be good to go.
+ Common Mistakes to Avoid in Project Setup You can use this boilerplate code as is, but often times, if you are starting out on your own, there might be some mistakes you might make.
+ Some common issues you might encounter are failing to export the AppRouter, missing key definitions that define input schemas, incorrect defined route paths, and so much more.
+ It is best to stick to a boilerplate format such as the one outlined in this article to expediate the setup process for your web application.
+ Conclusion We looked at tRPC in detail.
+ You get type safety at each point of communication between the front-end and the back-end.
+ No need to worry about creating custom data types to handle fetched data.
+ Simply define your input types in a procedure function and validate it using Zod.
+ All your type needs are taken care of this way.
+ We built on knowledge of a previous tutorial and used Drizzle to hook the back-end to a database and process database CRUD operations.
+ In the list below, you will find links to the GitHub repository, Drizzle docs, tRPC docs, and the TanStack Query docs: GitHub Repository Drizzle ORM Docs tRPC Docs TanStack Query Docs I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+ A message from our Founder Hey, Sunil here.
+ I wanted to take a moment to thank you for reading until the end and for being a part of this community.
+ Did you know that our team run these publications as a volunteer effort to over 3.
+5m monthly readers?
+ We don’t receive any funding, we do this to support the community.
+ ❤️ If you want to show some love, please take a moment to follow me on LinkedIn, TikTok, Instagram.
+ You can also subscribe to our weekly newsletter.
+ And before you go, don’t forget to clap and follow the writer️!
+

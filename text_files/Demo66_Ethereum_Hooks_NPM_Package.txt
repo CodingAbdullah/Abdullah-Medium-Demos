@@ -1,0 +1,69 @@
+Exploring an Ethereum Hooks NPM Package Abdullah Muhammad 5 min read · Oct 5, 2025 -- Basic understanding of TypeScript, React.
+js, and how NPM packages work will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction The JavaScript ecosystem is an ever-growing ecosystem of third-party NPM packages.
+ Developers can utilize any of these packages or publish their own for the community.
+ I set out to create a nice utility NPM package that allows users and developers alike to readily access on-chain data related to Ethereum using API endpoints.
+ These API endpoints run authenticated API calls and work with different API providers for accessing the relevant on-chain data.
+ If you know how React hooks work (as explored in this article), understanding the structure of this custom NPM package will be very easy.
+ The package covers various aspects of the Ethereum ecosystem such as ENS, ERC20/721 tokens, gas, and pricing.
+ It contains 30 custom React hooks that access pro-tier API endpoints.
+ Each hook accesses these endpoints through an AWS Lambda function which is used to run authenticated API requests and each endpoint comes with its own usage limits.
+ The package aims to simplify front-end development because you no longer have to set up your own back-end endpoints for running authenticated API calls.
+ No need for excess boilerplate code for your back-end.
+ You can readily access on-chain Ethereum data by utilizing any of the 30 custom hooks.
+ Key Features and API Providers ethereum-hooks NPM package consists of five sections and it utilizes a select group of API providers which I will briefly highlight in this section.
+ The five sections are listed below with a brief description of each: ENS — Access relevant data related to ENS domains and conversions ERC20 — Access data for ERC20 tokens by providing a contract address ERC721 — Access data for ERC721 tokens by providing a contract address Prices — Access pricing for Ethereum and other ERC20 tokens Gas — Access data related to gas on the Ethereum network Of the 30 custom hooks, here is the breakdown of quantity per each section: ENS (4), ERC20 (5), ERC721 (16), Prices (1), Gas (4).
+ There are several API providers used for allowing users to access this data.
+ Keep in mind, each of these endpoints utilizes an API key to run the authenticated API call.
+ The actual API call takes place inside an AWS Lambda function.
+ These hooks point to the AWS Lambda function for retrieving the relevant data.
+ The subsequent sections cover request flow and the API keys utilized.
+ The following is a list of the different API providers used in this NPM package: Alchemy Blocknative CoinGecko Moralis Opensea Transpose Feel free to read more about each of these providers by reading up their official docs.
+ Crypto Hook Request Flow The package uses AWS Lambda functions to construct authenticated API calls.
+ The architecture follows a simple flow: Client Hook → useFetch → AWS Lambda → Response.
+ The AWS Lambda functions handle authentication automatically using pre-configured API keys for various blockchain services: OPENSEA_API_KEY — For NFT marketplace data MORALIS_API_KEY — For Web3 data aggregation BLK_API_KEY — For Block native gas and mempool data TRANSPOSE_API_KEY — For indexed blockchain data ALCHEMY_API_KEY — For Ethereum node access and enhanced APIs No back-end setup is required for use.
+ You install the package and use the hooks according to the documentation provided.
+ Custom Types and Efficient Error Handling Each custom hook consists of efficient error handling and type safety ensuring you provide the required fields for running each API request correctly.
+ Each hook utilizes the useFetch custom hook for efficient data fetching.
+ There are two custom types associated with this project: FetchStateType — Consists of an object with three attributes: data, loading, and error to ensure smooth request processing and error handling.
+ LayerTwoType — Access Layer Two data by providing a value of a supported layer two using this custom data type.
+ Each endpoint follows a similar design pattern to ensure you are familiar with how to use each of them.
+ They are modular as each endpoint is located in its own sub-directory (ENS, ERC20/721, pricing, gas).
+ Example Usage In this section, I will outline how you can incorporate one of these hooks in a custom React component.
+ The README.
+md file outlines a simple example which I will dive deeper into here: As you can see, this custom React component accesses the relevant sub-directory for ENS hooks and utilizes the ENSToAddress custom hook for converting a given ENS name to its appropriate wallet address.
+ We provide the relevant data for the custom hook as per documentation to ensure the request processes correctly.
+ Behind the scenes, as we covered earlier, each endpoint uses the FetchStateType for request processing so we conditionally render the custom component based on the three different states.
+ That is all there is to it.
+ Audit Note that this NPM package DOES NOT access or need access to an Ethereum wallet.
+ It only accesses on-chain data related to the Ethereum network via API endpoints.
+ If you are concerned about safety, you can audit the package yourself using socket.
+dev.
+ The package is lean and efficient.
+ It is not bloated with files and it does not consist of any dependencies.
+ At the time of this writing, the latest package version is 2.
+0.
+2.
+ Conclusion We explored the ethereum-hooks NPM package in great detail and saw how it can expediate front-end development.
+ With 30 custom hooks, users and developers alike gain access to on-chain Ethereum information such as ENS domains, ERC20/721 tokens, gas prices, and pricing in general.
+ No boilerplate code is required.
+ All the functionality is handled for you out-of-the-box including the setup of AWS Lambda and running authenticated API calls.
+ Feel free to explore this NPM package on your own in your projects.
+ Keep in mind, there are usage limits associated with these endpoints.
+ You can read more about the package here.
+ Thank you!
+ A message from our Founder Hey, Sunil here.
+ I wanted to take a moment to thank you for reading until the end and for being a part of this community.
+ Did you know that our team run these publications as a volunteer effort to over 3.
+5m monthly readers?
+ We don’t receive any funding, we do this to support the community.
+ ❤️ If you want to show some love, please take a moment to follow me on LinkedIn, TikTok, Instagram.
+ You can also subscribe to our weekly newsletter.
+ And before you go, don’t forget to clap and follow the writer️!
+
