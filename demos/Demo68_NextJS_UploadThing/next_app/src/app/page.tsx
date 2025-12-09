@@ -1,21 +1,14 @@
 "use client";
 
-import { UploadDropzone } from "@uploadthing/react";
+import FileDropzone from "@/components/FileDropzone";
 
-// Custom home page component
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-10">
-      <UploadDropzone
-        endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
-          console.log("Uploaded:", res);
-          alert("Upload complete!");
-        }}
-        onUploadError={(error: Error) => {
-          alert(`Upload failed: ${error.message}`);
-        }}
-      />
+    <main className="min-h-screen p-8">
+      <div className="max-w-md mx-auto">
+        <h1 className="text-2xl font-bold mb-6">UploadThing Demo</h1>
+        <FileDropzone />
+      </div>
     </main>
   );
 }
