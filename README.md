@@ -572,8 +572,8 @@ Table highlighting the current demos completed along with their code repository 
         <td>
             <code>/demos/Demo68_NextJS_UploadThing</code>
         </td>
-        <td>
-            Link to Medium Article to be posted when complete
+        <td>            
+            <a href="https://medium.com/@abdullah_95/uploadthing-exploring-an-alternative-to-the-aws-s3-bucket-37f35260933a">UploadThing: Exploring An Alternative to the AWS S3 Bucket</a>
         </td>
     </tr>
     <tr>
