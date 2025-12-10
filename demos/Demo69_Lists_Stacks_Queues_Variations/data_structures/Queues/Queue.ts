@@ -1,4 +1,4 @@
-import { LinkedList } from "./LinkedList";
+import { LinkedList } from "../LinkedLists/LinkedList";
 
 // Queue follows the FIFO implementation
 // Peek, Enqueue, and Dequeue are three of its primary operations

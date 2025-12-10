@@ -1,4 +1,4 @@
-import { LinkedList } from './LinkedList';
+import { LinkedList } from '../LinkedLists/LinkedList';
 
 // Double-Ended Queue that implements a Queue at both ends of a list
 // We can append at the front and the back, remove at the front and the back

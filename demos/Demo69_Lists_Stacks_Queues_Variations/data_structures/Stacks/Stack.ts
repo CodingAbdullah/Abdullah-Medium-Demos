@@ -1,4 +1,4 @@
-import { LinkedList } from './LinkedList';
+import { LinkedList } from '../LinkedLists/LinkedList';
 
 // Stack follows the LIFO principle
 // Push, Pop are two of its primary operations

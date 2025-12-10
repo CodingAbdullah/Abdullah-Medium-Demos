@@ -1,4 +1,4 @@
-import { LinkedList } from './LinkedList';
+import { LinkedList } from '../LinkedLists/LinkedList';
 
 // Steque implementation is a hybrid of Stack-Queue, implements LIFO principle at the front
 // Supports Queue insertion at the back only (Enqueue)
