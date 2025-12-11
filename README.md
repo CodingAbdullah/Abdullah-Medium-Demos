@@ -573,7 +573,15 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo68_NextJS_UploadThing</code>
         </td>
         <td>            
-            <a href="https://medium.com/@abdullah_95/uploadthing-exploring-an-alternative-to-the-aws-s3-bucket-37f35260933a">UploadThing: Exploring An Alternative to the AWS S3 Bucket</a>
+            <a href="https://medium.com/@abdullah_95/uploadthing-exploring-an-alternative-to-the-aws-s3-bucket-37f35260933a">UploadThing: Exploring an Alternative to the AWS S3 Bucket</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo69_Lists_Stacks_Queues_Variations</code>
+        </td>
+        <td>            
+            <a href="https://medium.com/stackademic/exploring-variants-of-linked-lists-stacks-and-queues-for-problem-solving-2ace3e325fa0">Exploring Variants of Linked Lists, Stacks, and Queues for Problem Solving</a>
         </td>
     </tr>
     <tr>
