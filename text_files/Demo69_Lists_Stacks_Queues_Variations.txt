@@ -1,54 +1,164 @@
-UploadThing: Exploring an Alternative to the AWS S3 Bucket Abdullah Muhammad 4 min read · 3 days ago -- Basic understanding of AWS cloud more specifically, the AWS S3 service will be sufficient for working through the contents of this article.
+Exploring Variants of Linked Lists, Stacks, and Queues for Problem Solving Abdullah Muhammad 11 min read · 2 days ago -- Basic understanding of algorithms and data structures will be sufficient for working through the contents of this article.
  Fond of cryptocurrency?
  Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
 js.
  Get your article audibles here!
  I made this tool which makes audio files accessible for any non-paywall Medium articles!
  Implementation can be found here.
- Introduction In a past article, we dove deep into the AWS S3 service and saw how we can utilize the AWS SDK to programmatically handle object storage.
- In this article, we will look at another service known as UploadThing.
- You can think of it as a better version of AWS S3.
- The article will be short and assumes the reader is familiar with the AWS S3 storage service.
- Feel free to explore this article where I covered AWS S3 in detail.
- UploadThing is a rich library focused on helping developers integrate object storage functionality into their apps using any web framework of their liking.
- This includes frameworks such as Next.
-js (App/Pages router), Remix, Solid, Vue, and many more.
- UploadThing also provides support for back-end frameworks such as Express and Fastify.
- Additional information on what frameworks are supported can be found in the official docs.
- Project Setup To get started, you will need to sign up an account with UploadThing and create a new project which will contain an API key in the project dashboard.
- For the purposes of this article, we will stick with the Next.
-js (App router) framework as this is something we have worked with in the past.
- We will touch on configuring the front-end and back-end to handle the basic operations of the UploadThing library.
- There are two ways one can upload files using this library: Client-side Server-side The documentation extensively covers how users can upload files either side, but for this article, we will focus on uploading files client-side.
- Configuration We will setup a front-end which allows users to upload files to the cloud and setup a back-end which will be dedicated to handling the file upload process.
- The following code details a front-end React component for handling file uploads: We use a custom hook (useUploadThing) which originates from the @uploadthing/react package and define a custom function that handles the file uploading process.
- We define an input field that allows users to drop in their files.
- We also have React state which allows us to conditionally render portions of the file drop zone custom component.
- A custom function is defined for handling the file input and ensuring the startUpload function is called with the requested file passed in as a parameter.
- Once the file uploads correctly, a message is displayed (highlighted in green) to the user along with the file URL which points to where the user can visit the image in the browser.
- UploadThing follows a similar pattern to AWS S3 in that, when an object is uploaded to storage, a URL and key is generated specifically for that object.
- The key acts as a unique identifier for the uploaded object and the URL allows the user to retrieve the object in the browser.
- We wrap this file drop zone custom component in a page component: We add custom styling to ensure it looks nice and elegant to the user.
- Very simple and straight forward to setup.
- That is all for the basic front-end UploadThing setup.
- Back-end Configuration According to the documentation, we must have a back-end route setup using this specific path /api/uploadThing/core.
-ts.
- In the core.
-ts file, we must define a file router using a function called createUploadThing which is imported from the uploadthing/next package.
- The implementation looks like the following: We export a fileRouter object of type FileRouter imported from the uploadThing/next package and ensure that the key, imageUploader returns the file url.
- We add a condition to the createUploadThing function that the file provided cannot exceed 4 MB in size.
- Finally, we define two method types at this endpoint (GET and POST) for working with the UploadThing library: We can further extend this functionality to implement all the CRUD operations (create, read, update, and delete).
- In fact, the UploadThing library consists of functions that can be used for updating, searching, and deleting objects.
- You can figure out how to accomplish each of these operations on your own, but needless to say, the UploadThing is a versatile library that should be a part of every developer’s knowledge stack.
- We do away with the added bloat of things such as managing AWS IAM permissions, installing AWS SDK to programmatically operate an AWS S3 bucket.
- There is no need to manage lifecycle rules, CORS/bucket access policies, and there is certainly no need to manage bucket region configuration, and setting a bucket visibility status.
- UploadThing works great for small projects and for developers who want low infra overhead.
- Conclusion In this short article, we looked at the UploadThing library.
- We covered its key features using Next.
-js App router.
- We setup a simple front-end and created a back-end file router for handling file uploads.
- This article served as an introduction to this object storage library.
- Feel free to explore it in greater detail.
- In the list below, you will find links to the official UploadThing docs and the GitHub repository used in this article: UploadThing Docs GitHub Repository I hope you found this article helpful and look forward to more in the future.
+ Introduction In a past article, we covered the three most basic data structures: stacks, queues, and linked lists.
+ Today, we will cover a little more detail on each of these data structures and explore their variations which can be useful for problem solving.
+ We will explore time complexities and look at the trade-offs associated with each data structure as it relates to searching, inserting, and deleting elements.
+ We will start with a review of the linked list data structure and build up from there.
+ You can follow along by cloning this repository.
+ There are three directories we will be working with: /demos/Demo69_Lists_Stacks_Queues_Variations/data_structures /demos/Demo69_Lists_Stacks_Queues_Variations/leetcode_problems/ /demos/Demo69_Lists_Stacks_Queues_Variations/recursive_data_structures Linked Lists Linked lists operate similar to arrays except they are dynamic in size.
+ Depending on the programming language you use, arrays can be static in size and need to account for additional size (dynamic arrays) once the number of elements have reached the size limit.
+ Linked lists do not need to account for size because they are always dynamic.
+ We utilize a recursive data structure known as a LinkNode and connect these nodes with the help of references (a powerful concept related to objects and object oriented programming).
+ These “links” create what we call a “linked list”.
+ The following code details an implementation of a recursive data type known as LinkNode (recursive_data_structures/LinkNode.
+ts): You can see that we have one forward pointing reference known as next and a value pertaining to a particular node.
+ In a singly linked list, we can only traverse forward in the list.
+ There are no references to previous nodes.
+ When we explore doubly linked lists, we will see how to accomplish this.
+ The following code segment details an elegant implementation of the singly linked list using TypeScript (data_structures/LinkedLists/LinkedList.
+ts): You can see that we have four primary operations: insertFirst, insertLast, deleteFirst, and deleteLast.
+ The time complexity is O(1) for all operations except removing and inserting the last item in the linked list.
+ Had we had an additional node that kept track of the end of the list, we could reduce the insertLast operation time complexity to O(1).
+ The deleteLast operation would still have a time complexity of O(n) because we would need to traverse the entire list to get to the second last node in the list.
+ As stated earlier, there is no way to traverse backwards in a singly linked list.
+ We will now explore variations of this data structure.
+ Exploring Linked List Variations The first variation we will look at is the circular (singly) linked list.
+ This variation has an added benefit of ensuring there are no null values and that the last node in the list always points back to the first node using the next pointer reference.
+ This allows one to traverse a linked list to the end by checking to see if a node has a reference pointing back to the head.
+ If so, we know we have reached the end of the linked list.
+ All operation time complexities in a circular (singly) linked list are the same as the singly linked list.
+ The following code segment details an implementation of the circular (singly) linked list (data_structures/LinkedLists/CircularLinkedList.
+ts): The implementation closely resembles that of the singly linked list.
+ However, there is a minor difference in that, we ensure the tail end of the list points back to the head of the list.
+ We now look at another data structure known as a doubly linked list.
+ Doubly Linked List As the name implies, doubly linked lists consist of nodes with two references.
+ One reference points to the previous node in the list and another reference points to the next node in the list.
+ This allows one to traverse forward and backward in a list and it effectively reduces the run-time complexity of insertions and deletions to O(1).
+ We can keep track of the end of the list as well using a tail pointer and since this is not a doubly (circular) linked list, the previous pointer of the head node and the next pointer of the tail node will always be null.
+ To implement a doubly linked list, we first need to define a double link node recursive data structure (recursive_data_structures/DoubleLinkNode.
+ts): As you can see, we make use of two nodes to keep track of the two references.
+ One for the previous node in the list and another for the next node in the list.
+ The following code segment details an implementation of the doubly linked list in TypeScript (data_structures/LinkedLists/DoublyLinkedList.
+ts): When we work with insertions and deletions at the front, we work with the head node.
+ Likewise, when we work with insertions and deletions at the end, we work with the tail node.
+ We update the references of the previous and next nodes for every operation and as mentioned earlier, we effectively reduce the time complexity down to O(1).
+ Doubly (Circular) Linked List Building on the circular linked list data structure and the doubly linked list data structure, we can have a doubly circular linked list.
+ Doubly circular linked lists follow a similar implementation to doubly linked lists except we need to perform additional operations to update the head/previous and tail/next references, respectively.
+ This requires a deep understanding of object references and how insertions and deletions work.
+ The head of the list uses its previous node reference to point back to the tail of the list and the tail uses its next node reference to point to the head of the list.
+ You get the same circular linked list data structure with an added benefit of traversing the list backwards.
+ The following code segment details an implementation of the doubly circular linked list in TypeScript (data_structures/LinkedLists/DoublyCircularLinkedList.
+ts): An elegant and easy to follow solution if you have a solid understanding of node pointers and object references.
+ Use Case Scenarios You might be wondering if it is worth learning the different variations of the linked list data structure.
+ Each linked list variant offers its own advantages.
+ For instance, a doubly linked list is useful for navigating forward and backward between nodes.
+ A circular linked list is valuable for scheduling and automating repetitive tasks.
+ Once the list reaches the end of the cycle, it loops back to the beginning, making it ideal for scenarios where a process must repeat continuously.
+ Stacks, Queues, and More We have explored stacks and queues in the past.
+ Below, you will find implementations of the stack and queue data structures using the singly linked list we discussed earlier.
+ The following code segment details an implementation of the stack data structure (data_structures/Stack/Stack.
+ts): We use the linked list data structure to implement the LIFO principle of the stack data structure.
+ The following code segment details an implementation for the queue data structure (data_structures/Queue/Queue.
+ts): Again, very similar to the stack implementation, but we enforce the FIFO principle here.
+ Now, we focus on variations of these data structures.
+ The first variation we will look at is a double-ended queue or deque for short.
+ Deque This structure operates as a queue at both ends of the list.
+ We can add and remove at the front and likewise at the back.
+ The following code segment details an implementation of the double-ended queue data structure in TypeScript (data_structures/Queue/Deque.
+ts): As you can see, the implementation builds on the simple queue data structure we looked at.
+ With a deque, you have the ability to peek at elements at the front and at the back.
+ Keep in mind, we implemented stacks and queues using singly linked lists.
+ Had we implemented them using doubly linked lists, we would efficiently reduce the time complexity of the peek operations down to O(1).
+ For simplicity, we implemented them using a singly linked list.
+ Nonetheless, this is an adequate, production-ready implementation of the deque data structure.
+ Steque A variation of the stack and queue data structure is a hybrid data structure known as a steque.
+ It is a data structure that operates as a stack at the front and only allows for queue insertions (enqueue) at the back (no deletions).
+ Get Abdullah Muhammad’s stories in your inbox Join Medium for free to get updates from this writer.
+ The following code segment details an implementation of this data structure (data_structures/Stack/Steque.
+ts): If you understand how stacks and queues operate, your understanding of these variations becomes intuitive.
+ We use a singly linked list to implement a steque.
+ However, we could have also used a doubly linked list (like in the case of the deque data structure) to ensure O(1) time complexity for peeking at the front and at the back.
+ Aside from these variations, we can mix stacks and queues to implement each other.
+ We know that stacks follow the LIFO principle and queues follow the FIFO principle.
+ Using this knowledge, we can use a pair of stacks to implement a queue and vice versa.
+ Certain operations will be easy to implement, but others will be costly.
+ Two Stack Queue A popular interview question you might encounter is implementing a queue using two stacks and vice versa.
+ The push operation is easy to implement, but the delete and peek operations are expensive.
+ We use two stacks with one operating as the primary data structure while the other is used as an assistant for the peek and delete operations.
+ The idea here is to implement a queue using two stacks and stack specific operations.
+ The following code segment shows how you can implement a queue using two stacks (data_structures/Queue/TwoStackQueue.
+ts): As explained earlier, the enqueue operation is easy to implement.
+ The dequeue and peek operations are expensive because we need to pop all elements off the first stack, populate them into the second stack, and return the last element (which is the first in the queue).
+ After that, we have to empty the second stack and re-populate the first to maintain the stack order.
+ It does not matter if the operation is delete or peek, the last element of the first stack is of importance because we either capture and delete the item (dequeue) or capture it and return it in the case of peek.
+ Intuitively, this makes sense, but it requires a foundational understanding of how stacks and queues operate.
+ Two Queue Stack We can likewise, implement a stack using two queues by strictly adhering to queue operations and following the FIFO principle.
+ The following code segment details how you can implement a stack using two queues (data_structures/Stack/TwoQueueStack.
+ts): Once again, we see the push operation is easy to implement, but the peek and pop operations are expensive.
+ For both operations, we need to empty the first queue, populate the second queue, and remove the last element in the queue (capture and delete it in the case of delete or capture and return it in the case of peek).
+ Finally, we re-populate the first queue by emptying the second queue.
+ This is very similar to the implementation of the queue using two stacks with a slight variation in that, we use two queues and queue specific operations to implement a stack.
+ Each of these data structures is implemented using a singly linked list.
+ We could have utilized an array for implementing the stacks and queues, but we would need to consider adjusting the fixed space using a dynamic array.
+ Utilizing a linked list greatly reduces the complexity of having to deal with this situation.
+ Problem Solving We will now explore three Leetcode problems which can be solved using data structures.
+ For simplicity, we will focus on problems that can be solved using the stack data structure.
+ Problem 1: Reversing a String The most basic problem you can solve using stacks are string reversals.
+ Is that even considered a problem?
+ String reversals can be solved in one line.
+ So, yeah, you would be right to assume that this is really not a problem.
+ In TypeScript, you can solve this problem with the help of string/array functions.
+ Suppose you have a string s, you can perform the following: s.
+split('').
+reverse().
+join('') When it comes to problem solving, you will be asked to use specific data structures and specific actions of that data structure to solve a particular problem.
+ So, in the spirit of that, the following code details how you would reverse a string using a stack and stack specific operations (leetcode_solutions/reverseString.
+ts): Essentially, we push every character of the string (left to right) into an array which acts as a stack.
+ After that, we pop all the elements off the stack and concatenate each character to an empty string.
+ This effectively reverses the order in which we retrieve the characters (following the LIFO principle), hence reversing the string.
+ This is an example that illustrates a solid understanding of the push and pop operations of the stack data structure.
+ You can find the relevant Leetcode problem here.
+ Let us look at a more interesting problem.
+ Problem 2: Adjacent Removals In this problem, we must ensure that no two consecutive characters (adjacent) are equal to each other.
+ If they are, we must remove both.
+ If after removing the characters we get a resulting string that consists of another pair of adjacent characters, we must recursively continue the removal process until no adjacent characters are left in the string.
+ After that, we simply return the modified string.
+ If this problem sounds confusing, here is the Leetcode link to that problem.
+ So again, we can solve this problem using a stack.
+ We proceed to push characters of the string (left to right) onto the stack.
+ As we do, we compare the incoming character to the latest one pushed onto the stack.
+ If they are equal to each other, we pop the latest character off the stack and continue with the next character conducting the same process.
+ The following code segment details a solution to this problem (leetcode_problems/removeAdjacents.
+ts): Very simple and straight forward.
+ The recursive removal process is also handled efficiently this way.
+ Problem 3: Valid Parenthesis Finally, we will cover a popular problem associated with stacks and that is checking for valid parenthesis.
+ We must ensure that a string consists of valid opening and closing brackets.
+ The Leetcode problem can be found in the link here.
+ Essentially, we can use a hash map to map opening and closing brackets.
+ We will use the stack data structure to solve this problem.
+ We proceed by pushing ONLY the opening brackets of the string (left to right) onto the stack.
+ If we encounter a closing bracket, we immediately pop the latest element off the stack and compare the element to the closing bracket.
+ We check the pair by using the hash map we defined earlier.
+ If the brackets match, we proceed and if not, we return false.
+ By the end of the string transversal, the stack must have zero elements in it because there can be no outstanding brackets left.
+ The following code segment details this thought process (leetcode_solutions/validParenthesis.
+ts): An elegant and efficient way to solve this problem using a stack.
+ Summary of Time Complexities Phew!
+ That was a lot we looked at in this article.
+ There are many more variations out there, but these are the most popular ones.
+ Stacks and queues can be implemented using linked lists (as we saw) under the hood.
+ All operations in a stack, queue, and their variants have a time complexity of O(1).
+ The following table neatly summarizes the time complexities of the linked list data structures we looked at: Please note, you can find this table in a README.
+md located at the root of this demo directory.
+ Conclusion In this article, we looked at linked lists, stacks, queues, and explored their variants.
+ We looked at their use cases and time complexity trade-offs for searching, inserting, and deleting items.
+ We covered problem solving specifically related to Leetcode and used the stack data structure for solving string problems.
+ In the list below, you will find links to helpful resources related to linked lists, stacks, and queues.
+ You will also find links to the three Leetcode problems we covered as well as the GitHub repository used in this article: GitHub repository Linked List docs Queue docs Stack docs Leetcode Problem 1 Leetcode Problem 2 Leetcode Problem 3 I hope you found this article helpful and look forward to more in the future.
  Thank you!
 
