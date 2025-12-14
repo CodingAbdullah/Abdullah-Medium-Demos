@@ -1,0 +1,54 @@
+UploadThing: Exploring an Alternative to the AWS S3 Bucket Abdullah Muhammad 4 min read · 3 days ago -- Basic understanding of AWS cloud more specifically, the AWS S3 service will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction In a past article, we dove deep into the AWS S3 service and saw how we can utilize the AWS SDK to programmatically handle object storage.
+ In this article, we will look at another service known as UploadThing.
+ You can think of it as a better version of AWS S3.
+ The article will be short and assumes the reader is familiar with the AWS S3 storage service.
+ Feel free to explore this article where I covered AWS S3 in detail.
+ UploadThing is a rich library focused on helping developers integrate object storage functionality into their apps using any web framework of their liking.
+ This includes frameworks such as Next.
+js (App/Pages router), Remix, Solid, Vue, and many more.
+ UploadThing also provides support for back-end frameworks such as Express and Fastify.
+ Additional information on what frameworks are supported can be found in the official docs.
+ Project Setup To get started, you will need to sign up an account with UploadThing and create a new project which will contain an API key in the project dashboard.
+ For the purposes of this article, we will stick with the Next.
+js (App router) framework as this is something we have worked with in the past.
+ We will touch on configuring the front-end and back-end to handle the basic operations of the UploadThing library.
+ There are two ways one can upload files using this library: Client-side Server-side The documentation extensively covers how users can upload files either side, but for this article, we will focus on uploading files client-side.
+ Configuration We will setup a front-end which allows users to upload files to the cloud and setup a back-end which will be dedicated to handling the file upload process.
+ The following code details a front-end React component for handling file uploads: We use a custom hook (useUploadThing) which originates from the @uploadthing/react package and define a custom function that handles the file uploading process.
+ We define an input field that allows users to drop in their files.
+ We also have React state which allows us to conditionally render portions of the file drop zone custom component.
+ A custom function is defined for handling the file input and ensuring the startUpload function is called with the requested file passed in as a parameter.
+ Once the file uploads correctly, a message is displayed (highlighted in green) to the user along with the file URL which points to where the user can visit the image in the browser.
+ UploadThing follows a similar pattern to AWS S3 in that, when an object is uploaded to storage, a URL and key is generated specifically for that object.
+ The key acts as a unique identifier for the uploaded object and the URL allows the user to retrieve the object in the browser.
+ We wrap this file drop zone custom component in a page component: We add custom styling to ensure it looks nice and elegant to the user.
+ Very simple and straight forward to setup.
+ That is all for the basic front-end UploadThing setup.
+ Back-end Configuration According to the documentation, we must have a back-end route setup using this specific path /api/uploadThing/core.
+ts.
+ In the core.
+ts file, we must define a file router using a function called createUploadThing which is imported from the uploadthing/next package.
+ The implementation looks like the following: We export a fileRouter object of type FileRouter imported from the uploadThing/next package and ensure that the key, imageUploader returns the file url.
+ We add a condition to the createUploadThing function that the file provided cannot exceed 4 MB in size.
+ Finally, we define two method types at this endpoint (GET and POST) for working with the UploadThing library: We can further extend this functionality to implement all the CRUD operations (create, read, update, and delete).
+ In fact, the UploadThing library consists of functions that can be used for updating, searching, and deleting objects.
+ You can figure out how to accomplish each of these operations on your own, but needless to say, the UploadThing is a versatile library that should be a part of every developer’s knowledge stack.
+ We do away with the added bloat of things such as managing AWS IAM permissions, installing AWS SDK to programmatically operate an AWS S3 bucket.
+ There is no need to manage lifecycle rules, CORS/bucket access policies, and there is certainly no need to manage bucket region configuration, and setting a bucket visibility status.
+ UploadThing works great for small projects and for developers who want low infra overhead.
+ Conclusion In this short article, we looked at the UploadThing library.
+ We covered its key features using Next.
+js App router.
+ We setup a simple front-end and created a back-end file router for handling file uploads.
+ This article served as an introduction to this object storage library.
+ Feel free to explore it in greater detail.
+ In the list below, you will find links to the official UploadThing docs and the GitHub repository used in this article: UploadThing Docs GitHub Repository I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+
