@@ -1,21 +1,21 @@
-import { DoublyLinkedList } from "../linked_lists/DoublyLinkedList";
-import { DoublyLinkNode } from "../linked_lists/DoublyLinkNode";
+import DoublyCacheLinkedList from "./linked_lists/DoublyCacheLinkedList";
+import DoublyCacheLinkNode  from "./linked_lists/DoublyCacheLinkNode";
 
 /* LRU Cache Data Structure
 - get(key)[get], put(key, value)[update/insert], delete(key)[delete]
-- DoublyLinkNode ---> key, value, prev, next
-- DoublyLinkedList ---> deleteNode, moveFirst, insertFirst, deleteLast
+- DoublyCacheLinkNode ---> key, value, prev, next
+- DoublyCacheLinkedList ---> deleteNode, moveFirst, insertFirst, deleteLast
 */
 class LRUCache {
-    cacheList: DoublyLinkedList | null;
-    nodeMap: Map<string, DoublyLinkNode>;
+    cacheList: DoublyCacheLinkedList | null;
+    nodeMap: Map<string, DoublyCacheLinkNode>;
     size: number;
 
     // Initialize LRU Cache properties
     constructor(sizeValue: number) {
         this.size = sizeValue < 0 ? 0 : sizeValue;
-        this.nodeMap = new Map<string, DoublyLinkNode>();
-        this.cacheList = new DoublyLinkedList();
+        this.nodeMap = new Map<string, DoublyCacheLinkNode>();
+        this.cacheList = new DoublyCacheLinkedList();
     }
 
     // Insert a new key --> put(key, value)
