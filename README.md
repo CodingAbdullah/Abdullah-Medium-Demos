@@ -586,7 +586,15 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo69_NextJS_AuthJS</code>
+            <code>/demos/Demo70_Cache_Variations</code>
+        </td>
+        <td>            
+            <a href="https://medium.com/@abdullah_95/re-visiting-the-lru-cache-and-exploring-its-variants-26945052b592">Re-visiting the LRU Cache and Exploring its Variants</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo70_NextJS_AuthJS</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
