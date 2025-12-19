@@ -1,0 +1,105 @@
+Re-visiting the LRU Cache and Exploring its Variants Abdullah Muhammad 8 min read · 2 days ago -- Basic understanding of algorithms and data structures will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction We looked at the LRU cache in a past article.
+ Today, we will re-visit the LRU cache and explore many of its variants.
+ Caching is an important concept in web development.
+ In particular, caching can be useful for storing web browser information as well as database query results.
+ In the case of databases, caching can work to prevent load and lag in large systems where thousands of queries can be made to a database.
+ We can use caching to store query results to allow for easy access instead of running thousands of calls to a database.
+ We can allow users to retrieve this information and set a valid time frame for the cached data before we evict it and another database request is made to update the data in real-time and re-store it as cache.
+ It is important to distinguish between the different types of cache and what/when/where to use each type of cache.
+ There are popular services such as Redis cache and AWS Elasticache which are used to store data as cache (we will explore AWS Elasticache in a future article).
+ The LRU cache is one type of cache and it closely resembles what we just discussed so far.
+ Here is the link to the GitHub repository that we will be using in this article.
+ The directory of concern is demos/Demo70_Cache_Variations.
+ Feel free to clone this repository as we touch on its various code segments in the coming sections.
+ Re-visiting the LRU Cache The LRU (least recently used) cache operates by having a fixed size of data.
+ It comprises of the following operations: evictions, insertions, updates, and deletions.
+ Newly inserted, updated, or retrieved data is moved to the front of the cache to highlight its recent usage.
+ The LRU cache can be implemented using a hash map and a doubly linked list.
+ This guarantees O(1) run-time complexity for all operations.
+ The architecture calls for each node in the cache to include a key (identity) and a value (as we have seen before).
+ The key is used to retrieve the reference of a particular node in the cache list via a hash map.
+ Rather than search through the entire list to find a particular node, we use the key in the hash map to access the reference to that node.
+ This allows for easy access, movement, updates, and deletes in O(1) time complexity.
+ The double linked list simply operates to manage the order of the LRU cache.
+ We also have an additional attribute that keeps track of the size of the cache to ensure that whenever new additions are made, the oldest one is removed when the cache gets full.
+ Modified Doubly Linked List The following code segments detail an implementation of the LRU cache.
+ We start by highlighting a modified version of the doubly linked list we looked at before Demo70_Cache_Variations/data_structures/cache/linked_lists/: The underlying concept is the same as before, except now we add an additional property known as the key.
+ The key is used to pinpoint the location of the node in the doubly linked list.
+ The hash map stores this key guaranteeing us a O(1) time complexity for all operations.
+ For this solution, we have some modified functions: insertFirst, deleteLast, moveFirst, and deleteNode.
+ The insertFirst function takes in two parameters (a key and a value) and creates and returns a doubly link node.
+ The key-value pair comes from a function call in the LRU implementation (we will look at shortly).
+ We use the returned doubly link node and store it as a value inside the hash map.
+ The deleteNode function (as the name implies), deletes the requested node from the cache list.
+ We retrieve the node to be deleted from the hash map using the key (passed in as a parameter).
+ The retrieved node is then passed in as a parameter to this function and deleted accordingly.
+ The delete operation considers four possible scenarios where the requested node may be positioned: head, tail, one, and middle.
+ Once this determination is made, the node is successfully deleted.
+ LRU Cache: Final Piece of the Puzzle Now, we finally look at the implementation of the LRU cache.
+ The following code segment details just that.
+ It uses the modified doubly linked list we touched on earlier Demo70_Cache_Variations/data_structures/cache/LRUCache.
+ts: We have three main functions: retrieveNode, insertNode, and removeNode.
+ The logic is the same as before.
+ For node retrieval, we check the hash map to see if the requested key exists.
+ If it does, we retrieve the node from the hash map and capture its value.
+ After that, we call the moveFirst function to move the node to the front of the cache list.
+ For node insertions, we check to see if the key already exists in the hash map.
+ If it does, we know we are updating the node value, not creating a new one.
+ In this case, we also need to move the node to the beginning of the cache and update its value to the one requested.
+ If the key is unique and does not exist in the hash map, we know it is a new entry.
+ For this scenario, we need to check the size of the hash map to the size attribute of the LRU cache.
+ If the maximum size has been reached, we need to evict the least recently used item.
+ To perform this operation, we call the deleteLast function and delete the node from the cache list and return it.
+ Get Abdullah Muhammad’s stories in your inbox Join Medium for free to get updates from this writer.
+ We capture the key of that node in order to delete it from the hash map.
+ Once that is done, we create the new node and set its key and value properties and use that node reference along with the key and insert it into the hash map.
+ All of these operations take O(1) time complexity.
+ For deletions, we simply check the hash map to see if the key exists.
+ If it does, we capture the node from the hash map using the key and delete it from the cache list as well as the hash map.
+ We capture the node value prior to deletion and return it to the user.
+ This solution is straight forward and easy to implement once you understand how the LRU cache operates.
+ Now, we can build on this clean LRU cache solution and explore its variants.
+ The first of which is the MRU cache which operates exactly opposite of the LRU cache data structure.
+ MRU Cache MRU (most recently used) cache is a data structure that evicts the most recently accessed item in place for a newly inserted one.
+ This operates exactly opposite to the LRU cache.
+ The implementation largely remains the same except for the order in which evictions take place.
+ You can largely keep most of the implementation untouched in the case of the MRU cache except for the changes required in the eviction policy (delete nodes from the front instead of the back).
+ So, in this case, the deleteLast function would effectively be renamed to deleteFirst and its functionality would be modified to delete and return items at the front.
+ The following code segment details an implementation of the MRU cache Demo70_Cache_Variations/data_structures/cache/MRUCache.
+ts: We defined an extra function called deleteLast in the modified doubly linked list data structure (see implementation above).
+ The MRU cache is rarely used in real-life, practical scenarios, but it is important to cover it since we are on the topic of caching.
+ Next, we will look at the RR cache, which stands for random replacement.
+ This type of cache randomly evicts items to make room for new ones.
+ No order in this type of cache matters.
+ RR Cache Most of these cache variations are based on their eviction policies.
+ That is really the only thing that is unique to each of them.
+ We can generate a random number from range 0 to max size - 1 of the cache.
+ This is because eviction would only ever take place when the cache is full to its size and the size would be determined when the cache is first instantiated.
+ Since order does not matter here, we can simply use an array which keeps track of the different keys in the cache.
+ The randomly generated index is what is used to randomly remove one of these keys.
+ The following code segment details this thought process and a complete implementation of the RR cache Demo70_Cache_Variations/data_structures/cache/RRCache.
+ts: So again, like before, we use a hash map to store the key-value pairs and instead of a doubly linked list, we opt-in to use an array to store the keys in the cache.
+ The insertKey, retrieveKey, and deleteKey functions are easy to follow and implement as is the eviction policy.
+ We make use of the Math library to randomly generate a valid index which is used to randomly delete a key in the cache.
+ We now look at one more type of cache variation known as FIFO.
+ FIFO Cache The FIFO cache as the name implies (and as you might guess) bases its eviction policy on the notion of evicting items on a first-come, first-serve basis.
+ Like the RR cache, the order of the items does not matter, but rather the order of insertion.
+ We can implement this type of cache using a queue (as you might have guessed) where we keep the order of the items stored in such a manner that follows the FIFO principle.
+ We still have the other data structures in place such as the hash map to keep track of all the key-value pairs, but it is the queue and the FIFO principle that is used as the cache eviction policy.
+ The following code segment details an implementation of the FIFO cache data structure Demo70_Cache_Variations/data_structures/cache/FIFOCache.
+ts: If you understand caching (up to now) and how queues operate according to the FIFO principle, this should be a breeze.
+ We covered quite a bit as it relates to caching and there are aplenty more variations out there.
+ Here is a link to a comprehensive list of caching variations which you can look into and implement on your own as a thought exercise.
+ Conclusion We re-visited the LRU cache data structure and looked at it in great detail.
+ We built on the foundational knowledge of linked lists and queues to explore cache variations such as the MRU, RR, and FIFO caches.
+ We implemented each of these cache variations in TypeScript and touched on what makes them unique in their own right.
+ In the list below, you will find helpful links to the different caches we covered in this article along with the link to the GitHub repository that was used in this article: GitHub Repository LRU Cache Docs MRU Cache Docs RR Cache Docs FIFO Cache Docs I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+
