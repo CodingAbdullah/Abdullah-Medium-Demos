@@ -87,7 +87,20 @@ export default function RootLayout({
               </SignUpButton>
             </SignedOut>
             <SignedIn>
-              <UserButton />
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: 'w-10 h-10 border-2 border-[#00ff41] shadow-[0_0_15px_rgba(0,255,65,0.5)]',
+                    userButtonPopoverCard: 'bg-black border-2 border-[#00ff41] shadow-[0_0_20px_rgba(0,255,65,0.3)]',
+                    userButtonPopoverActionButton: 'text-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all',
+                    userButtonPopoverActionButtonText: 'text-[#00ff41]',
+                    userButtonPopoverActionButtonIcon: 'text-[#00ff41]',
+                    userButtonPopoverFooter: 'hidden',
+                    userPreviewMainIdentifier: 'text-[#00ff41]',
+                    userPreviewSecondaryIdentifier: 'text-[#00cc33]',
+                  },
+                }}
+              />
             </SignedIn>
           </header>
           {children}

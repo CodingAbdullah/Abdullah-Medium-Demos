@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import Link from 'next/link'
 
