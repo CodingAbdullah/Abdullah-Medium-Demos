@@ -1,7 +1,9 @@
 import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import Link from 'next/link'
+import SendEmailButton from './_components/SendEmailButton'
 
+// Home page component for working with sign-in/sign-out sessions
 export default async function Home() {
   const user = await currentUser()
 
@@ -96,8 +98,9 @@ export default async function Home() {
                 </div>
               )}
 
-              <div className="pt-6 text-center">
-                <p className="text-[#00cc33] text-sm mb-4">
+              <div className="pt-6 space-y-4">
+                <SendEmailButton />
+                <p className="text-[#00cc33] text-sm text-center">
                   &gt; Use the UserButton in the top-right to sign out
                 </p>
               </div>
