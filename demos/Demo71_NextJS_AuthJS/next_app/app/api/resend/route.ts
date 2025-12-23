@@ -1,4 +1,3 @@
-import EmailTemplate from '@/app/_components/EmailTemplate';
 import { Resend } from 'resend';
 import { NextRequest } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
@@ -22,20 +21,28 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: 'Email is required' }, { status: 400 });
     }
 
+    // Sending up email using Resend to be sent upon request
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: [email],
       subject: 'Test Email from Resend',
-      react: EmailTemplate({ firstName, lastName })
+      html:
+        `<div>
+            <h1>Hello <b>${firstName} ${lastName}</b></h1>
+            <p>We hope this email finds you well.</p>
+            <p>Please disregard this email, this is simply a test.</p>
+        </div>`
     });
 
     if (error) {
-      return Response.json({ error }, { status: 500 });
+      return Response.json({ error: error.message || 'Failed to send email' }, { status: 500 });
     }
 
     return Response.json(data);
   }
   catch (error) {
-    return Response.json({ error }, { status: 500 });
+    return Response.json({
+      error: error instanceof Error ? error.message : 'An unexpected error occurred'
+    }, { status: 500 });
   }
 }
