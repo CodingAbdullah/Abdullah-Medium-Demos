@@ -42,9 +42,8 @@ export async function POST(req: Request) {
       'svix-timestamp': svix_timestamp,
       'svix-signature': svix_signature
     }) as WebhookEvent
-  } 
+  }
   catch (err) {
-    console.error('Error verifying webhook:', err)
     return new Response('Error: Verification failed', {
       status: 400
     })
@@ -52,8 +51,6 @@ export async function POST(req: Request) {
 
   // Handle the webhook event
   const eventType = evt.type
-
-  console.log(`Webhook received: ${eventType}`)
 
   // Handle different event types
   try {
@@ -74,12 +71,6 @@ export async function POST(req: Request) {
           lastName: last_name || null
         })
 
-        console.log('✅ User created in database:', {
-          userId: id,
-          email: primaryEmail,
-          firstName: first_name,
-          lastName: last_name
-        })
         break
       }
 
@@ -102,12 +93,6 @@ export async function POST(req: Request) {
           })
           .where(eq(users.clerkUserId, id))
 
-        console.log('🔄 User updated in database:', {
-          userId: id,
-          email: primaryEmail,
-          firstName: first_name,
-          lastName: last_name
-        })
         break
       }
 
@@ -119,32 +104,20 @@ export async function POST(req: Request) {
         // Delete user from database
         await db.delete(users).where(eq(users.clerkUserId, id))
 
-        console.log('🗑️ User deleted from database:', {
-          userId: id
-        })
         break
       }
 
       case 'session.created':
-        console.log('🔐 Session created:', {
-          sessionId: evt.data.id,
-          userId: evt.data.user_id
-        })
         break
 
       case 'session.ended':
-        console.log('👋 Session ended:', {
-          sessionId: evt.data.id,
-          userId: evt.data.user_id
-        })
         break
 
       default:
-        console.log(`Unhandled event type: ${eventType}`)
+        break
     }
-  } 
+  }
   catch (error) {
-    console.error('❌ Error processing webhook:', error)
     return new Response('Error processing webhook', { status: 500 })
   }
 
