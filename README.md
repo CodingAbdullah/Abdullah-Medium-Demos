@@ -596,8 +596,8 @@ Table highlighting the current demos completed along with their code repository 
         <td>
             <code>/demos/Demo71_NextJS_AuthJS</code>
         </td>
-        <td>
-            Link to Medium Article to be posted when complete
+        <td>            
+            <a href=" https://medium.com/@abdullah_95/exploring-authentication-using-clerk-js-with-the-next-js-app-router-da351a2a495f">Easy Authentication Using the Clerk.js Library in a Next.js Application</a>
         </td>
     </tr>
     <tr>
