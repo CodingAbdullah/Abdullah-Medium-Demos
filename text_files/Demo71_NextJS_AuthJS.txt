@@ -1,0 +1,201 @@
+Easy Authentication Using the Clerk.
+js Library in a Next.
+js Application Abdullah Muhammad 10 min read · 4 days ago -- Basic understanding of authentication, protected routes, cookies, and sessions will be sufficient for working through the contents of this article.
+ Fond of cryptocurrency?
+ Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.
+js.
+ Get your article audibles here!
+ I made this tool which makes audio files accessible for any non-paywall Medium articles!
+ Implementation can be found here.
+ Introduction Authentication and security are important parts of a robust web application.
+ You want to ensure your web application is secure from any vulnerabilities and that your users have the peace of mind knowing that your site is safe to use.
+ In a detailed, long-form article, we explored JWT authentication and observed how we can use the Redux global store to manage global user state, create protected routes, and generate authentication middleware to protect back-end routes.
+ Granted, we used the MERN stack to show this, but you can also implement JWT authentication in a Next.
+js application as well.
+ Nonetheless, authentication is one aspect of an application that every developer must get right.
+ With strong attention to safety also comes complexity because you need to ensure everything functions properly and does so in a secure manner.
+ I would imagine a decent chunk of developers would rather work on developing their projects than handle the complex nuances and intricacies that come with authentication.
+ So, it begs the question, what if you could abstract authentication away so you could solely focus on application logic?
+ The good news is that there is a handy library out there that you can use to accomplish just that.
+ So today, we will look at using the Clerk.
+js library for authentication in a Next.
+js application.
+ We will explore a basic Next.
+js application that uses Supabase to store authenticated user information and grant users access to protected routes.
+ We will use the account information to send emails using the Resend email package.
+ Clerk Setup To setup Clerk.
+js and use it in your own projects, you will need to sign up with their service and dive into the Clerk.
+js documentation related to Next.
+js.
+ You can follow along by cloning this repository.
+ The directory we will be working with is /demos/Demo71_NextJS_ClerkJS.
+ We will setup Clerk.
+js for a Next.
+js App Router application.
+ Most of the required setup is already provided to you with the documentation in place.
+ We need to setup a workspace, setup the identity providers, and create a middleware file.
+ Similar to Express.
+js, this middleware file will be used to determine which routes in the project will be protected.
+ Setting up your Identity Providers Before we dive any deeper though, a key step is required when working with Clerk.
+js and that is setting up your workspace and identity providers.
+ When you first sign up with Clerk.
+js (I did it using my GitHub account), you will be asked to create a workspace and determine which authentication methods you wish to allow for your setup.
+ In my case, I enabled: Google, GitHub, and Facebook.
+ You also have the default email/password setup as well.
+ Note that Clerk.
+js offers paid plans as well where you can add additional authentication options, but we will focus on the free-tier for now.
+ Middleware and Clerk Provider Configuration To get started, we first need to install the required dependencies.
+ This can be done by installing the official Clerk.
+js NPM package (@clerk/nextjs).
+ After that, you need to copy over the NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY values into a .
+env file of your own.
+ You can find these secrets in the Configure section of the Clerk.
+js dashboard under API keys.
+ These secrets will be used to work with Clerk.
+js authentication.
+ Now we need to define a middleware file.
+ This file will contain information on the routes that will be exposed to the public.
+ Both client-side and server-side routes can be declared public here.
+ Following Next.
+js convention, this middleware file will reside at the root level and will be named as proxy.
+ts (as of Next.
+js 16).
+ I have created one and it looks like the following: Any routes not defined here will be designated as private and will not be accessible to anyone when the application goes live.
+ Similar to TanStack Query and other libraries, we need to wrap the entire application using a Clerk.
+js provider.
+ We can do this in the root layout file of the project layout.
+tsx: Much of the styling you see here was Claude coded.
+ I just spun up a clean, custom layout design for this article.
+ You can see the <ClerkProvider /> wrapping the entire Next.
+js application containing key features for sign-in/sign-out and much more.
+ The layout.
+tsx file makes use of Clerk.
+js built-in components such as <SignedIn /> and <SignedOut /> to conditionally render what should appear in the header of the Next.
+js application based on login state.
+ When the user is logged out, specific buttons related to sign-in and sign-up are displayed (we will re-visit them later).
+ The <UserButton /> component is used to display user profile information of the logged in user from the relevant authentication provider.
+ To see a full detailed description of each component and more, you can look up the relevant Clerk.
+js docs here.
+ This is not all.
+ The Clerk.
+js library comes with a full host of custom hooks for authentication and functions for checking login state both client-side and server-side.
+ Clerk Sign-in and Sign-up Route Setup For setting up the sign-in and sign-up functionalities, we need to make sure we have two optional catch-all routes setup: [[.
+.
+.
+sign-in]] and [[.
+.
+.
+sign-out]].
+ These routes are used by Clerk.
+js to work through the flow of the authentication process (it uses several different routes).
+ All we need to do is use the <SignIn /> and <SignUp /> components provided by Clerk.
+js and wrap them inside a page.
+tsx file: We can customize these pages and add more logic to fit personal requirements.
+ At the end of the day, these pages are used to authenticate a user behind the scenes and make the authentication process much easier as a developer.
+ Home Page and Resend Email Setup Building on the two last sections, we define a custom home page that uses the login state to conditionally render sections of the page.
+ We use the Clerk.
+js <SignedIn /> and <SignedOut /> components to wrap content that we want to display on each state.
+ When the user is logged in, we want them to be able to view their profile, update their profile, and select a button that sends a test email to their email address.
+ We do this by capturing the email address from the profile of the logged in user and use the Resend package to setup and send the test email.
+ The following code segment details the home page implementation: You can see the home page conditionally rendering content based on login state.
+ When the user is logged in, we display the contents of their profile and provide them with the send email button option.
+ When the user is logged out, we render two buttons that allow the user to either sign-in or sign-up.
+ Very simple and straight forward to implement.
+ We simply plug-in the necessary components and Clerk.
+js does all the heavy plumbing behind the scenes.
+ The following code segment details the implementation of the custom button used for sending emails /app/_components/SendEmailButton.
+tsx: We define a client component that makes use of the Clerk.
+js useUser React hook to gather account information.
+ Get Abdullah Muhammad’s stories in your inbox Join Medium for free to get updates from this writer.
+ We send a POST request to the back-end server at /api/resend where we pass in the account information for processing and sending the appropriate email.
+ This is what that back-end route looks like /api/resend/route.
+ts: If you have not already created a Resend account, you will need to in order to obtain an API key for sending emails.
+ We create the resend object at the top and use the auth function provided by Clerk.
+js server-side to check if the user is logged in.
+ If so, we proceed to process the request and if not, we return a 401 Un-Authorized error.
+ We covered the Resend package in detail here so feel free to refer to that article for more information.
+ This is in essence, how we work with protected and un-protected routes.
+ Drizzle ORM and Supabase Configuration We looked at Drizzle and Supabase in an article here.
+ We will briefly highlight what is required for the project setup.
+ You will need to sign-in/sign-up with Supabase, setup an organization, and record the organization password.
+ Select Connect at the top and select the ORMs on the option panel.
+ From here, select Drizzle from the dropdown and copy/paste the connection string inside a .
+env file (stored at the root of the project).
+ For the [password] placeholder, insert the organization password you created earlier.
+ For Drizzle, you need to install the following packages: drizzle-orm and drizzle-kit.
+ You will need to define a configuration file named drizzle.
+config.
+ts at the root.
+ It should resemble something like this: The configuration file defines the location of the schemas you will be working with and details the location for the database migrations.
+ This is where you pass in the connection string you defined earlier.
+ This allows Drizzle to connect to Supabase and perform the required actions.
+ I created a simple user schema that Drizzle will migrate to Supabase and create the appropriate user table /db/schema.
+ts: We have the basic user profile setup with the firstName, lastName, and email properties.
+ We have an id primary key field which utilizes uuid for creating unique ids as well as the Clerk.
+js generated userId field to identify users upon successful login.
+ The createdAt and updatedAt fields are auto-generated using the in-time time stamp value.
+ In the db directory, you will also find an index.
+ts file that defines an exported Drizzle instance which is connected to Supabase using the connection string defined earlier.
+ Inside the package.
+json file, you should have the following attributes added to scripts: “db:generate”: “drizzle-kit generate” “db:migrate”: “drizzle-kit migrate” “db:push”: “drizzle-kit push” These commands will be used to push a defined schema to Supabase.
+ Since we already have a user schema defined, we can simply run npm run db:migrate and a user table will be created inside Supabase.
+ You will need to ensure that RLS (row-level security) is enforced on the newly created table and that policies related to the table are set to enable ALL operations.
+ Clerk Web Hook Setup via Svix and ngrok We have not looked at web hooks before, but they are a crucial aspect of software development.
+ Web hooks are event-driven and perform certain tasks when key events are triggered.
+ Svix is a popular web-hook-as-a-service provider and Clerk.
+js uses Svix internally for setting up web hooks.
+ In the case of Clerk.
+js, a web hook would be triggered based on events related to user sign-up or sign-in.
+ The following code segment details an implementation of a Clerk.
+js web hook server-side /api/webhooks/clerk/route.
+ts: You can see that we have a switch statement that works through the different events that can trigger the web hook.
+ In each instance, we define what needs to happen (insert user account information to database when a user signs up).
+ Clerk.
+js has a built-in event type definition known as WebhookEvent which we import and use to work through the different cases.
+ Event triggers follow a common naming pattern: resource.
+event_type.
+ In authentication, common resources include user, session, and organization.
+ In this case, we use the user resource to detail what should happen when created, updated, and deleted events take place.
+ In order to test the functionality of this web hook locally, we need to install ngrok.
+ You can do this using npm install -g ngrok.
+ We will use ngrok to generate a URL that forwards requests to port 3000 when the dev server is launched on localhost:3000.
+ You can read more about ngrok in the docs here.
+ Put it simply, ngrok is a flexible way for instantly creating secure connectivity for your applications.
+ To work with ngrok, you need to obtain an authentication token by signing up with them.
+ Once you sign up, copy the authentication token and in a separate window, run ngrok config add-authtoken <AUTH_TOKEN_GOES_HERE>.
+ This will allow us to access the HTTPS endpoint for the web application running on port 3000.
+ Run ngrok http 3000 and you should see the HTTPS endpoint that forwards requests to port 3000.
+ Copy this HTTPS endpoint and login to your Clerk.
+js account.
+ Under Configure, select the Webhooks option on the left side of the panel.
+ This is where you can create a custom web hook based on certain event triggers.
+ To keep things simple, select the user and session options and paste in the HTTPS endpoint with an appended path name: /api/webhooks/clerk.
+ This will point to the route.
+ts file that contains all the code for the web hook implementation.
+ Once you save the web hook, you will need to copy the web hook secret to your local .
+env file under the attribute name, CLERK_WEBHOOK_SECRET.
+ This will be used to verify the web hook signature.
+ Once you complete this process, the web application should be fully functional.
+ You can test the sign-in and sign-out features as well as the sign-up feature.
+ You should notice that with each successful unique user sign-up, the Supabase user table should add a new row containing the user profile information as per web hook instructions.
+ Conclusion We saw how easy and efficient it was to setup authentication for a Next.
+js application using the Clerk.
+js library.
+ Clerk.
+js supports many identity providers out-of-the-box and you can easily integrate them into your authentication code.
+ We utilized key features of Clerk.
+js to enable authentication for a simple web application.
+ We set up sign-up and sign-in functionality as well as middleware for generating public front-end and back-end routes.
+ We investigated key Clerk.
+js built-in components for conditionally rendering content based on login state and we incorporated Supabase for storing user account information with the help of Drizzle.
+ We gathered user account information and sent emails using the Resend package (we explored Resend in a previous article).
+ Finally, we explored web hooks and created one to manage Clerk.
+js event triggers.
+ We tested web hook functionality locally with the help of ngrok.
+ The entire process was clean and efficient.
+ There was no need to setup global state to monitor authentication (as is the case with Redux), create custom JWTs, or add additional boilerplate code related to authentication.
+ In the list below, you will find a link to the GitHub repository used in this article as well as a link to the Clerk.
+js library: GitHub Repository Clerk.
+js Library I hope you found this article helpful and look forward to more in the future.
+ Thank you!
+
