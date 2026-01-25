@@ -6,8 +6,8 @@ import {
   uuid,
   pgEnum
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
 
+// Subscription Tier Enum for user table subscription classification
 export const subscriptionTierEnum = pgEnum("subscription_tier", [
   "free",
   "basic",
