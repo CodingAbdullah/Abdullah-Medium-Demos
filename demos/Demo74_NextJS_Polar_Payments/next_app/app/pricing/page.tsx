@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Plans from '../_utils/plansList';
+import PlanButton from "../_components/PlanButton";
 
 // Pricing page detailing the different subscription plans users can subscribe to
 export default function PricingPage() {
@@ -207,12 +208,12 @@ export default function PricingPage() {
                 )}
               </div>
 
-              <Link
-                href={`/api/checkout?plan=basic-${isAnnual ? "annual" : "monthly"}`}
+              <PlanButton
+                plan={`basic-${isAnnual ? "annual" : "monthly"}`}
                 className="mb-8 block w-full rounded-lg border border-zinc-300 py-3 text-center font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800"
               >
                 Subscribe
-              </Link>
+              </PlanButton>
 
               <ul className="space-y-4">
                 {Plans.basic.features.map((feature, index) => (
@@ -290,12 +291,12 @@ export default function PricingPage() {
                 )}
               </div>
 
-              <Link
-                href={`/api/checkout?plan=pro-${isAnnual ? "annual" : "monthly"}`}
+              <PlanButton
+                plan={`pro-${isAnnual ? "annual" : "monthly"}`}
                 className="mb-8 block w-full rounded-lg bg-emerald-500 py-3 text-center font-medium text-white transition-colors hover:bg-emerald-600"
               >
                 Subscribe
-              </Link>
+              </PlanButton>
 
               <ul className="space-y-4">
                 {Plans.pro.features.map((feature, index) => (

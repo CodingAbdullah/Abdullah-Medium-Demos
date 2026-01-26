@@ -1,83 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Webhook, WebhookVerificationError } from "standardwebhooks";
+import { validateEvent, WebhookVerificationError } from "@polar-sh/sdk/webhooks";
 import { db } from "@/db/index";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import calculateEndDate from "@/app/_utils/createDateFunction";
+import PRODUCT_TO_BILLING from "@/app/_utils/productToBillingRecord";
+import PRODUCT_TO_TIER from "@/app/_utils/productToTierRecord";
 
-// Map Polar product IDs to subscription tiers
-const PRODUCT_TO_TIER: Record<string, "free" | "basic" | "pro"> = {
-  [process.env.POLAR_MONTHLY_BASIC_PRODUCT_ID!]: "basic",
-  [process.env.POLAR_ANNUAL_BASIC_PRODUCT_ID!]: "basic",
-  [process.env.POLAR_MONTHLY_PRO_PRODUCT_ID!]: "pro",
-  [process.env.POLAR_ANNUAL_PRO_PRODUCT_ID!]: "pro"
-};
-
-// Map Polar product IDs to billing period (for calculating end date)
-const PRODUCT_TO_BILLING: Record<string, "monthly" | "annual"> = {
-  [process.env.POLAR_MONTHLY_BASIC_PRODUCT_ID!]: "monthly",
-  [process.env.POLAR_ANNUAL_BASIC_PRODUCT_ID!]: "annual",
-  [process.env.POLAR_MONTHLY_PRO_PRODUCT_ID!]: "monthly",
-  [process.env.POLAR_ANNUAL_PRO_PRODUCT_ID!]: "annual"
-};
-
-// Calculate subscription end date based on billing period
-function calculateEndDate(billingPeriod: "monthly" | "annual"): Date {
-  const now = new Date();
-  if (billingPeriod === "annual") {
-    return new Date(now.setFullYear(now.getFullYear() + 1));
-  }
-  return new Date(now.setMonth(now.getMonth() + 1));
-}
-
-// Simple in-memory idempotency tracking (use Redis in production)
-const processedEvents = new Map<string, number>();
-const IDEMPOTENCY_WINDOW = 5 * 60 * 1000; // 5 minutes
-
-function isEventProcessed(eventId: string): boolean {
-  const now = Date.now();
-
-  // Clean up old entries
-  for (const [id, timestamp] of processedEvents.entries()) {
-    if (now - timestamp > IDEMPOTENCY_WINDOW) {
-      processedEvents.delete(id);
-    }
-  }
-
-  if (processedEvents.has(eventId)) {
-    return true;
-  }
-
-  processedEvents.set(eventId, now);
-  return false;
-}
-
+// Process Polar payment webhooks
+// Update the database once the payment process is complete with the latest subscription status information
 export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.POLAR_WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    console.error("[Polar Webhook] Missing POLAR_WEBHOOK_SECRET");
     return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
   }
 
   // Get the raw body
   const payload = await req.text();
 
+  // Verify webhook signature using Polar SDK
   let event;
   try {
-    event = JSON.parse(payload);
-  }
-  catch {
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+    event = validateEvent(payload, Object.fromEntries(req.headers), WEBHOOK_SECRET);
+  } 
+  catch (error) {
+    if (error instanceof WebhookVerificationError) {
+      return NextResponse.json({ error: "Invalid signature" }, { status: 403 });
+    }
+
+    return NextResponse.json({ error: "Webhook verification failed" }, { status: 400 });
   }
 
   const eventType = event.type;
-  const eventId = event.id || `${eventType}-${event.data?.id}-${Date.now()}`;
-
-  // Idempotency check - prevent processing the same event twice
-  if (isEventProcessed(eventId)) {
-    console.log(`[Polar Webhook] Skipping duplicate event: ${eventId}`);
-    return NextResponse.json({ received: true, duplicate: true }, { status: 200 });
-  }
 
   try {
     switch (eventType) {
@@ -90,33 +45,30 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ received: true, skipped: "pending checkout" }, { status: 200 });
         }
 
-        const clerkId = event.data.metadata?.clerkId;
-        const productId = event.data.product_id || event.data.productId || event.data.product?.id;
-        const customerId = event.data.customer_id || event.data.customerId || event.data.customer?.id;
-        const subscriptionId = event.data.subscription_id || event.data.subscriptionId || event.data.subscription?.id;
+        const clerkId = event.data.metadata?.clerkId as string | undefined;
+        const productId = event.data.productId;
+        const customerId = event.data.customerId;
+        const subscriptionId = event.data.subscriptionId;
 
         if (!clerkId) {
-          console.error("[Polar Webhook] Missing clerkId in metadata");
           return NextResponse.json({ error: "Missing clerkId in metadata" }, { status: 400 });
         }
 
         // Check if user exists
         const existingUser = await db.query.users.findFirst({
-          where: eq(users.clerkId, clerkId),
+          where: eq(users.clerkId, clerkId)
         });
 
         if (!existingUser) {
-          console.error(`[Polar Webhook] User not found: ${clerkId}`);
           return NextResponse.json({ error: "User not found" }, { status: 404 });
         }
 
-        const tier = PRODUCT_TO_TIER[productId] || "basic";
-        const billingPeriod = PRODUCT_TO_BILLING[productId] || "monthly";
+        const tier = (productId && PRODUCT_TO_TIER[productId]) || "basic";
+        const billingPeriod = (productId && PRODUCT_TO_BILLING[productId]) || "monthly";
         const endDate = calculateEndDate(billingPeriod);
 
         // Idempotency: Check if this subscription is already active
         if (existingUser.polarSubscriptionId === subscriptionId && existingUser.isSubscribed) {
-          console.log(`[Polar Webhook] Subscription already active for user ${clerkId}`);
           return NextResponse.json({ received: true, skipped: "already active" }, { status: 200 });
         }
 
@@ -133,45 +85,60 @@ export async function POST(req: NextRequest) {
           })
           .where(eq(users.clerkId, clerkId));
 
-        console.log(`[Polar Webhook] Activated subscription for ${clerkId} - tier: ${tier}`);
         break;
       }
 
       // Subscription activated
       case "subscription.created":
       case "subscription.active": {
-        const customerId = event.data.customer_id || event.data.customerId || event.data.customer?.id;
-        const productId = event.data.product_id || event.data.productId || event.data.product?.id;
+        const customerId = event.data.customerId;
+        const productId = event.data.productId;
         const subscriptionId = event.data.id;
+        const clerkId = event.data.metadata?.clerkId as string | undefined;
 
-        if (!customerId) {
-          return NextResponse.json({ received: true, skipped: "no customer ID" }, { status: 200 });
+        // Try to find user by clerkId first (new subscription), fallback to customerId (existing customer)
+        if (!clerkId && !customerId) {
+          return NextResponse.json({ received: true, skipped: "no identifier" }, { status: 200 });
         }
 
-        const tier = PRODUCT_TO_TIER[productId] || "basic";
-        const billingPeriod = PRODUCT_TO_BILLING[productId] || "monthly";
+        const tier = (productId && PRODUCT_TO_TIER[productId]) || "basic";
+        const billingPeriod = (productId && PRODUCT_TO_BILLING[productId]) || "monthly";
         const endDate = calculateEndDate(billingPeriod);
 
-        const result = await db
-          .update(users)
-          .set({
-            isSubscribed: true,
-            subscriptionTier: tier,
-            polarSubscriptionId: subscriptionId,
-            subscriptionStartDate: new Date(),
-            subscriptionEndDate: endDate,
-            updatedAt: new Date()
-          })
-          .where(eq(users.polarCustomerId, customerId));
+        if (clerkId) {
+          await db
+            .update(users)
+            .set({
+              isSubscribed: true,
+              subscriptionTier: tier,
+              polarCustomerId: customerId,
+              polarSubscriptionId: subscriptionId,
+              subscriptionStartDate: new Date(),
+              subscriptionEndDate: endDate,
+              updatedAt: new Date()
+            })
+            .where(eq(users.clerkId, clerkId));
+        } else {
+          await db
+            .update(users)
+            .set({
+              isSubscribed: true,
+              subscriptionTier: tier,
+              polarSubscriptionId: subscriptionId,
+              subscriptionStartDate: new Date(),
+              subscriptionEndDate: endDate,
+              updatedAt: new Date()
+            })
+            .where(eq(users.polarCustomerId, customerId!));
+        }
 
-        console.log(`[Polar Webhook] Subscription activated for customer: ${customerId}`);
         break;
       }
 
       // Subscription canceled or expired
       case "subscription.canceled":
       case "subscription.revoked": {
-        const customerId = event.data.customer_id || event.data.customerId || event.data.customer?.id;
+        const customerId = event.data.customerId;
 
         if (!customerId) {
           return NextResponse.json({ received: true, skipped: "no customer ID" }, { status: 200 });
@@ -182,26 +149,26 @@ export async function POST(req: NextRequest) {
           .set({
             isSubscribed: false,
             subscriptionTier: "free",
+            polarSubscriptionId: null,
             subscriptionEndDate: new Date(),
             updatedAt: new Date()
           })
           .where(eq(users.polarCustomerId, customerId));
 
-        console.log(`[Polar Webhook] Subscription canceled for customer: ${customerId}`);
         break;
       }
 
       // Subscription updated (plan change)
       case "subscription.updated": {
-        const customerId = event.data.customer_id || event.data.customerId || event.data.customer?.id;
-        const productId = event.data.product_id || event.data.productId || event.data.product?.id;
+        const customerId = event.data.customerId;
+        const productId = event.data.productId;
 
         if (!customerId) {
           return NextResponse.json({ received: true, skipped: "no customer ID" }, { status: 200 });
         }
 
-        const tier = PRODUCT_TO_TIER[productId] || "basic";
-        const billingPeriod = PRODUCT_TO_BILLING[productId] || "monthly";
+        const tier = (productId && PRODUCT_TO_TIER[productId]) || "basic";
+        const billingPeriod = (productId && PRODUCT_TO_BILLING[productId]) || "monthly";
         const endDate = calculateEndDate(billingPeriod);
 
         await db
@@ -213,7 +180,6 @@ export async function POST(req: NextRequest) {
           })
           .where(eq(users.polarCustomerId, customerId));
 
-        console.log(`[Polar Webhook] Subscription updated for customer: ${customerId}, tier: ${tier}`);
         break;
       }
 
@@ -224,8 +190,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ received: true }, { status: 200 });
   }
-  catch (error) {
-    console.error("[Polar Webhook] Error processing webhook:", error);
+  catch {
     // Return 500 so Polar retries the webhook
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
