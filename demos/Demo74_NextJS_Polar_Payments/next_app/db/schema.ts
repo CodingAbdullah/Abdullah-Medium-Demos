@@ -11,8 +11,7 @@ import {
 export const subscriptionTierEnum = pgEnum("subscription_tier", [
   "free",
   "basic",
-  "pro",
-  "enterprise"
+  "pro"
 ]);
 
 export const users = pgTable("users", {

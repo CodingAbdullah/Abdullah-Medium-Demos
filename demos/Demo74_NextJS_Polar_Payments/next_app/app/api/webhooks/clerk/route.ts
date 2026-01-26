@@ -8,8 +8,6 @@ import { eq } from "drizzle-orm";
 // Back-end route to handle Clerk webhooks
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
-
-  console.log(WEBHOOK_SECRET);
   
   if (!WEBHOOK_SECRET) {
     throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
@@ -39,75 +37,80 @@ export async function POST(req: Request) {
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature
     }) as WebhookEvent;
-  } 
+  }
   catch (err) {
     return new Response("Webhook verification failed", { status: 400 });
   }
 
   const eventType = evt.type;
 
-  switch (eventType) {
-    case "user.created": {
-      const { id, email_addresses, first_name, last_name } = evt.data;
-      const primaryEmail = email_addresses.find(
-        (e) => e.id === evt.data.primary_email_address_id
-      );
+  try {
+    switch (eventType) {
+      case "user.created": {
+        const { id, email_addresses, first_name, last_name } = evt.data;
+        const primaryEmail = email_addresses.find(
+          (e) => e.id === evt.data.primary_email_address_id
+        );
 
-      if (!primaryEmail) {
-        return new Response("No primary email", { status: 400 });
+        if (!primaryEmail) {
+          return new Response("No primary email", { status: 400 });
+        }
+
+        // Use upsert to handle potential duplicate webhooks (idempotency)
+        await db
+          .insert(users)
+          .values({
+            clerkId: id,
+            email: primaryEmail.email_address,
+            firstName: first_name,
+            lastName: last_name,
+            isSubscribed: false,
+            subscriptionTier: "free"
+          })
+          .onConflictDoNothing({ target: users.clerkId });
+
+        break;
       }
 
-      await db.insert(users).values({
-        clerkId: id,
-        email: primaryEmail.email_address,
-        firstName: first_name,
-        lastName: last_name,
-        isSubscribed: false,
-        subscriptionTier: "free"
-      });
+      case "user.updated": {
+        const { id, email_addresses, first_name, last_name } = evt.data;
+        const primaryEmail = email_addresses.find(
+          (e) => e.id === evt.data.primary_email_address_id
+        );
 
-      break;
-    }
+        if (!primaryEmail) {
+          return new Response("No primary email", { status: 400 });
+        }
 
-    case "user.updated": {
-      const { id, email_addresses, first_name, last_name } = evt.data;
-      const primaryEmail = email_addresses.find(
-        (e) => e.id === evt.data.primary_email_address_id
-      );
+        await db
+          .update(users)
+          .set({
+            email: primaryEmail.email_address,
+            firstName: first_name,
+            lastName: last_name,
+            updatedAt: new Date()
+          })
+          .where(eq(users.clerkId, id));
 
-      if (!primaryEmail) {
-        return new Response("No primary email", { status: 400 });
+        break;
       }
 
-      await db
-        .update(users)
-        .set({
-          email: primaryEmail.email_address,
-          firstName: first_name,
-          lastName: last_name,
-          updatedAt: new Date(),
-        })
-        .where(eq(users.clerkId, id));
+      case "user.deleted": {
+        const { id } = evt.data;
 
-      break;
-    }
+        if (!id) {
+          return new Response("Missing user id", { status: 400 });
+        }
 
-    case "user.deleted": {
-      const { id } = evt.data;
+        await db.delete(users).where(eq(users.clerkId, id));
 
-      if (!id) {
-        return new Response("Missing user id", { status: 400 });
+        break;
       }
-
-      // Orders will be cascade deleted due to foreign key constraint
-      await db.delete(users).where(eq(users.clerkId, id));
-
-      break;
     }
 
-    default:
-      console.log(`[Clerk Webhook] Unhandled event type: ${eventType}`);
+    return new Response("Webhook processed", { status: 200 });
+  } 
+  catch (error) {
+    return new Response("Internal server error", { status: 500 });
   }
-
-  return new Response("Webhook processed", { status: 200 });
 }

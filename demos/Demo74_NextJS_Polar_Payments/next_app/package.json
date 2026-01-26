@@ -17,6 +17,7 @@
     "@polar-sh/nextjs": "^0.9.3",
     "@polar-sh/sdk": "^0.42.1",
     "drizzle-orm": "^0.45.1",
+    "standardwebhooks": "^1.0.0",
     "next": "16.1.1",
     "postgres": "^3.4.7",
     "react": "19.2.3",
