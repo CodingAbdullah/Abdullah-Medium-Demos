@@ -30,7 +30,8 @@ export default function CancelButton() {
         alert("Your subscription will be cancelled at the end of the billing period.");
       }
       window.location.reload();
-    } catch {
+    } 
+    catch {
       alert("Failed to cancel subscription. Please try again.");
       setLoading(false);
     }

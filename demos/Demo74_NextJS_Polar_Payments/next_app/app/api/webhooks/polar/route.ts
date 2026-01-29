@@ -135,8 +135,29 @@ export async function POST(req: NextRequest) {
         break;
       }
 
-      // Subscription canceled or expired
-      case "subscription.canceled":
+      // Subscription canceled (grace period - will end at period end)
+      case "subscription.canceled": {
+        const customerId = event.data.customerId;
+        const currentPeriodEnd = event.data.currentPeriodEnd;
+
+        if (!customerId) {
+          return NextResponse.json({ received: true, skipped: "no customer ID" }, { status: 200 });
+        }
+
+        // Mark as not subscribed but keep tier for grace period access
+        await db
+          .update(users)
+          .set({
+            isSubscribed: false,
+            subscriptionEndDate: currentPeriodEnd ? new Date(currentPeriodEnd) : undefined,
+            updatedAt: new Date()
+          })
+          .where(eq(users.polarCustomerId, customerId));
+
+        break;
+      }
+
+      // Subscription revoked (immediately cancelled)
       case "subscription.revoked": {
         const customerId = event.data.customerId;
 
