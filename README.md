@@ -610,10 +610,10 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo73_NextJS_Polar_Payments</code>
+            <code>/demos/Demo74_NextJS_Polar_Payments</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/the-x402-protocol-and-payments-made-easy-with-polar-sh-in-a-next-js-application-5ab6659904d9">Exploring Polar.sh for Payments and the x402 Protocol in a Next.js Application</a>
         </td>
     </tr>
     <tr>
