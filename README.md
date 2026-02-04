@@ -608,6 +608,14 @@ Table highlighting the current demos completed along with their code repository 
             <a href="https://medium.com/stackademic/bittensor-explained-subnets-incentives-and-decentralized-intelligence-d8e8c93ebbd8">Bittensor Explained: Subnets, Incentives, and Decentralized Intelligence</a>
         </td>
     </tr>
+        <tr>
+        <td>
+            <code>/demos/Bittensor_Chutes_AI</code>
+        </td>
+        <td>
+            <a href="https://medium.com/@abdullah_95/subnet-64-exploring-chutes-ai-the-most-prominent-subnet-on-bittensor-47d28aa0cacc?postPublishedType=initial">Subnet 64: Exploring Chutes AI, the Most Prominent Subnet on Bittensor</a>
+        </td>
+    </tr>
     <tr>
         <td>
             <code>/demos/Demo74_NextJS_Polar_Payments</code>
