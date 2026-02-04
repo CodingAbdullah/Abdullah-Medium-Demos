@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.1.4",
+    "@chutes-ai/ai-sdk-provider": "^0.1.2",
+    "ai": "^6.0.64",
+    "next": "^16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
