@@ -610,7 +610,7 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
         <tr>
         <td>
-            <code>/demos/Bittensor_Chutes_AI</code>
+            <code>/demos/Demo73_Bittensor_Chutes_AI</code>
         </td>
         <td>
             <a href="https://medium.com/@abdullah_95/subnet-64-exploring-chutes-ai-the-most-prominent-subnet-on-bittensor-47d28aa0cacc?postPublishedType=initial">Subnet 64: Exploring Chutes AI, the Most Prominent Subnet on Bittensor</a>
@@ -626,15 +626,22 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo74_Supabase_Guide</code>
+            <code>/demos/Demo75_Claude_Code_Mobile</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
+            <a href="https://medium.com/@abdullah_95/mobile-first-agentic-development-shipping-production-apps-with-claude-code-084b4e71b1c6">Mobile-First Agentic Development: Shipping Production Apps with Claude Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo75_Jenkins_Guide</code>
+            <code>/demos/Demo75_x402_Payments</code>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code>/demos/Demo76_Jenkins_Guide</code>
         </td>
         <td>
             Link to Medium Article to be posted when complete
