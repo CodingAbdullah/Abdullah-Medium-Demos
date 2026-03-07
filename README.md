@@ -634,9 +634,10 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
-            <code>/demos/Demo75_x402_Payments</code>
+            <code>/demos/Demo76_x402_Payments</code>
         </td>
         <td>
+            <a href="https://medium.com/@abdullah_95/the-x402-protocol-enabling-agentic-payments-for-apis-with-http-402-0c29d8741118">The x402 Protocol: Enabling Agentic Payments for APIs with HTTP 402</a>
         </td>
     </tr>
     <tr>
