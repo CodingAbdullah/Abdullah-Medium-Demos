@@ -642,6 +642,14 @@ Table highlighting the current demos completed along with their code repository 
     </tr>
     <tr>
         <td>
+            <code>/demos/Demo77_Agentic_Skills</code>
+        </td>
+        <td>
+            <a href="https://medium.com/stackademic/level-up-claude-code-with-agentic-skills-73b95b10528a">Level Up Claude Code with Agentic Skills</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
             <code>/demos/Demo76_Jenkins_Guide</code>
         </td>
         <td>
