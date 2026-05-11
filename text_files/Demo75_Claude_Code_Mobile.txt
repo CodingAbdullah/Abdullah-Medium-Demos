@@ -1,0 +1,308 @@
+Mobile-First Agentic Development: Shipping Production Apps with Claude Code
+
+[](https://medium.com/@abdullah95?source=postpage---byline--084b4e71b1c6---------------------------------------)
+
+Abdullah Muhammad
+
+9 min read
+
+·
+
+Feb 27, 2026
+
+Press enter or click to view image in full size
+
+Exploring a mobile-first approach to agentic coding
+
+Basic knowledge of web development, generative AI, and agentic coding will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In the world of AI, your head as a developer is always on a swivel. Every now and then something happens in this industry which warrants serious attention.
+
+Recent advances in AI coding agents have significantly changed how software can be designed, implemented, and deployed.
+
+2026 has started off with a bang. There was the launch of OpenClaw, which took the internet by storm, followed by the race between OpenAI and Anthropic for the best coding LLMs, marked by the releases of Sonnet/Opus 4.6 and Codex 5.3.
+
+For the first time, it is now possible to design, build, and ship production-grade applications using a phone.
+
+You can do this by simply orchestrating AI agents instead of manually writing every line of code.
+
+I will not dive into “vibe coding”, AI agents, or how to use Claude Code, but rather focus on a mobile-first setup which you can follow on your own.
+
+The workflow utilizes several key technologies:
+
+• Claude Code (mobile coding sessions) acts as an execution agent
+• ChatGPT (mobile) as the architecture and instruction generator
+• GitHub (mobile) acts as version control and is the source of truth
+• CLAUDE.md file acts as the persistent agent configuration layer
+
+This is not a fluke, but rather, a repeatable production-grade system which you can use on your own to develop and ship serious projects.
+
+Paradigm Shift: Type Code to Orchestrating Agents
+
+In traditional software development, you would design, develop, test, and deploy projects on your own. Depending on your experience and project scope, timelines would vary on delivery.
+
+With the launch of ChatGPT, things changed drastically and in just the last three years, much of the software industry has now revolutionized.
+
+Agentic coding allows experienced engineers to increase productivity many fold by shifting their attention to product scope and delivery.
+
+No need to worry about the nuances and every low-level detail as many of these coding agents take care of it for you. Agentic development allows you to define intent, generate optimized instructions, execute a plan, test, and deploy a project.
+
+You essentially become an architect.
+
+The Agent Stack Architecture
+
+This workflow operates across five distinct layers:
+
+• Architect Layer— You define intent, approve changes, and act as the centre of command
+• Instruction Layer — ChatGPT generates architecture, prompts, and the CLAUDE.md file for agent configuration
+• Agent Configuration Layer— CLAUDE.md file defines a set of persistent rules and behavioural constraints for Claude Code agents
+• Execution Layer — Claude Code does the heavy lifting of planning, writing, and modifying the codebase
+• Tool Access Layer — Claude Code accesses external systems to gain knowledge (context) and resources to solve problems (Git, GitHub, documentation, etc.).
+• Source of Truth Layer — GitHub stores code, manages branching, and deployments
+
+As you can see, this is an easy architecture to understand and follow. Each layer has a clear defined role.
+
+This separation creates a reliable and scalable development system.
+
+Claude Code is the Execution Agent
+
+Traditional AI coding tools focus on generating suggestions. Claude Code generates a plan, executes the requested changes, and can also re-visit and modify code based on user requests.
+
+Claude Code can do the following:
+
+• Read repository files to gather context
+• Analyze overall project structure
+• Create/switch between branches
+• Write and modify code
+• Prepare GitHub commits
+
+And much more.
+
+It is no secret why Claude Code has taken the industry by storm. It is an Anthropic product offering and you can sign up with them and pay for credits to increase usage limits.
+
+Claude Session Isolation Model
+
+Claude Code on mobile has an option to start code session. Upon selecting that option, the user can grant Claude Code access to select GitHub repositories by connecting their GitHub account and granting Claude Code access to them.
+
+From there, the user has the option of selecting a branch Claude Code should use for the session and then Claude Code will generate a separate session branch associated with that session.
+
+The session branch name is derived from the base branch selected and follows a naming syntax which closely resembles the following:
+
+• claude/session-<session-id>
+
+The exact name format may vary depending on the Claude Code version and configuration.
+
+Each Claude Code session essentially operates as an isolated environment as it is branch-scoped, context isolated, and execution independent.
+
+This ensures developers that features and fixes can be safely implemented in parallel (can run many sessions at once, fully independent) and in isolated environments.
+
+CLAUDE.md: The Persistent Agent Configuration Layer
+
+CLAUDE.md is the most important file in this entire system. It is essentially an instruction manual for Claude Code to adhere to when you are using it for software development.
+
+It gives Claude Code a sense of direction rather than forcing it to figure things out on its own.
+
+The following list highlights common instructions found in a typical CLAUDE.md file:
+
+• Git workflow rules
+• Commit discipline
+• Architecture constraints
+• Coding standards
+• Safety policies
+
+And much more.
+
+The following markdown file illustrates what a sample CLAUDE.md file looks like:
+
+view raw CLAUDE.md
+hosted with ❤ by GitHub
+
+Claude.md file containing instructions for Claude Code
+
+This file is stored at the root of your project directory and is specifically named this way. At the start of every new session, Claude Code reads this file automatically and these rules persist across all sessions.
+
+This allows Claude Code to become predictable and production-safe.
+
+Programming the Agent with ChatGPT
+
+ChatGPT serves as the instruction and architecture generator. ChatGPT can be used for a lot of things and in this case, it can be used for the following:
+
+• CLAUDE.md files
+• Optimize Claude Code prompts
+• Workflow strategies
+• Debugging guidance
+
+And much more.
+
+The following prompt is an example where a user readily prompts ChatGPT to generate an optimized CLAUDE.md file:
+
+“Generate an optimized CLAUDE.md file enforcing strict branch discipline,
+commit control, and production-safe behavior.”
+
+You can see how we use ChatGPT to produce structured and efficient instructions while Claude Code simply executes them.
+
+While we simply control both layers.
+
+GitHub as the Source of Truth
+
+Perhaps the greatest productivity tool created for software developers is GitHub.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+In the agentic workflow setup, it serves an important purpose as it can be used for the following:
+
+• Permanent code storage
+• Branch management
+• Commit history
+• Pull request review
+• Production deployment triggers
+
+All of these key features ensure that there is traceability with agentic code generation, reversibility (if need be), and production safety.
+
+The main branch represents production code and should never be operated on directly.
+
+New features of a project should be created on separate feature branches and be rigorously tested before the feature branch can be safely merged with the main branch.
+
+The Branching Strategy
+
+Strict branch isolation ensures safe production development of your project.
+
+When working with Claude Code, you should never operate on the main branch. You should have feature branches created on GitHub (Claude Code automatically has access to newly created feature branches).
+
+Feature branches can be named anything, but typically follow a naming convention to ensure readability and a clear understanding of what feature the feature branch was created for.
+
+The following are examples of some feature branch names:
+
+• feature/dashboard-system
+• feature/auth-system
+• feature/api-layer
+
+As the name implies, each feature branch is intended to implement a specific feature of the project and should be developed independently in isolation.
+
+Once you have created the different feature branches on GitHub, you should allow Claude Code to work off of them.
+
+Claude Session Branches
+
+As noted earlier, Claude Code creates different session branches for each session.
+
+You can have multiple code sessions of a project. This ensures there can be multiple Claude Code session branches operating in parallel.
+
+The naming convention of session branches was covered earlier and these branches should be merged into their respective feature branches.
+
+From there, you can squash and merge those feature branches into the main, production branch of the project.
+
+If you have cloud tools such as Vercel linked to the project, this action will trigger a production build for the project and a new deployment.
+
+You can learn more about branching in a README.md file associated with this article here.
+
+Commit Strategy: Controlled Commit Discipline
+
+You should ensure that the CLAUDE.md file contains instructions on Git workflow and in particular, Git commits.
+
+Claude Code may prepare commits or commit changes depending on configuration and instructions. Commit behavior should always be explicitly controlled via CLAUDE.md rules and user instruction.
+
+You should always ensure that explicit commit instructions are provided in a prompt to Claude Code before it actually goes ahead and commits changes.
+
+This prevents uncontrolled repository changes, commit spam, and grants you full control over source code management.
+
+The Complete Feature Implementation Lifecycle
+
+Since we covered the different layers of the agentic development workflow, it is time to bring it all together in this section.
+
+We will focus on the lifecycle of implementing a feature using all the tools we just covered.
+
+The following list neatly details the feature implementation lifecycle:
+
+• Phase 1 — Define intent (you decide what to build)
+• Phase 2 — Generate instructions (ChatGPT for generating you an optimized version of a CLAUDE.md file)
+• Phase 3 — Execute implementation (Claude Code for completing tasks)
+• Phase 4 — Controlled commit (Claude Code only commits changes when you request them)
+• Phase 5 — Review (GitHub for reviewing files, commit history, etc.)
+• Phase 6 — Merge to Production (merge session branches into feature branches, then squash merge feature branches into main)
+• Phase 7 — Deployment (once changes are made to main, a production build and deployment are triggered)
+
+Note that Claude Code can also be used for maintenance. Say, for instance, your production build has noted bugs.
+
+You can open a Claude Code session to fix the specific issue. You instruct Claude to analyze the issue and Claude Code will go ahead and attempt to fix it.
+
+You can review changes and then proceed to merge those changes with main.
+
+Parallel Multi-Agent Development
+
+As noted earlier, Claude Code sessions can operate in parallel to each other on the same project. This allows you to implement different features at once with each feature being implemented in its own Claude Code session.
+
+Recall that sessions run in their own isolated environment and session branch.
+
+This key feature ensures developers can be productive when working with Claude Code.
+
+Mobile-Only Development Loop
+
+This setup allows you to work from the comfort of your phone.
+
+Assuming you have installed the mobile versions of each of the key technologies we highlighted, the following list details the mobile, agentic workflow in action:
+
+• Identify a feature → Create feature branch on project via GitHub mobile
+• Open ChatGPT mobile (prompt to generate architecture and instructions)
+• Copy instructions
+• Open Claude Code mobile → Navigate to code → Select project → Feature branch → Paste instructions
+• Claude Code creates a session branch and implements the feature
+• Review changes in GitHub mobile
+• Merge the session branch to main (Session branch → Feature branch → Main branch)
+• Deployment triggers automatically (Vercel production build/deployment)
+
+No PC, laptop, or table required. You can develop and deploy cloud-native web applications from the comfort of your phone.
+
+Persistent Agent Evolution
+
+As you build out your project, the CLAUDE.md file should be refined from time to time.
+
+This enables Claude Code to improve over time through refinement. You start out with a basic file which grows into a highly reliable engineering agent with each version.
+
+This type of agent evolution is referred to as instruction evolution.
+
+Deterministic Agent Execution
+
+As is the case with LLMs, the prompt responses are non-deterministic in nature.
+
+Claude Code becomes highly reliable for you when you ensure that the CLAUDE.md file is well defined, instructions are precise, and tasks are scoped.
+
+This ensures Claude Code behaves in a highly consistent and predictable manner suitable for production engineering workflows.
+
+Conclusion
+
+Software development is transitioning from manual implementation to agent orchestration.
+
+Instead of writing every line of code yourself, you define intent, configure the agent, and supervise execution.
+
+Claude Code sessions allow developers to develop from anywhere, enable parallel agent execution, faster feature delivery, and reduce manual workload.
+
+With the help of tools such as Claude Code, ChatGPT, and GitHub, your phone becomes a complete, agentic development environment.
+
+In the list below, you will find links to the GitHub repository containing a sample CLAUDE.md file and the official docs to Claude Code:
+
+• GitHub Repository
+• Claude Code Documentation
+
+I hope you found this article informative and look forward to more in the future.
+
+Thank you!
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

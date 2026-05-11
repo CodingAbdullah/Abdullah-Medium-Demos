@@ -1,0 +1,190 @@
+How to Deploy a Fine-Tuned LLM on Bittensor’s Chutes AI
+
+[](https://medium.com/@abdullah95?source=postpage---byline--366c4b89c7d4---------------------------------------)
+
+Abdullah Muhammad
+
+4 min read
+
+·
+
+3 days ago
+
+Press enter or click to view image in full size
+
+Exploring Chutes AI in detail and deploying a fine-tuned AI model on Bittensor
+
+Basic knowledge of web development, LLMs, and the Bittensor ecosystem will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In past articles, we covered Bittensor and the many intricate components that make up its network. We also explored subnet 64, one of the most prominent subnets on Bittensor.
+
+In this short article, we will cover deploying a fine-tuned model on Chutes AI (known as subnet 64).
+
+If you are a developer with extensive Python experience, this will be an easy follow.
+
+I decided to write this small article to serve as a guide for people with limited Python experience so you too can deploy a fine-tuned model on Chutes AI.
+
+Bittensor Subnets and Subnet 64: Chutes AI
+
+This section will serve as a refresher on Bittensor and Chutes AI. Bittensor is essentially a decentralized AI network/economy which allows users and developers alike to offer incentivized AI services.
+
+Each subnet on Bittensor offers its own unique AI service with a unique economy of its own (alpha tokens).
+
+Each subnet is numbered and Chutes AI is a prominent subnet on Bittensor (subnet 64).
+
+Chutes AI offers the ability for others to deploy models of their own and for others to access via decentralized GPU infrastructure.
+
+Rather than rely on a sole provider to access these models, miners offer compute and host these models for inference via API endpoints using the Chutes API.
+
+In fact, we covered Chutes AI model inference using the Vercel AI SDK as it contains a customized package for specifically working with the Chutes API provider.
+
+Step-by-Step Guide to Model Deployment
+
+Now, we will simply proceed to creating and deploying a fine-tuned model. Understand that Chutes AI acts as a provider for you to access these models.
+
+You can follow along by cloning this GitHub repository. The directory we will focus on is demos/Demo78ChutesAIModelDeployment.
+
+Model inference with Chutes AI relies on miners (those who provide compute and the ability for inference) who are evaluated by validators based on their performance and rewarded accordingly (we touched on this key aspect of incentives with Bittensor).
+
+However, from a developer’s perspective, these blockchain mechanics are largely abstracted away, making the deployment workflow feel similar to working with a traditional AI inference provider.
+
+Ensure you have a Python environment setup for this article including the Python package manager as we will need to install the chutes Python package using pip:
+
+pip install chutes
+
+After that, we will use the chutes CLI command to register using:
+
+chutes register
+
+You need to register yourself first before you can deploy any model to Chutes AI. Once registration is complete, we can proceed to model deployment.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+The following Python script details how you can deploy a fine-tuned model on Chutes /codebase/finetunedchutesmodel.py:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | fromchutes.chuteimportNodeSelector |
+|  | fromchutes.chute.template.vllmimportbuild\vllm\chute |
+|  |  |
+|  | chute=build\vllm\chute( |
+|  | username="your-chutes-username", |
+|  |  |
+|  | \# Replace this with YOUR fine-tuned Hugging Face model |
+|  | model\_name="your-hf-username/your-finetuned-model", |
+|  |  |
+|  | node\_selector=NodeSelector( |
+|  | gpu\_count=1, |
+|  | ), |
+|  |  |
+|  | concurrency=4, |
+|  |  |
+|  | readme=""" |
+|  | \# Fine-Tuned Model Chute |
+|  |  |
+|  | This deploys my fine-tuned Hugging Face model on Chutes AI |
+|  | using the vLLM template with an OpenAI-compatible API. |
+|  | """ |
+|  | ) |
+
+view raw finetuned\chutes\model.py
+hosted with ❤ by GitHub
+
+Python script detailing the steps for deploying a fine-tuned model on Bittensor’s Chutes AI
+
+Key things to note:
+
+• NodeSelector — NodeSelector is a configuration class from the Chutes SDK that defines the hardware requirements for your deployment. In this case, gpu\_count=1 tells the Chutes platform to provision a single GPU node to run the model.
+• build\vllm\chute— This is the core builder function from the Chutes SDK’s vLLM template. VLLM is a high-throughput inference engine optimized for LLMs, and build\vllm\chute wraps it into a deployable “chute”.
+• Username and Model Name Parameters — These identify who owns the deployment and what model to serve. Username ties the chute to your Chutes AI account and the model\_name points to the HuggingFace model repository path.
+• Concurrency Parameter — This controls how many simultaneous inference requests the deployed chute can handle at once. Higher concurrency means more parallel requests, but also more GPU memory consumption.
+• Readme Parameter — This is a markdown string that documents the chute on the Chutes AI platform.
+
+You can deploy this as a chute using the following bash command:
+
+chutes deploy finetuned_chute:chute --accept-fee
+
+That is all there is to it. Chutes AI is a neat subnet that is primarily used for deploying models.
+
+The fine-tuning happens elsewhere, but what Chutes allows you to do is deploy these models (“chutes”) to be accessible to anyone through the Chutes AI provider.
+
+Run Calls to Deployed Chutes Model
+
+Recall that the Chutes SDK is primarily used for the deployment and serving of models (“chutes”) whereas the Chutes API is used for inferring with those models.
+
+The following bash script details how you can infer with your deployed models using the Chutes API:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | #!/bin/bash |
+|  |  |
+|  | curl https://your-chutes-username-your-model-name.chutes.ai/v1/chat/completions \ |
+|  | -H "Authorization: Bearer YOUR\CHUTES\API\_KEY" \ |
+|  | -H "Content-Type: application/json" \ |
+|  | -d '{ |
+|  | "model": "your-hf-username/your-finetuned-model", |
+|  | "messages": \[ |\
+|  | { |\
+|  | "role": "user", |\
+|  | "content": "Explain this model in one sentence." |\
+|  | } |\
+|  | \] |
+|  | }' |
+
+view raw custom\chutes\api\call.sh
+hosted with ❤ by GitHub
+
+Bash script for running model inference via Chutes API
+
+Of course, you can also use the Vercel AI SDK along with the Chutes AI provider to infer with these models with greater complexity.
+
+We covered that in a separate article here.
+
+Conclusion
+
+In this short article, we covered how easy it is to deploy a fine-tuned model on Chutes AI.
+
+You do not need to be a Python expert to do this, the code base provided in this article is adequate enough for you to get started with the deployment process.
+
+In the list below, you will find links to the GitHub repository (used in this article), the Chutes AI documentation/provider package, and the Bittensor docs:
+
+• GitHub Repository
+• Chutes AI Documentation
+• Bittensor Documentation
+• Chutes AI Provider NPM Package
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--366c4b89c7d4----0---------------------e0f544807d6a4e2b943a5f21d410e385--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

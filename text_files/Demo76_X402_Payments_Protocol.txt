@@ -1,0 +1,724 @@
+The x402 Protocol: Enabling Agentic Payments for APIs with HTTP 402
+
+[](https://medium.com/@abdullah95?source=postpage---byline--0c29d8741118---------------------------------------)
+
+Abdullah Muhammad
+
+11 min read
+
+·
+
+Mar 7, 2026
+
+Press enter or click to view image in full size
+
+Exploring payments with the x402 payments protocol
+
+Basic knowledge of web development and the Ethereum blockchain will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+We covered payments extensively using the Polar.sh library and briefly touched on the x402 payments protocol in an article here.
+
+With the rise of stablecoins such as USDC (ERC-20 stablecoin) this protocol can be used to facilitate payments wallet to wallet allowing for access to select resources upon successful payments.
+
+While the x402 protocol is an unofficial protocol, it has been surmised by the likes of Coinbase and will continue to grow as stablecoins capture more of the global market share.
+
+The protocol is focused around Ethereum and works best using a layer two chain such as Base.
+
+Base is a layer two EVM blockchain powered by Coinbase and offers a vast ecosystem which developers can tap into and develop blockchain applications.
+
+The benefit here is the ability to utilize ready-made SDKs for development, smart contracts, and complete blockchain transactions by paying a fraction of the gas costs associated with the Ethereum blockchain.
+
+The standard practice is to use USDC on Base to complete these payments.
+
+The protocol is based on the pay-per-use model. For every API request made to access a select resource, a payment must be made and verified before access is granted to the requested resource.
+
+If the payment is processed and verified, the requester gains access to the select resource. If no payment is provided or is not verified, resource access is denied and a 402 HTTP error is returned.
+
+As a reader, a thorough grasp of the HTTP standard and the Ethereum blockchain is a prerequisite to understanding what we will cover in the subsequent sections.
+
+Practical Use Cases for the x402 Protocol
+
+Some practical use cases for the x402 protocol can be summarized in the following list:
+
+• Pay per API Request – For every API call made, a payment must be made to access the select resource (no API keys, plans, etc.)
+• Agent to Service Payments – AI agents can access select resources by making the required payment to access them
+• Micro Paywalls – To access select pages, a small payment must be made
+• Paid Compute – Sell compute time and resources on-demand
+
+This list highlights some of the many possibilities that come with pay-to-use APIs.
+
+In development, feel free to come up with your own scenarios where you can implement this protocol (keep it practical).
+
+Brief Look at Ethereum
+
+Before we proceed, I wanted to provide you with a nice summary on the key concepts of Ethereum. Unlike Bitcoin, you can think of Ethereum as programmable money.
+
+Ethereum is the largest “altcoin” by market cap and allows for the building of decentralized applications (dApps) through the use of smart contracts.
+
+The back-end in a dApp is considered the blockchain (although you can also have a separate back-end to handle database queries, caching, etc.).
+
+The Ethereum ecosystem is vast and consists of various protocols which are standardized by the Ethereum foundation.
+
+EIP Proposals and Smart Contracts
+
+You can think of smart contracts as Java and TypeScript classes, but in simple terms, they are stateful programs deployed on the blockchain.
+
+They contain variables and functions (as you typically see in Java/TypeScript classes) allowing for select actions to be conducted and recorded on the blockchain.
+
+These actions can include things such as token transfers, minting tokens, burning tokens, etc.
+
+The contracts themselves are written in the Solidity programming language (.sol file extension) which is similar to Java/C++. You get similar data type declarations with slight nuances such as mappings and address data types.
+
+Certain Solidity syntax is dedicated to verifying activity on the blockchain such as events, emit, owner, require, and many more.
+
+Deployed smart contracts share the same address syntax as wallet addresses.
+
+Ethereum comes with its own set of EIP standards for deploying various types of tokens on the blockchain. Tokens are implemented using smart contracts that follow specific Ethereum standards.
+
+These standards are derived from Ethereum Improvement Proposals. So for instance, in the case of fungible and non-fungible tokens, we have the EIP-20 and EIP-721 proposals.
+
+From these, we derive the ERC-20 and ERC-721 standards.
+
+Using these standards, we can implement their interfaces and deploy a customized smart contract on Ethereum.
+
+When you connect your wallet to a dApp and approve activity through your wallet, you are interacting with a smart contract in the back-end.
+
+Completing transactions on Ethereum comes with an added fee known as gas. This fee is paid to the validators for computation and network security. Ethereum used to be a PoW (Proof-of-Work) chain prior to the merge.
+
+Ethereum now uses the PoS (Proof-of-Stake) mechanism for verification on-chain.
+
+Layer Two Chains and EVM Compatibility
+
+Similar to other programming languages, program code written in human-readable syntax needs to be compiled down to bytecode. Bytecode is basically a set of virtual machine instructions for running applications.
+
+For instance, in Java, we have applications that need to be compiled down to bytecode in order for the JVM (Java Virtual Machine) to understand and run the application properly.
+
+This is also the case with smart contracts. Once compiled, we get two things:
+
+• ABI (Application Binary Interface)– JSON file that details information about the smart contract such as functions, events, parameters, and return types
+• Bytecode – Virtual machine instructions used by the EVM (Ethereum Virtual Machine) to execute actions on the Ethereum blockchain
+
+EVM is essentially a run-time environment that executes smart contract bytecode across different nodes on the Ethereum network.
+
+You can use the ethers.js library and the ABI client-side to interact with the smart contract.
+
+Due to the fact that Ethereum is a vast ecosystem, certain chains are EVM-compatible. This means that you can interact with these chains with Ethereum features already built-in.
+
+A wallet created on Ethereum has an equivalent wallet opened across all EVM-compatible chains (same wallet address across all EVM-compatible chains).
+
+Common chains include layer two solutions such as Arbitrum, Base, Optimism, Polygon, and many more.
+
+Layer two chains are commonly used to reduce gas fees associated with Ethereum transactions and to increase throughput.
+
+That is why we will use the Base chain to implement the x402 payments protocol. The chain is optimized for developing and deploying decentralized applications (dApps).
+
+Ethereum Testnets, Faucets, and Blockchain Scanners
+
+As is the case with software development, blockchain engineers have the ability to write, deploy, and test smart contract functionality on testnets.
+
+These testnets behave like a real blockchain except that they use mock cryptocurrency to test smart contract functionality and record blockchain transactions in real-time.
+
+Testing and debugging smart contracts is extremely crucial as they are used by wallets containing real cryptocurrency.
+
+Each blockchain can have one or many testnets. In the case of Ethereum, we have the mainnet along with a testnet known as Sepolia.
+
+The Base chain also has a testnet called Base Sepolia. You can use your mainnet wallet to access testnets and obtain mock cryptocurrency using a faucet.
+
+The following list contains links to testnet faucets for both Ethereum and the Base chain:
+
+• Ethereum Sepolia Testnet Faucet
+• Base Sepolia Testnet Faucet
+
+Since we will be working with USDC on Base for implementing this protocol, the following is a link to a USDC faucet:
+
+• Circle USDC Faucet
+
+Simply select Base Sepolia from the list of testnet options.
+
+Every blockchain and their testnets come with their own scanner sites. These scanner sites allow you to search and view all kinds of on-chain information.
+
+You can lookup a detailed history of transactions, block information, wallet activity, token transfers, smart contracts, and so much more.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+The following list contains links to Ethereum and Base (mainnet and testnet) scanner sites:
+
+• Etherscan Mainnet Site
+• Etherscan Sepolia Testnet Site
+• Basescan Mainnet Site
+• Basescan Sepolia Testnet Site
+
+If you are new to web3 development, this may sound overwhelming, but I have sprinkled in quite a few links in this article to help you better understand the different concepts.
+
+Development IDE and Smart Contract Deployment
+
+You can create, test, and deploy smart contracts using the Remix Ethereum IDE. There is also Hardhat which is a flexible development environment where you can create, test, and deploy smart contracts.
+
+Developers can also run local blockchain environments for testing before deploying contracts to public networks. Once deployed, smart contracts can be verified and interacted through blockchain explorers such as Etherscan or Basescan.
+
+Agentic Payment: Accepting the USDC Stablecoin as Payment
+
+There are several reasons why we use USDC as the currency for accepting crypto payments. One of the biggest reasons is because it is stable and relatively safe to use. It is backed by Circle and is a dollar-pegged stablecoin.
+
+We could use cryptocurrencies, but their values fluctuate quite a bit so making use of stablecoins to access resources makes perfect sense.
+
+The added benefit here is that USDC is EVM compatible and can be used and transferred across all chains. No banks, no financial intermediaries to worry about.
+
+This key feature enables autonomous agentic payments where AI agents can readily use USDC to pay to access resources. No subscriptions, billing, and API keys to worry about.
+
+Code Overview
+
+You can follow along by cloning this repository. The directory we will work with is located here: /demos/Demo75x402Protocol. We will briefly walk through a simple implementation of the x402 payments protocol.
+
+We will start with the front-end UI /app/page.tsx:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | "use client"; |
+|  |  |
+|  | import{useState}from"react"; |
+|  | import{BrowserProvider,Contract}from"ethers"; |
+|  | importx402Abifrom"../contracts/X402\Protocol\USDC.json"; |
+|  | import{Status,Toast}from"../utils/types"; |
+|  | import{ |
+|  | CONTRACT\_ADDRESS, |
+|  | USDC\_ADDRESS, |
+|  | BASE\SEPOLIA\CHAIN\_ID, |
+|  | USDC\APPROVE\ABI, |
+|  | PRICE, |
+|  | LOADING\_STATUSES, |
+|  | STATUS\_LABELS, |
+|  | }from"../utils/constants"; |
+|  |  |
+|  | // Home page used for the demo of the x402 payments protocol |
+|  | exportdefaultfunctionHome(){ |
+|  | const\[status,setStatus\]=useState<Status>("idle"); |
+|  | const\[message,setMessage\]=useState(""); |
+|  | const\[txHash,setTxHash\]=useState(""); |
+|  | const\[errorCode,setErrorCode\]=useState<number\|null>(null); |
+|  | const\[toast,setToast\]=useState<Toast>(null); |
+|  |  |
+|  | // Toast messages for contract address copies |
+|  | constshowToast=(text: string,ok: boolean)=>{ |
+|  | setToast({ text, ok }); |
+|  | setTimeout(()=>setToast(null),2500); |
+|  | }; |
+|  |  |
+|  | constcopyContract=async()=>{ |
+|  | try{ |
+|  | awaitnavigator.clipboard.writeText(CONTRACT\_ADDRESS); |
+|  | showToast("Smart Contract Address Copied",true); |
+|  | } |
+|  | catch{ |
+|  | showToast("Error Copying Smart Contract Address",false); |
+|  | } |
+|  | }; |
+|  |  |
+|  | constreset=()=>{ |
+|  | setStatus("idle"); |
+|  | setMessage(""); |
+|  | setTxHash(""); |
+|  | setErrorCode(null); |
+|  | }; |
+|  |  |
+|  | // Initiate the stablecoin payment process |
+|  | consthandlePay=async()=>{ |
+|  | reset(); |
+|  |  |
+|  | constethereum=( |
+|  | windowasunknownas{ |
+|  | ethereum?: {request: (a: {method: string;params?: unknown\[\]})=>Promise<unknown>}; |
+|  | } |
+|  | ).ethereum; |
+|  |  |
+|  | if(!ethereum){ |
+|  | setStatus("error"); |
+|  | setMessage("No wallet detected. Please install MetaMask."); |
+|  | return; |
+|  | } |
+|  |  |
+|  | try{ |
+|  | // 1\. Connect wallet |
+|  | setStatus("connecting"); |
+|  | // eslint-disable-next-line @typescript-eslint/no-explicit-any |
+|  | constprovider=newBrowserProvider(ethereumasany); |
+|  | awaitprovider.send("eth\_requestAccounts",\[\]); |
+|  |  |
+|  | // 2\. Switch to Base Sepolia |
+|  | setStatus("switching"); |
+|  | try{ |
+|  | awaitprovider.send("wallet\switchEthereumChain",\[{chainId: BASE\SEPOLIA\CHAIN\ID}\]); |
+|  | } |
+|  | catch(switchErr: unknown){ |
+|  | consterr=switchErras{code?: number}; |
+|  | if(err.code===4902){ |
+|  | awaitprovider.send("wallet\_addEthereumChain",\[ |\
+|  | { |\
+|  | chainId: BASE\SEPOLIA\CHAIN\_ID, |\
+|  | chainName: "Base Sepolia Testnet", |\
+|  | nativeCurrency: {name: "ETH",symbol: "ETH",decimals: 18}, |\
+|  | rpcUrls: \["https://sepolia.base.org"\], |\
+|  | blockExplorerUrls: \["https://sepolia.basescan.org"\], |\
+|  | }, |\
+|  | \]); |
+|  | } |
+|  | else{ |
+|  | throwswitchErr; |
+|  | } |
+|  | } |
+|  |  |
+|  | constsigner=awaitprovider.getSigner(); |
+|  |  |
+|  | // 3\. Approve the X402Protocol contract to spend 0.05 USDC on the user's behalf |
+|  | // (required because the contract calls usdc.transferFrom internally) |
+|  | setStatus("approving"); |
+|  | constusdc=newContract(USDC\ADDRESS,USDC\APPROVE\_ABI,signer); |
+|  | constapproveTx=awaitusdc.approve(CONTRACT\_ADDRESS,PRICE); |
+|  | awaitapproveTx.wait(); |
+|  |  |
+|  | // 4\. Call pay() on the X402Protocol contract |
+|  | // The contract transfers USDC from the user to its receiver and emits PaymentReceived |
+|  | setStatus("paying"); |
+|  | constx402=newContract(CONTRACT\_ADDRESS,x402Abi,signer); |
+|  | consttx=awaitx402.pay(); |
+|  | setTxHash(tx.hash); |
+|  |  |
+|  | // 5\. Wait for on-chain confirmation |
+|  | setStatus("confirming"); |
+|  | awaittx.wait(); |
+|  |  |
+|  | // 6\. Call the protected API — x402 flow: submit tx hash as payment proof |
+|  | setStatus("verifying"); |
+|  | constres=awaitfetch("/api/resource",{ |
+|  | headers: {"x-payment-tx-hash": tx.hash}, |
+|  | }); |
+|  |  |
+|  | constdata=awaitres.json(); |
+|  |  |
+|  | if(res.ok){ |
+|  | setStatus("success"); |
+|  | setMessage(data.message); |
+|  | } |
+|  | else{ |
+|  | setStatus("error"); |
+|  | setErrorCode(res.status); |
+|  | setMessage(data.error); |
+|  | } |
+|  | } |
+|  | catch(err: unknown){ |
+|  | conste=erras{code?: number;message?: string}; |
+|  | if(e.code===4001){ |
+|  | setStatus("error"); |
+|  | setMessage("Transaction rejected by user."); |
+|  | } |
+|  | else{ |
+|  | setStatus("error"); |
+|  | setMessage(e.message\|\|"An unexpected error occurred."); |
+|  | } |
+|  | } |
+|  | }; |
+|  |  |
+|  | constisLoading=(LOADING\_STATUSESasreadonlystring\[\]).includes(status); |
+|  |  |
+|  | return( |
+|  | <divclassName="min-h-screen bg-gray-950 flex items-center justify-center p-6"> |
+|  | <divclassName="w-full max-w-md space-y-6"> |
+|  |  |
+|  | {/\\ Header \/} |
+|  | <divclassName="text-center space-y-1"> |
+|  | <pclassName="text-xs font-mono text-blue-400 uppercase tracking-widest">x402 Payment Protocol</p> |
+|  | <h1className="text-2xl font-bold text-white">Pay-per-Request Demo</h1> |
+|  | <pclassName="text-sm text-gray-400"> |
+|  | Pay <spanclassName="text-white font-semibold">0.05 USDC</span> on Base Sepolia to access the protected resource. |
+|  | </p> |
+|  | </div> |
+|  |  |
+|  | {/\\ Info card \/} |
+|  | <divclassName="bg-gray-900 border border-gray-800 rounded-xl p-4 space-y-2 text-xs font-mono text-gray-400"> |
+|  | <divclassName="flex justify-between"> |
+|  | <span>Network</span> |
+|  | <spanclassName="text-blue-400">Base Sepolia</span> |
+|  | </div> |
+|  | <divclassName="flex justify-between"> |
+|  | <span>Token</span> |
+|  | <spanclassName="text-white">USDC</span> |
+|  | </div> |
+|  | <divclassName="flex justify-between"> |
+|  | <span>Amount</span> |
+|  | <spanclassName="text-white">0.05 USDC</span> |
+|  | </div> |
+|  | <divclassName="flex flex-col gap-1"> |
+|  | <span>Contract</span> |
+|  | <button |
+|  | onClick={copyContract} |
+|  | title="Click to copy" |
+|  | className="text-gray-300 break-all text-left hover:text-white transition-colors cursor-pointer" |
+|  | > |
+|  | {CONTRACT\_ADDRESS} |
+|  | </button> |
+|  | </div> |
+|  | </div> |
+|  |  |
+|  | {/\\ Toast \/} |
+|  | {toast&&( |
+|  | <div |
+|  | className={\fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg text-xs font-mono shadow-lg transition-all |
+|  | ${toast.ok ? "bg-green-800 text-green-100" : "bg-red-800 text-red-100"}\} |
+|  | > |
+|  | {toast.text} |
+|  | </div> |
+|  | )} |
+|  |  |
+|  | {/\\ Status / Result area \/} |
+|  | {status!=="idle"&&( |
+|  | <div |
+|  | className={\rounded-xl border p-4 text-sm font-mono ${ |
+|  | status==="success" |
+|  | ? "bg-green-950 border-green-800 text-green-300" |
+|  | : status==="error" |
+|  | ? "bg-red-950 border-red-800 text-red-300" |
+|  | : "bg-gray-900 border-gray-700 text-gray-300" |
+|  | }\} |
+|  | > |
+|  | {isLoading&&( |
+|  | <divclassName="flex items-center gap-2"> |
+|  | <spanclassName="inline-block w-3 h-3 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"/> |
+|  | <span>{STATUS\_LABELS\[status\]}</span> |
+|  | </div> |
+|  | )} |
+|  |  |
+|  | {status==="success"&&( |
+|  | <divclassName="space-y-1"> |
+|  | <pclassName="text-green-400 font-bold text-base">200 OK — Resource Unlocked</p> |
+|  | <pclassName="text-2xl font-bold text-white mt-1">{message}</p> |
+|  | </div> |
+|  | )} |
+|  |  |
+|  | {status==="error"&&( |
+|  | <divclassName="space-y-1"> |
+|  | {errorCode&&( |
+|  | <pclassName="text-red-400 font-bold text-base">{errorCode} Payment Required</p> |
+|  | )} |
+|  | <p>{message}</p> |
+|  | </div> |
+|  | )} |
+|  |  |
+|  | {txHash&&( |
+|  | <pclassName="mt-2 text-gray-500 break-all"> |
+|  | tx:{" "} |
+|  | <a |
+|  | href={\https://sepolia.basescan.org/tx/${txHash}\} |
+|  | target="\_blank" |
+|  | rel="noopener noreferrer" |
+|  | className="text-blue-400 underline" |
+|  | > |
+|  | {txHash} |
+|  | </a> |
+|  | </p> |
+|  | )} |
+|  | </div> |
+|  | )} |
+|  |  |
+|  | {/\\ Pay button \/} |
+|  | <button |
+|  | onClick={handlePay} |
+|  | disabled={isLoading} |
+|  | className="w-full py-3 px-6 rounded-xl font-semibold text-sm transition-all |
+|  | bg-blue-600 hover:bg-blue-500 text-white |
+|  | disabled:opacity-50 disabled:cursor-not-allowed |
+|  | active:scale-\[0.98\]" |
+|  | > |
+|  | {isLoading ? "Processing..." : "Pay 0.05 USDC & Access Resource"} |
+|  | </button> |
+|  |  |
+|  | {/\\ x402 protocol note \/} |
+|  | <pclassName="text-center text-xs text-gray-600"> |
+|  | No payment → server returns <spanclassName="text-gray-400">402</span>. |
+|  | Valid tx hash → server verifies on-chain and returns the resource. |
+|  | </p> |
+|  | </div> |
+|  | </div> |
+|  | ); |
+|  | } |
+
+view raw page.tsx
+hosted with ❤ by GitHub
+
+Front-end UI for working with on-chain payments
+
+Much of the work on the front-end is related to the following:
+
+• Ensuring a wallet provider exists
+• Connection can be established to it
+• The appropriate testnet is available and connected
+• Approving the transfer transaction
+• Completing the transaction with the help of ethers.js and the smart contract ABI
+• Making a request to the back-end for verification
+• Conditionally rendering the UI based on the result
+
+A custom Status type is used to readily to do this and can be found inside the utils/types directory.
+
+The back-end route is where all the verification takes place /api/resource/route.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{ethers}from"ethers"; |
+|  | import{NextRequest,NextResponse}from"next/server"; |
+|  |  |
+|  | constCONTRACT\ADDRESS=process.env.NEXT\PUBLIC\CONTRACT\ADDRESS!; |
+|  | constREQUIRED\_AMOUNT=BigInt(50000);// 0.05 USDC (6 decimals) |
+|  | constRPC\URL=process.env.BASE\SEPOLIA\_RPC\|\|"https://sepolia.base.org"; |
+|  |  |
+|  | // Matches the PaymentReceived event in X402\Protocol\USDC.sol |
+|  | constPAYMENT\EVENT\ABI=\[ |\
+|  | "event PaymentReceived(address indexed user, uint256 amount)", |\
+|  | \]; |
+|  |  |
+|  | exportasyncfunctionGET(req: NextRequest){ |
+|  | consttxHash=req.headers.get("x-payment-tx-hash"); |
+|  |  |
+|  | // No payment header → 402 with requirements |
+|  | if(!txHash){ |
+|  | returnNextResponse.json( |
+|  | { |
+|  | error: "Payment Required", |
+|  | paymentDetails: { |
+|  | protocol: "x402", |
+|  | network: "base-sepolia", |
+|  | chainId: 84532, |
+|  | token: "USDC", |
+|  | contractAddress: CONTRACT\_ADDRESS, |
+|  | amount: "0.05", |
+|  | amountRaw: "50000", |
+|  | decimals: 6, |
+|  | steps: \["approve USDC for contract","call pay()"\], |
+|  | }, |
+|  | }, |
+|  | {status: 402} |
+|  | ); |
+|  | } |
+|  |  |
+|  | try{ |
+|  | constprovider=newethers.JsonRpcProvider(RPC\_URL); |
+|  | constreceipt=awaitprovider.getTransactionReceipt(txHash); |
+|  |  |
+|  | if(!receipt){ |
+|  | returnNextResponse.json( |
+|  | {error: "Transaction not found on Base Sepolia"}, |
+|  | {status: 402} |
+|  | ); |
+|  | } |
+|  |  |
+|  | // Decode PaymentReceived events emitted by the X402Protocol contract |
+|  | constiface=newethers.Interface(PAYMENT\EVENT\ABI); |
+|  | letpaymentVerified=false; |
+|  |  |
+|  | for(constlogofreceipt.logs){ |
+|  | if(log.address.toLowerCase()!==CONTRACT\_ADDRESS.toLowerCase())continue; |
+|  | try{ |
+|  | constparsed=iface.parseLog({ |
+|  | topics: log.topicsasstring\[\], |
+|  | data: log.data, |
+|  | }); |
+|  | if( |
+|  | parsed?.name==="PaymentReceived"&& |
+|  | BigInt(parsed.args.amount)>=REQUIRED\_AMOUNT |
+|  | ){ |
+|  | paymentVerified=true; |
+|  | break; |
+|  | } |
+|  | }catch{ |
+|  | // log is not a PaymentReceived event — skip |
+|  | } |
+|  | } |
+|  |  |
+|  | if(!paymentVerified){ |
+|  | returnNextResponse.json( |
+|  | {error: "Payment verification failed — PaymentReceived event not found or amount insufficient"}, |
+|  | {status: 402} |
+|  | ); |
+|  | } |
+|  |  |
+|  | // Payment confirmed → return the protected resource |
+|  | returnNextResponse.json({message: "Hello World"},{status: 200}); |
+|  | } |
+|  | catch{ |
+|  | returnNextResponse.json( |
+|  | {error: "Failed to verify transaction on-chain"}, |
+|  | {status: 402} |
+|  | ); |
+|  | } |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Back-end route for verifying on-chain transaction and enabling resource access
+
+We use the ethers.js library and the PaymentReceived event from the smart contract ABI to verify the payment was processed on-chain.
+
+We check the request headers to ensure a transaction hash was received and decode it by checking the logs with the help of the ethers.js library.
+
+If all goes well, we simply return a response with a message of Hello World and a status code of 200.
+
+Of course, we could add anything here once the on-chain payment is successfully verified.
+
+Finally, the following code is the actual smart contract itself.
+
+The contract and its ABI (used by both the front-end and back-end) are located in /contracts/:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | // SPDX-License-Identifier: MIT |
+|  | pragma solidity^0.8.20; |
+|  |  |
+|  | interfaceIERC20 { |
+|  | function transferFrom(addressfrom, addressto, uint256amount) externalreturns (bool); |
+|  | } |
+|  |  |
+|  | contractX402Protocol { |
+|  |  |
+|  | IERC20public usdc; |
+|  | addresspublic receiver; |
+|  | uint256public price; |
+|  |  |
+|  | event PaymentReceived(addressindexeduser, uint256amount); |
+|  |  |
+|  | // Initialize the USDC ERC20 contract, receiver address, and USDC value |
+|  | constructor(address\usdc, address\receiver, uint256\_price) { |
+|  | require(\_usdc !=address(0), "Invalid USDC address"); |
+|  | require(\_receiver !=address(0), "Invalid receiver address"); |
+|  | require(\_price >0, "Price must be greater than zero"); |
+|  |  |
+|  | usdc =IERC20(\_usdc); |
+|  | receiver = \_receiver; |
+|  | price = \_price; |
+|  | } |
+|  |  |
+|  | // Function for completing the payment |
+|  | function pay() external { |
+|  |  |
+|  | bool success = usdc.transferFrom( |
+|  | msg.sender, |
+|  | receiver, |
+|  | price |
+|  | ); |
+|  |  |
+|  | require(success, "USDC transfer failed"); |
+|  |  |
+|  | emitPaymentReceived(msg.sender, price); |
+|  | } |
+|  | } |
+
+view raw X402\Protocol\USDC.sol
+hosted with ❤ by GitHub
+
+Simple Solidity smart contract for accepting a custom amount of USDC as payment
+
+In this file, you see two contracts. The first is actually an interface of the ERC-20 standard. We will use one of its functions (transferFrom) by referencing it in our contract.
+
+The USDC stablecoin is an ERC-20 token. We can create a variable that stores it by passing the Base Sepolia USDC smart contract address into the constructor as an IERC20 type.
+
+The constructor does its thing by running checks and initializing the rest of the variable values such as the receipt address and the amount of USDC to be transferred.
+
+We also have an event type called PaymentReceived which is used to log successful transactions (emitted at the end).
+
+The main function here is the pay. We use the USDC variable we initialized earlier and pass in the appropriate values. The msg.sender in this case is the wallet address that invoked the request.
+
+In this case, this would be your Metamask wallet.
+
+One thing to note, unlike Ethereum, which uses Wei ( 18 decimals) to denominate ETH value, USDC uses 6 decimals.
+
+So say, you wanted to transfer 1 USDC from one wallet to another, you would write 1000000 as the value for the amount parameter.
+
+Deployment Configuration
+
+There is a quite a bit to get right when you are deploying a smart contract on Base. First of all, ensure you have a browser wallet installed and have the Base Sepolia added testnet to it.
+
+You can do this by simply visiting the Base Sepolia site here and selecting the Add Base Sepolia option at the top right.
+
+Ensure you have 0.0001 ETH on mainnet to be able to add testnet assets.
+
+After that, you can simply select the Base Sepolia testnet option from the network panel and visit the aforementioned faucet links to load your wallet with ETH and USDC testnet tokens.
+
+To see the USDC token in the list of tokens on Base Sepolia, you will need to import the token contract address which is the following (copy/paste to add):
+
+• 0x036CbD53842c5426634e7929541eC2318f3dCF7e
+
+When it comes to deploying a smart contract on Base Sepolia, you can use the Remix IDE to do this. Copy/paste the smart contract code above into the IDE and select compile to ensure everything compiles accordingly.
+
+To deploy, select the deploy option on the left panel and from the network dropdown menu, select the Injected Provider via Metamask option.
+
+Ensuring Metamask is on Base Sepolia testnet will inform the IDE which network you want to deploy the smart contract.
+
+This smart contract has three parameter values that need to be set in the constructor (USDC on Base contract address, recipient wallet address, the amount of USDC).
+
+Once you provide these values, you can safely deploy the smart contract. Upon successful deployment, you will be able to copy/paste the smart contract address.
+
+I already have deployed a version of this smart contract. You can view it here on the Base Sepolia scanner site ( 0xbB9D9baE4805Ca53516993cd37fc033aDe03BE30).
+
+You can see the pay method invoked and the amount of testnet USDC that is being transferred to my wallet in the different transaction hashes.
+
+I customized the constructor values and set the receipt address to my wallet ( kingabdul.eth) and set the value of USDC to be transferred at 50000 ( 0.05 USDC).
+
+Remember, all this is being done on the testnet. Now that we have verified everything works, we can go ahead and deploy this smart contract on the Base mainnet itself.
+
+The only thing you will need to re-consider is to change the USDC smart contract address from Base Sepolia to Base mainnet.
+
+Conclusion
+
+We looked at the x402 protocol in great detail and covered its most important features in this article.
+
+Stablecoins are witnessing rapid adoption in the world of e-commerce and major firms like Stripe have developed rails for accepting them as payments.
+
+Expect this to grow as the global market cap for stablecoins increases as does their rate of adoption.
+
+While this implementation demonstrates the x402 pattern, the official Coinbase x402 spec uses EIP-3009 signed authorizations and a facilitator layer rather than a two-step approve → pay(), but the payment-gated API concept is identical.
+
+In the list below, you will find links to the GitHub repository used in this article, the official x402 documentation, and the official Base chain documentation:
+
+• GitHub Repository
+• x402 Protocol Documentation
+• Base Chain Documentation
+• EIP Proposal Documentation
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--0c29d8741118----0---------------------eee88e554c4b4ed2aedb021ccba32e61--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

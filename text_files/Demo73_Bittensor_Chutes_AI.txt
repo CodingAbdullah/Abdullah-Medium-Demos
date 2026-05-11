@@ -1,0 +1,216 @@
+Subnet 64: Exploring Chutes AI, the Most Prominent Subnet on Bittensor
+
+[](https://medium.com/@abdullah95?source=postpage---byline--47d28aa0cacc---------------------------------------)
+
+Abdullah Muhammad
+
+6 min read
+
+·
+
+Feb 4, 2026
+
+Press enter or click to view image in full size
+
+A look at subnet 64, the most prominent subnet on Bittensor
+
+Basic knowledge of web development, generative AI, and cryptocurrencies will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+A couple of articles ago, we looked at the Bittensor blockchain extensively and covered its key features. We touched on subnets and their importance to the overall Bittensor ecosystem.
+
+Today, we will dive into subnet 64 ( Chutes AI), the most prominent subnet on Bittensor.
+
+We know that Bittensor incentivizes users to perform operable tasks for machine intelligence.
+
+Subnet 64 serves as a great example for working with the Bittensor blockchain to incentivize machine intelligence.
+
+Bittensor Wallet, SDK, CLI, and Testnet
+
+Like many blockchains, Bittensor comes with its own testnet and custom wallet. The mainnet is known as Finney.
+
+The Bittensor wallet is efficient for working with the Bittensor blockchain.
+
+For instance, swapping subnet tokens can only be done using the native token, TAO.
+
+The Bittensor wallet allows you to readily buy TAO and swap in and out of different subnet tokens.
+
+There are two sets of keys when working with the wallets:
+
+• Cold Keys – Holds TAO as authority and is used for long-term storage
+• Hot Keys - Used by miners/validators to process tasks
+
+The Bittensor wallet can be used for generating cold/hot keys, registering to subnets, staking/delegation, receiving rewards, swapping TAO for subnet tokens, and so on.
+
+Here is a link to a list of Bittensor wallets and here is a link to the official Bittensor docs.
+
+The testnet is useful for developers who wish to work with the Bittensor blockchain.
+
+The testnet allows developers to provision a subnet of their own, work with wallets (cold/hot keys), create rules for staking/mining, scoring emissions, and so much more.
+
+Details on the testnet can be found here.
+
+You will also need to fund your wallet with testnet TAO. Here is a link to a verified faucet where you can do so.
+
+Bittensor comes with its own CLI and SDK. The CLI can be used for working with the testnet to create the resources above.
+
+You can download the CLI here.
+
+The CLI-tool is named btcli and is helpful for common tasks such as provisioning a test subnet, create test wallets, stake test TAO tokens, and so much more.
+
+The Bittensor SDK is Python-based allowing users to programmatically access the Bittensor blockchain to perform tasks.
+
+You can run Python scripts to automate things such as provisioning wallets, delegation, staking, and so much more.
+
+Python is the preferred language of choice in the field of data science so it is a no-brainer to be used here.
+
+These are some of the key components of Bittensor which make it easily accessible and we may revisit these in a future article.
+
+Subnet 64: Chutes AI
+
+You can think of Chutes AI like a central repository of different fine-tuned AI models that stem from parent models from various providers such as OpenAI, Anthropic, Mistral, etc.
+
+The benefit here is that you, as a user, can fine-tune these models with the help of parameters and deploy your own model as a “Chute” to be used by yourself and others.
+
+We can modify parameters such as top P, top K, temperature, max tokens, and so much more.
+
+The following list briefly describes how of these parameters operate within a LLM:
+
+• Top P — Limits token selection to a probability-based pool of likely next tokens, controlling output diversity
+• Top K — Limits token selection to the K most probable next tokens, making outputs more deterministic as K decreases
+• Temperature — Creativeness in response. Higher temperature means a more creative answer. Lower temperature means a more discrete response
+• Max Tokens — The number of tokens that should be generated in a response
+
+Each of these “Chutes” (models) are served up by different miners who work to provide the compute necessary for inference.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+In the next section, we will touch on how the Bittensor ecosystem brings all of this together (clearing up any confusion you may have).
+
+Bittensor Model in Action
+
+As a developer, you do not need to worry about provisioning compute resources or worry about infrastructure.
+
+The miners are incentivized to host the different chutes (models) and allow for inference themselves.
+
+The validators validate the “miner work” (provisioning and running the different models) using a metric known as GraVal.
+
+This helps to verify that the miners are, in fact, doing what they are supposed to without faking the process.
+
+The Yuma Consensus is used along with a weighted approach to reward distribution. This allows validators to emit the appropriate rewards in proportion to work completed.
+
+All of this was covered in the Bittensor article.
+
+With all this in mind, it becomes quite clear why Bittensor is an ideal choice for incentivized machine intelligence.
+
+Chutes AI Provider via Vercel AI SDK
+
+You can follow along by cloning this repository. The directory we will work with is /demos/Demo73BittensorChutes_AI.
+
+In this section, we will briefly explore how the Vercel AI SDK can hook up to a fine-tuned Chutes AI model with the help of the Chutes provider.
+
+The docs to the Chutes provider can be found here.
+
+You will need to add the Chutes API key using this name, CHUTESAPIKEY (must be named this way) in a .env file of your own in order to work with this provider.
+
+The simple web application uses Next.js App Router and runs a call to the back-end at this route /api/generate/route.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{createChutes}from"@chutes-ai/ai-sdk-provider"; |
+|  | import{generateText}from"ai"; |
+|  | import{NextResponse}from"next/server"; |
+|  |  |
+|  | // Set up the Chutes AI provider |
+|  | // Select a chutes model to work with |
+|  | constchutes=createChutes({ |
+|  | apiKey: process.env.CHUTES\API\KEY! |
+|  | }); |
+|  |  |
+|  | exportasyncfunctionPOST(){ |
+|  | constresult=awaitgenerateText({ |
+|  | model: awaitchutes("https://chutes-deepseek-ai-deepseek-v3.chutes.ai"), |
+|  | prompt: "Generate me a simple HTML page document" |
+|  | }); |
+|  |  |
+|  | returnNextResponse.json({text: result.text}); |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Back-end route for working with Chutes AI
+
+It uses the Vercel AI SDK and a Chutes model (using the Chutes provider) to generate a response to the following query: “Generate me a simple HTML page document”.
+
+For demonstrative purposes, we hard coded the query, but you can modify it to suit your needs.
+
+We use the built-in generateText function (covered Vercel AI SDK in detail here) to generate a response to the query.
+
+The front-end component simply serves as a trigger (to run the call to the back-end) and a response is generated each time.
+
+As always, LLMs are non-deterministic so the response varies with each call. However, the underlying meaning behind the answer remains relatively the same.
+
+Note how the blockchain layer of management is abstracted away from you.
+
+As developer, you only worry about working with the LLM provider to gather required information.
+
+Such is the beauty of working with Bittensor.
+
+Given the fact that you are working with models this way (without any centralized authority), there will be some latency with the processing of requests and responses.
+
+The prompt needs to be passed into the miner server that runs the particular model, perform inference, and then propagate and return the appropriate response.
+
+This is the cost trade-off you have to live with. Nonetheless, this is a trust-minimized and censorship-resistant way of inferring with AI models.
+
+Conclusion
+
+We did a deep dive into the key components of the Bittensor blockchain such as the CLI, SDK, testnet, and subnet 64 (Chutes AI).
+
+Most of the fundamentals related to Bittensor were covered in this article here.
+
+We primarily focused on working with subnet 64 and utilizing the Vercel AI SDK to integrate Chutes AI models using the Chutes AI provider.
+
+Understand that, you too, can participate in the Bittensor network as a miner (performing meaningful work and getting paid in TAO), as a validator, or as a developer deploying fine-tuned models that you believe will be helpful for the community as a whole.
+
+Bittensor has a breadth of different subnets serving different purposes, but all of them have one common goal: Incentivize Decentralized Artificial Intelligence.
+
+I do not promote any crypto project and nothing here should be construed as financial advice.
+
+I believe with the growth of AI, decentralized AI will have its place in the future.
+
+In the list below, you will find links to the GitHub repository used in this article as well as links to the Bittensor official docs, and subnet 64 (Chutes AI):
+
+• GitHub Repository
+• Bittensor Official Docs
+• Subnet 64: Chutes AI
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--47d28aa0cacc----0---------------------90cfbcec25e44c8eac42a4c07dd5cb39--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

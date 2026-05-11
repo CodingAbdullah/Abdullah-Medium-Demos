@@ -1,0 +1,216 @@
+Bittensor Explained: Subnets, Incentives, and Decentralized Intelligence
+
+[](https://medium.com/@abdullah95?source=postpage---byline--d8e8c93ebbd8---------------------------------------)
+
+Abdullah Muhammad
+
+8 min read
+
+·
+
+Jan 19, 2026
+
+Press enter or click to view image in full size
+
+Exploring Bittensor and the Bittensor ecosystem
+
+Basic understanding of cryptocurrencies, AI, and compute resources will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+Artificial Intelligence (AI) and allocating resources for compute power is a paradigm shift we will see in the next 5–10 years.
+
+From powering data centres to housing physical infrastructure for storing digital data (for training and optimizing LLMs), there is a lot of investment being poured into creating physical infrastructure.
+
+As far as Generative AI is concerned, LLM models are being developed and published with the end goal of improving generated output based on user input.
+
+ChatGPT is the most famous LLM out there and if you dig deeper into the world of LLMs, you will come to know of many that are geared towards a speciality.
+
+These specialities include things such as image generation, text to speech, speech to text, coding, and so much more.
+
+We have looked using different LLMs in past articles most recently when we covered the Vercel AI SDK for generating structured AI responses containing market data (with the help of Firecrawl and Zod).
+
+Tools such as Claude code and its suite of coding LLMs (Sonnet, Opus) are really good as well. I have used them in developing projects and there is a high chance you have as well.
+
+LLMs and their providers offer a centralized control over model usage and availability.
+
+Billing works the same way as you often have to sign up with a provider and use an API key to track billing and usage.
+
+You can 
+
+The Problem
+
+With the rise of centralized model control and compute resources, alternate methods of accessing and working with LLMs are beginning to emerge.
+
+Today, we will explore a web3 project known as Bittensor which focuses on providing users a decentralized incentive network for AI compute and inference.
+
+Over the past year, we have seen a rise of different niches in the web3/crypto space such as stable coins, RWAs, tokenization, deFAI (decentralized AI agents), privacy, and so much more (aside from meme coin gambling).
+
+Nothing here is financial advice. As we dig deeper, we will work with the Bittensor blockchain in such a way that we will not have to worry about the blockchain/financial layer of management.
+
+Bittensor
+
+Bittensor provides a white paper which you can read and explore on your own. The white paper is comprehensive and it does a technical deep dive on everything we will cover in this article.
+
+I will try my best to explain the blockchain essentials to you in the simplest way possible.
+
+The Essentials
+
+Bittensor is a non-EVM Layer-1 blockchain built using Substrate which is amodular blockchain framework developed by the Polkadot ecosystem.
+
+The blockchain itself is called Subtensor and is a hybrid model of Proof-of-Stake blockchain (PoS) and Proof-of-Intelligence (PoI) (which similar to Proof-of-Work (PoW) found in Bitcoin mining) .
+
+Unlike the Ethereum ecosystem, which primarily works with smart contracts allowing for programmability on-chain, Bittensor focuses on recording incentives and who gets rewarded for correctly providing useful off-chain machine intelligence (PoI).
+
+Like many chains, Bittensor has a native token called TAO ( τ). TAO is used for staking and delegation where holders can stake TAO and receive delegated TAO ( dTAO). Delegated TAO is minted when TAO is staked and burned when it is unstaked.
+
+Like Bitcoin, TAO has a maximum supply of 21 million tokens and follows a similar halving policy pattern.
+
+In December 2025, TAO emissions were halved from 7200 TAO/day to 3600 TAO/day when half the maximum supply ( 10.5 million TAO) was emitted.
+
+On-Chain versus Off-Chain
+
+In simplest terms, you can think of the Bittensor blockchain as one that records incentives, governance, and market structure (subnets, more on this later).
+
+It serves as a decentralized incentive network for machine intelligence.
+
+Within this ecosystem, you will find different subnets. Subnets are like standalone, incentivized marketplaces offering off-chain AI related services.
+
+Services can include things such as AI analytics, inference, server-less AI compute, and so much more.
+
+Bittensor Subnets, Root Subnet, and Subnet Tokens
+
+Some Bittensor subnets offer their own subnet tokens for incentivizing activity. These tokens are referred to as alpha tokens in the official documentation.
+
+The mental model here is to think of these tokens as ERC20-like fungible tokens, but native to the Bittensor blockchain.
+
+Subnets are numbered ( SNx where x is the subnet network number) and the root subnet is called SN0. The root subnet is the main subnet of the Bittensor blockchain and this is where the native token, TAO ( τ) is issued and emitted.
+
+The root subnet holds all the other subnets together and not every subnet in Bittensor is of equal importance. Subnets are weighted based on activity, stake, and validator participation.
+
+This weighted result helps in determining the amount of TAO a subnet should receive at the time of emission. TAO flows from the root subnet down to the other subnets and is distributed to the workers within that subnet not the subnet itself.
+
+No subnet aside from the root subnet (SN0) issues TAO, but subnets can issue their own specific subnet tokens as noted earlier.
+
+The root subnet is unique to the whole ecosystem as it completes work related to the Bittensor blockchain itself.
+
+Miners are rewarded for performing core network tasks and contributing to decentralized inference.
+
+Like other subnets, validators evaluate the work done by the miners and the rewards (in the form of TAO) are weighted and distributed using the Yuma consensus (we will cover this shortly).
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+If you want to focus on a subnet that is at the heart of the whole ecosystem, the root subnet is for you. No need to worry about niche-specific subnet functionality.
+
+You can focus on providing useful work for the Bittensor blockchain itself and be rewarded TAO.
+
+You can also create your own subnet. However, it costs quite a bit of investment upfront among other things such as creating an incentive mechanism to incite participation.
+
+You can swap subnet tokens in the Bittensor ecosystem using a Bittensor specific wallet and TAO, the native token.
+
+Not all subnets issue their own tokens and the ones that do have their own issuance policy, supply, and tokenomics.
+
+You can find the full list of subnets and subnet tokens on this site here.
+
+Bittensor Miners
+
+Similar to Bitcoin mining, Bittensor miners are incentivized to complete useful work as per subnet rules.
+
+Unlike Bitcoin mining, where compute heavy resources are required, Bittensor rewards miners for useful work.
+
+Each subnet has its own unique goals and priorities so there is a unique subnet-specific evaluation criteria used to determine rewards distribution called the evaluation function.
+
+Some subnets might require heavy duty compute resources while others might require providing things such as inference or running ML models for specific tasks such as text generation, image generation, etc.
+
+The rewards are determined by validators (will cover validators later) and are weighted using a Bittensor-level protocol known as the Yuma consensus.
+
+If a subnet issues its own token, miners can receive both TAO and the subnet token. If no subnet token exists, rewards are paid purely in TAO.
+
+Miners collectively form a decentralized network of compute nodes which is a paradigm shift from working with centralized compute resources and providers such as AWS and the EC2 service.
+
+You can read more about Bittensor mining in this section of the official docs.
+
+Bittensor Validators
+
+Validators in Bittensor are used to verify the output of the miners and distribute rewards effectively.
+
+Subnet token issuance is unique to each subnet and validators in each subnet work to verify miner work and then use the Yuma consensus to generate a weighted model for rewards distribution (more on this later).
+
+As mentioned earlier, miner work is evaluated using an evaluation function for the specific subnet.
+
+You can participate as a validator in a Bittensor subnet by staking the subnet-specific token of the specific subnet.
+
+If the subnet does not issue their own token, you can stake TAO with the root subnet and then delegate the staked TAO to the specific subnet to determine your reward weight.
+
+Since there is no subnet token, your reward is given in TAO.
+
+In this link here, you will find a list of the most prominent validators on the Bittensor blockchain.
+
+Weighted Issuance and the Yuma Consensus
+
+As noted earlier, within the Bittensor ecosystem, subnet importance is measured using a weight system.
+
+This weight determines the proportion of TAO emissions a subnet receives from the root subnet (SN0).
+
+Within each subnet, you have miners and validators. The miners work to ensure the goals and priorities of the subnet are met. The validators evaluate the miner work using an evaluation function ensuring rewards reflect useful contributions.
+
+The Yuma consensus simply aggregates these evaluations across the network to produce a weighted model for reward distribution, balancing fairness and network utility.
+
+This mechanism ensures that both subnet-level performance and protocol-level incentives are aligned, creating a robust and decentralized reward system.
+
+The following image correctly details every key feature of the Bittensor blockchain we have covered so far:
+
+Press enter or click to view image in full size
+
+Bittensor blockchain ecosystem in a nutshell covering everything we have looked at so far
+
+Exploring Subnet 64: Chutes AI and Beyond
+
+In a future article, we will cover subnet 64, otherwise known as Chutes AI, which is the most prominent subnet on the Bittensor blockchain outside of the root subnet.
+
+Chutes AI provides server-less AI compute to users and works to provide this resource in a decentralized manner using the Bittensor network.
+
+You can think of “server-less” in the sense that, you are not the one managing or provisioning infrastructure.
+
+The Chutes subnet launched their own subnet token last year incentivizing users to work within the subnet ecosystem as a miner or a validator.
+
+Chutes’ primary goal is to provide users with inference to popular AI models without having to worry about the underlying infrastructure or securing model access to a vendor using an API key.
+
+The mental model here is that miners in this subnet work to provide AI models, validators evaluate the performance of the miners, and rewards are weighted and distributed in the form of the Chutes token and TAO using the Yuma consensus.
+
+As a developer, you do not need to worry about the blockchain/financial layer as it is abstracted away from you while you simply focus on using Chutes to access AI models.
+
+Conclusion
+
+In all, we covered the Bittensor blockchain in great detail. We explored tokenomics of the native token, TAO ( τ), subnets (incentivized marketplaces), the root subnet, miners, validators, Yuma Consensus, and so much more.
+
+In the list below, you will find links to the official Bittensor docs, Bittensor stats site, Bittensor subnets site, and if you want to read ahead any further, a link to the official documentation regarding Chutes AI:
+
+• Tao Stats (Bittensor blockchain activity)
+• Tao Market Cap (Subnet tokens)
+• Bittensor Official Docs
+• Chutes AI Docs
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--d8e8c93ebbd8----0---------------------c500d59e23704de5972c39d44d42e8ed--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

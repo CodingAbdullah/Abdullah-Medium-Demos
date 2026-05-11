@@ -1,0 +1,191 @@
+Level Up Claude Code with Agentic Skills
+
+[](https://medium.com/@abdullah95?source=postpage---byline--73b95b10528a---------------------------------------)
+
+Abdullah Muhammad
+
+6 min read
+
+·
+
+Apr 24, 2026
+
+Integrating agentic skills into your Claude agentic workflow
+
+Basic knowledge of web development and the Ethereum blockchain will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In a previous article, we did a deep dive into Anthropic’s Claude code and its vast capabilities including setting up a mobile-first approach to development.
+
+We covered the CLAUDE.md file and used it to guide the behaviour of the development agent as well as feature branching and Claude session branches.
+
+These branches are created for the sole purpose of coding out the different features of your application in an efficient way.
+
+We covered the different layers of agentic development and setup an efficient way of working with Claude code in a mobile-first environment.
+
+In this short article, we will do a dive deep into another key component of agentic development known as Agentic Skills.
+
+Agentic Skills
+
+Skills are an integral part of agentic development and should not be overlooked. There are three components as it relates to Claude Code:
+
+• Agent— An entity that completes requested work
+• CLAUDE.md — Guide the behaviour of the agent
+• Skill.md — Enable the agent to complete the work
+
+We touched on the first two in the last article and we will cover skills here.
+
+So, what is a “skill”?
+
+Straight from Anthropic’s interpretation of skills, they are essentially reusable, markdown files that provide Claude with domain-specific expertise.
+
+Claude is an expert in its own right, but these skill files give the agent adequate context, workflows, and best practices to follow that transform the agent into a specialist within a specific domain.
+
+There are two types of skills:
+
+• Built-in Anthropic Skills— Anthropic provides a handful of useful skills for efficiently creating PowerPoint ( pptx) presentations, create/analyze spreadsheets ( xlsx), create/edit documents ( docx), and generate PDF documents ( pdf)
+• Custom Skills — Allow users to build their own skills and publish them open-source for others to download and access
+
+Key thing to note here is that Claude.ai supports both built-in and custom skills whereas Claude Code (which is what developers primarily use) only supports custom skills.
+
+There are several benefits of incorporating skills into your agentic workflow.
+
+For starters, it reduces repetition. Remember, the Claude agent that starts up in each development session is stateless. It has no memory or re-collection of what took place in previous sessions.
+
+You can make the Claude agent “stateful” with the help of memory, but this just adds more to your configuration.
+
+The SKILL.md file differs in this manner because it serves as a tool or a plug-in rather than an instruction manual that guides an agent’s behaviour.
+
+Outsourcing Agentic Skills using Skills.sh
+
+Vercel provides an official ecosystem for accessing agentic skills. The site can be found here. You can download and contribute your own custom skills here.
+
+The ecosystem is GitHub based and offers a custom marketplace and CLI of its own which you can install to interact with the ecosystem.
+
+You can simply install skills you are looking for using NPX:
+
+• npx skills add <owner/repo>
+
+Other prominent agent skill ecosystems out there include Anthropic’s own agentic skills ecosystem as well as Microsoft.
+
+Agentic skills are a relatively new concept and will continue to evolve. It is important to ensure that third-party skills you may wish to install are audited.
+
+Unchecked skill files may contain context with malicious intent and, if used, guide an agent to perform undesirable things.
+
+The Anatomy of the Skill.md File and Best Practices
+
+In this brief section, we will cover what makes up a SKILL.md file and best practices to follow.
+
+The convention used with SKILL.md files is important to follow as it allows your agent to understand what the file is about, what is its context, and how to best learn what is given within the file.
+
+For in-depth detail on best practices, you can find them in the official documentation provided by Anthropic.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+We will briefly cover the anatomy of a SKILL.md file:
+
+• Front Matter— Describe to the agent what the file entails (name and description)
+• Markdown— This is the main section of the file and it provides everything the agent needs to fully understand the specific domain
+
+You can also have a section for additional resources which can be loaded into the context of the SKILL.md file with the help of scripts.
+
+The following markdown file highlights what is an adequate SKILL.md file:
+
+Sample skill.md file – Medium
+
+view raw SKILL.md
+hosted with ❤ by GitHub
+
+Sample SKILL.md file detailing what an adequate skill file should look like
+
+Most published SKILL.md files are not very good. They lack key details and may contain a lot of information which can create messy context causing agent hallucination.
+
+You want to simplify things for agents while also providing adequate information and tooling to help guide agents.
+
+The markdown file above contains a sample template for creating an adequate SKILL.md file.
+
+That is all you really need to build an effective skill file for agents to use in your development workflow.
+
+I created a sample GitHub repository here which details how to setup the CLAUDE.md file, .claude directory, and sample skill markdown files.
+
+The Anatomy of the .claude Directory
+
+As AI modelling gets more advanced, you may think that by providing adequate prompting and context, LLMs will be able to generate what you are looking for.
+
+That may be true, but you want to maximize the output, efficiency, and ultimately, the productivity of your agent.
+
+You want to save on token usage and be able to gather what you are looking for in the fewest steps possible.
+
+In this brief section, we will cover how to adequately set up the .claude directory to enable the Claude code agent to operate efficiently.
+
+Inside the .claude directory you can create sub-directories for individual skills and even sub-agents for certain tasks.
+
+The following image details what the .claude directory looks like:
+
+Press enter or click to view image in full size
+
+.claude directory containing information on skills, agents, rules, and commands
+
+This is way more detailed than what I covered so far, but this diagram highlights key features you may want to know about.
+
+As noted earlier, you can create sub-agents for certain tasks such as security auditing, code reviewing, etc.
+
+These are also markdown files containing detailed instructions to help guide Claude sub-agents to complete tasks.
+
+Agentic skills reside in their own sub-directories. Proper naming conventions should be followed when naming these directories as it assists Claude by providing additional context.
+
+The rest is adequately described in the diagram above.
+
+By following this setup, you ensure that you are using Claude code efficiently for development.
+
+Must-Have Skills for Agentic Development
+
+This section contains six must-have skills every software engineer should incorporate in their Next.js application development flow:
+
+• next-best-practices
+• shadcn
+• systemic-debugging
+• test-driven-development
+• vercel-react-best-practices
+• webapp-testing
+
+These six skills encompass the most important aspects of Next.js application development.
+
+You can install each of these skills following the instructions in each of their respective links above.
+
+Conclusion
+
+As Andrej Karpathy recently said, English is the new programming language. This is true in the new world of agentic software development.
+
+The ability to write code is important, but in this new paradigm shift, those who are able to instruct and guide agents to complete tasks in the most efficient and productive way possible will be able to separate themselves from the rest.
+
+We touched on agentic skills in detail in this short article. They are a relatively new concept to agentic development and it is crucial to understand how they work so you can optimize agentic capabilities.
+
+In the list below, you will find links to the official documentation on agentic skills, the skills.sh repository, and the GitHub repository that contains a setup of what an agentic-optimized workflow should look like:
+
+• Agentic Skills Official Documentation
+• Skills.sh Website
+• GitHub Repository
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad

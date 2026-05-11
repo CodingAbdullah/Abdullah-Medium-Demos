@@ -1,0 +1,1263 @@
+Exploring Polar.sh for Payments and the x402 Protocol in a Next.js Application
+
+[](https://medium.com/@abdullah95?source=postpage---byline--5ab6659904d9---------------------------------------)
+
+Abdullah Muhammad
+
+12 min read
+
+·
+
+Jan 30, 2026
+
+A look at payments in a Next.js application using Polar.sh
+
+Basic knowledge of payment options and web development will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+Accepting payments is a key part of any online business and is of particular importance for developers who want to monetize tools and SaaS applications.
+
+With the advent of the internet came the processing of online payments. The first of this kind was PayPal and that was the gold standard for accepting online payments.
+
+Credit cards, banks, and other payment companies like Stripe soon came after making up what is now multiple billions of dollars worth of liquidity moving daily across the internet.
+
+With the recent stable coin boom, developers and businesses alike are now incentivized to include it as a payment option.
+
+PayPal, Stripe, and others are leading the way in this cause by creating the rails necessary for abstracting away the blockchain layer of management.
+
+Payments of this kind have become quite popular that the dormant 402 HTTP status code is getting a much needed revival in the world of web development.
+
+The client error code is related to requests consisting of payment options.
+
+Stripe offers its own services developers can integrate into their SaaS applications to further customize the billing stack of their applications.
+
+Today, we will explore a much newer, cleaner, and developer-friendly way of integrating payments into a SaaS application.
+
+We will explore the Polar library for accepting payments in a SaaS application. We will work with the sandbox environment for the purposes of testing payments.
+
+What is Polar.sh?
+
+Polar.sh is a new payments library focused on integrating payments into SaaS applications.
+
+It allows developers to mainly focus on the development of their software applications without having to worry about the intricacies of integrating billing and payments into their applications.
+
+Unlike Stripe, which offers more variety and complexity, Polar is more opinionated and seamlessly integrates popular payment plans such as subscriptions, order-based billing, and usage-based billing into SaaS-based applications.
+
+We will build on the Clerk.js article and explore payments using authenticated user information in this article.
+
+Regulatory Compliance and Account Setup
+
+Polar takes care of all your regulatory requirements. It acts as a Merchant of Record (MoR) ensuring that you do not need to worry about VATs, taxation, or other aspects of an online business that can act as a hurdle for you in compliance with international law.
+
+While this is a hurdle in other payment platforms like Stripe, Polar ensures developers can integrate payment options into their applications without worrying about this key aspect of regulatory compliance.
+
+Polar lists prohibited businesses from using their services (outlined in detail here) which can act as legal hurdles in different jurisdictions.
+
+Aside from this, you will also need to verify yourself and your business before you can actually create the products and integrate the rails necessary for accepting payments in your SaaS applications.
+
+The good news is that, in this article, you will not have to worry about this hassle as we will work with the sandbox environment for testing payments on a working application.
+
+Polar Payment Plans
+
+Polar offers three popular payment plans for a SaaS application:
+
+• Order-Based Billing (One-Time Purchase)
+• Subscriptions (Tiered Model)
+• Usage-Based Billing (Metered Usage)
+
+Integrating each of these payment options comes with their own varying degree of complexity (usage-based billing being the most complex one).
+
+For this article, we will focus on integrating tiered subscriptions.
+
+In particular, we will look at integrating monthly and annually billed subscription plans which are common payment plans offered by SaaS applications.
+
+We will do this because exploring all three payment methods in a single article will extend the length of the article beyond its means.
+
+We will cover the other two payment methods in future articles as well as cover additional features such as refunds, discounts, trails, seat-based pricing, and much more.
+
+For handling payments, Polar has its own web hook for responding to events such as user subscriptions, organizations, etc.
+
+Polar web hooks are handled with their own dedicated back-end route accessible only through other back-end routes.
+
+All payment actions related to things such as billing, updating user account info, and access should be handled here.
+
+We will look at setting up web hooks a bit later just know that they are an integral part of payments processing.
+
+Deep Dive into Payments
+
+We will walk through a codebase of a simple SaaS application, setup the Polar sandbox environment, setup test products, create test subscriptions, and investigate how we can setup the Polar web hook to respond to certain payment events.
+
+We will use Drizzle and Supabase for data persistence and plug-in Clerk.js for user authentication.
+
+In the end, we will touch on the emerging x402 protocol for payments and lay the foundation for its discussion in a future article.
+
+Usage-Based Billing
+
+Usage-based billing as the name implies, refers to charging customers based on the usage of a service.
+
+In other words, you can think of this as a pay-as-you-go pricing model. To keep track of these costs, Polar uses metering to determine usage-based costs.
+
+Meters are helpful as they aggregate what you want to charge your customer.
+
+In the end, the customer is presented with one bill to pay which represents the cumulative value of all their usage costs.
+
+Order-Based Billing
+
+Order-based billing is a common payment plan and it follows the “buy once, use forever” model. No need to worry about renewals, cancellations, plan upgrades, and so on.
+
+You pay once for the ability to use the service forever. It does not get much more simpler than that.
+
+This works great for products that require only a one-time purchase. If you are building a personalized course library platform, you could integrate a one-time purchase model for any/all of the courses featured on the platform.
+
+Subscriptions
+
+Subscriptions are the most common payment offering found in SaaS applications.
+
+Whether it is month-based billing or annual-based billing, users often have a choice to pick which option they like.
+
+SaaS products also offer subscription tiers which users can subscribe to. Common names for these tiers include: free, basic, pro, enterprise, and custom developed plans which cater to your specific business needs.
+
+In this article, we will look at setting up the free, basic, and pro payment plans while also offering the users the ability to subscribe to monthly-based billing or annual-based billing (monthly discounted).
+
+Code Overview and Polar Setup
+
+You can follow along by cloning this repository. The directory of concern is /demos/Demo74NextJSPolar_Payments.
+
+We will walk through an implementation of subscription-based payments in a simple web application.
+
+We will combine Drizzle ORM, Supabase, Clerk.js, and Polar to successfully complete and document user subscriptions and payments.
+
+We will first look at setting up the Polar sandbox environment and use that for testing payment functionality.
+
+Clerk.js, Drizzle ORM, and Supabase Integration
+
+Data persistence is key in any web application and that is why we will focus on using Clerk.js for user authentication and Drizzle ORM along with Supabase for storing user and subscription information.
+
+We covered Clerk.js in the last article so the setup for user authentication is basically the same.
+
+We just need to integrate payments using Polar and store subscription information of the user using a web hook to process the subscription event.
+
+We will also need to configure a solution to deal with creating, renewing, cancelling, and upgrading/degrading the subscription tiers.
+
+The Drizzle ORM configuration and Supabase setup is something we looked at in the past and it is basically the same in this web application.
+
+You can find the drizzle.config.ts file in the root location of this directory.
+
+The user schema is slightly different and can be found here /db/schema.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{ |
+|  | pgTable, |
+|  | text, |
+|  | boolean, |
+|  | timestamp, |
+|  | uuid, |
+|  | pgEnum |
+|  | }from"drizzle-orm/pg-core"; |
+|  |  |
+|  | // Subscription Tier Enum for user table subscription classification |
+|  | exportconstsubscriptionTierEnum=pgEnum("subscription\_tier",\[ |\
+|  | "free", |\
+|  | "basic", |\
+|  | "pro" |\
+|  | \]); |
+|  |  |
+|  | exportconstusers=pgTable("users",{ |
+|  | id: uuid("id").primaryKey().defaultRandom(), |
+|  | clerkId: text("clerk\_id").notNull().unique(), |
+|  | email: text("email").notNull().unique(), |
+|  | firstName: text("first\_name"), |
+|  | lastName: text("last\_name"), |
+|  |  |
+|  | // Subscription state |
+|  | isSubscribed: boolean("is\_subscribed").default(false).notNull(), |
+|  | subscriptionTier: subscriptionTierEnum("subscription\_tier") |
+|  | .default("free") |
+|  | .notNull(), |
+|  |  |
+|  | // Polar references |
+|  | polarCustomerId: text("polar\customer\id").unique(), |
+|  | polarSubscriptionId: text("polar\subscription\id"), |
+|  |  |
+|  | // Subscription dates |
+|  | subscriptionStartDate: timestamp("subscription\start\date"), |
+|  | subscriptionEndDate: timestamp("subscription\end\date"), |
+|  |  |
+|  | createdAt: timestamp("created\_at").defaultNow().notNull(), |
+|  | updatedAt: timestamp("updated\_at").defaultNow().notNull() |
+|  | }); |
+|  |  |
+|  | // Relations are defined in a separate file to avoid circular imports |
+|  | exporttypeUser=typeofusers.$inferSelect; |
+|  | exporttypeNewUser=typeofusers.$inferInsert; |
+
+view raw schema.ts
+hosted with ❤ by GitHub
+
+User schema for the user table to be stored in Supabase with the help of Drizzle ORM
+
+You can see that we capture basic information of the user such as first name, last name, and email.
+
+We also capture the uniquely generated Clerk ID for user authentication as well as additional fields for working with Polar subscriptions.
+
+Each customer has a unique Polar customer ID associated with them. For each subscription, there is a unique Polar subscription ID associated with it as well.
+
+We store both in Supabase for the purposes of retrieving and updating user subscription status.
+
+We make use of the enum data type provided by Drizzle to create a custom subscriptionTier enum type (free, basic, and pro).
+
+Modifications to the database are made when the Polar events are processed via web hook.
+
+Sandbox Environment
+
+To get started, we need to setup the Polar sandbox environment. The link to that is here. If this is your first time, you will need to 
+
+The UI is very easy to understand and use. There are a lot of features that come with the sandbox environment, but we will focus on the Products and Customers sections.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+You will first need to create test products under the products section.
+
+Products, Product IDs, Payment Plans, and Subscription Setup
+
+When setting up a product payment plan, you must create/publish a product, setup its features such as pricing, subscription duration, description, metadata, and much more.
+
+In this article, we will create the following payment plans (note that these are random test prices):
+
+• Free Plan ($0)
+• Monthly Basic Plan ($15/month)
+• Monthly Pro Plan ($30/month)
+• Annual Basic Plan ($120/year — 33% off monthly)
+• Annual Pro Plan ($288/year — 24% off monthly)
+
+So in total, we will create five different product payment plans. Each product created will have a unique product ID.
+
+These product IDs should be copied over and stored in a .env file for secure access and usage.
+
+You will find a .env.example file in the root location of the project detailing the different secrets required for working with the web application (there is A LOT).
+
+You can see the payment plans detailed in the pricing page below /app/pricing/page.tsx:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | "use client"; |
+|  |  |
+|  | import{useState}from"react"; |
+|  | importLinkfrom"next/link"; |
+|  | import{SignedIn,SignedOut,UserButton}from"@clerk/nextjs"; |
+|  | importPlansfrom'../\_utils/plansList'; |
+|  | importPlanButtonfrom"../\_components/PlanButton"; |
+|  |  |
+|  | // Pricing page detailing the different subscription plans users can subscribe to |
+|  | exportdefaultfunctionPricingPage(){ |
+|  | const\[isAnnual,setIsAnnual\]=useState(false); |
+|  |  |
+|  | return( |
+|  | <divclassName="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black"> |
+|  | {/\\ Navigation \/} |
+|  | <navclassName="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"> |
+|  | <divclassName="mx-auto flex max-w-6xl items-center justify-between px-4 py-4"> |
+|  | <Link |
+|  | href="/" |
+|  | className="text-xl font-bold text-zinc-900 dark:text-white" |
+|  | > |
+|  | PolarApp |
+|  | </Link> |
+|  | <divclassName="flex items-center gap-6"> |
+|  | <Link |
+|  | href="/pricing" |
+|  | className="text-zinc-900 font-medium dark:text-white" |
+|  | > |
+|  | Pricing |
+|  | </Link> |
+|  | <SignedIn> |
+|  | <Link |
+|  | href="/dashboard" |
+|  | className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" |
+|  | > |
+|  | Dashboard |
+|  | </Link> |
+|  | <UserButton/> |
+|  | </SignedIn> |
+|  | <SignedOut> |
+|  | <Link |
+|  | href="/sign-in" |
+|  | className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" |
+|  | > |
+|  | Sign In |
+|  | </Link> |
+|  | <Link |
+|  | href="/sign-up" |
+|  | className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200" |
+|  | > |
+|  | Get Started |
+|  | </Link> |
+|  | </SignedOut> |
+|  | </div> |
+|  | </div> |
+|  | </nav> |
+|  |  |
+|  | {/\\ Pricing Content \/} |
+|  | <mainclassName="flex-1 px-4 py-16"> |
+|  | <divclassName="mx-auto max-w-6xl"> |
+|  | {/\\ Header \/} |
+|  | <divclassName="text-center mb-12"> |
+|  | <h1className="text-4xl font-bold text-zinc-900 dark:text-white mb-4"> |
+|  | Simple, transparent pricing |
+|  | </h1> |
+|  | <pclassName="text-xl text-zinc-600 dark:text-zinc-400 mb-8"> |
+|  | Choose the plan that works best for you |
+|  | </p> |
+|  |  |
+|  | {/\\ Toggle \/} |
+|  | <divclassName="flex items-center justify-center gap-4"> |
+|  | <span |
+|  | className={\text-sm font-medium ${ |
+|  | !isAnnual |
+|  | ? "text-zinc-900 dark:text-white" |
+|  | : "text-zinc-500 dark:text-zinc-400" |
+|  | }\} |
+|  | > |
+|  | Monthly |
+|  | </span> |
+|  | <button |
+|  | onClick={()=>setIsAnnual(!isAnnual)} |
+|  | className={\relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${ |
+|  | isAnnual ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-600" |
+|  | }\} |
+|  | > |
+|  | <span |
+|  | className={\inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${ |
+|  | isAnnual ? "translate-x-6" : "translate-x-1" |
+|  | }\} |
+|  | /> |
+|  | </button> |
+|  | <span |
+|  | className={\text-sm font-medium ${ |
+|  | isAnnual |
+|  | ? "text-zinc-900 dark:text-white" |
+|  | : "text-zinc-500 dark:text-zinc-400" |
+|  | }\} |
+|  | > |
+|  | Annual |
+|  | </span> |
+|  | {isAnnual&&( |
+|  | <spanclassName="ml-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"> |
+|  | Save up to 33% |
+|  | </span> |
+|  | )} |
+|  | </div> |
+|  | </div> |
+|  |  |
+|  | {/\\ Pricing Cards \/} |
+|  | <divclassName="grid gap-8 lg:grid-cols-3"> |
+|  | {/\\ Free Plan \/} |
+|  | <divclassName="rounded-2xl border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-900"> |
+|  | <divclassName="mb-6"> |
+|  | <h3className="text-lg font-semibold text-zinc-900 dark:text-white"> |
+|  | {Plans.free.name} |
+|  | </h3> |
+|  | <pclassName="text-sm text-zinc-500 dark:text-zinc-400"> |
+|  | {Plans.free.description} |
+|  | </p> |
+|  | </div> |
+|  |  |
+|  | <divclassName="mb-6"> |
+|  | <divclassName="flex items-baseline"> |
+|  | <spanclassName="text-4xl font-bold text-zinc-900 dark:text-white"> |
+|  | $0 |
+|  | </span> |
+|  | <spanclassName="ml-2 text-zinc-500 dark:text-zinc-400"> |
+|  | /month |
+|  | </span> |
+|  | </div> |
+|  | </div> |
+|  |  |
+|  | <Link |
+|  | href="/sign-up" |
+|  | className="mb-8 block w-full rounded-lg border border-zinc-300 py-3 text-center font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800" |
+|  | > |
+|  | Get Started |
+|  | </Link> |
+|  |  |
+|  | <ulclassName="space-y-4"> |
+|  | {Plans.free.features.map((feature,index)=>( |
+|  | <likey={index}className="flex items-start gap-3"> |
+|  | <svg |
+|  | className="h-5 w-5 flex-shrink-0 text-zinc-400" |
+|  | fill="none" |
+|  | stroke="currentColor" |
+|  | viewBox="0 0 24 24" |
+|  | > |
+|  | <path |
+|  | strokeLinecap="round" |
+|  | strokeLinejoin="round" |
+|  | strokeWidth={2} |
+|  | d="M5 13l4 4L19 7" |
+|  | /> |
+|  | </svg> |
+|  | <spanclassName="text-sm text-zinc-600 dark:text-zinc-400"> |
+|  | {feature} |
+|  | </span> |
+|  | </li> |
+|  | ))} |
+|  | </ul> |
+|  | </div> |
+|  |  |
+|  | {/\\ Basic Plan \/} |
+|  | <divclassName="rounded-2xl border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-900"> |
+|  | <divclassName="mb-6"> |
+|  | <h3className="text-lg font-semibold text-zinc-900 dark:text-white"> |
+|  | {Plans.basic.name} |
+|  | </h3> |
+|  | <pclassName="text-sm text-zinc-500 dark:text-zinc-400"> |
+|  | {Plans.basic.description} |
+|  | </p> |
+|  | </div> |
+|  |  |
+|  | <divclassName="mb-6"> |
+|  | {isAnnual ? ( |
+|  | <div> |
+|  | <divclassName="flex items-baseline gap-2"> |
+|  | <spanclassName="text-4xl font-bold text-emerald-600 dark:text-emerald-400"> |
+|  | $10 |
+|  | </span> |
+|  | <spanclassName="text-zinc-500 dark:text-zinc-400"> |
+|  | /month |
+|  | </span> |
+|  | </div> |
+|  | <divclassName="mt-1 flex items-center gap-2"> |
+|  | <spanclassName="text-sm text-zinc-400 line-through"> |
+|  | $15/month |
+|  | </span> |
+|  | <spanclassName="rounded bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"> |
+|  | Save {Plans.basic.annualSavings} |
+|  | </span> |
+|  | </div> |
+|  | <pclassName="mt-1 text-xs text-zinc-500 dark:text-zinc-400"> |
+|  | Billed annually at ${Plans.basic.annualPrice} |
+|  | </p> |
+|  | </div> |
+|  | ) : ( |
+|  | <divclassName="flex items-baseline"> |
+|  | <spanclassName="text-4xl font-bold text-zinc-900 dark:text-white"> |
+|  | ${Plans.basic.monthlyPrice} |
+|  | </span> |
+|  | <spanclassName="ml-2 text-zinc-500 dark:text-zinc-400"> |
+|  | /month |
+|  | </span> |
+|  | </div> |
+|  | )} |
+|  | </div> |
+|  |  |
+|  | <PlanButton |
+|  | plan={\basic-${isAnnual ? "annual" : "monthly"}\} |
+|  | className="mb-8 block w-full rounded-lg border border-zinc-300 py-3 text-center font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800" |
+|  | > |
+|  | Subscribe |
+|  | </PlanButton> |
+|  |  |
+|  | <ulclassName="space-y-4"> |
+|  | {Plans.basic.features.map((feature,index)=>( |
+|  | <likey={index}className="flex items-start gap-3"> |
+|  | <svg |
+|  | className="h-5 w-5 flex-shrink-0 text-emerald-500" |
+|  | fill="none" |
+|  | stroke="currentColor" |
+|  | viewBox="0 0 24 24" |
+|  | > |
+|  | <path |
+|  | strokeLinecap="round" |
+|  | strokeLinejoin="round" |
+|  | strokeWidth={2} |
+|  | d="M5 13l4 4L19 7" |
+|  | /> |
+|  | </svg> |
+|  | <spanclassName="text-sm text-zinc-600 dark:text-zinc-400"> |
+|  | {feature} |
+|  | </span> |
+|  | </li> |
+|  | ))} |
+|  | </ul> |
+|  | </div> |
+|  |  |
+|  | {/\\ Pro Plan - Popular \/} |
+|  | <divclassName="relative rounded-2xl border-2 border-emerald-500 bg-white p-8 dark:bg-zinc-900"> |
+|  | <divclassName="absolute -top-4 left-1/2 -translate-x-1/2"> |
+|  | <spanclassName="rounded-full bg-emerald-500 px-4 py-1 text-sm font-semibold text-white"> |
+|  | Most Popular |
+|  | </span> |
+|  | </div> |
+|  |  |
+|  | <divclassName="mb-6"> |
+|  | <h3className="text-lg font-semibold text-zinc-900 dark:text-white"> |
+|  | {Plans.pro.name} |
+|  | </h3> |
+|  | <pclassName="text-sm text-zinc-500 dark:text-zinc-400"> |
+|  | {Plans.pro.description} |
+|  | </p> |
+|  | </div> |
+|  |  |
+|  | <divclassName="mb-6"> |
+|  | {isAnnual ? ( |
+|  | <div> |
+|  | <divclassName="flex items-baseline gap-2"> |
+|  | <spanclassName="text-4xl font-bold text-emerald-600 dark:text-emerald-400"> |
+|  | $24 |
+|  | </span> |
+|  | <spanclassName="text-zinc-500 dark:text-zinc-400"> |
+|  | /month |
+|  | </span> |
+|  | </div> |
+|  | <divclassName="mt-1 flex items-center gap-2"> |
+|  | <spanclassName="text-sm text-zinc-400 line-through"> |
+|  | $30/month |
+|  | </span> |
+|  | <spanclassName="rounded bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"> |
+|  | Save {Plans.pro.annualSavings} |
+|  | </span> |
+|  | </div> |
+|  | <pclassName="mt-1 text-xs text-zinc-500 dark:text-zinc-400"> |
+|  | Billed annually at ${Plans.pro.annualPrice} |
+|  | </p> |
+|  | </div> |
+|  | ) : ( |
+|  | <divclassName="flex items-baseline"> |
+|  | <spanclassName="text-4xl font-bold text-zinc-900 dark:text-white"> |
+|  | ${Plans.pro.monthlyPrice} |
+|  | </span> |
+|  | <spanclassName="ml-2 text-zinc-500 dark:text-zinc-400"> |
+|  | /month |
+|  | </span> |
+|  | </div> |
+|  | )} |
+|  | </div> |
+|  |  |
+|  | <PlanButton |
+|  | plan={\pro-${isAnnual ? "annual" : "monthly"}\} |
+|  | className="mb-8 block w-full rounded-lg bg-emerald-500 py-3 text-center font-medium text-white transition-colors hover:bg-emerald-600" |
+|  | > |
+|  | Subscribe |
+|  | </PlanButton> |
+|  |  |
+|  | <ulclassName="space-y-4"> |
+|  | {Plans.pro.features.map((feature,index)=>( |
+|  | <likey={index}className="flex items-start gap-3"> |
+|  | <svg |
+|  | className="h-5 w-5 flex-shrink-0 text-emerald-500" |
+|  | fill="none" |
+|  | stroke="currentColor" |
+|  | viewBox="0 0 24 24" |
+|  | > |
+|  | <path |
+|  | strokeLinecap="round" |
+|  | strokeLinejoin="round" |
+|  | strokeWidth={2} |
+|  | d="M5 13l4 4L19 7" |
+|  | /> |
+|  | </svg> |
+|  | <spanclassName="text-sm text-zinc-600 dark:text-zinc-400"> |
+|  | {feature} |
+|  | </span> |
+|  | </li> |
+|  | ))} |
+|  | </ul> |
+|  | </div> |
+|  | </div> |
+|  |  |
+|  | {/\\ FAQ or additional info \/} |
+|  | <divclassName="mt-16 text-center"> |
+|  | <pclassName="text-zinc-600 dark:text-zinc-400"> |
+|  | Cancel anytime. Secure payments powered by Polar. |
+|  | </p> |
+|  | </div> |
+|  | </div> |
+|  | </main> |
+|  |  |
+|  | {/\\ Footer \/} |
+|  | <footerclassName="border-t border-zinc-200 bg-white py-8 dark:border-zinc-800 dark:bg-zinc-900"> |
+|  | <divclassName="mx-auto max-w-6xl px-4 text-center text-sm text-zinc-500 dark:text-zinc-400"> |
+|  | Built with Next.js, Clerk, Polar.sh, and Drizzle |
+|  | </div> |
+|  | </footer> |
+|  | </div> |
+|  | ); |
+|  | } |
+
+view raw page.tsx
+hosted with ❤ by GitHub
+
+Pricing page detailing the different plans
+
+The plan list contains all the relevant details for both the monthly and annual based payment plans. The constant variable containing all the relevant information is exported from this file /app/_utils/planList.ts.
+
+The _utils directory contains other exported constants that require working with the different product IDs so ensure that you use the .env.example file and copy paste your product IDs there.
+
+Understanding the flow of payments is critical to any application. For each of the plans detailed here, we have the following plan names:
+
+• basic-monthly
+• basic-annual
+• pro-monthly
+• pro-annual
+
+A special button component, PlanButton takes in these plan names to process a request to the back-end to check user subscription status /app/_components/PlanButton.tsx:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | "use client"; |
+|  |  |
+|  | import{useEffect,useState}from"react"; |
+|  | import{useRouter}from"next/navigation"; |
+|  | import{useAuth}from"@clerk/nextjs"; |
+|  | importPlanButtonTypefrom'../\_utils/PlanButtonType'; |
+|  |  |
+|  | // Plan button for selecting or changing subscription plans |
+|  | exportdefaultfunctionPlanButton({ plan, className, children }: PlanButtonType){ |
+|  | constrouter=useRouter(); |
+|  | const{ isSignedIn }=useAuth(); |
+|  | const\[hasActiveSubscription,setHasActiveSubscription\]=useState(false); |
+|  | const\[loading,setLoading\]=useState(false); |
+|  |  |
+|  | // Fetch user subscription status on mount or when sign-in state changes |
+|  | useEffect(()=>{ |
+|  | if(isSignedIn){ |
+|  | fetch("/api/user/status") |
+|  | .then((res)=>res.json()) |
+|  | .then((data)=>setHasActiveSubscription(data.hasActiveSubscription)) |
+|  | .catch(()=>setHasActiveSubscription(false)); |
+|  | } |
+|  | },\[isSignedIn\]); |
+|  |  |
+|  | consthandleClick=async()=>{ |
+|  | if(!isSignedIn){ |
+|  | router.push(\/api/checkout?plan=${plan}\); |
+|  | return; |
+|  | } |
+|  |  |
+|  | if(!hasActiveSubscription){ |
+|  | router.push(\/api/checkout?plan=${plan}\); |
+|  | return; |
+|  | } |
+|  |  |
+|  | // User is subscribed - use change plan API |
+|  | setLoading(true); |
+|  |  |
+|  | try{ |
+|  | constres=awaitfetch("/api/subscription/change",{ |
+|  | method: "POST", |
+|  | headers: {"Content-Type": "application/json"}, |
+|  | body: JSON.stringify({ plan }) |
+|  | }); |
+|  |  |
+|  | constdata=awaitres.json(); |
+|  |  |
+|  | // If subscription was cancelled, redirect to checkout |
+|  | if(data.useCheckout){ |
+|  | router.push(\/api/checkout?plan=${plan}\); |
+|  | return; |
+|  | } |
+|  |  |
+|  | if(!res.ok)thrownewError("Failed to change plan"); |
+|  |  |
+|  | router.push("/checkout/success"); |
+|  | router.refresh(); |
+|  | } |
+|  | catch{ |
+|  | alert("Failed to change plan. Please try again."); |
+|  | } |
+|  | finally{ |
+|  | setLoading(false); |
+|  | } |
+|  | }; |
+|  |  |
+|  | return( |
+|  | <buttononClick={handleClick}disabled={loading}className={className}> |
+|  | {loading ? "Processing..." : children} |
+|  | </button> |
+|  | ); |
+|  | } |
+
+view raw PlanButton.tsx
+hosted with ❤ by GitHub
+
+PlanButton.tsx file determining user subscription status and deciding to allow user to proceed to checkout
+
+From here, we first check to see if the user is authenticated and capture the user subscription status by making a call to the back-end at /api/user/status.
+
+After that, we determine if we need to make changes to the subscription (upgrade, downgrade, cancel) or actually create a new one by checking the subscription status from the API call.
+
+If a subscription exists for the user, we use the change API to make the subscription change for the user.
+
+We use Clerk.js to capture user information using the useAuth client hook and pass in the plan as a parameter to the back-end checkout route.
+
+The back-end checkout route looks like this /api/checkout/route.ts:
+
+Back-end checkout route – Medium
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{auth}from"@clerk/nextjs/server"; |
+|  | import{Polar}from"@polar-sh/sdk"; |
+|  | import{NextRequest,NextResponse}from"next/server"; |
+|  | import{db}from"@/db/index"; |
+|  | import{users}from"@/db/schema"; |
+|  | import{eq}from"drizzle-orm"; |
+|  | importPLAN\TO\PRODUCTfrom"@/app/\_utils/planToProductRecord"; |
+|  |  |
+|  | // Setting up a Polar instance to work with payments |
+|  | constpolar=newPolar({ |
+|  | accessToken: process.env.POLAR\ACCESS\TOKEN!, |
+|  | server: "sandbox" |
+|  | }); |
+|  |  |
+|  | // Setting up checkout route depending on the user autentication |
+|  | // Redirect URLs for product checkout based on request plan |
+|  | exportasyncfunctionGET(req: NextRequest){ |
+|  | const{ userId }=awaitauth(); |
+|  | const{ searchParams }=newURL(req.url); |
+|  | constplan=searchParams.get("plan"); |
+|  |  |
+|  | if(!plan\|\|!PLAN\TO\PRODUCT\[plan\]){ |
+|  | thrownewError("Invalid plan selected"); |
+|  | } |
+|  |  |
+|  | if(!userId){ |
+|  | constsignInUrl=newURL("/sign-in",req.url); |
+|  | signInUrl.searchParams.set("redirect\_url",\/api/checkout?plan=${plan}\); |
+|  | returnNextResponse.redirect(signInUrl); |
+|  | } |
+|  |  |
+|  | constuser=awaitdb.query.users.findFirst({ |
+|  | where: eq(users.clerkId,userId) |
+|  | }); |
+|  |  |
+|  | if(!user){ |
+|  | thrownewError("User not found"); |
+|  | } |
+|  |  |
+|  | // If already has active subscription, they should use the change plan API |
+|  | if(user.polarSubscriptionId){ |
+|  | returnNextResponse.redirect(newURL("/dashboard",req.url)); |
+|  | } |
+|  |  |
+|  | // Create a checkout session with Polar |
+|  | constcheckout=awaitpolar.checkouts.create({ |
+|  | products: \[PLAN\TO\PRODUCT\[plan\]!\], |
+|  | customerEmail: user.email, |
+|  | successUrl: \${process.env.NEXT\PUBLIC\APP\_URL\|\|"http://localhost:3000"}/checkout/success\, |
+|  | metadata: { |
+|  | clerkId: userId, |
+|  | plan: plan, |
+|  | internalUserId: user.id |
+|  | } |
+|  | }); |
+|  |  |
+|  | returnNextResponse.redirect(checkout.url); |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Checkout route for creating a new Polar checkout session
+
+We create a Polar instance and then use Clerk to check if the user is signed in.
+
+If not, we create a re-direct link to the /sign-in page and have the user sign-in first before being directed back to the checkout page.
+
+If the user already has an existing subscription (marked by the unique polarSubscriptionId as described in the user schema), we direct them to the dashboard.
+
+If not, we use the Polar checkout API and direct the user to a checkout URL which is uniquely generated by creating a new checkout session for the user.
+
+This is where the user is directed to a page to enter in the required payment details to subscribe to a payment plan.
+
+The beauty of Polar is that we do not need to create this page or any of the payment UI as all of this is provided by Polar out-of-the-box.
+
+We provide the product ID, user email, and metadata such as the success page (page the user is directed to upon successful payment) as well as other things such as the plan and user information using Clerk.
+
+Polar Web Hooks, Subscription Updates and Cancellations
+
+Similar to Clerk.js, Polar comes with its own set of web hook events. These events are related to payments, subscriptions (paid, upgraded, cancelled), and much more.
+
+You can find the full list of web hook events in Polar in the docs here.
+
+All Polar payment events are handled here /api/webhooks/polar/route.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{NextRequest,NextResponse}from"next/server"; |
+|  | import{validateEvent,WebhookVerificationError}from"@polar-sh/sdk/webhooks"; |
+|  | import{db}from"@/db/index"; |
+|  | import{users}from"@/db/schema"; |
+|  | import{eq}from"drizzle-orm"; |
+|  | importcalculateEndDatefrom"@/app/\_utils/createDateFunction"; |
+|  | importPRODUCT\TO\BILLINGfrom"@/app/\_utils/productToBillingRecord"; |
+|  | importPRODUCT\TO\TIERfrom"@/app/\_utils/productToTierRecord"; |
+|  |  |
+|  | // Process Polar payment webhooks |
+|  | // Update the database once the payment process is complete with the latest subscription status information |
+|  | exportasyncfunctionPOST(req: NextRequest){ |
+|  | constWEBHOOK\SECRET=process.env.POLAR\WEBHOOK\_SECRET; |
+|  |  |
+|  | if(!WEBHOOK\_SECRET){ |
+|  | returnNextResponse.json({error: "Server configuration error"},{status: 500}); |
+|  | } |
+|  |  |
+|  | // Get the raw body |
+|  | constpayload=awaitreq.text(); |
+|  |  |
+|  | // Verify webhook signature using Polar SDK |
+|  | letevent; |
+|  | try{ |
+|  | event=validateEvent(payload,Object.fromEntries(req.headers),WEBHOOK\_SECRET); |
+|  | } |
+|  | catch(error){ |
+|  | if(errorinstanceofWebhookVerificationError){ |
+|  | returnNextResponse.json({error: "Invalid signature"},{status: 403}); |
+|  | } |
+|  |  |
+|  | returnNextResponse.json({error: "Webhook verification failed"},{status: 400}); |
+|  | } |
+|  |  |
+|  | consteventType=event.type; |
+|  |  |
+|  | try{ |
+|  | switch(eventType){ |
+|  | // Checkout completed - user subscribed |
+|  | case"checkout.created": |
+|  | case"checkout.updated": { |
+|  | // Only process if checkout is confirmed/succeeded |
+|  | conststatus=event.data.status; |
+|  | if(status!=="succeeded"&&status!=="confirmed"){ |
+|  | returnNextResponse.json({received: true,skipped: "pending checkout"},{status: 200}); |
+|  | } |
+|  |  |
+|  | constclerkId=event.data.metadata?.clerkIdasstring\|undefined; |
+|  | constproductId=event.data.productId; |
+|  | constcustomerId=event.data.customerId; |
+|  | constsubscriptionId=event.data.subscriptionId; |
+|  |  |
+|  | if(!clerkId){ |
+|  | returnNextResponse.json({error: "Missing clerkId in metadata"},{status: 400}); |
+|  | } |
+|  |  |
+|  | // Check if user exists |
+|  | constexistingUser=awaitdb.query.users.findFirst({ |
+|  | where: eq(users.clerkId,clerkId) |
+|  | }); |
+|  |  |
+|  | if(!existingUser){ |
+|  | returnNextResponse.json({error: "User not found"},{status: 404}); |
+|  | } |
+|  |  |
+|  | consttier=(productId&&PRODUCT\TO\TIER\[productId\])\|\|"basic"; |
+|  | constbillingPeriod=(productId&&PRODUCT\TO\BILLING\[productId\])\|\|"monthly"; |
+|  | constendDate=calculateEndDate(billingPeriod); |
+|  |  |
+|  | // Idempotency: Check if this subscription is already active |
+|  | if(existingUser.polarSubscriptionId===subscriptionId&&existingUser.isSubscribed){ |
+|  | returnNextResponse.json({received: true,skipped: "already active"},{status: 200}); |
+|  | } |
+|  |  |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | isSubscribed: true, |
+|  | subscriptionTier: tier, |
+|  | polarCustomerId: customerId\|\|existingUser.polarCustomerId, |
+|  | polarSubscriptionId: subscriptionId\|\|existingUser.polarSubscriptionId, |
+|  | subscriptionStartDate: newDate(), |
+|  | subscriptionEndDate: endDate, |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.clerkId,clerkId)); |
+|  |  |
+|  | break; |
+|  | } |
+|  |  |
+|  | // Subscription activated |
+|  | case"subscription.created": |
+|  | case"subscription.active": { |
+|  | constcustomerId=event.data.customerId; |
+|  | constproductId=event.data.productId; |
+|  | constsubscriptionId=event.data.id; |
+|  | constclerkId=event.data.metadata?.clerkIdasstring\|undefined; |
+|  |  |
+|  | // Try to find user by clerkId first (new subscription), fallback to customerId (existing customer) |
+|  | if(!clerkId&&!customerId){ |
+|  | returnNextResponse.json({received: true,skipped: "no identifier"},{status: 200}); |
+|  | } |
+|  |  |
+|  | consttier=(productId&&PRODUCT\TO\TIER\[productId\])\|\|"basic"; |
+|  | constbillingPeriod=(productId&&PRODUCT\TO\BILLING\[productId\])\|\|"monthly"; |
+|  | constendDate=calculateEndDate(billingPeriod); |
+|  |  |
+|  | if(clerkId){ |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | isSubscribed: true, |
+|  | subscriptionTier: tier, |
+|  | polarCustomerId: customerId, |
+|  | polarSubscriptionId: subscriptionId, |
+|  | subscriptionStartDate: newDate(), |
+|  | subscriptionEndDate: endDate, |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.clerkId,clerkId)); |
+|  | }else{ |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | isSubscribed: true, |
+|  | subscriptionTier: tier, |
+|  | polarSubscriptionId: subscriptionId, |
+|  | subscriptionStartDate: newDate(), |
+|  | subscriptionEndDate: endDate, |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.polarCustomerId,customerId!)); |
+|  | } |
+|  |  |
+|  | break; |
+|  | } |
+|  |  |
+|  | // Subscription canceled (grace period - will end at period end) |
+|  | case"subscription.canceled": { |
+|  | constcustomerId=event.data.customerId; |
+|  | constcurrentPeriodEnd=event.data.currentPeriodEnd; |
+|  |  |
+|  | if(!customerId){ |
+|  | returnNextResponse.json({received: true,skipped: "no customer ID"},{status: 200}); |
+|  | } |
+|  |  |
+|  | // Mark as not subscribed but keep tier for grace period access |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | isSubscribed: false, |
+|  | subscriptionEndDate: currentPeriodEnd ? newDate(currentPeriodEnd) : undefined, |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.polarCustomerId,customerId)); |
+|  |  |
+|  | break; |
+|  | } |
+|  |  |
+|  | // Subscription revoked (immediately cancelled) |
+|  | case"subscription.revoked": { |
+|  | constcustomerId=event.data.customerId; |
+|  |  |
+|  | if(!customerId){ |
+|  | returnNextResponse.json({received: true,skipped: "no customer ID"},{status: 200}); |
+|  | } |
+|  |  |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | isSubscribed: false, |
+|  | subscriptionTier: "free", |
+|  | polarSubscriptionId: null, |
+|  | subscriptionEndDate: newDate(), |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.polarCustomerId,customerId)); |
+|  |  |
+|  | break; |
+|  | } |
+|  |  |
+|  | // Subscription updated (plan change) |
+|  | case"subscription.updated": { |
+|  | constcustomerId=event.data.customerId; |
+|  | constproductId=event.data.productId; |
+|  |  |
+|  | if(!customerId){ |
+|  | returnNextResponse.json({received: true,skipped: "no customer ID"},{status: 200}); |
+|  | } |
+|  |  |
+|  | consttier=(productId&&PRODUCT\TO\TIER\[productId\])\|\|"basic"; |
+|  | constbillingPeriod=(productId&&PRODUCT\TO\BILLING\[productId\])\|\|"monthly"; |
+|  | constendDate=calculateEndDate(billingPeriod); |
+|  |  |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | subscriptionTier: tier, |
+|  | subscriptionEndDate: endDate, |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.polarCustomerId,customerId)); |
+|  |  |
+|  | break; |
+|  | } |
+|  |  |
+|  | default: |
+|  | // Don't fail on unknown events, just acknowledge |
+|  | console.log(\\[Polar Webhook\] Unhandled event type: ${eventType}\); |
+|  | } |
+|  |  |
+|  | returnNextResponse.json({received: true},{status: 200}); |
+|  | } |
+|  | catch{ |
+|  | // Return 500 so Polar retries the webhook |
+|  | returnNextResponse.json({error: "Internal server error"},{status: 500}); |
+|  | } |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Polar web hook in action handling subscription events
+
+The Polar web hook secret can be generated in the webhooks section of the sandbox environment ( Settings \> Webhooks).
+
+Remember, we use ngrok to create a tunnel to this URL: <ngrok URL>/api/webhooks/polar.
+
+This is quite extensive, but it closely resembles logic of the Clerk web hook (/api/webhooks/clerk). We handle checkout events as well as subscription events.
+
+When the Polar checkout session is created (as seen earlier), the checkout events fire off and are handled accordingly.
+
+Most of the action is associated with data manipulation (gathering user information, subscription id, updating the database, etc.).
+
+Suppose the user has an existing subscription and would like to change the subscription status (cancel subscription, upgrade/downgrade an existing subscription), the subscription events fire off and are handled accordingly.
+
+In these scenarios, since we already have a Polar customer ID and a Polar subscription ID, there is no need for checkout. We can simply run calls to the Polar Update API.
+
+Polar Update API /api/subscription/change/route.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{auth}from"@clerk/nextjs/server"; |
+|  | import{Polar}from"@polar-sh/sdk"; |
+|  | import{NextRequest,NextResponse}from"next/server"; |
+|  | import{db}from"@/db/index"; |
+|  | import{users}from"@/db/schema"; |
+|  | import{eq}from"drizzle-orm"; |
+|  | importPLAN\TO\PRODUCTfrom"@/app/\_utils/planToProductRecord"; |
+|  |  |
+|  | // Setting up the Polar instance for processing payments |
+|  | constpolar=newPolar({ |
+|  | accessToken: process.env.POLAR\ACCESS\TOKEN!, |
+|  | server: "sandbox" |
+|  | }); |
+|  |  |
+|  | // API route to change the user's subscription plan |
+|  | exportasyncfunctionPOST(req: NextRequest){ |
+|  | const{ userId }=awaitauth(); |
+|  |  |
+|  | if(!userId){ |
+|  | thrownewError("Unauthorized"); |
+|  | } |
+|  |  |
+|  | const{ plan }=awaitreq.json(); |
+|  |  |
+|  | if(!plan\|\|!PLAN\TO\PRODUCT\[plan\]){ |
+|  | thrownewError("Invalid plan"); |
+|  | } |
+|  |  |
+|  | constuser=awaitdb.query.users.findFirst({ |
+|  | where: eq(users.clerkId,userId) |
+|  | }); |
+|  |  |
+|  | if(!user\|\|!user.polarSubscriptionId){ |
+|  | thrownewError("No active subscription found"); |
+|  | } |
+|  |  |
+|  | // Update method for changing the subscription plan |
+|  | try{ |
+|  | awaitpolar.subscriptions.update({ |
+|  | id: user.polarSubscriptionId, |
+|  | subscriptionUpdate: {productId: PLAN\TO\PRODUCT\[plan\]!} |
+|  | }); |
+|  | returnNextResponse.json({success: true}); |
+|  | }catch(error){ |
+|  | console.error("\[Subscription Change\] Error:",error); |
+|  |  |
+|  | // If subscription is already cancelled, clear it and tell frontend to use checkout |
+|  | if(String(error).includes("AlreadyCanceledSubscription")){ |
+|  | awaitdb |
+|  | .update(users) |
+|  | .set({ |
+|  | polarSubscriptionId: null, |
+|  | isSubscribed: false, |
+|  | subscriptionTier: "free", |
+|  | updatedAt: newDate() |
+|  | }) |
+|  | .where(eq(users.clerkId,userId)); |
+|  |  |
+|  | returnNextResponse.json({error: "cancelled",useCheckout: true},{status: 400}); |
+|  | } |
+|  |  |
+|  | returnNextResponse.json({error: String(error)},{status: 500}); |
+|  | } |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Polar update API in action
+
+Again, like before, we use Clerk to gather user information and the associated Polar subscription ID, capture the plan from the request URL, and process the change request using the Polar Update API.
+
+If a subscription associated with the user is already cancelled, no change is made and an error is returned as a response. If not, we pass in the subscription ID and the product ID to which the changes are made.
+
+The following route handles subscription cancellations /api/subscription/cancel/route.ts:
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | import{auth}from"@clerk/nextjs/server"; |
+|  | import{Polar}from"@polar-sh/sdk"; |
+|  | import{NextResponse}from"next/server"; |
+|  | import{db}from"@/db/index"; |
+|  | import{users}from"@/db/schema"; |
+|  | import{eq}from"drizzle-orm"; |
+|  |  |
+|  | // Setting up the Polar instance for processing payments |
+|  | constpolar=newPolar({ |
+|  | accessToken: process.env.POLAR\ACCESS\TOKEN!, |
+|  | server: "sandbox" |
+|  | }); |
+|  |  |
+|  | // API route to cancel the user's subscription |
+|  | exportasyncfunctionPOST(){ |
+|  | const{ userId }=awaitauth(); |
+|  |  |
+|  | if(!userId){ |
+|  | thrownewError("Unauthorized"); |
+|  | } |
+|  |  |
+|  | constuser=awaitdb.query.users.findFirst({ |
+|  | where: eq(users.clerkId,userId) |
+|  | }); |
+|  |  |
+|  | if(!user\|\|!user.polarSubscriptionId){ |
+|  | returnNextResponse.json({error: "No active subscription",alreadyCancelled: true},{status: 400}); |
+|  | } |
+|  |  |
+|  | // Update method for cancelling the subscription plan |
+|  | try{ |
+|  | awaitpolar.subscriptions.update({ |
+|  | id: user.polarSubscriptionId, |
+|  | subscriptionUpdate: {cancelAtPeriodEnd: true} |
+|  | }); |
+|  | returnNextResponse.json({success: true,pendingCancellation: true}); |
+|  | }catch(error){ |
+|  | console.error("\[Subscription Cancel\] Error:",error); |
+|  |  |
+|  | // Already set to cancel - treat as success |
+|  | if(String(error).includes("AlreadyCanceledSubscription")){ |
+|  | returnNextResponse.json({success: true,pendingCancellation: true}); |
+|  | } |
+|  |  |
+|  | returnNextResponse.json({error: String(error)},{status: 500}); |
+|  | } |
+|  | } |
+
+view raw route.ts
+hosted with ❤ by GitHub
+
+Polar Update API used for ending existing user subscriptions
+
+The cancel subscription logic is the same as the change subscription logic.
+
+The only difference here is that instead of passing in a product ID in the Polar Update API call, we note cancellation by setting the cancelAtPeriodEnd parameter to true.
+
+That is all you need to do on your end. Polar handles the rest.
+
+The renewing of subscriptions (re-occurring payments), canceling subscriptions (allotting grace periods), as well as pro-rated subscription payments based on subscription upgrades/downgrades are all handled by Polar.
+
+From the Polar sandbox environment dashboard, you can see the list of the customers subscribed as well as their subscription status (plan type, cost, plan end date if the plan is cancelled or plan renew date, etc.).
+
+Payments occur on their own because Polar stores payment information (debit/credit cards) and the email address of the user at the time of checkout. This allows Polar to automatically process payments and emails at the time of billing.
+
+You can see the subscription status of the user in the client dashboard component here /app/dashboard/page.tsx. The dashboard component allows you to create/view a subscription or cancel/upgrade an existing one.
+
+That is all.
+
+Future: The x402 Protocol
+
+With the emergence of stable coins and the integration of payment rails in SaaS applications, renewed interest has taken place in the once largely unused 402 HTTP status code.
+
+The error code is reserved for future use and is commonly interpreted to indicate that payment is required, though it is not formally defined or widely implemented for this purpose.
+
+Payments in the general sense already occur with encryption and TLS. With the rise of agents and agentic AI, API calls can be made to select resources which may wish to charge on a per-usage basis.
+
+The x402 protocol is an experimental approach intended to enable machine-to-machine API calls to be metered and billed based on usage.
+
+We will explore this approach in a future article using both currencies such as USD and cryptocurrency stable coins such as USDC.
+
+Conclusion
+
+We looked at the Polar library for integrating payments into a web application.
+
+We looked at regulatory compliance and highlighted the fact that select businesses are prohibited from using the Polar payment platform.
+
+We touched on the different payment plans such as subscriptions, order-based, and usage-based billing.
+
+We dove into key features of Polar such as products, subscriptions, web hook events, billing, meters/strategy, and used the sandbox environment to walk through these key features.
+
+We created test products and used the sandbox environment to test payment functionality.
+
+We used the Clerk.js library for user authentication and used the user profile information to store subscription information.
+
+Finally, we dove into Polar web hooks and created one to test payment functionality. We used the sandbox environment and touched on the x402 protocol.
+
+There are a lot more features related to Polar which grant you the flexibility in developing the right payment solutions for your SaaS business.
+
+The Polar library is new and ever-growing with new features being added with each version update.
+
+In the list below, you will find links to the GitHub repository used in this article as well as links to the official Polar documentation and sandbox environment:
+
+• GitHub Repository
+• Polar Official Docs
+• Polar Sandbox Environment
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
