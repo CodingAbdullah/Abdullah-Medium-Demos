@@ -13,6 +13,30 @@ Separate directories have been added for audio files and text files related to e
 
 You can find more information in the relevant directories (`audio_files` and `text_files` located at the root level).
 
+### `Scripts`
+The `scripts` directory contains utility scripts for managing content in this repository.
+
+#### `generate_audio.js`
+A Node.js script that generates `.mp3` audio files for each article in the `text_files` directory using the [ElevenLabs](https://elevenlabs.io) Text-to-Speech API.
+
+**What it does:**
+- Reads all `.txt` files from the `text_files` directory
+- Splits articles exceeding 4,500 characters into multiple parts at sentence boundaries
+- Generates `.mp3` audio using the ElevenLabs `eleven_turbo_v2_5` model with the Adam voice
+- Saves each article's audio to a dedicated subdirectory in `audio_files/` following the convention: `Audio_Files_<ArticleName>/` (the `_Text` suffix is stripped from the source filename)
+- Parts are named `<ArticleName>_Part_1.mp3`, `<ArticleName>_Part_2.mp3`, etc.
+- Skips any article whose output subdirectory already contains `.mp3` files
+
+**Requirements:**
+- Node.js 18+ (uses the built-in `fetch` API — no `npm install` needed)
+- An ElevenLabs API key set as the `ELEVENLABS_API_KEY` environment variable ([get one here](https://elevenlabs.io))
+
+**Usage:**
+```powershell
+$env:ELEVENLABS_API_KEY = "your_key_here"
+node scripts/generate_audio.js
+```
+
 Table highlighting the current demos completed along with their code repository and Medium article.
 
 ## Code Demo Medium Article Information
