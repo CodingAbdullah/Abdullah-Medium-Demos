@@ -28,14 +28,26 @@ A Node.js script that generates `.mp3` audio files for each article in the `text
 - Skips any article whose output subdirectory already contains `.mp3` files
 
 **Requirements:**
-- Node.js 18+ (uses the built-in `fetch` API — no `npm install` needed)
-- An ElevenLabs API key set as the `ELEVENLABS_API_KEY` environment variable ([get one here](https://elevenlabs.io))
+- Node.js 18+
+- An ElevenLabs API key ([get one here](https://elevenlabs.io)) stored in a `.env` file at the root of the repository:
+  ```
+  ELEVENLABS_API_KEY=your_key_here
+  ```
 
-**Usage:**
-```powershell
-$env:ELEVENLABS_API_KEY = "your_key_here"
-node scripts/generate_audio.js
-```
+**Setup & Usage:**
+
+1. Install dependencies inside the `scripts` directory:
+   ```powershell
+   cd scripts
+   npm install
+   ```
+2. Return to the repo root and run the script:
+   ```powershell
+   cd ..
+   node scripts/generate_audio.js
+   ```
+
+> `node_modules` and `package-lock.json` inside `scripts/` are excluded from version control via `.gitignore`, so the `npm install` step is required each time the repository is cloned.
 
 Table highlighting the current demos completed along with their code repository and Medium article.
 

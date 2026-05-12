@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
-// Eleven Labs for TTS generation from Text flies
+// Eleven Labs for TTS generation from Text files
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = 'pNInz6obpgDQGcFmaJgB';    // Adam — professional male
 const MODEL_ID = 'eleven_turbo_v2_5';       // Best cost-to-quality ratio
@@ -43,7 +44,9 @@ function splitIntoChunks(text, maxChars) {
             current += (current ? ' ' : '') + sentence;
         }
     }
-    if (current.trim()) chunks.push(current.trim());
+    if (current.trim()) 
+        chunks.push(current.trim());
+    
     return chunks;
 }
 
