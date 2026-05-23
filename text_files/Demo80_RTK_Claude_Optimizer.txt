@@ -1,0 +1,459 @@
+Rust Token Killer: Save Claude Code Tokens with This Rust Binary
+
+[](https://medium.com/@abdullah95?source=postpage---byline--761641e76bda---------------------------------------)
+
+Abdullah Muhammad
+
+5 min read
+
+·
+
+6 days ago
+
+Press enter or click to view image in full size
+
+Save on Claude Code tokens with this handy Rust binary
+
+Basic knowledge of web development, LLMs, and token usage will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+Whether you are using Claude Code or Codex as agents for coding, one thing is clear: you want your agents to be as productive and efficient as possible with the allocated token budget.
+
+In this short article, we will highlight a popular Rust binary which you can install and integrate into your development workflow, allowing you to save on tokens.
+
+You do not need to have experience with Rust or its package manager, Cargo.
+
+This step-by-step guide will walk you through the entire setup process.
+
+What is RTK?
+
+Rust Token Killer or RTK for short, is a Rust binary built specifically to reduce the amount of token usage of your Claude Code agent.
+
+It sits between the Claude Code execution shell and the LLM context, filtering command output before it reaches the model.
+
+What it does:
+
+• Intercepts Shell/Tool output
+• Strips Noise (logs, test results, etc.)
+• Compresses output before Claude sees it
+• Reduces token usage based on noisy workflows
+
+You can find the official RTK GitHub repository here.
+
+What are Rust and Cargo?
+
+Rust is a systems programming language that operates much closer to hardware than higher-level languages such as Java, Python, and TypeScript. It focuses on performance, memory, and concurrency.
+
+As such, it is an ideal language for back-end services, CLI tools, compilers, and even the blockchain (Solana uses it for smart contract functionality).
+
+Cargo is a build tool as well as Rust’s package manager. It is to Rust what NPM, PIP, and the Go package manager are to JavaScript, Python, and Go, respectively.
+
+It allows users to publish “crates” which are simply Rust packages to the Cargo registry. This enables other users and developers alike to install these crates and use them in their own Rust projects.
+
+Installation Process
+
+In this section, we will walkthrough the installation process for both Rust/Cargo as well as the RTK binary.
+
+I am using the Windows operating system so we will use Windows-based commands for installing Rust/Cargo as well as the RTK binary.
+
+Installing Rust and Cargo
+
+You can install both Rust and Cargo with the following command:
+
+winget install Rustlang.Rustup
+
+You can verify installation using the following two commands:
+
+• rustc --version
+• cargo --version
+
+If there are any issues with the installation process, you can visit the official installation docs here.
+
+Installing the RTK Binary
+
+Once you have verified and installed Rust and Cargo, we can proceed with installing the RTK tool.
+
+This Cargo command will take care of everything:
+
+• cargo install --git https://github.com/rtk-ai/rtk
+
+For optimal usage, you can read up the README.md file inside this GitHub repository. It is detailed and covers how to use it in your development workflow.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+You can verify successful installation with the help of the following two commands:
+
+• rtk --version
+• rtk --help
+
+The first should output the latest version of the RTK tool (which at the time of this writing is 0.34.3) and the second should detail a comprehensive list of commands you can use with the RTK tool.
+
+Optimal Usage
+
+RTK wraps common “noisy” commands utilized by Claude Code in your development workflow. These can include commands related to Git, NPM, Docker, and many other command development tools.
+
+The goal is to reduce unnecessary token consumption by minimizing command output, allowing tokens to be spent on higher-value tasks such as coding and reasoning rather than routine operations like version control, builds, and testing.
+
+To ensure proper usage in your development workflow, you will need to add RTK inside your project using the following command:
+
+• rtk init
+
+Since I use Claude Code with the Cursor IDE, the newer command looks something like this:
+
+• rtk init -g --agent cursor
+
+This specific command initializes RTK in your project so Claude Code can work with it.
+
+It creates a .rtk directory (at the location where you ran this command) that contains a filters.toml file.
+
+This configuration file controls RTK filtering behaviour based on specific commands used by Claude Code.
+
+RTK Best Practices
+
+To utilize RTK effectively, you should have a dedicated section inside your CLAUDE.md file which describes to the Claude Code agent on how to best use it.
+
+You can clone this GitHub Repository. The directory we will work with is located here /demos/Demo80RTKClaude_Optimizer.
+
+The following markdown file serves as an example of how you would add RTK related instructions inside a CLAUDE.md file:
+
+view raw CLAUDE.md
+hosted with ❤ by GitHub
+
+Sample instructions for guiding Claude Code on using the RTK tool
+
+It may seem like a lot of instructions, but adequately detailing all of them this way will ensure optimal token usage during development.
+
+Committing the .rtk directory really depends on your development workflow. If this is a local-only preference, you may not need to commit this directory to Git or any other source code management tool.
+
+However, if you intend on sharing it as part of the development workflow, you should note that users who clone your repository may not have RTK installed locally.
+
+In fact, it may be wise to add a line or two inside theCLAUDE.md file to tell the Claude Code agent to bypass RTK instructions if the Rust binary is not installed locally.
+
+If you choose not to commit this directory, you can simply add it to your .gitignore file like other common directories such as .claude, .cursor, .github, and so on.
+
+RTK for Generating Token Usage Reports
+
+In this section, we will cover a common RTK command for analyzing token usage and efficiency.
+
+If you run rtk gain inside your project directory using Claude Code, you should see something like this:
+
+Press enter or click to view image in full size
+
+RTK can be used to generate a Claude Code token usage report
+
+Running rtk gain inside Claude Code will detail a nice summary of the tokens saved based on the different development tool commands utilized.
+
+Saving on tokens improves developer efficiency because it enables them to allocate tokens for higher-value tasks.
+
+This also highlights the importance of good context and AI prompting. Providing noisy context causes your Claude Code agent to increase token usage and reduce efficiency.
+
+Remember, Context → Instruction → Input → Output.
+
+Conclusion
+
+We covered a handy Rust binary called RTK which can help you save on Claude Code tokens.
+
+As agentic development continues to grow, it is important to get the most out of your agents while also ensuring token usage is optimized for development purposes.
+
+We covered the installation process of Rust/Cargo and the RTK binary. We highlighted best practices of using the RTK binary in your development workflow (CLAUDE.md integration, .rtk directory, etc.).
+
+In the list below, you will find links to the official RTK GitHub repository as well as links to the Rust docs, Cargo docs (Rust’s package manager), and the GitHub repository used in this article:
+
+• RTK — Rust Binary
+• Rust Docs
+• Cargo Docs
+• GitHub Repository
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+RTK (Rust Token Killer)
+
+Permalink: RTK (Rust Token Killer)
+
+This project uses RTK (Rust Token Killer) to reduce LLM context token usage by filtering, compacting, and summarizing noisy terminal output before it reaches Claude Code.
+
+RTK Usage Rules
+
+Permalink: RTK Usage Rules
+
+• Prefer RTK-wrapped commands whenever possible.
+• If an RTK equivalent exists, use it instead of the raw command.
+• Avoid excessive terminal output that wastes context tokens.
+• Prefer focused inspection over dumping entire logs, diffs, or recursive directory trees.
+• Use error-focused and summary-focused RTK commands when debugging.
+
+Preferred Command Patterns
+
+Permalink: Preferred Command Patterns
+
+Use RTK for common development workflows:
+
+rtk pnpm install
+rtk pnpm build
+rtk pnpm test
+rtk npm install
+rtk npm test
+rtk next build
+rtk cargo test
+rtk tsc
+rtk prisma migrate status
+
+rtk git status
+rtk git diff
+rtk diff
+
+rtk jest
+rtk vitest
+rtk lint
+rtk prettier
+rtk playwright
+rtk pytest
+rtk mypy
+rtk ruff
+
+rtk docker ps
+rtk docker logs
+rtk kubectl get pods
+rtk aws sts get-caller-identity
+
+rtk ls
+rtk tree
+rtk find . -name "*.ts"
+rtk read package.json
+rtk deps
+
+rtk err pnpm build
+rtk summary pnpm build
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--761641e76bda----0---------------------839c75b1d3014d10b6b0bb9eea3b88d9--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+Apr 23
+
+Level Up Claude Code with Agentic Skills\\
+\\
+Basic knowledge of web development and the Ethereum blockchain will be sufficient for working through the contents of this article.
+
+A clap icon13
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--761641e76bda----1---------------------839c75b1d3014d10b6b0bb9eea3b88d9--------------)
+
+In
+
+Stackademic
+
+by
+
+Devrim Ozcay — Production Engineering
+
+·
+
+Apr 24
+
+I Interviewed at Google, Meta, Amazon in 2026. They All Asked the Same Non-Technical Question.\\
+\\
+The question that eliminated 80% of senior engineer candidates at FAANG. I bombed it three times before I figured out what they actually…
+
+A clap icon463\\
+\\
+A response icon4\\
+\\
+2
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--761641e76bda----2---------------------839c75b1d3014d10b6b0bb9eea3b88d9--------------)
+
+In
+
+Stackademic
+
+by
+
+RadientBrain
+
+·
+
+Apr 29
+
+Can a Beginner Actually Become a Billionaire Through Quant Trading?\\
+\\
+The knowledge, the infrastructure, the countries, the taxes, the capital, the timeline, and every question a beginner is afraid to ask a…
+
+A clap icon527\\
+\\
+A response icon6\\
+\\
+1
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--761641e76bda----3---------------------839c75b1d3014d10b6b0bb9eea3b88d9--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+Feb 27
+
+Mobile-First Agentic Development: Shipping Production Apps with Claude Code\\
+\\
+Basic knowledge of web development, generative AI, and agentic coding will be sufficient for working through the contents of this article.
+
+A clap icon4
+
+[](https://generativeai.pub/?source=postpage---readnextrecirc--761641e76bda----0---------------------471325b01ff6437b9f1c_ad812159212c--------------)
+
+In
+
+Generative AI
+
+by
+
+Yanli Liu
+
+·
+
+May 14
+
+Anthropic’s Engineer Said Kill Markdown. Here’s What He Actually Meant.\\
+\\
+HTML vs Markdown ： Here’s the Decision Tree Both Sides Needed.
+
+A clap icon1.6K\\
+\\
+A response icon81\\
+\\
+24
+
+[](https://medium.com/techx-official?source=postpage---readnextrecirc--761641e76bda----1---------------------471325b01ff6437b9f1cad812159212c--------------)
+
+In
+
+Techx\official
+
+by
+
+Ship X/ TechX
+
+·
+
+May 15
+
+Software Engineer (named Vasilios Syrakis) at Atlassian was laid off on March 12 after 8 years.\\
+\\
+Vasilios responded with a 40-minute YouTube video showing how the company’s entire tech works, free for anyone to copy.
+
+A clap icon2.7K\\
+\\
+A response icon51\\
+\\
+66
+
+[](https://www.towardsdeeplearning.com/?source=postpage---readnextrecirc--761641e76bda----0---------------------471325b01ff6437b9f1cad812159212c--------------)
+
+In
+
+Towards Deep Learning
+
+by
+
+Sumit Pandey
+
+·
+
+May 8
+
+A Single CLAUDE.md File Went Viral. The Reason Is Embarrassingly Simple.\\
+\\
+91,000 stars on GitHub. No code. Four rules from Andrej Karpathy that every coding agent should have been following from day one.
+
+A clap icon1.9K\\
+\\
+A response icon25\\
+\\
+27
+
+[](https://medium.com/@wasowski.jarek?source=postpage---readnextrecirc--761641e76bda----1---------------------471325b01ff6437b9f1c_ad812159212c--------------)
+
+Jaroslaw Wasowski
+
+·
+
+May 11
+
+Stop Writing Specs. Start Writing Facts. The Entire SDD Movement Is Already Obsolete.\\
+\\
+One test survived Sonnet 3.5, 3.7, 4, and Opus 4.5+. The spec needed four reinterpretations.
+
+A clap icon693\\
+\\
+A response icon27\\
+\\
+18
+
+[](https://medium.com/data-science-collective?source=postpage---readnextrecirc--761641e76bda----2---------------------471325b01ff6437b9f1c_ad812159212c--------------)
+
+In
+
+Data Science Collective
+
+by
+
+Anubhav
+
+·
+
+May 9
+
+What Is the Best Local LLM for Coding in 2026?\\
+\\
+A practical guide to choosing local coding models by hardware tier, workflow, latency, and privacy, not just benchmark screenshots.
+
+A clap icon1.1K\\
+\\
+A response icon17\\
+\\
+16
+
+[](https://evilgeek.medium.com/?source=postpage---readnextrecirc--761641e76bda----3---------------------471325b01ff6437b9f1c_ad812159212c--------------)
+
+The Evil Geek
+
+·
+
+Apr 14
+
+Here’s Why Everyone Is Ditching Spotify These Days — And You Should Too\\
+\\
+I gave Spotify another chance… Big mistake!
+
+A clap icon5K\\
+\\
+A response icon351\\
+\\
+43

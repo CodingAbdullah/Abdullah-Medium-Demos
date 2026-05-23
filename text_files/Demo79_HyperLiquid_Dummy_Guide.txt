@@ -1,0 +1,457 @@
+The Short Dummies Guide to the HyperLiquid L1 Blockchain
+
+[](https://medium.com/@abdullah95?source=postpage---byline--40827f8a688a---------------------------------------)
+
+Abdullah Muhammad
+
+8 min read
+
+·
+
+May 15, 2026
+
+Press enter or click to view image in full size
+
+Everything you need to know to get started with HyperLiquid
+
+Basic knowledge of cryptocurrencies, spot/perpetual trading, and the blockchain will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In the last couple of years, we have seen significant growth in the tokenization of real world assets (RWAs) and stablecoins.
+
+Aside from just providing liquidity to the cryptocurrency market, stablecoins have seen a surge in adoption in a variety of ways.
+
+For instance, in the design of agentic payment systems (the x402 protocol) or even in regular, day-to-day commerce.
+
+Companies like Stripe and PayPal have designed and integrated rails for accepting cryptocurrency payments in the form of stablecoins.
+
+Stablecoins also serve a useful purpose in the world of trading. As it relates to perpetual futures and spot trading, stablecoins serve as essential liquidity allowing users to open positions on-chain.
+
+Today, we will focus on a promising L1 blockchain known as HyperLiquid and explore its essential features.
+
+Remember, we covered stablecoins in a previous article.
+
+Namely, when we covered agentic payments using the x402 protocol with USDC (a common stablecoin) on the popular L2 chain, Base.
+
+HyperLiquid: The Chain to House All of Finance
+
+Well, that is their motto. HyperLiquid is a perp focused L1 trading system with a native on-chain orderbook.
+
+You get the best of both worlds between a centralized exchange and decentralized exchange in that, the operations are fast and you get to keep control of your own wallet and funds.
+
+You trade directly from your crypto wallet (HyperLiquid works with EVM wallets), no KYC, open/close positions in both directions (long/short), set profit taking/stop loss, use an on-chain orderbook, and so much more.
+
+We will not get into the technical details of HyperLiquid as that will extend beyond the scope of this article.
+
+After all, there is adequate documentation out there that you can lookup yourself.
+
+This article will mainly serve as a guide for beginners who have an elementary understanding of cryptocurrencies and want a head start using HyperLiquid.
+
+Trading Vocabulary
+
+When it comes to trading, there are a few core concepts you need to get familiar with.
+
+The subsequent sections detail a list of things you should know.
+
+Spot Trading
+
+You have to actually buy the asset. So say, you want to buy 1 BTC, you will need to pay the market price of BTC at the time of purchase.
+
+The benefit here is that you have full ownership of the asset and do not deal with liquidations. The aim here is to “buy low, sell high”.
+
+There are other common strategies people implement such as “DCAing” and so on.
+
+Perpetual Trading
+
+You do not own any asset. You are simply trading the price movement. Essentially, you are placing a bet on the direction of price.
+
+If you bet the price goes up, you “long” the asset. If you bet the price goes down, you “short” the asset.
+
+Perpetual futures are the bread and butter of HyperLiquid. All trades are executed on-chain and traders position themselves with the help of stablecoins (usually USDC).
+
+Leverage
+
+Leverage lets you control a bigger position with less money.
+
+For example:
+
+• $10000 with 5x leverage = $50000 position
+
+If BTC moves:
+
+• +2% → roughly +10%
+• -2% → roughly -10%
+
+Higher leverage increases the risk of liquidation (liquidation price is closer to entry price), but also, the potential for profits on even smaller marginal gains.
+
+Leverage is simply an amplifier. It amplifies both gains and losses and it all depends on the direction of the price movement and which side of the trade you are on (long/short).
+
+Beginners should stick with smaller leverage sizes ( under 5x) to avoid liquidations.
+
+Many experienced traders will often use a much bigger portion of their capital with lower leverage for a total position size that is much larger with less liquidation risk.
+
+Liquidation
+
+If your loss becomes too large, HyperLiquid automatically closes your position.
+
+Many beginners lose money quickly when trading with leverage because they underestimate the risk of liquidation.
+
+Liquidation happens because exchanges do not allow traders to fall into negative balances or “bad debt.” When the losses on a leveraged position become too large relative to the trader’s collateral (margin), the exchange will either require the trader to add more funds or automatically close the position through liquidation.
+
+Experienced traders often talk about “liquidity hunts” or “leverage hunts,” where price moves aggressively into areas with large clusters of leveraged long or short positions. The idea is that market makers and large participants may push price toward these levels because liquidations create volatility, trigger stop orders, and generate trading activity.
+
+When a position is liquidated, the exchange charges liquidation fees. Larger leveraged positions generally result in larger fees and more forced market orders entering the market, which can further amplify price movement.
+
+For basic math, you can think of the liquidation price to be a percentage difference from your entry price that is the inverse to the leverage size you are using.
+
+So say, you used 5x in a levered trade, your liquidation price would be (1/5)% or about 20% from your entry price.
+
+If you long the asset and the price falls ~20% below your position, you are liquidated and if you short the asset and the price rises ~20% above your position, you are liquidated.
+
+Why is HyperLiquid Different?
+
+HyperLiquid is different because unlike many decentralized exchanges, HyperLiquid uses a real order book. There is lower slippage and faster execution of trades.
+
+With the rise of stablecoins and the tokenization of real world assets, there has been a pique interest in the trading of perpetual future contracts on-chain.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+With HyperLiquid, trading goes beyond different cryptocurrencies, you can now trade just about anything including commodities such as gold, silver, tokenized oil, and even tokenized stocks.
+
+Another benefit you get with HyperLiquid is that you have full control over your wallet funds and trading fees are gasless.
+
+The only time you pay fees on HyperLiquid is when you are depositing and withdrawing stablecoins from your trading wallet.
+
+Phantom wallet offers built-in perpetual trading fully powered by HyperLiquid. It is, in my opinion, the best mobile wallet out there.
+
+You will need to have USDC on hand and bridge it over to the Solana blockchain in order to be able to fund the “perps” account on mobile.
+
+Here is a neat article that covers this.
+
+Order Types You Should Learn
+
+There are several order types you should be familiar with when it comes to perpetual futures trading.
+
+• Market Order — Executes instantly at current price
+• Limit order — You choose the exact entry price
+• Stop Loss — Automatically exists if the price moves against you (set to -10%, -25%, etc.)
+• Take Profit — Automatically locks in gains (set to +10%, +25%, etc.)
+
+The Most Important Screen Elements
+
+The following are some key terms you would want to get familiar with as it relates to market positions:
+
+• Position Size — Your total position size is your ( margin x leverage)
+• Margin— Your collateral you initially put on the line
+• Leverage— The multiplier used to amplify your initial position
+• Liquidation Price— Price at which your position is at total loss
+
+Beginner Risk Rules
+
+When learning how to trade perps, it is important to get used to the market mechanics and avoid liquidations. Always risk what you are willing to lose and nothing more.
+
+If that means a small position size so be it. When starting out, avoid using high leverage and ensure you set stop losses so that you can quickly close positions moving against you.
+
+Never go “all-in”. It may sound tempting, but this is akin to degenerate gambling and you will likely lose whatever is left. Remember, all it takes is one liquidation to wipe your balance clean.
+
+It is important to only risk a portion of your size starting out. Leverage is being used as a tool to amplify your gains. There is no need to get more greedy than that :)
+
+For advanced traders, it is important to familiarize yourself with funding rates. Leverage involves funding. Positive funding means longs pay the shorts and negative funding means shorts pay the longs.
+
+Common Beginner Mistakes
+
+Beginners will often underestimate the risk of liquidation in the crypto market and this will lead them to overleverage their positions.
+
+They may trade garbage tokens (memes) or try to “win back” losses in the form of revenge trading.
+
+Not setting parameters for profit-taking or stop-losses is not ideal either.
+
+The one thing you need the most starting out is capital and the quickest way to lose it all is by mismanaging your leveraged positions.
+
+Crypto is risk, but perps is risk on steroids.
+
+Extra: HIP, HyperCore/EVM, HyperLiquid API, Staking, and Legality
+
+In this section, we will highlight some key concepts of the HyperLiquid blockchain that extend beyond the means of on-chain trading.
+
+Technically, HyperLiquid is a term that covers two main components that make up this blockchain.
+
+The first (which we covered) is known as, HyperCore. This is the native trading, orderbook, and staking side of things.
+
+The second is known as, HyperEVM which offers an operable, smart contract layer which is compatible with Ethereum.
+
+On its own, the core execution layer of this blockchain is NOT EVM-compatible.
+
+So essentially, HyperLiquid is a blockchain that is made up of these two key components.
+
+It is a proof-of-stake (PoS) blockchain allowing users to stake their $HYPE tokens to help secure the network and earn rewards in return.
+
+Like Ethereum, HyperLiquid has its own improvement proposals ( HIP). At the time of this writing, there are four named ones (HIP-1 to HIP-4).
+
+You can read more about each of these in the docs here.
+
+HyperLiquid offers an API of their own which allows developers to query on-chain trading data.
+
+In fact, I created a personalized, lightweight dashboard allowing users to query perps trading data of Phantom wallets.
+
+All powered by the HyperLiquid API. You can find that site here.
+
+Certain legalities exist with the HyperLiquid blockchain so you will need to do research in your region to ensure you can work with it.
+
+Market Competitors
+
+While the rise of HyperLiquid is noteworthy in of itself, we have also seen the rise of competitors to HyperLiquid.
+
+The following two exchanges are its most prominent competitors:
+
+• dydx— Oldest, traditional perp DEX provider
+• Aster— Binance backed DEX which offers more extreme levels of leverage
+
+Conclusion
+
+All in all, we did a deep dive into the HyperLiquid L1 blockchain. We covered concepts related to trading and explored features of the HyperLiquid blockchain that make it a reliable and useful chain for spot and perpetual trading.
+
+In the list below, you will find links to my custom HyperLiquid dashboard as well as links to the official HyperLiquid docs and the official HIP docs:
+
+• phantomliquid.sh
+• HyperLiquid Docs
+• HyperLiquid Improvement Proposals
+
+I hope you enjoyed this article.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--40827f8a688a----0---------------------0163c302855d49eb848afcf6edbd9cd5--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+6d ago
+
+Rust Token Killer: Save Claude Code Tokens with This Rust Binary\\
+\\
+Basic knowledge of web development, LLMs, and token usage will be sufficient for working through the contents of this article.
+
+A clap icon2\\
+\\
+A response icon1\\
+\\
+1
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--40827f8a688a----1---------------------0163c302855d49eb848afcf6edbd9cd5--------------)
+
+In
+
+Stackademic
+
+by
+
+Devrim Ozcay — Production Engineering
+
+·
+
+Apr 24
+
+I Interviewed at Google, Meta, Amazon in 2026. They All Asked the Same Non-Technical Question.\\
+\\
+The question that eliminated 80% of senior engineer candidates at FAANG. I bombed it three times before I figured out what they actually…
+
+A clap icon463\\
+\\
+A response icon4\\
+\\
+2
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--40827f8a688a----2---------------------0163c302855d49eb848afcf6edbd9cd5--------------)
+
+In
+
+Stackademic
+
+by
+
+RadientBrain
+
+·
+
+Apr 29
+
+Can a Beginner Actually Become a Billionaire Through Quant Trading?\\
+\\
+The knowledge, the infrastructure, the countries, the taxes, the capital, the timeline, and every question a beginner is afraid to ask a…
+
+A clap icon527\\
+\\
+A response icon6\\
+\\
+1
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--40827f8a688a----3---------------------0163c302855d49eb848afcf6edbd9cd5--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+Apr 23
+
+Level Up Claude Code with Agentic Skills\\
+\\
+Basic knowledge of web development and the Ethereum blockchain will be sufficient for working through the contents of this article.
+
+A clap icon13
+
+[](https://medium.com/techx-official?source=postpage---readnextrecirc--40827f8a688a----0---------------------1aa6353dd09b41baba4a6ca511ca434b--------------)
+
+In
+
+Techx\official
+
+by
+
+Ship X/ TechX
+
+·
+
+May 15
+
+Software Engineer (named Vasilios Syrakis) at Atlassian was laid off on March 12 after 8 years.\\
+\\
+Vasilios responded with a 40-minute YouTube video showing how the company’s entire tech works, free for anyone to copy.
+
+A clap icon2.7K\\
+\\
+A response icon51\\
+\\
+66
+
+[](https://medium.com/@simonwparsons?source=postpage---readnextrecirc--40827f8a688a----1---------------------1aa6353dd09b41baba4a_6ca511ca434b--------------)
+
+Simon Parsons
+
+·
+
+Apr 25
+
+The Passive Income Snowball That Replaced My Retirement Plan\\
+\\
+How I stopped chasing a $2.5M nest egg and built $100K/year in cash flow instead
+
+A clap icon963\\
+\\
+A response icon38\\
+\\
+11
+
+[](https://medium.com/no-time?source=postpage---readnextrecirc--40827f8a688a----0---------------------1aa6353dd09b41baba4a_6ca511ca434b--------------)
+
+In
+
+No Time
+
+by
+
+Pranit naik
+
+·
+
+Apr 18
+
+8 Crazy Things Claude AI Can Do (That ChatGPT Can’t)\\
+\\
+ChatGPT users, take notes
+
+A clap icon5.1K\\
+\\
+A response icon134\\
+\\
+57
+
+[](https://evilgeek.medium.com/?source=postpage---readnextrecirc--40827f8a688a----1---------------------1aa6353dd09b41baba4a_6ca511ca434b--------------)
+
+The Evil Geek
+
+·
+
+Apr 14
+
+Here’s Why Everyone Is Ditching Spotify These Days — And You Should Too\\
+\\
+I gave Spotify another chance… Big mistake!
+
+A clap icon5K\\
+\\
+A response icon351\\
+\\
+43
+
+[](https://medium.com/the-investors-handbook?source=postpage---readnextrecirc--40827f8a688a----2---------------------1aa6353dd09b41baba4a_6ca511ca434b--------------)
+
+In
+
+Investor’s Handbook
+
+by
+
+Sanjeev P.
+
+·
+
+Apr 24
+
+Stop Wasting Your Money — 10 Expenses That No Longer Make Sense\\
+\\
+Your Everyday Spending Habits That Quietly Sabotage Your Financial Goals
+
+A clap icon6.9K\\
+\\
+A response icon240\\
+\\
+47
+
+[](https://generativeai.pub/?source=postpage---readnextrecirc--40827f8a688a----3---------------------1aa6353dd09b41baba4a_6ca511ca434b--------------)
+
+In
+
+Generative AI
+
+by
+
+Yanli Liu
+
+·
+
+May 14
+
+Anthropic’s Engineer Said Kill Markdown. Here’s What He Actually Meant.\\
+\\
+HTML vs Markdown ： Here’s the Decision Tree Both Sides Needed.
+
+A clap icon1.6K\\
+\\
+A response icon81\\
+\\
+24
