@@ -1,0 +1,541 @@
+{
+  "name": "Daily Crypto Market Update Email",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -96,
+        48
+      ],
+      "id": "1cb3ad49-f0d6-4962-a5d3-be3977f1c28e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://pro-api.coingecko.com/api/v3/global",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        -272
+      ],
+      "id": "145066af-c69b-4cac-88a0-b7a7cdae3c3a",
+      "name": "Global Crypto Market Data",
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Jut7LsjcJfkOeWJZ",
+          "name": "CoinGecko API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://pro-api.coingecko.com/api/v3/coins/top_gainers_losers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "vs_currency",
+              "value": "usd"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "da763c59-8372-4e76-973b-24f0c4f7d120",
+      "name": "Top Gainers & Losers Data",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Jut7LsjcJfkOeWJZ",
+          "name": "CoinGecko API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://pro-api.coingecko.com/api/v3/global/decentralized_finance_defi",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        48
+      ],
+      "id": "c64180f5-66b4-4f80-b401-1f11106a3fbe",
+      "name": "De_Fi Data",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Jut7LsjcJfkOeWJZ",
+          "name": "CoinGecko API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://pro-api.coingecko.com/api/v3/search/trending",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "show_max",
+              "value": "coins"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        208
+      ],
+      "id": "2c3252c2-7cd5-4056-b46f-4c5f8ea499ba",
+      "name": "Trending Coins & Collections",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Jut7LsjcJfkOeWJZ",
+          "name": "CoinGecko API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://pro-api.coingecko.com/api/v3/nfts/markets",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "asset_platform_id",
+              "value": "ethereum"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        384
+      ],
+      "id": "a2b85104-7b5d-4992-8b3f-a2fa956b856c",
+      "name": "NFT Market Data",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Jut7LsjcJfkOeWJZ",
+          "name": "CoinGecko API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 5
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        864,
+        0
+      ],
+      "id": "a15bae31-6b7a-4d14-9eea-88ea7dcb5d58",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-6",
+          "cachedResultName": "Claude Sonnet 4.6"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [
+        1280,
+        304
+      ],
+      "id": "e0df8931-2bb4-46c1-a94d-40a234c34077",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "okKlgPgtt5Ik7qiv",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a professional cryptocurrency market analyst.\n\nYour job is to analyze crypto market JSON data and generate a concise daily digest.\n\nAnalyze the following JSON:\n\n{{ JSON.stringify($json.marketData) }}\n\nBy keeping the following rules in mind:\n- Maximum 200 words\n- Professional tone\n- Clear and neutral language\n- No hype\n- No emojis\n- No invented facts\n\nYour digest must include:\n1. Overall market sentiment\n2. DeFi market overview\n3. Top gaining coins\n4. Top losing coins\n5. Trending cryptocurrencies\n6. NFT collection highlights\n7. One closing insight\n\nOnly use the provided JSON data.\nDo not use outside knowledge.\nShould be in clear, readable email format.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1280,
+        48
+      ],
+      "id": "d40ac02c-742a-4dde-8c6a-c7d05c40eabe",
+      "name": "AI Generated Market Summarizer"
+    },
+    {
+      "parameters": {
+        "from": "onboarding@resend.dev",
+        "to": "abdullahmd326@gmail.com",
+        "subject": "Daily Market Update",
+        "html": "=<p>Hello Abdullah!</p>\n\n<p>Hope all is well with you! This is your daily email detailing overall crypto market conditions:</p>\n\n{{ $json.html }}\n\n<p>I hope you found this information helpful. Until next time, take care!</p>\n\n<p>Sincerely,</p>\n<p>N8N Bot</p>",
+        "additionalOptions": {}
+      },
+      "type": "n8n-nodes-resend.resend",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        48
+      ],
+      "id": "a4f4e40c-8008-4b58-a9ef-b7187c3174f5",
+      "name": "Market Conditions Briefing - Daily Email",
+      "webhookId": "2786f9aa-024d-4971-9050-507ff1a9d90a",
+      "credentials": {
+        "resendApi": {
+          "id": "QI7FLhArHaQv6ePG",
+          "name": "N8N Workflow - Resend Workflow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const { top_gainers, top_losers } = $input.first().json;\n\nconst fmt = (n) =>\n  n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M` :\n  n >= 1e3 ? `$${(n / 1e3).toFixed(2)}K` : `$${n.toFixed(4)}`;\n\nconst clean = (coin) => ({\n  name: `${coin.name} (${coin.symbol.toUpperCase()})`,\n  price_usd: coin.usd,\n  volume_24h: fmt(coin.usd_24h_vol),\n  change_24h_pct: `${coin.usd_24h_change > 0 ? \"+\" : \"\"}${coin.usd_24h_change.toFixed(2)}%`,\n  rank: coin.market_cap_rank ?? \"unranked\",\n});\n\nreturn [{\n  json: {\n    top_gainers: top_gainers.map(clean),\n    top_losers: top_losers.map(clean),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        -112
+      ],
+      "id": "46170a50-79b2-41ef-aa50-69f53c9d053f",
+      "name": "Top Gainers & Losers Cleanup Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $input.first().json.data;\n\nconst fmt = (n) =>\n  n >= 1e12 ? `$${(n / 1e12).toFixed(2)}T` :\n  n >= 1e9  ? `$${(n / 1e9).toFixed(2)}B` :\n  n >= 1e6  ? `$${(n / 1e6).toFixed(2)}M` : `$${n.toFixed(2)}`;\n\nconst mcChange = d.market_cap_change_percentage_24h_usd;\nconst volChange = d.volume_change_percentage_24h_usd;\n\nreturn [{\n  json: {\n    overview: {\n      active_cryptocurrencies: d.active_cryptocurrencies,\n      markets: d.markets,\n      updated_at: new Date(d.updated_at * 1000).toISOString(),\n    },\n    market_cap: {\n      usd: fmt(d.total_market_cap.usd),\n      btc_equivalent: `${(d.total_market_cap.btc / 1e6).toFixed(2)}M BTC`,\n      change_24h_pct: `${mcChange > 0 ? \"+\" : \"\"}${mcChange.toFixed(2)}%`,\n    },\n    volume_24h: {\n      usd: fmt(d.total_volume.usd),\n      change_24h_pct: `${volChange > 0 ? \"+\" : \"\"}${volChange.toFixed(2)}%`,\n    },\n    dominance: Object.fromEntries(\n      Object.entries(d.market_cap_percentage).map(([k, v]) => [k, `${v.toFixed(2)}%`])\n    ),\n    sentiment_hint: (() => {\n      if (mcChange > 1 && volChange > 10) return \"strong bullish — price and volume rising\";\n      if (mcChange > 0 && volChange < -15) return \"weak bullish — price up but volume declining\";\n      if (mcChange < -1 && volChange > 10) return \"strong bearish — price and volume falling hard\";\n      if (mcChange < 0 && volChange < 0) return \"bearish — price and volume both declining\";\n      return \"neutral / consolidating\";\n    })(),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        -272
+      ],
+      "id": "823a683f-1943-443b-8cfc-4651aa773d7c",
+      "name": "Global Market Cap Data Cleanup Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $input.first().json.data;\n\nconst fmt = (n) => {\n  const num = parseFloat(n);\n  return num >= 1e9 ? `$${(num / 1e9).toFixed(2)}B` :\n         num >= 1e6 ? `$${(num / 1e6).toFixed(2)}M` : `$${num.toFixed(2)}`;\n};\n\nreturn [{\n  json: {\n    defi_market_cap: fmt(d.defi_market_cap),\n    eth_market_cap: fmt(d.eth_market_cap),\n    defi_to_eth_ratio: `${parseFloat(d.defi_to_eth_ratio).toFixed(2)}%`,\n    volume_24h: fmt(d.trading_volume_24h),\n    defi_dominance: `${parseFloat(d.defi_dominance).toFixed(2)}%`,\n    top_coin: {\n      name: d.top_coin_name,\n      defi_dominance: `${d.top_coin_defi_dominance.toFixed(2)}%`,\n    },\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        48
+      ],
+      "id": "3e12f2e4-4ea9-4db4-bf7f-68845283d9c0",
+      "name": "DeFi Data Cleanup Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const { coins, nfts, categories } = $input.first().json;\n\nconst pct = (n) => `${parseFloat(n) > 0 ? \"+\" : \"\"}${parseFloat(n).toFixed(2)}%`;\nconst fmt = (s) => {\n  const n = parseFloat(s.replace(/[$,]/g, \"\"));\n  return n >= 1e9 ? `$${(n / 1e9).toFixed(2)}B` :\n         n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M` :\n         n >= 1e3 ? `$${(n / 1e3).toFixed(2)}K` : `$${n.toFixed(4)}`;\n};\n\nreturn [{\n  json: {\n    trending_coins: coins.map(({ item }) => ({\n      name: `${item.name} (${item.symbol.toUpperCase()})`,\n      rank: item.market_cap_rank ?? \"unranked\",\n      price_usd: `$${item.data.price < 0.01 ? item.data.price.toFixed(6) : item.data.price.toFixed(4)}`,\n      change_24h: pct(item.data.price_change_percentage_24h.usd),\n      market_cap: fmt(item.data.market_cap),\n      volume_24h: fmt(item.data.total_volume),\n      about: item.data.content?.description ?? null,\n    })),\n\n    trending_nfts: nfts.map((nft) => ({\n      name: `${nft.name} (${nft.symbol})`,\n      floor_price: nft.data.floor_price,\n      floor_change_24h: pct(nft.floor_price_24h_percentage_change),\n      volume_24h: nft.data.h24_volume,\n      avg_sale_price: nft.data.h24_average_sale_price,\n    })),\n\n    trending_categories: categories.map((cat) => ({\n      name: cat.name,\n      coins: cat.coins_count,\n      market_cap: fmt(cat.data.market_cap.toString()),\n      change_24h: pct(cat.data.market_cap_change_percentage_24h.usd),\n      volume_24h: fmt(cat.data.total_volume.toString()),\n    })),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        208
+      ],
+      "id": "0c0a79be-f158-452e-9d5a-744f2a617450",
+      "name": "Trending Coins & Collections Cleanup Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json;\nconst nfts = Array.isArray(raw) ? raw : $input.all().map(i => i.json);\n\nconst pct = (n) => n == null ? null : `${n > 0 ? \"+\" : \"\"}${parseFloat(n).toFixed(2)}%`;\nconst fmtUsd = (n) => {\n  if (!n) return \"$0\";\n  return n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M`\n       : n >= 1e3 ? `$${(n / 1e3).toFixed(2)}K`\n       : `$${n.toFixed(2)}`;\n};\nconst stripHtml = (s) => s\n  ? s.replace(/<[^>]*>/g, \"\").replace(/\\s+/g, \" \").trim().slice(0, 300)\n  : null;\n\nreturn [{\n  json: {\n    collections: nfts.map((nft) => ({\n      name: `${nft.name} (${nft.symbol})`,\n      contract: nft.contract_address,\n      blockchain: nft.asset_platform_id,\n      description: stripHtml(nft.description),\n      floor_price: {\n        native: `${nft.floor_price?.native_currency?.toFixed(4) ?? \"N/A\"} ${nft.native_currency_symbol ?? \"\"}`,\n        usd: fmtUsd(nft.floor_price?.usd),\n      },\n      market_cap_usd: fmtUsd(nft.market_cap?.usd),\n      volume_24h: {\n        native: `${nft.volume_24h?.native_currency?.toFixed(2) ?? \"N/A\"} ${nft.native_currency_symbol ?? \"\"}`,\n        usd: fmtUsd(nft.volume_24h?.usd),\n      },\n      floor_change_24h: pct(nft.floor_price_in_usd_24h_percentage_change),\n      owners: nft.number_of_unique_addresses,\n      total_supply: nft.total_supply,\n    }))\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        384
+      ],
+      "id": "15f04ceb-24a8-450e-8951-9972cc95a544",
+      "name": "NFT Data Cleanup Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\n\nreturn [\n  {\n    json: {\n      marketData: allItems.map((item, index) => ({\n        source: `api_${index + 1}`,\n        data: item.json,\n      })),\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        48
+      ],
+      "id": "5503caf1-55eb-492a-9a61-d7dcdfe6b4be",
+      "name": "JSON Merge Tool Function"
+    },
+    {
+      "parameters": {
+        "jsCode": "const markdown = $json.output;\n\nconst html = markdown\n  .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n  .replace(/^---$/gm, '<hr>')\n  .replace(/\\n/g, '<br>');\n\nreturn [\n  {\n    json: {\n      html\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1632,
+        48
+      ],
+      "id": "fb1978b8-3647-4316-8063-679cda5ead2b",
+      "name": "Email HTML Cleanup Function"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Global Crypto Market Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "De_Fi Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Top Gainers & Losers Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Trending Coins & Collections",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "NFT Market Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Global Crypto Market Data": {
+      "main": [
+        [
+          {
+            "node": "Global Market Cap Data Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top Gainers & Losers Data": {
+      "main": [
+        [
+          {
+            "node": "Top Gainers & Losers Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "De_Fi Data": {
+      "main": [
+        [
+          {
+            "node": "DeFi Data Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trending Coins & Collections": {
+      "main": [
+        [
+          {
+            "node": "Trending Coins & Collections Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NFT Market Data": {
+      "main": [
+        [
+          {
+            "node": "NFT Data Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "JSON Merge Tool Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Generated Market Summarizer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Generated Market Summarizer": {
+      "main": [
+        [
+          {
+            "node": "Email HTML Cleanup Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Global Market Cap Data Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top Gainers & Losers Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "DeFi Data Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Trending Coins & Collections Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "NFT Data Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "JSON Merge Tool Function": {
+      "main": [
+        [
+          {
+            "node": "AI Generated Market Summarizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email HTML Cleanup Function": {
+      "main": [
+        [
+          {
+            "node": "Market Conditions Briefing - Daily Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5a79ad07-14c1-432a-81c9-23bada5f7c19",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ac972fe0bc10c2afb9418a02f7c1aa0c00bcb52d5cf904e725eca260f6ca27b9"
+  },
+  "id": "oGSN3eOkHmYPYz6e",
+  "tags": []
+}
