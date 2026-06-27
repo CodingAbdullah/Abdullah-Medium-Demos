@@ -713,8 +713,8 @@ Table highlighting the current demos completed along with their code repository 
             <code>/demos/Demo81_N8N_Workflows_Trigger_Dev</code>
         </td>
         <td>
-            Link to Medium Article to be posted when complete
-        </td>
+            <a href="https://medium.com/@abdullah_95/tl-dr-on-automated-workflows-with-n8n-b897af3f1a9b">TL;DR on Automated Workflows with N8N</a>
+        </td> 
     </tr>
     <tr>
         <td>
