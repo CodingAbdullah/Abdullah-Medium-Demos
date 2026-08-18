@@ -1,0 +1,337 @@
+AI
+
+AWS
+
+Claude
+
+Cloud Computing
+
+Web Development
+
+Level Up with Claude and AWS Certifications
+
+[](https://medium.com/@abdullah95?source=postpage---byline--474967c35a95---------------------------------------)
+
+Abdullah Muhammad
+
+4 min read
+
+·
+
+Jul 26, 2026
+
+Press enter or click to view image in full size
+
+Exploring the different Anthropic and AWS certification paths
+
+Basic knowledge of web development, cloud, and LLMs will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In a previous article, we covered the fundamentals of cloud computing and explored the many benefits it provides to modern enterprises.
+
+Most of the material presented in that in-depth article aligns with the foundational concepts assessed in the entry-level AWS Cloud Practitioner certification.
+
+In another article, we explored the core concepts of agentic AI and looked at how AWS cloud services enable developers to build AI-powered applications.
+
+That article introduced many of the foundational topics that align with the AWS Certified AI Practitioner certification.
+
+While certifications are a nice-to-have (if you have a knack for badge collecting), they do not tell the full story as a software engineer.
+
+Certifications can strengthen your resume and even serve as a nice flex, but ultimately what matters is how you apply that knowledge as a software engineer.
+
+In the following sections, I will cover the different AWS certifications and Anthropic certifications that software engineers can pursue.
+
+AWS Certification Paths
+
+In this section, I will briefly cover the different certification paths and/or specializations one can undertake.
+
+As an engineer, you have the flexibility to pursue one or more AWS certification paths.
+
+From AI, cybersecurity, data, and DevOps to cloud architecture, networking, and machine learning, AWS offers a wide range of certifications for professionals across many roles and experience levels.
+
+Among the most popular advanced AWS certifications are the AWS Certified Solutions Architect (Professional) and the AWS Certified Machine Learning Engineer (Associate).
+
+The following link highlights the different AWS certification paths and how you can work your way to obtaining the most advanced certifications AWS has to offer.
+
+While many newcomers begin with the AWS Certified Cloud Practitioner certification, it is not a prerequisite for any other AWS certification path.
+
+However, it is a foundational-level certification that every developer should have when working with AWS services.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+While rough time estimates are provided between certifications as you level up, your ability to study for and pass these certification exams depends largely on your level of experience and familiarity with AWS.
+
+Anthropic (Claude) Certifications
+
+In addition to AWS certifications, Anthropic now offers four paid certifications that aspiring developers can try to obtain.
+
+As you progress through the certification path, you will develop increasingly advanced knowledge of Claude AI, its APIs, MCP, and enterprise AI architectures.
+
+These certifications are not available to individuals. You must be employed and your employer must be affiliated with the Claude Partner Network.
+
+The following list highlights the four new Anthropic certifications :
+
+• Claude Certified Associate Foundations ($99) — Validates your ability to use Claude effectively for business workflows through prompt engineering, model selection, output evaluation, and responsible AI best practices.
+• Claude Certified Developer Foundations ($125) — Validates your ability to build applications with Claude using the Anthropic API, prompt engineering, tool use, Model Context Protocol (MCP), and production-ready development practices.
+• Claude Certified Architect Foundations ($125) — Validates your ability to design secure, scalable, production-ready Claude solutions by applying architecture best practices, context management, MCP, Claude Code, and enterprise AI integration principles.
+• Claude Certified Architect Professional ($175) — Validates your expertise in designing and leading enterprise-scale Claude deployments with advanced architecture, governance, security, scalability, and organizational AI adoption strategies.
+
+The exams for each of these certifications can be completed online and the certifications themselves are valid for one year.
+
+Further details on the Anthropic certifications can be found here.
+
+Conclusion
+
+We briefly explored the AWS and Anthropic certification paths. While the AWS certifications are open to anyone, Anthropic-specific certifications can only be obtained if you work for an employer who is partnered with Anthropic.
+
+As stated earlier, whether or not you choose to pursue these certifications is up to you. While they can be a valuable addition to your resume, how you apply the knowledge you gain is ultimately what demonstrates your true expertise.
+
+In the list below, you will find links to the official AWS and Claude certification paths as well as the GitHub repository that contains a comprehensive README.md file detailing the different certification paths:
+
+• Anthropic Certification Paths
+• AWS Certification Paths
+• GitHub Repository
+
+Good luck levelling up!
+
+I hope you enjoyed this short article and look forward to more in the future.
+
+Thank you!
+
+Before you go
+
+• Please take a moment to like the post and follow the writer!
+• Did you know that over 400,000 developers share what they’re building, learning, and discovering across our platforms every month? Learn how you can contribute here
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--474967c35a95----0---------------------5271280e60bf4ef39fe1947a29c96d61--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+May 16
+
+Rust Token Killer: Save Claude Code Tokens with This Rust Binary\\
+\\
+Basic knowledge of web development, LLMs, and token usage will be sufficient for working through the contents of this article.
+
+A clap icon6\\
+\\
+A response icon1\\
+\\
+Repost icon1
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--474967c35a95----1---------------------5271280e60bf4ef39fe1947a29c96d61--------------)
+
+In
+
+Stackademic
+
+by
+
+Anurag Goel
+
+·
+
+Jul 14
+
+25 PostgreSQL Tricks Every Backend Engineer Should Know\\
+\\
+Most backend engineers never actually outgrow PostgreSQL. What they outgrow is the way they’re using it.
+
+A clap icon240\\
+\\
+A response icon5
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--474967c35a95----2---------------------5271280e60bf4ef39fe1947a29c96d61--------------)
+
+In
+
+Stackademic
+
+by
+
+Devrim Ozcay \| Scaling Systems & Surviving Outages
+
+·
+
+Jun 19
+
+My Best Senior Engineer Quit Last Month. Her Exit Interview Was Scheduled for Forty Minutes.\\
+\\
+She was not burned out from writing code. She had barely written any in eight months. She was burned out from reading it. From being the…
+
+A clap icon5.7K\\
+\\
+A response icon182\\
+\\
+Repost icon44
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--474967c35a95----3---------------------5271280e60bf4ef39fe1947a29c96d61--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+May 12, 2024
+
+Implementing BDD using the Cucumber Framework and Selenium WebDriver\\
+\\
+This article assumes the reader is familiar with JavaScript, Java, Maven, and general principles related to the Selenium WebDriver testing…
+
+A response icon1
+
+[](https://medium.com/macoclock?source=postpage---readnextrecirc--474967c35a95----0---------------------a9ac7bd06fe44d598df3_3d815b9e3211--------------)
+
+In
+
+Mac O’Clock
+
+by
+
+Nikhil Vemu
+
+·
+
+3d ago
+
+I Tried 100+ LLMs on M4 Mac mini — These 9 Are INSANE\\
+\\
+Most were duds — these nine are the best LLMs for every job, and not one of them phones home.
+
+A clap icon896\\
+\\
+A response icon9\\
+\\
+Repost icon2
+
+[](https://code.likeagirl.io/?source=postpage---readnextrecirc--474967c35a95----1---------------------a9ac7bd06fe44d598df33d815b9e3211--------------)
+
+In
+
+Code Like A Girl
+
+by
+
+Chandana
+
+·
+
+Jul 22
+
+How to Become an AI Engineer in 2026: The Complete Learning Roadmap\\
+\\
+Whether you’re starting from scratch or transitioning from software engineering, here’s a structured roadmap to learn the skills companies…
+
+A clap icon1.9K\\
+\\
+A response icon38\\
+\\
+Repost icon40
+
+[](https://michalmalewicz.medium.com/?source=postpage---readnextrecirc--474967c35a95----0---------------------a9ac7bd06fe44d598df33d815b9e3211--------------)
+
+Michal Malewicz
+
+·
+
+Jun 29
+
+You only have weeks left to vibe code\\
+\\
+Then it’s over. You better hurry up!
+
+A clap icon7.1K\\
+\\
+A response icon240\\
+\\
+Repost icon79
+
+[](https://medium.com/skillstuff?source=postpage---readnextrecirc--474967c35a95----1---------------------a9ac7bd06fe44d598df3_3d815b9e3211--------------)
+
+In
+
+Skill Stuff
+
+by
+
+CodeByUmar
+
+·
+
+Jun 8
+
+7 Coding Patterns I Stole From Senior Engineers\\
+\\
+Most developers do not become better because they learn more syntax. They become better because they stop making code harder than it needs…
+
+A clap icon4.1K\\
+\\
+A response icon76\\
+\\
+Repost icon89
+
+[](https://pub.towardsai.net/?source=postpage---readnextrecirc--474967c35a95----2---------------------a9ac7bd06fe44d598df3_3d815b9e3211--------------)
+
+In
+
+Towards AI
+
+by
+
+Mouez Yazidi
+
+·
+
+Apr 25
+
+I Wasted 6 Months Using Claude Code Wrong. Here Are the 14 Commands That Changed Everything.\\
+\\
+From frustrated beginner to power user: The hidden command ecosystem nobody talks about.
+
+A clap icon4.8K\\
+\\
+A response icon122\\
+\\
+Repost icon110
+
+[](https://medium.com/@theinfinity?source=postpage---readnextrecirc--474967c35a95----3---------------------a9ac7bd06fe44d598df33d815b9e3211--------------)
+
+Infinity
+
+·
+
+Aug 7
+
+I Tried Dozens of Claude Skills. These are the 5 Must-Haves!\\
+\\
+Skills that actually get your work done.
+
+A clap icon297\\
+\\
+A response icon5\\
+\\
+Repost icon3

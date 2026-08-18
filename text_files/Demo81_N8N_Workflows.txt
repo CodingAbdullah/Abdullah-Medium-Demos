@@ -1,0 +1,346 @@
+Web Development
+
+AI
+
+Cryptocurrency
+
+Automation
+
+N8n
+
+TL;DR on Automated Workflows with N8N
+
+[](https://medium.com/@abdullah95?source=postpage---byline--b897af3f1a9b---------------------------------------)
+
+Abdullah Muhammad
+
+4 min read
+
+·
+
+Jun 27, 2026
+
+Press enter or click to view image in full size
+
+Exploring N8N workflows and how to easily create and deploy a custom workflow
+
+Basic knowledge of web development, N8N.io , and Next.js will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+Introduction
+
+In this short article, we will cover the main features of working with automated workflows using N8N.io.
+
+We will highlight the main features of working with N8N workflows and look at a sample workflow I created to help you better understand how to work with them.
+
+In a future article, we will explore the Trigger.dev library which can be used to enhance your experience with N8N workflows in a Next.js application.
+
+What are N8N Workflows?
+
+Unlike AI agents, N8N workflows are static in nature. From the trigger node to the last node, automated workflows follow the exact same execution pattern.
+
+AI agents are dynamic in nature. They may have access to the same tooling, LLMs, and other resources, but the results vary each time the same task is being completed.
+
+N8N Workflow Nodes
+
+N8N workflows are an interconnected system of nodes. Each node inside a N8N workflow fulfills a unique purpose that helps to serve the overall goal of the workflow.
+
+The following list highlights important nodes that you will use in workflow development:
+
+• Trigger Nodes — Start a workflow based on an event, schedule, web hook, or manual execution.
+• Action Nodes — Perform operations in external databases and services.
+• Core Nodes — Built-in utility nodes for manipulating data, merging inputs, and other common workflow operations.
+• Flow Control Nodes — Control the execution path of a workflow using conditions, branching, looping, and error handling.
+• Data Transformation Nodes — Modify, format, convert, filter, and restructure data between workflow steps.
+• Code Nodes — Execute custom JavaScript or Python when built-in nodes are insufficient.
+• HTTP & API Nodes — Connect to virtually any REST or GraphQL API, including sending requests and processing responses.
+• Database Nodes — Read, write, update, and query data from SQL and NoSQL databases.
+• File & Binary Nodes — Handle files, images, PDFs, spreadsheets, binary data, and file conversions.
+• Communication Nodes — Send notifications, emails, messages, and interact with chat or collaboration platforms.
+• AI Nodes — Integrate with LLMs, vector databases, AI agents, and memory.
+• Authentication & Credential Support — Use secure credentials such as API keys, bearer tokens, and environment variables to access external services.
+• Community Nodes — Extend n8n with additional integrations and functionality through community-developed node packages.
+
+These are the main N8N nodes you will encounter in development.
+
+N8N Workflow Setup Options
+
+When working with N8N workflows, you have several setup options at your disposal.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+The most common way to get started on N8N workflows is by using the official N8N Docker image.
+
+N8N comes with its own official published image that you can fetch from DockerHub and run a container instance of that image locally on your machine.
+
+The second option is to install the official N8N NPM package from the NPM registry locally on your computer.
+
+Simply invoking n8nin your terminal will open the N8N workspace on localhost:5678.
+
+Lastly, if you do not want to manage any infrastructure on your own, N8N cloud is the way to go. You can simply sign up and subscribe to any of their paid plans.
+
+N8N Workflow Example
+
+You can follow along by cloning this GitHub repository. The directory we will be working with is located here /demos/Demo81N8NWorkflows/n8n_workflows.
+
+In this section, we will cover a workflow that I personally created for the purposes of learning.
+
+The following image captures the purpose of this workflow /demos/Demo81N8NWorkflows/n8nworkflows/DailyCryptoMarketUpdate_Email.PNG:
+
+Press enter or click to view image in full size
+
+Simple workflow gathers cryptocurrency data and uses an AI agent and Resend node to send detailed emails
+
+The workflow is based on a scheduled trigger node. This node automatically runs the workflow at a set schedule and starts out by retrieving cryptocurrency market data using APIs with the help of the HTTP node.
+
+These are authenticated API calls so authentication must be provided within the HTTP node itself in the form of an API key.
+
+The data from the response is processed and cleaned up using code function nodes and merged together as a feed for an AI agent node.
+
+AI agent nodes inside N8N workflows are complex. For this example, I did not add any external tooling or memory storage (you have the option of selecting and connecting to a database).
+
+The AI agent node is given a prompt to help write an email message which contains a detailed paragraph explaining the context of the incoming market data.
+
+Finally, a plug-in node is used to send out the email containing the detailed information. I used the Resend plug-in node to send emails.
+
+It is mandatory to provide the necessary authentication in plug-in nodes in order to use them.
+
+You can view the exported N8N workflow in JSON format here. The JSON document is a very long read.
+
+Conclusion
+
+We did a deep dive into N8N workflows. We covered the main aspects of the N8N ecosystem and looked at a sample workflow that you can design on your own using different nodes such as the flow, code, merge, and plug-in nodes.
+
+In the list below, you will find links to the official N8N docs and the GitHub repository containing the exported N8N workflow in JSON format:
+
+• N8N Official Docs
+• GitHub Repository
+
+I hope you found this article helpful and look forward to more in the future.
+
+Thank you!
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--b897af3f1a9b----0---------------------e499e08243564970b5f95f9a2702e387--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+May 16
+
+Rust Token Killer: Save Claude Code Tokens with This Rust Binary\\
+\\
+Basic knowledge of web development, LLMs, and token usage will be sufficient for working through the contents of this article.
+
+A clap icon6\\
+\\
+A response icon1\\
+\\
+Repost icon1
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--b897af3f1a9b----1---------------------e499e08243564970b5f95f9a2702e387--------------)
+
+In
+
+Stackademic
+
+by
+
+Anurag Goel
+
+·
+
+Jul 14
+
+25 PostgreSQL Tricks Every Backend Engineer Should Know\\
+\\
+Most backend engineers never actually outgrow PostgreSQL. What they outgrow is the way they’re using it.
+
+A clap icon240\\
+\\
+A response icon5
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--b897af3f1a9b----2---------------------e499e08243564970b5f95f9a2702e387--------------)
+
+In
+
+Stackademic
+
+by
+
+Devrim Ozcay \| Scaling Systems & Surviving Outages
+
+·
+
+Jun 19
+
+My Best Senior Engineer Quit Last Month. Her Exit Interview Was Scheduled for Forty Minutes.\\
+\\
+She was not burned out from writing code. She had barely written any in eight months. She was burned out from reading it. From being the…
+
+A clap icon5.7K\\
+\\
+A response icon182\\
+\\
+Repost icon44
+
+[](https://blog.stackademic.com/?source=postpage---authorrecirc--b897af3f1a9b----3---------------------e499e08243564970b5f95f9a2702e387--------------)
+
+In
+
+Stackademic
+
+by
+
+Abdullah Muhammad
+
+·
+
+Jul 26
+
+Level Up with Claude and AWS Certifications\\
+\\
+Basic knowledge of web development, cloud, and LLMs will be sufficient for working through the contents of this article.
+
+[](https://medium.com/macoclock?source=postpage---readnextrecirc--b897af3f1a9b----0---------------------d172e85859eb47e9a637_1ffafe26f4b8--------------)
+
+In
+
+Mac O’Clock
+
+by
+
+Nikhil Vemu
+
+·
+
+3d ago
+
+I Tried 100+ LLMs on M4 Mac mini — These 9 Are INSANE\\
+\\
+Most were duds — these nine are the best LLMs for every job, and not one of them phones home.
+
+A clap icon896\\
+\\
+A response icon9\\
+\\
+Repost icon2
+
+[](https://taimurcloud123.medium.com/?source=postpage---readnextrecirc--b897af3f1a9b----1---------------------d172e85859eb47e9a637_1ffafe26f4b8--------------)
+
+Taimur Ijlal
+
+·
+
+Aug 1
+
+Agentic AI Red Teaming: How to Start From Scratch in 2026 (100% Free Resources)\\
+\\
+The Hugging Face Attack Has Made Agentic AI Red Teaming a red hot career ..
+
+A clap icon268\\
+\\
+A response icon12\\
+\\
+Repost icon1
+
+[](https://medium.com/sensual-enchantment?source=postpage---readnextrecirc--b897af3f1a9b----0---------------------d172e85859eb47e9a637_1ffafe26f4b8--------------)
+
+In
+
+Sensual: An Erotic Life
+
+by
+
+The Career Ms
+
+·
+
+Aug 2
+
+I Read the “Marry Rich” Reddit Post That Broke the Internet, And I Can’t Decide If She’s a Genius…\\
+\\
+A 20-year-old did the maths on hustle culture and decided the numbers don’t work
+
+A clap icon9K\\
+\\
+A response icon351\\
+\\
+Repost icon21
+
+[](https://medium.com/anton-on-security?source=postpage---readnextrecirc--b897af3f1a9b----1---------------------d172e85859eb47e9a637_1ffafe26f4b8--------------)
+
+In
+
+Anton on Security
+
+by
+
+Anton Chuvakin
+
+·
+
+Aug 11
+
+Stop Building a 2003 SOC with AI: Triage Must Die (Part 2)\\
+\\
+(with key ideas from Augusto Barros)
+
+A clap icon110\\
+\\
+A response icon4\\
+\\
+Repost icon2
+
+[](https://nitingavhane.medium.com/?source=postpage---readnextrecirc--b897af3f1a9b----2---------------------d172e85859eb47e9a6371ffafe26f4b8--------------)
+
+Nitin Gavhane
+
+·
+
+Aug 1
+
+How to Set Up a VPS from Scratch (Ubuntu, Step-by-Step)\\
+\\
+Hi everyone, I am Nitin Gavhane and In this blog I’m picking up where the last post in this series left off. Last time was about choosing…
+
+A clap icon169\\
+\\
+A response icon1\\
+\\
+Repost icon1
+
+[](https://pub.towardsai.net/?source=postpage---readnextrecirc--b897af3f1a9b----3---------------------d172e85859eb47e9a637_1ffafe26f4b8--------------)
+
+In
+
+Towards AI
+
+by
+
+Shoaib Ahmed Quraishi
+
+·
+
+3d ago
+
+Microsoft Built the Playwright MCP Server. Then Told You to Maybe Not Use It.\\
+\\
+What building an MCP server taught me about interface overhead, agent context, and why Microsoft now recommends two different ways to drive…
+
+A clap icon51

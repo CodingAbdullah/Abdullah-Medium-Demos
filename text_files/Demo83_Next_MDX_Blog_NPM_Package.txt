@@ -1,0 +1,663 @@
+Web Development
+
+AI
+
+Software Development
+
+JavaScript
+
+NPM
+
+Build a Production-Ready Developer Blog with Next.js and MDX
+
+[](https://medium.com/@abdullah95?source=postpage---byline--2476744004ff---------------------------------------)
+
+Abdullah Muhammad
+
+12 min read
+
+·
+
+14 hours ago
+
+Press enter or click to view image in full size
+
+Exploring a useful NPM package for developing and deploying a technical blog powered by Next.js and MDX
+
+Basic knowledge of web development, NPM, and Next.js will be sufficient for working through the contents of this article.
+
+Fond of cryptocurrency? Explore everything related to the Ethereum blockchain with this free, comprehensive dashboard built using Next.js .
+
+Get your article audibles here ! I made this tool which makes audio files accessible for any non-paywall Medium articles!
+
+Want more content? Visit my tech blog for more articles, AI and software tools, and free shareable resources.
+
+\\This article builds on a previous iteration of this blog starter kit. It can be found here .\\
+
+Introduction
+
+We have looked at NPM packages in the past and even deployed a dummy package for demonstrative purposes.
+
+We also explored MDX which is an extended superset of Markdown that allows you to embed JSX elements, create custom components, and write dynamic JavaScript expressions directly inside your content.
+
+In this article, we will look at an NPM package that I created which allows users to quickly bootstrap and customize a Next.js blog of their own.
+
+Many of you know about softwareblog.dev which isa technical blog that I created from scratch using Next.js.
+
+The blog contains all of my published articles along with additional features such as user feedback, access to the latest frontier models, a code sandbox, guides/resources, and more.
+
+The codebase for my blog is closed source, but the NPM package serves as a starter kit enabling users to quickly bootstrap and customize a Next.js blog of their own.
+
+While the package is by no means in its final form, revisions are made and new features are constantly added to help improve the developer experience.
+
+We will walk through the setup and highlight the key features of the starter kit and the key technologies that help enable them.
+
+Jumpstart Blog Development
+
+Building a developer blog sounds straightforward: create a few pages, write some Markdown, deploy the application, and start publishing.
+
+A modern technical blog can quickly become much more complicated.
+
+You may want syntax-highlighted code, MDX components, author profiles, tags, search, optimized images, analytics, SEO, newsletters, interactive code examples, database-backed content, and even AI features.
+
+Instead of rebuilding this infrastructure every time, I built the Next.js MDX Blog Starter Kit, an NPM package designed to help developers build and deploy a developer-focused blog.
+
+The project provides a ready-to-customize foundation for building technical blogs with Next.js, React, TypeScript, MDX, Supabase, Tailwind CSS, AI functionality, Sandpack, Resend, and other modern web technologies.
+
+The goal is simple: scaffold the foundation and spend more time writing, customizing, and building.
+
+What Does the Starter Kit Provide?
+
+The Next.js MDX Blog Starter Kit is more than a collection of pre-designed blog pages.
+
+It provides much of the underlying infrastructure needed to operate a modern developer blog.
+
+Out of the box, the project includes functionality around:
+
+• MDX articles
+• Static and dynamic content
+• Syntax-highlighted code
+• Custom MDX components
+• GitHub Gists
+• Supabase
+• AWS S3
+• Author profiles
+• Tags
+• Search
+• Related articles
+• AI article summaries
+• An AI Blog Assistant
+• Interactive JavaScript and TypeScript examples
+• SEO
+• Dark and light themes
+• Docker and Vercel deployment
+
+The architecture is SSG-first, meaning content that can be generated statically should be generated statically while dynamic functionality is introduced where it actually provides value.
+
+This allows the project to retain the performance advantages of a static technical blog without restricting it to static content.
+
+The Technology Stack
+
+At the center of the project is Next.js with the App Router, providing routing, Server Components, metadata handling, static generation, and the overall application architecture.
+
+React provides the component model, while TypeScript adds type safety throughout the application.
+
+For content, the starter kit uses MDX.
+
+MDX is particularly useful for developer blogs because it combines the simplicity of Markdown with the ability to use React components directly inside an article.
+
+That opens the door to considerably richer technical articles. I covered MDX in great detail in an article here.
+
+The rest of the stack expands on that foundation.
+
+Tailwind CSS and Shadcn/ui provide the UI layer. Supabase provides database functionality for dynamic content. AWS S3 can handle content assets and images.
+
+Vercel AI SDK and Anthropic’s Claude power the AI functionality.
+
+Sandpack provides an interactive browser-based coding environment, while Resend handles user feedback functionality.
+
+Finally, the application can be deployed through Vercel or it can be containerized using Docker.
+
+Getting Started
+
+You can follow along by visiting this official link to the NPM package. The NPM registry page contains additional links to the official GitHub repository (used to generate the NPM package) as well as the deployed website.
+
+Code samples used in this article are pulled from this GitHub repository.
+
+One of the main reasons I turned this project into an NPM package was to make blog creation straightforward.
+
+Instead of manually cloning files and reconstructing the environment, simply run the following command in your CLI:
+
+npx create-next-mdx-blog-app .
+
+The scaffolding process prepares the starter kit application and its dependencies so you can begin configuring the project.
+
+Once installation is complete, start the development environment:
+
+npm run dev
+
+You can then begin replacing the starter kit content, configuring integrations, and customizing the application for your own blog.
+
+Feel free to explore the implementation directly to get a better understanding of how all of this works.
+
+SSG-First by Design
+
+Blogs are particularly well suited to Static Site Generation.
+
+A published article normally does not need to execute a database query every time someone opens the page.
+
+Instead, content can be generated ahead of time. The flow looks something like this: MDX > Next.js Build > Pre-rendered page > CDN > Reader.
+
+This provides several advantages, including fast page delivery, CDN caching, reduced server workloads, and strong foundations for SEO.
+
+The starter kit therefore follows an SSG-first approach. However, not everything inside the kit is designed to be static.
+
+Dynamic content has its own place and the starter kit enables developers to display dynamic content as well.
+
+Static MDX
+
+Traditional articles can live directly inside the project as MDX.
+
+These articles can be processed during the Next.js build and served as pre-rendered pages.
+
+This is ideal for normal blog posts that do not need to change every few seconds.
+
+Dynamic MDX
+
+The starter kit can also work with dynamically retrieved content. Conceptually, the flow looks something like this: Supabase > Next.js Server > MDX Rendering > Article.
+
+Dynamic MDX allows content to originate outside the static content directory while still benefiting from the MDX component system.
+
+This gives the project room to evolve beyond a simple file-based blog.
+
+A developer can use static MDX where static content makes sense and database-backed content where dynamic functionality is needed.
+
+The official package ( next-mdx-remote) used to dynamically load and render MDX content from an external source can be found here.
+
+Writing Technical Content with MDX
+
+MDX is one of the most important technologies in the starter kit.
+
+Markdown is already an excellent format for writing technical content. MDX takes that model and adds React.
+
+You can develop custom components that can be used inside Markdown.
+
+That means an article does not have to be restricted to headings, paragraphs, images, and code fences.
+
+Article frontmatter can also describe the content. The following code fragment details how frontmatter is used in an MDX file (/demos/Demo83NextMDXBlogNPM_Package/mdx/ArticleContent.mdx):
+
+Frontmatter for a MDX file – Medium
+
+view raw ArticleContent.mdx
+hosted with ❤ by GitHub
+
+Frontmatter as typically seen in a MDX file
+
+That metadata can then be reused throughout the application for article listings, authors, tags, related content, and SEO.
+
+Custom MDX Components
+
+This is where MDX becomes particularly interesting for a developer blog.
+
+The starter kit includes pre-built custom MDX components for presenting technical content rather than treating every article as plain Markdown.
+
+Code Blocks
+
+Technical articles frequently contain large amounts of source code.
+
+The starter kit provides developer-friendly code presentation with functionality such as syntax highlighting and copy-to-clipboard support.
+
+Instead of treating code as an afterthought, code becomes part of the reading experience.
+
+The following code fragment details what the CodeBlock custom MDX component looks like (/demos/Demo83NextMDXBlogNPM_Package/mdx/CodeBlock.tsx):
+
+CodeBlock custom MDX component – Medium
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | "use client"; |
+|  | import{PrismasSyntaxHighlighter}from'react-syntax-highlighter'; |
+|  | import{vscDarkPlus}from'react-syntax-highlighter/dist/cjs/styles/prism'; |
+|  | import{toast}from'sonner'; |
+|  |  |
+|  | // Custom code block component for handling code in MDX files |
+|  | // Visual Studio Code Dark Plus theme with copy functionality |
+|  | constCodeBlock=({ className ='', children }: {className?: string;children: string}): React.JSX.Element=>{ |
+|  | constmatch=/language-(\\w+)/.exec(className\|\|''); |
+|  | constlanguage=match?.\[1\]\|\|'text'; |
+|  | constcode=String(children).trim(); |
+|  |  |
+|  | // Copy content and receive a toast message based on action |
+|  | constcopyToClipboard=async(): Promise<void>=>{ |
+|  | try{ |
+|  | awaitnavigator.clipboard.writeText(code); |
+|  | toast.success('Code copied!',{ |
+|  | style: { |
+|  | background: '#0d1117', |
+|  | border: '1px solid #22c55e', |
+|  | color: 'white' |
+|  | } |
+|  | }); |
+|  | } |
+|  | catch{ |
+|  | toast.error('Failed to copy code',{ |
+|  | style: { |
+|  | background: '#0d1117', |
+|  | border: '1px solid #22c55e', |
+|  | color: 'white' |
+|  | } |
+|  | }); |
+|  | } |
+|  | }; |
+|  |  |
+|  | return( |
+|  | <divclassName="relative my-6 group"> |
+|  | <divclassName="absolute top-3 right-3 z-10"> |
+|  | <button |
+|  | type="button" |
+|  | onClick={copyToClipboard} |
+|  | className="flex items-center gap-1 text-xs text-green-400/70 hover:text-green-300 transition-colors duration-200 bg-black/60 hover:bg-black/80 px-2 py-1 rounded border border-green-500/20 backdrop-blur-sm" |
+|  | > |
+|  | <svgclassName="w-3 h-3"fill="currentColor"viewBox="0 0 20 20"> |
+|  | <pathd="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/> |
+|  | <pathd="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/> |
+|  | </svg> |
+|  | Copy |
+|  | </button> |
+|  | </div> |
+|  | <SyntaxHighlighter |
+|  | language={language} |
+|  | style={vscDarkPlus} |
+|  | className="rounded-lg" |
+|  | customStyle={{ |
+|  | paddingTop: '2rem', |
+|  | }} |
+|  | > |
+|  | {code} |
+|  | </SyntaxHighlighter> |
+|  | </div> |
+|  | ); |
+|  | }; |
+|  |  |
+|  | exportdefaultCodeBlock; |
+
+view raw CodeBlock.tsx
+hosted with ❤ by GitHub
+
+Custom CodeBlock MDX component used for rendering code fragments
+
+It is a custom-built client component that utilizes the SyntaxHighlighter package to enable code syntax highlighting based on language.
+
+GitHub Gists
+
+GitHub Gists can also be incorporated into MDX content.
+
+The implementation can retrieve Gist information through GitHub, determine the programming language, apply syntax highlighting, and render the result as part of the article.
+
+Conceptually, the flow looks something like this: MDX Article > Gist Component > GitHub API > Source Code > Syntax Highlighting > Article.
+
+For programming tutorials, this makes it possible to connect blog content with code maintained outside the article itself.
+
+In fact, I built a site that allows users to granularly view each GitHub Gist with greater interactivity ( mdxgists.net). The starter kit uses this site.
+
+Get Abdullah Muhammad’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Remember me for faster sign in
+
+The following code fragment builds on smaller sub-components (which can be found here /demos/Demo83NextMDXBlogNPM_Package/mdx/GitHubGist.tsx) to build a custom GitHubGist MDX component:
+
+GitHubGist custom MDX component – Medium
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | importtypeGitHubGistTypefrom'@/utils/types/GitHubGistType'; |
+|  | importGistCopyButtonfrom'./GistCopyButton'; |
+|  | importGistCodeBlockfrom'./GistCodeBlock'; |
+|  | import{GITHUB\USERNAME,GITHUB\GIST\LANGUAGE\MAP,GIST\BASE\URL}from'@/utils/constants'; |
+|  |  |
+|  | exportdefaultasyncfunctionGitHubGist({ id, figCaptionText }: GitHubGistType): Promise<React.JSX.Element>{ |
+|  | try{ |
+|  | constheaders: HeadersInit={ |
+|  | 'Accept': 'application/vnd.github.v3+json', |
+|  | }; |
+|  |  |
+|  | if(process.env.GITHUB\_TOKEN){ |
+|  | headers\['Authorization'\]=\Bearer ${process.env.GITHUB\_TOKEN}\; |
+|  | } |
+|  |  |
+|  | constresponse=awaitfetch(\https://api.github.com/gists/${id}\,{ |
+|  | headers, |
+|  | next: {revalidate: 3600}, |
+|  | }); |
+|  |  |
+|  | if(!response.ok){ |
+|  | return( |
+|  | <divclassName="text-red-400 bg-red-950/30 border border-red-500/30 p-4 rounded-lg font-mono text-sm"> |
+|  | Could not load GitHub Gist ({response.status}) |
+|  | </div> |
+|  | ); |
+|  | } |
+|  |  |
+|  | constdata=awaitresponse.json(); |
+|  | constfirstFileKey=Object.keys(data.files)\[0\]; |
+|  | constfirstFile=data.files\[firstFileKey\]; |
+|  |  |
+|  | constrawResponse=awaitfetch(firstFile.raw\_url,{ |
+|  | headers: process.env.GITHUB\_TOKEN |
+|  | ? {'Authorization': \Bearer ${process.env.GITHUB\_TOKEN}\} |
+|  | : {}, |
+|  | next: {revalidate: 3600}, |
+|  | }); |
+|  |  |
+|  | constcontent=awaitrawResponse.text(); |
+|  | constlanguage: string\|null=firstFile.language; |
+|  | constprismLanguage=language |
+|  | ? (GITHUB\GIST\LANGUAGE\_MAP\[language\]??language.toLowerCase()) |
+|  | : 'text'; |
+|  | constmdxGHGistURL=\${GIST\BASE\URL}/${GITHUB\_USERNAME}/${id}\; |
+|  |  |
+|  | return( |
+|  | <figureclassName="my-6"> |
+|  | <divclassName="relative bg-gray-900/30 rounded-lg border-2 border-green-500 shadow-\[0\0\15px\_rgba(34,197,94,0.3)\] overflow-hidden"> |
+|  | {/\\ Header \/} |
+|  | <divclassName="flex flex-wrap items-center justify-between gap-2 px-4 py-2 bg-gray-800/50 border-b border-green-500/30"> |
+|  | <divclassName="flex items-center gap-2"> |
+|  | <svgclassName="w-4 h-4 text-green-400"fill="currentColor"viewBox="0 0 20 20"> |
+|  | <pathfillRule="evenodd"d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"clipRule="evenodd"/> |
+|  | </svg> |
+|  | <spanclassName="text-sm text-green-200 font-medium">GitHub Gist</span> |
+|  | {language&&( |
+|  | <spanclassName="text-xs text-green-600 font-mono border border-green-500/20 px-1.5 py-0.5 rounded"> |
+|  | {language} |
+|  | </span> |
+|  | )} |
+|  | </div> |
+|  | <GistCopyButtoncontent={content}mdxGHGistURL={mdxGHGistURL}/> |
+|  | </div> |
+|  |  |
+|  | {/\\ Code \/} |
+|  | <divclassName="scrollbar-gist overflow-auto max-h-96"> |
+|  | <GistCodeBlockcontent={content}language={prismLanguage}/> |
+|  | </div> |
+|  | </div> |
+|  | <figcaptionclassName="mt-3 mb-4 leading-relaxed text-green-200/90 text-sm font-medium text-center"> |
+|  | {figCaptionText} |
+|  | </figcaption> |
+|  | </figure> |
+|  | ); |
+|  | } |
+|  | catch(err){ |
+|  | return( |
+|  | <divclassName="text-red-400 bg-red-950/30 border border-red-500/30 p-4 rounded-lg font-mono text-sm"> |
+|  | Could not load GitHub Gist: {errinstanceofError ? err.message : String(err)} |
+|  | </div> |
+|  | ); |
+|  | } |
+|  | } |
+
+view raw GitHubGist.tsx
+hosted with ❤ by GitHub
+
+GitHubGist custom MDX component incorporating the GitHub API as well as mdxgists.net to display gists
+
+If you understand the flow of the codebase, understanding this code fragment becomes very easy.
+
+Images
+
+Custom image handling also allows technical articles to benefit from Next.js image optimization, responsive sizing, captions, and consistent presentation.
+
+Together, these components turn MDX into more than a content format. The following code fragment details a custom component which optimizes the process of image handling (/demos/Demo83NextMDXBlogNPM_Package/mdx/MDXImage.tsx):
+
+MDXImage custom MDX component – Medium
+
+This file contains hidden or bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+Learn more about bidirectional Unicode characters
+
+Show hidden characters
+
+|     |     |
+| --- | --- |
+|  | importImagefrom"next/image"; |
+|  | importtype{MDXImageType}from"@/utils/types"; |
+|  |  |
+|  | // MDXImage custom component |
+|  | // Utilizes the built-in Next.js Image component as well as the figcaption element |
+|  | exportdefaultfunctionMDXImage(imageProperties: MDXImageType): React.JSX.Element{ |
+|  | return( |
+|  | <figureclassName='text-center my-6'> |
+|  | <divclassName="relative inline-block p-4 bg-gray-900/30 rounded-lg border-2 border-green-500 shadow-\[0\0\15px\rgba(34,197,94,0.3)\] transition-all duration-300 hover:shadow-\[0\0\25px\rgba(34,197,94,0.5)\] hover:scale-\[1.02\]"> |
+|  | <Image |
+|  | className='mx-auto rounded-md transition-transform duration-300' |
+|  | src={imageProperties.src} |
+|  | height={imageProperties.height} |
+|  | width={imageProperties.width} |
+|  | alt={imageProperties.alt} |
+|  | /> |
+|  | </div> |
+|  | <figcaptionclassName="mt-3 mb-4 leading-relaxed text-green-200/90 text-sm font-medium"> |
+|  | {imageProperties.figcaption} |
+|  | </figcaption> |
+|  | </figure> |
+|  | ); |
+|  | } |
+
+view raw MDXImage.tsx
+hosted with ❤ by GitHub
+
+MDXImage custom MDX component optimized for image handling
+
+The custom MDX component builds on the built-in Next.js Image component and optimizes the image handling process.
+
+Dynamic Content with Supabase
+
+Not everything inside a blog needs to live in an MDX file. The starter kit integrates Supabase for functionality that benefits from a database.
+
+Next.js Server Components can interact with the database server-side, allowing data to be retrieved without unnecessarily creating an additional client-side data layer.
+
+One example is article view tracking.
+
+A static article can remain optimized for delivery while dynamic systems keep track of information surrounding that article.
+
+This combination is an important part of the architecture as it keeps content static where possible and introduces dynamic infrastructure where it provides a real benefit.
+
+The package includes tooling for working with database-backed article content, providing a more developer-oriented workflow for creating and managing content.
+
+AI-Powered Blog Features
+
+AI is another area where the starter kit goes beyond a conventional MDX template.
+
+Rather than adding AI simply for the sake of having a chatbot, the project uses it to improve how readers interact with technical content.
+
+AI Blog Assistant
+
+The starter kit includes an AI Blog Assistant powered by Claude and the Vercel AI SDK.
+
+At a high level, the flow looks something like this: Reader > Blog Assistant > Next.js > Vercel AI SDK > Claude > Streaming Response.
+
+Readers can interact with the assistant through the blog rather than leaving the site to ask questions elsewhere.
+
+Streaming responses also make the interaction feel much more immediate.
+
+AI Article Summaries
+
+Long technical tutorials can be difficult to evaluate before committing to reading the entire article.
+
+The article summarization functionality allows readers to generate a shorter overview or TL;DR.
+
+The implementation can incorporate article context, streaming output, caching, rate limiting, and other server-side protections.
+
+This is a good example of AI being used as an enhancement to existing content rather than a replacement for it.
+
+Interactive Code with Sandpack
+
+Reading source code and running source code are two very different experiences.
+
+To run source code, users would need to copy the code, open an editor, create a project or file, and run it themselves.
+
+The starter kit includes a Sandpack-powered code sandbox that allows JavaScript and TypeScript examples to execute directly in the browser.
+
+This is particularly useful for educational content.
+
+A tutorial can become an interactive programming environment instead of simply a document containing code.
+
+Organizing and Discovering Content
+
+As a blog grows, publishing articles is only half of the problem. Readers also need ways to discover them.
+
+The starter kit includes author profiles, allowing content to be associated with individual writers.
+
+Tags provide another level of organization and allow related subjects to be grouped together.
+
+Search helps readers find existing articles, while related-content functionality can direct readers toward additional material based on common topics or metadata.
+
+Together, these features allow the starter kit to scale beyond a small collection of posts.
+
+The Reading Experience
+
+A good developer blog needs to be comfortable to read and use.
+
+The starter kit includes several smaller features that contribute to the overall experience:
+
+• Dark and light themes
+• Reading progress
+• Responsive layouts
+• Back-to-top functionality
+• Copy-link functionality
+• Social sharing
+• Toast notifications
+• Developer-focused styling
+
+Individually, these features may seem small, but together, they make the difference between an MDX renderer and a polished blogging experience.
+
+User Feedback with Resend
+
+You should always be looking to improve and iterate your technical blog. That is why the starter kit allows you to gather user feedback in the form of emails with the help of the Resend package.
+
+The basic workflow is straightforward: Reader > Feedback Form > Next.js > Resend.
+
+This provides a foundation for collecting and assessing user feedback, allowing developers to continuously improve their blogs based on what readers have to say.
+
+SEO
+
+Discoverability matters just as much as writing.
+
+The starter kit includes the foundations needed for search-engine-friendly content, including metadata, static generation, semantic pages, sitemap functionality, robots configuration, and optimized images.
+
+Many of these features are provided by Next.js App Router itself as it is a web framework optimized for developing SEO-friendly full-stack websites.
+
+The SSG-first architecture also complements SEO because much of the primary article content can be delivered as pre-rendered HTML.
+
+Analytics
+
+The starter kit includes Vercel Analytics which is a privacy-friendly, built-in tool that tracks website traffic, visitor demographics, and app performance directly inside your Vercel dashboard.
+
+With analytics and article view information, developers can begin understanding which articles readers are discovering and what content performs well.
+
+That information can then influence future articles and improvements to the blog.
+
+Making the Starter Kit Your Own
+
+After scaffolding the application, you can replace the default identity with your own.
+
+This can include anything from the site name, logo, favicon, navigation, colour scheme, author information, social profiles, MDX content, and so much more.
+
+You can also remove functionality you do not need. If your blog does not require AI, remove it. If you do not need dynamic articles, stick with static MDX.
+
+If you want an entirely different design, replace the presentation layer while keeping the underlying content architecture.
+
+The starter kit is intended to give you infrastructure without dictating what your finished blog must become.
+
+Deployment Options
+
+Once the blog is ready, there are multiple deployment options available to you using the starter kit.
+
+Vercel
+
+Vercel is optimized for the deployment of Next.js applications. It provides the most straightforward path for deployment.
+
+Connect the repository, configure the necessary environment variables, build the application, and deploy.
+
+To track analytics, your blog will need to be deployed to Vercel because it uses Vercel Analytics.
+
+Docker
+
+The starter kit includes a custom Dockerfile and a .dockerignore file, which helps optimize the image-building process.
+
+The containerized approach will enable developers to have more control over infrastructure.
+
+A local Docker setup may look like the following (building the image using the Dockerfile and then running a container off the image):
+
+docker build -t next-mdx-blog .
+
+docker run -p 3000:3000 next-mdx-blog
+
+Docker opens the door to deploying the application across different container platforms and cloud environments rather than tying the project to a single hosting provider.
+
+Conclusion
+
+The Next.js MDX Blog Starter Kit combines several layers of a modern technical publishing platform:
+
+Content: MDX, static articles, dynamic articles, frontmatter, tags, and authors.
+
+Developer Experience: Next.js, React, TypeScript, reusable components, and NPM scaffolding.
+
+Technical Content: Syntax highlighting, GitHub Gists, optimized images, and interactive Sandpack examples.
+
+AI: Claude-powered article summaries and a Blog Assistant.
+
+Data: Supabase and database-backed functionality.
+
+Audience: Search, related content, social sharing, and feedback.
+
+Production: SEO, analytics, Vercel, and Docker.
+
+Who Is This For?
+
+The starter kit is primarily designed for developers and technical creators who want control over their publishing platform.
+
+It can work as a personal developer blog, an engineering blog, a tutorial platform, or the foundation for a larger developer-content project.
+
+You also do not have to use every integration.
+
+The value of a starter kit is being able to take the parts you need and extend or remove the rest.
+
+Where Can You Take It Next?
+
+The current starter kit provides the foundation, but there are plenty of directions in which it can be extended.
+
+Authentication could introduce reader accounts, bookmarks and reading lists could allow readers to save content, and comments could introduce community discussions.
+
+Additional MDX components could make articles even more interactive. Premium content or other monetization models could also be introduced to unlock exclusive content.
+
+The sky is the limit.
+
+Fork it. Change it. Remove things. Add things. Make it yours.
+
+In the list below, you will find links to the official NPM package, the starter kit’s GitHub repository, and the GitHub repository used in this article:
+
+• Starter Kit NPM Package
+• Starter Kit GitHub Repository
+• Article GitHub Repository
+
+I hope you enjoyed this article and look forward to more in the future.
+
+Thank you!
+
+| title | Understand Dynamic MDX with Supabase |
+| description | Learn how to fetch, parse, and render dynamic MDX content from Supabase using Next.js and next-mdx-remote. |
+| date | 2025-06-03 |
+| tags | |     |     |     |     |     |
+| --- | --- | --- | --- | --- |
+| next.js | mdx | supabase | next-mdx-remote | dynamic content | |
