@@ -67,7 +67,7 @@ npm run dev
     └── bin/create.js                ← the npx installer
 ```
 
-The application lives entirely inside [`mdx-medium-blog-post-provider/`](./mdx-medium-blog-post-provider) — see its [README](./mdx-medium-blog-post-provider/README.md) for full setup instructions, environment variables, feature documentation, and deployment guides.
+The application lives entirely inside [`mdx-medium-blog-post-provider/`](https://github.com/CodingAbdullah/Next-MDX-Blog-Starter) — see its [README](https://github.com/CodingAbdullah/Next-MDX-Blog-Starter/blob/main/README.md) for full setup instructions, environment variables, feature documentation, and deployment guides.
 
 ## ![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white) Package
 
