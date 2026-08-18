@@ -724,7 +724,7 @@ Table highlighting the current demos completed along with their code repository 
             <a href="https://medium.com/stackademic/level-up-with-claude-and-aws-certifications-474967c35a95">Level Up with Claude and AWS Certifications</a>
         </td> 
     </tr>
-        <tr>
+    <tr>
         <td>
             <code>/demos/Demo83_Next_MDX_Blog_NPM_Package</code>
         </td>
