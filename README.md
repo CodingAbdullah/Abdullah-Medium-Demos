@@ -728,6 +728,7 @@ Table highlighting the current demos completed along with their code repository 
         <td>
             <code>/demos/Demo83_Next_MDX_Blog_NPM_Package</code>
         </td>
+        <td>
             <a href="https://medium.com/@abdullah_95/build-a-production-ready-developer-blog-with-next-js-and-mdx-2476744004ff">Build a Production-Ready Blog with Next.js and MDX</a>
         </td> 
     </tr>
