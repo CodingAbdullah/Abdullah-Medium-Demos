@@ -2,7 +2,7 @@
 
 A TypeScript chess application that combines **TypeSafe AI's Jev System One model** with **Stockfish** to explore judgment-based AI in chess.
 
-***You can find the link to the article associated with this demo (here)[https://medium.com/stackademic/building-chess-with-jev-and-claude-opus-5-5-43a3544c1f9e].
+***You can find the link to the article associated with this demo (here)[https://medium.com/stackademic/building-chess-with-jev-and-claude-opus-5-5-43a3544c1f9e].***
 
 Play against Jev, Stockfish, or a Hybrid opponent that combines Stockfish's calculation with Jev's personality-driven judgment.
 
